@@ -14,7 +14,7 @@ export const Error404 = (): ReturnComponentType => {
         <span>Sorry! Page not found!</span>
         <Button>Back to home page</Button>
       </div>
-      <ButtonSvgSelector id="error" />
+      <ButtonSvgSelector />
     </div>
   );
 };

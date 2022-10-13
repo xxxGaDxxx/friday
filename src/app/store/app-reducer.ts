@@ -2,7 +2,7 @@ const initialState = {};
 
 export const appReducer = (
   action: ActionsType,
-  state = initialState,
+  state: InitialStateType = initialState,
 ): InitialStateType => {
   switch (action.type) {
     case '':
