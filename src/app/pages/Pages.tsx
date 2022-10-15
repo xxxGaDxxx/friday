@@ -12,7 +12,7 @@ import { Profile } from '../../features/profile/Profile';
 import { ReturnComponentType } from '../../types';
 
 export const PATH = {
-  LOGIN: '/login',
+  LOGIN: '/',
   REGISTRATION: '/registration',
   PROFILE: '/profile',
   NEW_PASSWORD: '/new_password',
@@ -25,15 +25,13 @@ export const Pages = (): ReturnComponentType => {
   return (
     <div>
       <Routes>
-        <Route path="/" element={<Navigate to={PATH.LOGIN} />} />
-
-        <Route path={PATH.LOGIN} element={<Login />} />
-        <Route path={PATH.REGISTRATION} element={<Registration />} />
+        <Route path="/" element={<Login />} />
         <Route path={PATH.PROFILE} element={<Profile />} />
+        <Route path={PATH.ERRORS} element={<Error404 />} />
+        <Route path={PATH.REGISTRATION} element={<Registration />} />
         <Route path={PATH.NEW_PASSWORD} element={<NewPassword />} />
         <Route path={PATH.RECOVERY_PASSWORD} element={<RecoveryPassword />} />
         <Route path={PATH.DEMONSTRATION} element={<DemonstrationComponent />} />
-        <Route path={PATH.ERRORS} element={<Error404 />} />
 
         <Route path="*" element={<Navigate to={PATH.ERRORS} />} />
       </Routes>

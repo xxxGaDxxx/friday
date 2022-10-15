@@ -12,16 +12,20 @@ import {
   InputLabel,
 } from '@mui/material';
 import { useFormik } from 'formik';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 import { PATH } from '../../../app/pages/Pages';
+import { useAppDispatch, useAppSelector } from '../../../app/store/store';
 import { ReturnComponentType } from '../../../types';
 
+import { loginTC } from './reducer/loginReducer';
 import s from './styles/Login.module.css';
 import { FormikErrorType } from './types/LoginType';
 
 export const Login = (): ReturnComponentType => {
-  // const dispatch = useDispatch();
+  const isLoggedIn = useAppSelector(state => state.login.isLoggedIn);
+  const dispatch = useAppDispatch();
+
   const navigate = useNavigate();
   const onRegistrationClick = (): void => {
     navigate(PATH.REGISTRATION);
@@ -52,8 +56,7 @@ export const Login = (): ReturnComponentType => {
       return errors;
     },
     onSubmit: values => {
-      console.log(values);
-      // dispatch(loginTC(values));
+      dispatch(loginTC(values));
       /* зачищает форму после успешной отправки формы */
       formik.resetForm();
     },
@@ -64,6 +67,10 @@ export const Login = (): ReturnComponentType => {
   const onShowAndHidePasswordClick = (): void => {
     setInputType(inputType === 'password' ? 'text' : 'password');
   };
+
+  if (isLoggedIn) {
+    return <Navigate to={PATH.PROFILE} />;
+  }
 
   return (
     <div className={s.loginWrapper}>
@@ -100,7 +107,7 @@ export const Login = (): ReturnComponentType => {
           <FormControlLabel
             className={s.loginInputFormCheckbox}
             label="Remember me"
-            control={<Checkbox />}
+            control={<Checkbox checked={formik.values.rememberMe} />}
             {...formik.getFieldProps('rememberMe')}
           />
           <div className={s.loginButtonForgot}>

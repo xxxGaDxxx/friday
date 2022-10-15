@@ -1,3 +1,8 @@
+import { Dispatch } from 'redux';
+
+import { setAppStatusAC } from '../../../../app/store/app-reducer';
+import { AppThunk } from '../../../../app/store/store';
+import { errorUtils } from '../../../../common/utils/errorUtils';
 import { loginAPI } from '../api/loginAPI';
 import { LoginParamsType } from '../types/LoginType';
 
@@ -7,9 +12,10 @@ const initialState = {
 
 type InitialStateType = typeof initialState;
 export const loginReducer = (
-  action: any,
+  // eslint-disable-next-line default-param-last
   state: InitialStateType = initialState,
-): any => {
+  action: any,
+): InitialStateType => {
   switch (action.type) {
     case 'login/SET-IS-LOGGED-IN':
       return { ...state, isLoggedIn: action.value };
@@ -23,6 +29,15 @@ export const setIsLoggedInAC = (value: boolean) =>
   ({ type: 'login/SET-IS-LOGGED-IN', value } as const);
 
 // thunk
-export const loginTC = (data: LoginParamsType) => () => {
-  loginAPI.login(data).then(res => console.log(res));
-};
+export const loginTC =
+  (data: LoginParamsType): AppThunk =>
+  (dispatch: Dispatch) => {
+    dispatch(setAppStatusAC('loading'));
+    loginAPI
+      .login(data)
+      .then(res => console.log(res))
+      .catch(err => {
+        errorUtils(err, dispatch);
+      })
+      .finally();
+  };

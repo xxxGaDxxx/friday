@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 
 import { ResponseMeAndLoginType } from '../types/LoginApiType';
 import { LoginParamsType } from '../types/LoginType';
@@ -10,10 +10,13 @@ const settings = axios.create({
 
 export const loginAPI = {
   login(data: LoginParamsType) {
-    return settings.post('auth/login', data);
+    return settings.post<LoginParamsType, AxiosResponse<ResponseMeAndLoginType>>(
+      'auth/login',
+      data,
+    );
   },
   me() {
-    return settings.post<ResponseMeAndLoginType>('auth/me');
+    return settings.post<AxiosResponse<ResponseMeAndLoginType>>('auth/me');
   },
   logout() {
     return settings.delete('auth/me');

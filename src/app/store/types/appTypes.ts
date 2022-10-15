@@ -1,12 +1,11 @@
-import {
-  initialStateApp,
-  setAppErrorAC,
-  setAppStatusAC,
-  setIsInitializedAC,
-} from '../app-reducer';
+import { setAppErrorAC, setAppStatusAC, setIsInitializedAC } from '../app-reducer';
 
 // initialStateApp type
-export type InitialStateAppType = typeof initialStateApp;
+export type InitialStateAppType = {
+  status: RequestStatusType;
+  error: null | string;
+  isInitialized: boolean;
+};
 
 // action type
 export type SetAppStatusACType = ReturnType<typeof setAppStatusAC>;
