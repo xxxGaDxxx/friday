@@ -1,0 +1,21 @@
+.loginWrapper {
+    width: 413px;
+    height: 100%;
+    margin: 0 auto;
+
+    padding: 35px;
+
+    background: #ffffff;
+    border-radius: 2px;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1), -1px -1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.loginInputFormCheckbox {
+    width: 100%;
+    text-align: start;
+}
+
+.loginButtonForgot {
+    text-align: end;
+    margin: 20px 0;
+}
