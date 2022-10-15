@@ -1,26 +1,51 @@
-const initialState = {};
+import { loginAPI } from '../../features/auth/login/api/loginAPI';
+
+import { AppThunk } from './store';
+import { ActionsAppType, InitialStateAppType, RequestStatusType } from './types/appTypes';
+
+export const initialStateApp = {
+  status: 'loading' as RequestStatusType,
+  error: null as string | null,
+  isInitialized: false,
+};
 
 export const appReducer = (
-  action: ActionsType,
-  state: InitialStateType = initialState,
-): InitialStateType => {
+  action: ActionsAppType,
+  state: InitialStateAppType = initialStateApp,
+): InitialStateAppType => {
   switch (action.type) {
-    case '':
-      return state;
+    case 'APP/SET-STATUS':
+      return { ...state, status: action.status };
+    case 'APP/SET-ERROR':
+      return { ...state, error: action.error };
+    case 'APP/SET-INITIALIZED':
+      return { ...state, isInitialized: action.value };
     default:
       return state;
   }
 };
 
-// Action Creators
+// action
 
-export const appReducerAC = () =>
+export const setAppStatusAC = (status: RequestStatusType) =>
   ({
-    type: '',
+    type: 'APP/SET-STATUS',
+    status,
   } as const);
 
-// type
-type InitialStateType = typeof initialState;
+export const setAppErrorAC = (error: string | null) =>
+  ({
+    type: 'APP/SET-ERROR',
+    error,
+  } as const);
 
-type appReducerACType = ReturnType<typeof appReducerAC>;
-type ActionsType = appReducerACType;
+export const setIsInitializedAC = (value: boolean) =>
+  ({
+    type: 'APP/SET-INITIALIZED',
+    value,
+  } as const);
+
+// thunk
+export const initializeAppTC = (): AppThunk => () => {
+  loginAPI.me().then(res => console.log(res));
+};
