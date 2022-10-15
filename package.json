@@ -36,7 +36,8 @@
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "lint-fix": "eslint --fix"
+    "lint-fix": "eslint --fix",
+    "pretier": "npm run lint-fix"
   },
   "lint-staged": {
     "**/*.{js,ts,jsx,tsx}": [
