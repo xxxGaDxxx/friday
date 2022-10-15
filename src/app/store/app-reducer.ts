@@ -14,11 +14,10 @@ export const appReducer = (
 
 // Action Creators
 
-export const appReducerAC = (): any => {
-  return {
+export const appReducerAC = () =>
+  ({
     type: '',
-  } as const;
-};
+  } as const);
 
 // type
 type InitialStateType = typeof initialState;
