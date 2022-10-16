@@ -1,5 +1,5 @@
+import { authAPI } from '../../api/authAPI';
 import { errorUtils } from '../../common/utils/errorUtils';
-import { loginAPI } from '../../features/auth/login/api/loginAPI';
 import { setIsLoggedInAC } from '../../features/auth/login/reducer/loginReducer';
 import { setUserEmailAC, setUserNameAC } from '../../features/profile/profile-reducer';
 
@@ -17,7 +17,6 @@ export const initialStateApp: InitialStateAppType = {
 };
 
 export const appReducer = (
-  // eslint-disable-next-line default-param-last
   state: InitialStateAppType = initialStateApp,
   action: AppReducerActionsType,
 ): InitialStateAppType => {
@@ -57,7 +56,7 @@ export const setIsInitializedAC = (value: boolean) =>
 export const initializeAppTC = (): AppThunk => dispatch => {
   dispatch(setAppStatusAC('loading'));
   dispatch(setAppErrorAC(null));
-  loginAPI
+  authAPI
     .me()
     .then(res => {
       dispatch(setIsLoggedInAC(true));

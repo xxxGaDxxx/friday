@@ -1,7 +1,9 @@
+import { AxiosError } from 'axios';
+
+import { authAPI, userAPI } from '../../api/authAPI';
 import { setAppStatusAC } from '../../app/store/app-reducer';
 import { AppDispatch, AppThunk } from '../../app/store/store';
 import { errorUtils } from '../../common/utils/errorUtils';
-import { loginAPI } from '../auth/login/api/loginAPI';
 import { setIsLoggedInAC } from '../auth/login/reducer/loginReducer';
 import { UserUpdateParamsType } from '../auth/login/types/LoginType';
 
@@ -46,7 +48,7 @@ export const updateUserNameTC =
   (data: UserUpdateParamsType): AppThunk =>
   (dispatch: AppDispatch) => {
     dispatch(setAppStatusAC('loading'));
-    loginAPI
+    userAPI
       .updateUser(data)
       .then(res => {
         dispatch(setUserNameAC(res.data.updatedUser.name));
@@ -58,13 +60,13 @@ export const updateUserNameTC =
   };
 export const logOutUserTC = (): AppThunk => (dispatch: AppDispatch) => {
   dispatch(setAppStatusAC('loading'));
-  loginAPI
+  authAPI
     .logout()
     .then(() => {
       dispatch(setIsLoggedInAC(false));
       dispatch(setAppStatusAC('succeeded'));
     })
-    .catch(err => {
+    .catch((err: Error | AxiosError<{ error: string }, any>) => {
       errorUtils(err, dispatch);
     });
 };

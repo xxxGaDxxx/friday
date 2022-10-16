@@ -1,10 +1,10 @@
 import { Dispatch } from 'redux';
 
+import { authAPI } from '../../../../api/authAPI';
 import { setAppStatusAC } from '../../../../app/store/app-reducer';
 import { AppThunk } from '../../../../app/store/store';
 import { errorUtils } from '../../../../common/utils/errorUtils';
 import { setUserEmailAC, setUserNameAC } from '../../../profile/profile-reducer';
-import { loginAPI } from '../api/loginAPI';
 import { LoginParamsType } from '../types/LoginType';
 
 const initialState = {
@@ -33,7 +33,7 @@ export const loginTC =
   (data: LoginParamsType): AppThunk =>
   (dispatch: Dispatch) => {
     dispatch(setAppStatusAC('loading'));
-    loginAPI
+    authAPI
       .login(data)
       .then(res => {
         dispatch(setIsLoggedInAC(true));
