@@ -25,7 +25,7 @@ export const Pages = (): ReturnComponentType => {
   return (
     <div>
       <Routes>
-        <Route path="/" element={<Login />} />
+        <Route path={PATH.LOGIN} element={<Login />} />
         <Route path={PATH.PROFILE} element={<Profile />} />
         <Route path={PATH.ERRORS} element={<Error404 />} />
         <Route path={PATH.REGISTRATION} element={<Registration />} />

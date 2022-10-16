@@ -12,7 +12,6 @@ const initialState = {
 };
 
 export const loginReducer = (
-  // eslint-disable-next-line default-param-last
   state: InitialStateType = initialState,
   action: LoginReducerActionsType,
 ): InitialStateType => {
