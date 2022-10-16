@@ -31,18 +31,16 @@ export const Profile = (): ReturnComponentType => {
   }
 
   return (
-    <div style={{ marginTop: '50px' }}>
-      <div className={style.profileWrapper}>
-        <h2>Personal Information</h2>
-        <img src={avaImg} alt="ava" />
-        <div className={style.editableName}>
-          <EditableName value={name} onChange={onNameChange} />
-        </div>
-        <div>{email}</div>
-        <Button onClick={onLogOutClick} color="primary" variant="outlined">
-          Log out
-        </Button>
+    <div className={style.profileWrapper}>
+      <h2>Personal Information</h2>
+      <img src={avaImg} alt="ava" />
+      <div className={style.editableName}>
+        <EditableName value={name} onChange={onNameChange} />
       </div>
+      <div>{email}</div>
+      <Button onClick={onLogOutClick} color="primary" variant="outlined">
+        Log out
+      </Button>
     </div>
   );
 };

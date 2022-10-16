@@ -1,5 +1,3 @@
-import { Dispatch } from 'redux';
-
 import { authAPI } from '../../../../api/authAPI';
 import { setAppStatusAC } from '../../../../app/store/app-reducer';
 import { AppThunk } from '../../../../app/store/store';
@@ -14,11 +12,11 @@ export const initialStateLogin = {
 };
 
 export const loginReducer = (
-  state: InitialStateLoginType = initialStateLogin,
+  state = initialStateLogin,
   action: LoginReducerActionsType,
 ): InitialStateLoginType => {
   switch (action.type) {
-    case 'login/SET-IS-LOGGED-IN':
+    case 'LOGIN/SET-IS-LOGGED-IN':
       return { ...state, isLoggedIn: action.value };
     default:
       return state;
@@ -27,12 +25,12 @@ export const loginReducer = (
 
 // action
 export const setIsLoggedInAC = (value: boolean) =>
-  ({ type: 'login/SET-IS-LOGGED-IN', value } as const);
+  ({ type: 'LOGIN/SET-IS-LOGGED-IN', value } as const);
 
 // thunk
 export const loginTC =
   (data: LoginParamsType): AppThunk =>
-  (dispatch: Dispatch) => {
+  dispatch => {
     dispatch(setAppStatusAC('loading'));
     authAPI
       .login(data)
@@ -44,6 +42,5 @@ export const loginTC =
       })
       .catch(err => {
         errorUtils(err, dispatch);
-      })
-      .finally();
+      });
   };

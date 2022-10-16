@@ -1,21 +1,42 @@
 import React from 'react';
 
-import { NavLink } from 'react-router-dom';
+import { Button } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
+import imgIncubator from '../../assets/img/Group 753.png';
 import { ReturnComponentType } from '../../types';
+import ButtonAndProfile from '../buttutAndProfile/ButtonAndProfile';
 import { PATH } from '../pages/Pages';
+import { useAppSelector } from '../store/store';
 
 import s from './Header.module.css';
 
 export const Header = (): ReturnComponentType => {
+  const isLoggedIn = useAppSelector(state => state.login.isLoggedIn);
+
+  const navigate = useNavigate();
+
+  const onSingInClick = (): void => {
+    return navigate(PATH.LOGIN);
+  };
+
   return (
     <div className={s.header}>
-      <NavLink to={PATH.LOGIN}>Login</NavLink>
-      <NavLink to={PATH.REGISTRATION}>Registration</NavLink>
-      <NavLink to={PATH.PROFILE}>Profile</NavLink>
-      <NavLink to={PATH.NEW_PASSWORD}>New password</NavLink>
-      <NavLink to={PATH.RECOVERY_PASSWORD}>Recovery password</NavLink>
-      <NavLink to={PATH.DEMONSTRATION}>Demonstration component</NavLink>
+      <img className={s.iconIT} src={imgIncubator} alt="IT-INCUBATOR" />
+
+      {!isLoggedIn ? (
+        <Button
+          onClick={onSingInClick}
+          style={{ borderRadius: '20px' }}
+          color="primary"
+          variant="contained"
+          type="button"
+        >
+          Sing in
+        </Button>
+      ) : (
+        <ButtonAndProfile />
+      )}
     </div>
   );
 };

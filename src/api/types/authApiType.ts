@@ -14,10 +14,15 @@ export type UserResponseType = {
 };
 
 export type UpdateUserResponseType = {
-  updatedUser: UserResponseType & tokenDeathTimeType;
+  updatedUser: UserResponseType & TokenDeathTimeType;
   token: string;
   tokenDeathTime: number;
 };
-type tokenDeathTimeType = {
+type TokenDeathTimeType = {
   tokenDeathTime: number;
+};
+
+export type LogoutResponse = {
+  info?: string;
+  error?: string;
 };

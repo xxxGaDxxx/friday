@@ -1,15 +1,16 @@
 import { AxiosResponse } from 'axios';
 
 import {
-  UpdateUserResponseType,
-  UserResponseType,
-} from '../features/auth/login/types/LoginApiType';
-import {
   LoginParamsType,
   UserUpdateParamsType,
 } from '../features/auth/login/types/LoginType';
 
 import { instance } from './config';
+import {
+  LogoutResponse,
+  UpdateUserResponseType,
+  UserResponseType,
+} from './types/authApiType';
 
 export const authAPI = {
   login(data: LoginParamsType) {
@@ -22,7 +23,7 @@ export const authAPI = {
     return instance.post<{}, AxiosResponse<UserResponseType>>('auth/me');
   },
   logout() {
-    return instance.delete('auth/me');
+    return instance.delete<{}, AxiosResponse<LogoutResponse>>('auth/me');
   },
 };
 

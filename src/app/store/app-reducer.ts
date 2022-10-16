@@ -8,7 +8,7 @@ import {
   AppReducerActionsType,
   InitialStateAppType,
   RequestStatusType,
-} from './types/appTypes';
+} from './types/appReducerTypes';
 
 export const initialStateApp: InitialStateAppType = {
   status: 'idle',

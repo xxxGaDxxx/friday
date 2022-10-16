@@ -32,14 +32,14 @@ export const Login = (): ReturnComponentType => {
 
   const [inputType, setInputType] = useState<string>('password');
 
-  const onShowAndHidePasswordClick = (): void => {
+  const onShowHidePasswordClick = (): void => {
     setInputType(inputType === 'password' ? 'text' : 'password');
   };
 
-  const onRegistrationClick = (): void => {
+  const onRegistrationPageClick = (): void => {
     navigate(PATH.REGISTRATION);
   };
-  const onForgotPasswordClick = (): void => {
+  const onForgotPasswordPageClick = (): void => {
     navigate(PATH.RECOVERY_PASSWORD);
   };
 
@@ -64,74 +64,72 @@ export const Login = (): ReturnComponentType => {
       formik.resetForm();
     },
   });
+  const isPasswordError = formik.touched.password && formik.errors.password;
 
   if (isLoggedIn) {
     return <Navigate to={PATH.PROFILE} />;
   }
 
   return (
-    <div style={{ marginTop: '50px' }}>
-      <div className={s.loginWrapper}>
-        <h2>Sing in</h2>
-        <div>
-          <form onSubmit={formik.handleSubmit}>
-            <FormControl sx={{ m: 1, width: '100%' }} variant="standard">
-              <InputLabel htmlFor="standard-adornment-password">Email</InputLabel>
-              <Input
-                id="standard-adornment-email"
-                type="email"
-                {...formik.getFieldProps('email')}
-              />
-            </FormControl>
+    <div className={s.loginWrapper}>
+      <h2>Sing in</h2>
 
-            <FormControl sx={{ m: 1, width: '100%' }} variant="standard">
-              <InputLabel htmlFor="standard-adornment-password">Password</InputLabel>
-              <Input
-                id="standard-adornment-password"
-                type={inputType}
-                {...formik.getFieldProps('password')}
-                endAdornment={
-                  <InputAdornment position="end">
-                    <IconButton
-                      aria-label="toggle password visibility"
-                      onClick={onShowAndHidePasswordClick}
-                    >
-                      {inputType === 'password' ? <VisibilityOff /> : <Visibility />}
-                    </IconButton>
-                  </InputAdornment>
-                }
-              />
-            </FormControl>
-            {formik.touched.password && formik.errors.password && (
-              <div className={s.warningPassword}>{formik.errors.password}</div>
-            )}
-            <FormControlLabel
-              className={s.loginInputFormCheckbox}
-              label="Remember me"
-              control={<Checkbox checked={formik.values.rememberMe} />}
-              {...formik.getFieldProps('rememberMe')}
-            />
-            <div className={s.loginButtonForgot}>
-              <Button type="button" onClick={onForgotPasswordClick}>
-                Forgot Password?
-              </Button>
-            </div>
-            <Button
-              type="submit"
-              variant="contained"
-              color="primary"
-              style={{ width: '100%', borderRadius: '20px' }}
-            >
-              Login
-            </Button>
-            <div className={s.loginFooter}>
-              <p>Already have an account?</p>
-              <Button type="button" onClick={onRegistrationClick}>
-                Sign Up
-              </Button>
-            </div>
-          </form>
+      <form onSubmit={formik.handleSubmit}>
+        <FormControl sx={{ m: 1, width: '100%' }} variant="standard">
+          <InputLabel>Email</InputLabel>
+          <Input type="email" {...formik.getFieldProps('email')} />
+        </FormControl>
+
+        <FormControl sx={{ m: 1, width: '100%' }} variant="standard">
+          <InputLabel>Password</InputLabel>
+          <Input
+            type={inputType}
+            {...formik.getFieldProps('password')}
+            endAdornment={
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label="toggle password visibility"
+                  onClick={onShowHidePasswordClick}
+                >
+                  {inputType === 'password' ? <VisibilityOff /> : <Visibility />}
+                </IconButton>
+              </InputAdornment>
+            }
+          />
+        </FormControl>
+
+        {isPasswordError && (
+          <div className={s.warningPassword}>{formik.errors.password}</div>
+        )}
+
+        <FormControlLabel
+          className={s.loginInputFormCheckbox}
+          label="Remember me"
+          control={<Checkbox checked={formik.values.rememberMe} />}
+          {...formik.getFieldProps('rememberMe')}
+        />
+
+        <div className={s.loginButtonForgot}>
+          <Button type="button" onClick={onForgotPasswordPageClick}>
+            Forgot Password?
+          </Button>
         </div>
+
+        <Button
+          type="submit"
+          variant="contained"
+          color="primary"
+          style={{ width: '100%', borderRadius: '20px' }}
+        >
+          Login
+        </Button>
+      </form>
+
+      <div className={s.loginFooter}>
+        <p>Already have an account?</p>
+        <Button type="button" onClick={onRegistrationPageClick}>
+          Sign Up
+        </Button>
       </div>
     </div>
   );

@@ -14,7 +14,7 @@ import {
 } from '../../features/profile/profile-reducer';
 
 import { appReducer } from './app-reducer';
-import { AppReducerActionsType } from './types/appTypes';
+import { AppReducerActionsType } from './types/appReducerTypes';
 
 const rootReducer = combineReducers({
   app: appReducer,
@@ -30,7 +30,7 @@ export const useAppDispatch: () => AppDispatch = useDispatch;
 // types
 export type AppRootStateType = ReturnType<typeof rootReducer>;
 
-type AppActionsType =
+export type AppActionsType =
   | AppReducerActionsType
   | ProfileReducerActionsType
   | LoginReducerActionsType;
