@@ -7,14 +7,16 @@ import { errorUtils } from '../../../../common/utils/errorUtils';
 import { setUserEmailAC, setUserNameAC } from '../../../profile/profile-reducer';
 import { LoginParamsType } from '../types/LoginType';
 
-const initialState = {
+import { InitialStateLoginType, LoginReducerActionsType } from './loginReducerType';
+
+export const initialStateLogin = {
   isLoggedIn: false,
 };
 
 export const loginReducer = (
-  state: InitialStateType = initialState,
+  state: InitialStateLoginType = initialStateLogin,
   action: LoginReducerActionsType,
-): InitialStateType => {
+): InitialStateLoginType => {
   switch (action.type) {
     case 'login/SET-IS-LOGGED-IN':
       return { ...state, isLoggedIn: action.value };
@@ -45,7 +47,3 @@ export const loginTC =
       })
       .finally();
   };
-
-type InitialStateType = typeof initialState;
-type setIsLoggedInACType = ReturnType<typeof setIsLoggedInAC>;
-export type LoginReducerActionsType = setIsLoggedInACType;

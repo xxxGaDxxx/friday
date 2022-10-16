@@ -1,0 +1,20 @@
+.containerProfile {
+    height: 38px;
+    display: flex;
+    align-items: center;
+
+}
+
+.containerProfile span {
+    border-bottom: 2px black dashed;
+    margin-right: 10px;
+
+}
+
+.containerProfile img {
+    height: 38px;
+    width: 38px;
+    border-radius: 50%;
+    border: 1px solid #414040;
+
+}

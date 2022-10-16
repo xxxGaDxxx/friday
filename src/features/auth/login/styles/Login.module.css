@@ -1,27 +1,35 @@
 .loginWrapper {
-  width: 413px;
-  height: 100%;
-  margin: 0 auto;
+    width: 413px;
+    height: 100%;
+    margin: 0 auto;
 
-  padding: 35px;
+    padding: 35px;
 
-  background: #ffffff;
-  border-radius: 2px;
-  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1), -1px -1px 2px rgba(0, 0, 0, 0.1);
+    background: #ffffff;
+    border-radius: 2px;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1), -1px -1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .loginInputFormCheckbox {
-  width: 100%;
-  text-align: start;
+    width: 100%;
+    text-align: start;
 }
 
 .loginButtonForgot {
-  text-align: end;
-  margin: 20px 0;
+    text-align: end;
+    margin: 20px 0;
 }
-.loginWrapper h2{
-  text-align: center;
+
+.loginWrapper h2 {
+    text-align: center;
 }
-.loginFooter{
-  text-align: center;
+
+.loginFooter {
+    text-align: center;
+}
+
+.warningPassword {
+    font-size: 12px;
+    text-align: center;
+    color: #9a4d4d;
 }

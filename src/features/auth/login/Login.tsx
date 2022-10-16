@@ -26,14 +26,22 @@ export const Login = (): ReturnComponentType => {
   const isLoggedIn = useAppSelector(state => state.login.isLoggedIn);
   const dispatch = useAppDispatch();
 
+  const PASSWORD_LENGTH = 8;
+
   const navigate = useNavigate();
+
+  const [inputType, setInputType] = useState<string>('password');
+
+  const onShowAndHidePasswordClick = (): void => {
+    setInputType(inputType === 'password' ? 'text' : 'password');
+  };
+
   const onRegistrationClick = (): void => {
     navigate(PATH.REGISTRATION);
   };
   const onForgotPasswordClick = (): void => {
     navigate(PATH.RECOVERY_PASSWORD);
   };
-  const PASSWORD_LENGTH = 8;
 
   const formik = useFormik({
     initialValues: {
@@ -44,13 +52,8 @@ export const Login = (): ReturnComponentType => {
     validate: values => {
       const errors: FormikErrorType = {};
 
-      if (!values.email) {
-        errors.email = 'Required';
-      } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-        errors.email = 'Invalid email address';
-      }
       if (values.password.length < PASSWORD_LENGTH) {
-        errors.password = 'Required';
+        errors.password = 'Length of at least 8 characters ';
       }
 
       return errors;
@@ -61,12 +64,6 @@ export const Login = (): ReturnComponentType => {
       formik.resetForm();
     },
   });
-
-  const [inputType, setInputType] = useState<string>('password');
-
-  const onShowAndHidePasswordClick = (): void => {
-    setInputType(inputType === 'password' ? 'text' : 'password');
-  };
 
   if (isLoggedIn) {
     return <Navigate to={PATH.PROFILE} />;
@@ -105,6 +102,9 @@ export const Login = (): ReturnComponentType => {
                 }
               />
             </FormControl>
+            {formik.touched.password && formik.errors.password && (
+              <div className={s.warningPassword}>{formik.errors.password}</div>
+            )}
             <FormControlLabel
               className={s.loginInputFormCheckbox}
               label="Remember me"

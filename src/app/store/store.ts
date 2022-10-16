@@ -6,10 +6,8 @@ import {
 } from 'redux';
 import thunk, { ThunkAction, ThunkDispatch } from 'redux-thunk';
 
-import {
-  loginReducer,
-  LoginReducerActionsType,
-} from '../../features/auth/login/reducer/loginReducer';
+import { loginReducer } from '../../features/auth/login/reducer/loginReducer';
+import { LoginReducerActionsType } from '../../features/auth/login/reducer/loginReducerType';
 import {
   profileReducer,
   ProfileReducerActionsType,
