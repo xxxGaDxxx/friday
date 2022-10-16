@@ -39,7 +39,7 @@ const App = (): ReturnComponentType => {
           variant="contained"
           type="button"
         >
-          ss
+          Sing in
         </Button>
       </div>
       {status === 'loading' && <LinearProgress color="secondary" />}

@@ -73,61 +73,65 @@ export const Login = (): ReturnComponentType => {
   }
 
   return (
-    <div className={s.loginWrapper}>
-      <h2>Sing in</h2>
-      <div>
-        <form onSubmit={formik.handleSubmit}>
-          <FormControl sx={{ m: 1, width: '100%' }} variant="standard">
-            <InputLabel htmlFor="standard-adornment-password">Email</InputLabel>
-            <Input
-              id="standard-adornment-email"
-              type="email"
-              {...formik.getFieldProps('email')}
-            />
-          </FormControl>
+    <div style={{ marginTop: '50px' }}>
+      <div className={s.loginWrapper}>
+        <h2>Sing in</h2>
+        <div>
+          <form onSubmit={formik.handleSubmit}>
+            <FormControl sx={{ m: 1, width: '100%' }} variant="standard">
+              <InputLabel htmlFor="standard-adornment-password">Email</InputLabel>
+              <Input
+                id="standard-adornment-email"
+                type="email"
+                {...formik.getFieldProps('email')}
+              />
+            </FormControl>
 
-          <FormControl sx={{ m: 1, width: '100%' }} variant="standard">
-            <InputLabel htmlFor="standard-adornment-password">Password</InputLabel>
-            <Input
-              id="standard-adornment-password"
-              type={inputType}
-              {...formik.getFieldProps('password')}
-              endAdornment={
-                <InputAdornment position="end">
-                  <IconButton
-                    aria-label="toggle password visibility"
-                    onClick={onShowAndHidePasswordClick}
-                  >
-                    {inputType === 'password' ? <VisibilityOff /> : <Visibility />}
-                  </IconButton>
-                </InputAdornment>
-              }
+            <FormControl sx={{ m: 1, width: '100%' }} variant="standard">
+              <InputLabel htmlFor="standard-adornment-password">Password</InputLabel>
+              <Input
+                id="standard-adornment-password"
+                type={inputType}
+                {...formik.getFieldProps('password')}
+                endAdornment={
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={onShowAndHidePasswordClick}
+                    >
+                      {inputType === 'password' ? <VisibilityOff /> : <Visibility />}
+                    </IconButton>
+                  </InputAdornment>
+                }
+              />
+            </FormControl>
+            <FormControlLabel
+              className={s.loginInputFormCheckbox}
+              label="Remember me"
+              control={<Checkbox checked={formik.values.rememberMe} />}
+              {...formik.getFieldProps('rememberMe')}
             />
-          </FormControl>
-          <FormControlLabel
-            className={s.loginInputFormCheckbox}
-            label="Remember me"
-            control={<Checkbox checked={formik.values.rememberMe} />}
-            {...formik.getFieldProps('rememberMe')}
-          />
-          <div className={s.loginButtonForgot}>
-            <Button type="button" onClick={onForgotPasswordClick}>
-              Forgot Password?
+            <div className={s.loginButtonForgot}>
+              <Button type="button" onClick={onForgotPasswordClick}>
+                Forgot Password?
+              </Button>
+            </div>
+            <Button
+              type="submit"
+              variant="contained"
+              color="primary"
+              style={{ width: '100%', borderRadius: '20px' }}
+            >
+              Login
             </Button>
-          </div>
-          <Button
-            type="submit"
-            variant="contained"
-            color="primary"
-            style={{ width: '100%', borderRadius: '20px' }}
-          >
-            Login
-          </Button>
-          <p>Already have an account?</p>
-          <Button type="button" onClick={onRegistrationClick}>
-            Sign Up
-          </Button>
-        </form>
+            <div className={s.loginFooter}>
+              <p>Already have an account?</p>
+              <Button type="button" onClick={onRegistrationClick}>
+                Sign Up
+              </Button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   );
