@@ -1,9 +1,14 @@
 import { errorUtils } from '../../common/utils/errorUtils';
 import { loginAPI } from '../../features/auth/login/api/loginAPI';
 import { setIsLoggedInAC } from '../../features/auth/login/reducer/loginReducer';
+import { setUserEmailAC, setUserNameAC } from '../../features/profile/profile-reducer';
 
 import { AppThunk } from './store';
-import { ActionsAppType, InitialStateAppType, RequestStatusType } from './types/appTypes';
+import {
+  AppReducerActionsType,
+  InitialStateAppType,
+  RequestStatusType,
+} from './types/appTypes';
 
 export const initialStateApp: InitialStateAppType = {
   status: 'idle',
@@ -14,7 +19,7 @@ export const initialStateApp: InitialStateAppType = {
 export const appReducer = (
   // eslint-disable-next-line default-param-last
   state: InitialStateAppType = initialStateApp,
-  action: ActionsAppType,
+  action: AppReducerActionsType,
 ): InitialStateAppType => {
   switch (action.type) {
     case 'APP/SET-STATUS':
@@ -55,10 +60,10 @@ export const initializeAppTC = (): AppThunk => dispatch => {
   loginAPI
     .me()
     .then(res => {
-      console.log(res);
       dispatch(setIsLoggedInAC(true));
+      dispatch(setUserNameAC(res.data.name));
+      dispatch(setUserEmailAC(res.data.email));
       dispatch(setAppStatusAC('succeeded'));
-      // dispatch(profile.user(res.data))
     })
 
     .catch(err => {

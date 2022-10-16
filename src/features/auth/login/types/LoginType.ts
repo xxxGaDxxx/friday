@@ -9,3 +9,8 @@ export type LoginParamsType = {
   password: string;
   rememberMe?: boolean;
 };
+
+export type UserUpdateParamsType = {
+  name: string;
+  avatar: string;
+};

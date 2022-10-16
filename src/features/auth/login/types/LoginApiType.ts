@@ -1,4 +1,4 @@
-export type ResponseMeAndLoginType = {
+export type UserResponseType = {
   _id: string;
   email: string;
   rememberMe: boolean;
@@ -10,5 +10,14 @@ export type ResponseMeAndLoginType = {
   updated: string;
   __v: number;
   token: string;
+  tokenDeathTime: number;
+};
+
+export type UpdateUserResponseType = {
+  updatedUser: UserResponseType & tokenDeathTimeType;
+  token: string;
+  tokenDeathTime: number;
+};
+type tokenDeathTimeType = {
   tokenDeathTime: number;
 };

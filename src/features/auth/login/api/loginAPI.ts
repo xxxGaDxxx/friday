@@ -1,24 +1,30 @@
 import axios, { AxiosResponse } from 'axios';
 
-import { ResponseMeAndLoginType } from '../types/LoginApiType';
-import { LoginParamsType } from '../types/LoginType';
+import { UpdateUserResponseType, UserResponseType } from '../types/LoginApiType';
+import { LoginParamsType, UserUpdateParamsType } from '../types/LoginType';
 
-const settings = axios.create({
+const instance = axios.create({
   baseURL: 'http://localhost:7542/2.0/',
   withCredentials: true,
 });
 
 export const loginAPI = {
   login(data: LoginParamsType) {
-    return settings.post<LoginParamsType, AxiosResponse<ResponseMeAndLoginType>>(
+    return instance.post<LoginParamsType, AxiosResponse<UserResponseType>>(
       'auth/login',
       data,
     );
   },
   me() {
-    return settings.post<AxiosResponse<ResponseMeAndLoginType>>('auth/me');
+    return instance.post<{}, AxiosResponse<UserResponseType>>('auth/me');
   },
   logout() {
-    return settings.delete('auth/me');
+    return instance.delete('auth/me');
+  },
+  updateUser(data: UserUpdateParamsType) {
+    return instance.put<UserUpdateParamsType, AxiosResponse<UpdateUserResponseType>>(
+      'auth/me',
+      data,
+    );
   },
 };
