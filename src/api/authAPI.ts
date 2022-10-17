@@ -10,7 +10,7 @@ import {
   LogoutResponse,
   UpdateUserResponseType,
   UserResponseType,
-} from './types/authApiType';
+} from './types/apiType';
 
 export const authAPI = {
   login(data: LoginParamsType) {

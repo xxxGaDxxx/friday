@@ -16,7 +16,9 @@ import { Navigate, useNavigate } from 'react-router-dom';
 
 import { PATH } from '../../../app/pages/Pages';
 import { useAppDispatch, useAppSelector } from '../../../app/store/store';
+import styles from '../../../styles/commonStyles.module.css';
 import { ReturnComponentType } from '../../../types';
+import { setIsSuccessAC } from '../password/recoveryPasword/reducer/forgotReducer';
 
 import { loginTC } from './reducer/loginReducer';
 import s from './styles/Login.module.css';
@@ -41,6 +43,7 @@ export const Login = (): ReturnComponentType => {
   };
   const onForgotPasswordPageClick = (): void => {
     navigate(PATH.RECOVERY_PASSWORD);
+    dispatch(setIsSuccessAC(false));
   };
 
   const formik = useFormik({
@@ -71,8 +74,8 @@ export const Login = (): ReturnComponentType => {
   }
 
   return (
-    <div className={s.loginWrapper}>
-      <h2>Sing in</h2>
+    <div className={styles.container}>
+      <h2>Sign in</h2>
 
       <form onSubmit={formik.handleSubmit}>
         <FormControl sx={{ m: 1, width: '100%' }} variant="standard">

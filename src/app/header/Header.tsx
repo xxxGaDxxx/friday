@@ -32,7 +32,7 @@ export const Header = (): ReturnComponentType => {
           variant="contained"
           type="button"
         >
-          Sing in
+          Sign in
         </Button>
       ) : (
         <ButtonAndProfile />

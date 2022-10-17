@@ -4,6 +4,7 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 
 import { Login } from '../../features/auth/login/Login';
 import { NewPassword } from '../../features/auth/password/newPassword/NewPassword';
+import CheckEmail from '../../features/auth/password/recoveryPasword/CheckEmail';
 import { RecoveryPassword } from '../../features/auth/password/recoveryPasword/RecoveryPassword';
 import { Registration } from '../../features/auth/registration/Registration';
 import { DemonstrationComponent } from '../../features/demonstration/DemonstrationComponent';
@@ -15,10 +16,11 @@ export const PATH = {
   LOGIN: '/',
   REGISTRATION: '/registration',
   PROFILE: '/profile',
-  NEW_PASSWORD: '/new_password',
+  NEW_PASSWORD: '/new_password/*',
   RECOVERY_PASSWORD: '/recovery_password',
   DEMONSTRATION: '/demonstration',
   ERRORS: '/error',
+  CHECK_EMAIL: '/check_email',
 };
 
 export const Pages = (): ReturnComponentType => {
@@ -31,6 +33,7 @@ export const Pages = (): ReturnComponentType => {
         <Route path={PATH.REGISTRATION} element={<Registration />} />
         <Route path={PATH.NEW_PASSWORD} element={<NewPassword />} />
         <Route path={PATH.RECOVERY_PASSWORD} element={<RecoveryPassword />} />
+        <Route path={PATH.CHECK_EMAIL} element={<CheckEmail />} />
         <Route path={PATH.DEMONSTRATION} element={<DemonstrationComponent />} />
 
         <Route path="*" element={<Navigate to={PATH.ERRORS} />} />

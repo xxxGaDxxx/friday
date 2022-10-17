@@ -5,8 +5,8 @@ export type FormikErrorType = {
 };
 
 export type LoginParamsType = {
-  email: string;
-  password: string;
+  email?: string;
+  password?: string;
   rememberMe?: boolean;
 };
 

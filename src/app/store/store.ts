@@ -8,6 +8,8 @@ import thunk, { ThunkAction, ThunkDispatch } from 'redux-thunk';
 
 import { loginReducer } from '../../features/auth/login/reducer/loginReducer';
 import { LoginReducerActionsType } from '../../features/auth/login/reducer/loginReducerType';
+import { forgotReducer } from '../../features/auth/password/recoveryPasword/reducer/forgotReducer';
+import { ForgotReducerActionsType } from '../../features/auth/password/recoveryPasword/reducer/forgotReducerType';
 import {
   profileReducer,
   ProfileReducerActionsType,
@@ -20,6 +22,7 @@ const rootReducer = combineReducers({
   app: appReducer,
   login: loginReducer,
   profile: profileReducer,
+  forgot: forgotReducer,
 });
 
 export const store = createStore(rootReducer, applyMiddleware(thunk));
@@ -33,7 +36,8 @@ export type AppRootStateType = ReturnType<typeof rootReducer>;
 export type AppActionsType =
   | AppReducerActionsType
   | ProfileReducerActionsType
-  | LoginReducerActionsType;
+  | LoginReducerActionsType
+  | ForgotReducerActionsType;
 
 export type AppThunk<ReturnType = void> = ThunkAction<
   ReturnType,

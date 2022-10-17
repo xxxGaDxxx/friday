@@ -6,11 +6,12 @@ import { Navigate } from 'react-router-dom';
 import { PATH } from '../../app/pages/Pages';
 import { useAppDispatch, useAppSelector } from '../../app/store/store';
 import avaImg from '../../assets/img/defultAvatar.png';
+import styles from '../../styles/commonStyles.module.css';
 import { ReturnComponentType } from '../../types';
 
 import { EditableName } from './EditableName/EditableName';
 import { logOutUserTC, updateUserNameTC } from './profile-reducer';
-import style from './Profile.module.css';
+import s from './Profile.module.css';
 
 export const Profile = (): ReturnComponentType => {
   const dispatch = useAppDispatch();
@@ -31,10 +32,10 @@ export const Profile = (): ReturnComponentType => {
   }
 
   return (
-    <div className={style.profileWrapper}>
+    <div className={styles.container}>
       <h2>Personal Information</h2>
       <img src={avaImg} alt="ava" />
-      <div className={style.editableName}>
+      <div className={s.editableName}>
         <EditableName value={name} onChange={onNameChange} />
       </div>
       <div>{email}</div>
