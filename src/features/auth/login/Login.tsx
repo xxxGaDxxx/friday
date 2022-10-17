@@ -18,7 +18,6 @@ import { PATH } from '../../../app/pages/Pages';
 import { useAppDispatch, useAppSelector } from '../../../app/store/store';
 import styles from '../../../styles/commonStyles.module.css';
 import { ReturnComponentType } from '../../../types';
-import { setIsSuccessAC } from '../password/recoveryPasword/reducer/forgotReducer';
 
 import { loginTC } from './reducer/loginReducer';
 import s from './styles/Login.module.css';
@@ -43,7 +42,6 @@ export const Login = (): ReturnComponentType => {
   };
   const onForgotPasswordPageClick = (): void => {
     navigate(PATH.RECOVERY_PASSWORD);
-    dispatch(setIsSuccessAC(false));
   };
 
   const formik = useFormik({

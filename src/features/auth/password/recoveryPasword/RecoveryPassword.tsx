@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { Button, FormControl, Input, InputLabel } from '@mui/material';
 import { useFormik } from 'formik';
@@ -11,7 +11,7 @@ import { ReturnComponentType } from '../../../../types';
 import s from '../../login/styles/Login.module.css';
 import { FormikErrorType } from '../../login/types/LoginType';
 
-import { forgotPasswordTC } from './reducer/forgotReducer';
+import { forgotPasswordTC, setIsSuccessAC } from './reducer/forgotReducer';
 
 export const RecoveryPassword = (): ReturnComponentType => {
   const successEmail = useAppSelector(state => state.forgot.success);
@@ -52,14 +52,16 @@ link</a>
       };
 
       dispatch(forgotPasswordTC(data));
-
       formik.resetForm();
     },
   });
 
-  if (successEmail) {
-    navigate(PATH.CHECK_EMAIL);
-  }
+  useEffect(() => {
+    if (successEmail) {
+      navigate(PATH.CHECK_EMAIL);
+      dispatch(setIsSuccessAC(false));
+    }
+  }, [successEmail, dispatch, navigate]);
 
   return (
     <div className={styles.container}>
@@ -81,6 +83,7 @@ link</a>
           variant="contained"
           color="primary"
           style={{ width: '100%', borderRadius: '20px' }}
+          // onClick={onCheckEmailClick}
         >
           Send Instructions
         </Button>
