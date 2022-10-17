@@ -5,11 +5,10 @@ import { useNavigate } from 'react-router-dom';
 
 import { PATH } from '../../../../app/pages/Pages';
 import { useAppSelector } from '../../../../app/store/store';
+import checkEmail from '../../../../assets/svg/checkEmail.svg';
 import style from '../../../../styles/commonStyles.module.css';
 import { ReturnComponentType } from '../../../../types';
 import s from '../../login/styles/Login.module.css';
-
-import SvgSelector from './SvgSelector';
 
 const CheckEmail = (): ReturnComponentType => {
   const email = useAppSelector(state => state.forgot.email);
@@ -24,7 +23,7 @@ const CheckEmail = (): ReturnComponentType => {
     <div className={style.container}>
       <h2>CheckEmail</h2>
 
-      <SvgSelector />
+      <img src={checkEmail} alt="check email" />
 
       <div className={s.loginFooter}>
         <p>We’ve sent an Email with instructions to {email}</p>

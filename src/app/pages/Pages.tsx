@@ -8,7 +8,7 @@ import CheckEmail from '../../features/auth/password/recoveryPasword/CheckEmail'
 import { RecoveryPassword } from '../../features/auth/password/recoveryPasword/RecoveryPassword';
 import { Registration } from '../../features/auth/registration/Registration';
 import { DemonstrationComponent } from '../../features/demonstration/DemonstrationComponent';
-import { Error404 } from '../../features/error/Error404';
+import { PageNotFound } from '../../features/pageNotFound/PageNotFound';
 import { Profile } from '../../features/profile/Profile';
 import { ReturnComponentType } from '../../types';
 
@@ -29,7 +29,7 @@ export const Pages = (): ReturnComponentType => {
       <Routes>
         <Route path={PATH.LOGIN} element={<Login />} />
         <Route path={PATH.PROFILE} element={<Profile />} />
-        <Route path={PATH.ERRORS} element={<Error404 />} />
+        <Route path={PATH.ERRORS} element={<PageNotFound />} />
         <Route path={PATH.REGISTRATION} element={<Registration />} />
         <Route path={PATH.NEW_PASSWORD} element={<NewPassword />} />
         <Route path={PATH.RECOVERY_PASSWORD} element={<RecoveryPassword />} />
