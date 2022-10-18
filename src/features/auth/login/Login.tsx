@@ -1,16 +1,14 @@
 import React, { useState } from 'react';
 
 import { Visibility, VisibilityOff } from '@mui/icons-material';
-import {
-  Button,
-  Checkbox,
-  FormControl,
-  FormControlLabel,
-  IconButton,
-  Input,
-  InputAdornment,
-  InputLabel,
-} from '@mui/material';
+import Button from '@mui/material/Button';
+import Checkbox from '@mui/material/Checkbox';
+import FormControl from '@mui/material/FormControl';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import IconButton from '@mui/material/IconButton';
+import Input from '@mui/material/Input';
+import InputAdornment from '@mui/material/InputAdornment';
+import InputLabel from '@mui/material/InputLabel';
 import { useFormik } from 'formik';
 import { Navigate, useNavigate } from 'react-router-dom';
 
