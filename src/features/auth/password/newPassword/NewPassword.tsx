@@ -14,10 +14,10 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 import { PATH } from '../../../../app/pages/Pages';
 import { useAppDispatch, useAppSelector } from '../../../../app/store/store';
+import { validatePassword } from '../../../../common/utils/validateForm';
 import style from '../../../../styles/commonStyles.module.css';
 import { ReturnComponentType } from '../../../../types';
 import s from '../../login/styles/Login.module.css';
-import { FormikErrorType } from '../../login/types/LoginType';
 import {
   newPasswordTC,
   setIsInfoNewPasswordAC,
@@ -35,23 +35,13 @@ export const NewPassword = (): ReturnComponentType => {
     setInputType(inputType === 'password' ? 'text' : 'password');
   };
 
-  const PASSWORD_LENGTH = 8;
-
   const { resetPasswordToken } = useParams();
 
   const formik = useFormik({
     initialValues: {
       password: '',
     },
-    validate: values => {
-      const errors: FormikErrorType = {};
-
-      if (values.password.length < PASSWORD_LENGTH) {
-        errors.password = 'Length of at least 8 characters ';
-      }
-
-      return errors;
-    },
+    validate: values => validatePassword(values),
     onSubmit: values => {
       const { password } = values;
 

@@ -6,10 +6,10 @@ import { useNavigate } from 'react-router-dom';
 
 import { PATH } from '../../../../app/pages/Pages';
 import { useAppDispatch, useAppSelector } from '../../../../app/store/store';
+import { validateEmail } from '../../../../common/utils/validateForm';
 import styles from '../../../../styles/commonStyles.module.css';
 import { ReturnComponentType } from '../../../../types';
 import s from '../../login/styles/Login.module.css';
-import { FormikErrorType } from '../../login/types/LoginType';
 
 import { forgotPasswordTC, setIsSuccessAC } from './reducer/forgotReducer';
 
@@ -27,17 +27,7 @@ export const RecoveryPassword = (): ReturnComponentType => {
     initialValues: {
       email: '',
     },
-    validate: values => {
-      const errors: FormikErrorType = {};
-
-      if (!values.email) {
-        errors.email = 'Required';
-      } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-        errors.email = 'Invalid email address';
-      }
-
-      return errors;
-    },
+    validate: values => validateEmail(values),
 
     onSubmit: values => {
       const { email } = values;
