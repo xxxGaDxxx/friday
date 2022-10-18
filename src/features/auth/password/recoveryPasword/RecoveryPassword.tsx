@@ -83,7 +83,6 @@ link</a>
           variant="contained"
           color="primary"
           style={{ width: '100%', borderRadius: '20px' }}
-          // onClick={onCheckEmailClick}
         >
           Send Instructions
         </Button>

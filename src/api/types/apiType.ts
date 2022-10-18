@@ -34,8 +34,19 @@ export type ForgotParamsType = {
   from: string;
   message: string;
 };
+
 export type ForgotResponseType = {
   info?: string;
   error?: string;
   success: boolean;
+};
+
+export type NewPasswordType = {
+  password: string;
+  resetPasswordToken: string;
+};
+
+export type NewPasswordResponseType = {
+  info?: string;
+  error?: string;
 };
