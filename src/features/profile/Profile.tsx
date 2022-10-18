@@ -6,18 +6,18 @@ import { Navigate } from 'react-router-dom';
 import { PATH } from '../../app/pages/Pages';
 import { useAppDispatch, useAppSelector } from '../../app/store/store';
 import avaImg from '../../assets/img/defultAvatar.png';
+import { EditableSpan } from '../../common/editableSpan/EditableSpan';
 import styles from '../../styles/commonStyles.module.css';
 import { ReturnComponentType } from '../../types';
 
-import { EditableName } from './EditableName/EditableName';
 import { logOutUserTC, updateUserNameTC } from './profile-reducer';
-import s from './Profile.module.css';
+import s from './styles/Profile.module.css';
 
 export const Profile = (): ReturnComponentType => {
   const dispatch = useAppDispatch();
   const isLoggedIn = useAppSelector(state => state.login.isLoggedIn);
-  const name = useAppSelector(state => state.profile.name);
   const email = useAppSelector(state => state.profile.email);
+  const userName = useAppSelector(state => state.profile.name);
 
   const onNameChange = (name: string): void => {
     dispatch(updateUserNameTC({ name, avatar: 'https//avatar-url.img' }));
@@ -33,12 +33,12 @@ export const Profile = (): ReturnComponentType => {
 
   return (
     <div className={styles.container}>
-      <h2>Personal Information</h2>
+      <h2 className={s.header}>Personal Information</h2>
       <img src={avaImg} alt="ava" />
       <div className={s.editableName}>
-        <EditableName value={name} onChange={onNameChange} />
+        <EditableSpan onChange={onNameChange} value={userName} />
       </div>
-      <div>{email}</div>
+      <div className={s.email}>{email}</div>
       <Button onClick={onLogOutClick} color="primary" variant="outlined">
         Log out
       </Button>
