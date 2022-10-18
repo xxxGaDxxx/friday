@@ -16,18 +16,16 @@ import { Navigate, useNavigate } from 'react-router-dom';
 
 import { PATH } from '../../../app/pages/Pages';
 import { useAppDispatch, useAppSelector } from '../../../app/store/store';
+import { validatePassword } from '../../../common/utils/validateForm';
 import styles from '../../../styles/commonStyles.module.css';
 import { ReturnComponentType } from '../../../types';
 
 import { loginTC } from './reducer/loginReducer';
 import s from './styles/Login.module.css';
-import { FormikErrorType } from './types/LoginType';
 
 export const Login = (): ReturnComponentType => {
   const isLoggedIn = useAppSelector(state => state.login.isLoggedIn);
   const dispatch = useAppDispatch();
-
-  const PASSWORD_LENGTH = 8;
 
   const navigate = useNavigate();
 
@@ -50,15 +48,7 @@ export const Login = (): ReturnComponentType => {
       password: '',
       rememberMe: false,
     },
-    validate: values => {
-      const errors: FormikErrorType = {};
-
-      if (values.password.length < PASSWORD_LENGTH) {
-        errors.password = 'Length of at least 8 characters ';
-      }
-
-      return errors;
-    },
+    validate: values => validatePassword(values),
     onSubmit: values => {
       dispatch(loginTC(values));
       /* зачищает форму после успешной отправки формы */
