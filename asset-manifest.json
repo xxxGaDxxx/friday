@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/friday/static/css/main.d70371c4.css",
-    "main.js": "/friday/static/js/main.68581574.js",
+    "main.css": "/friday/static/css/main.f0076822.css",
+    "main.js": "/friday/static/js/main.48778e20.js",
     "static/media/defultAvatar.png": "/friday/static/media/defultAvatar.ce248b15c8314f32b053.png",
-    "static/media/404.svg": "/friday/static/media/404.f26b506f65343dfc245b0e141dbfbcc1.svg",
+    "static/media/404.svg": "/friday/static/media/404.d1e1632e390ff2517b662985bf2e997b.svg",
     "static/media/checkEmail.svg": "/friday/static/media/checkEmail.cdfba66fde5a43fa07de20848a33be02.svg",
     "index.html": "/friday/index.html",
-    "main.d70371c4.css.map": "/friday/static/css/main.d70371c4.css.map",
-    "main.68581574.js.map": "/friday/static/js/main.68581574.js.map"
+    "main.f0076822.css.map": "/friday/static/css/main.f0076822.css.map",
+    "main.48778e20.js.map": "/friday/static/js/main.48778e20.js.map"
   },
   "entrypoints": [
-    "static/css/main.d70371c4.css",
-    "static/js/main.68581574.js"
+    "static/css/main.f0076822.css",
+    "static/js/main.48778e20.js"
   ]
 }
