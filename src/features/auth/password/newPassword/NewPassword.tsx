@@ -16,7 +16,7 @@ import { PATH } from '../../../../app/pages/Pages';
 import { useAppDispatch, useAppSelector } from '../../../../app/store/store';
 import style from '../../../../styles/commonStyles.module.css';
 import { ReturnComponentType } from '../../../../types';
-import s from '../../login/styles/Login.module.css';
+import s from '../../login/styles/Login.module.scss';
 import { FormikErrorType } from '../../login/types/LoginType';
 import {
   newPasswordTC,

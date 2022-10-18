@@ -1,0 +1,39 @@
+.loginInputFormCheckbox {
+  width: 100%;
+  text-align: start;
+}
+
+.loginButtonForgot {
+  text-align: end;
+  margin: 20px 0;
+}
+
+.loginWrapper h2 {
+  text-align: center;
+}
+
+.loginFooter {
+  font-weight: 600;
+  font-size: 14px;
+  margin-top: 31px;
+  text-align: center;
+
+  .buttonSignUp {
+    cursor: grab;
+    font-family: inherit;
+    font-weight: inherit;
+    font-size: 16px;
+    border: 2px solid rgba(25, 118, 210, 0.5);
+
+    &:hover {
+      color: lawngreen;
+      border: 2px solid lawngreen;
+    }
+  }
+}
+
+.warningPassword {
+  font-size: 12px;
+  text-align: center;
+  color: #9a4d4d;
+}

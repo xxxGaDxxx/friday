@@ -41,7 +41,7 @@ const InputText: FC<InputTextPropsType> = ({
       <input
         type="text"
         onChange={onChangeCallback}
-        onKeyPress={onKeyPressCallback}
+        onKeyDown={onKeyPressCallback}
         className={finalInputClassName}
         {...restProps} // отдаём инпуту остальные пропсы если они есть (value например там внутри)
       />

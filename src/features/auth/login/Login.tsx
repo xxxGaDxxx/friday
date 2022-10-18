@@ -20,7 +20,7 @@ import styles from '../../../styles/commonStyles.module.css';
 import { ReturnComponentType } from '../../../types';
 
 import { loginTC } from './reducer/loginReducer';
-import s from './styles/Login.module.css';
+import s from './styles/Login.module.scss';
 import { FormikErrorType } from './types/LoginType';
 
 export const Login = (): ReturnComponentType => {
@@ -77,13 +77,18 @@ export const Login = (): ReturnComponentType => {
 
       <form onSubmit={formik.handleSubmit}>
         <FormControl sx={{ m: 1, width: '100%' }} variant="standard">
-          <InputLabel>Email</InputLabel>
-          <Input type="email" {...formik.getFieldProps('email')} />
+          <InputLabel style={{ fontFamily: 'inherit' }}>Email</InputLabel>
+          <Input
+            style={{ fontFamily: 'inherit' }}
+            type="email"
+            {...formik.getFieldProps('email')}
+          />
         </FormControl>
 
         <FormControl sx={{ m: 1, width: '100%' }} variant="standard">
-          <InputLabel>Password</InputLabel>
+          <InputLabel style={{ fontFamily: 'inherit' }}>Password</InputLabel>
           <Input
+            style={{ fontFamily: 'inherit' }}
             type={inputType}
             {...formik.getFieldProps('password')}
             endAdornment={
@@ -111,7 +116,11 @@ export const Login = (): ReturnComponentType => {
         />
 
         <div className={s.loginButtonForgot}>
-          <Button type="button" onClick={onForgotPasswordPageClick}>
+          <Button
+            style={{ fontFamily: 'inherit' }}
+            type="button"
+            onClick={onForgotPasswordPageClick}
+          >
             Forgot Password?
           </Button>
         </div>
@@ -120,15 +129,21 @@ export const Login = (): ReturnComponentType => {
           type="submit"
           variant="contained"
           color="primary"
-          style={{ width: '100%', borderRadius: '20px' }}
+          style={{ width: '100%', borderRadius: '20px', fontFamily: 'inherit' }}
         >
-          Login
+          Sign in
         </Button>
       </form>
 
       <div className={s.loginFooter}>
-        <p>Already have an account?</p>
-        <Button type="button" onClick={onRegistrationPageClick}>
+        {/* eslint-disable-next-line react/no-unescaped-entities */}
+        <p>You don't have an account?</p>
+        <Button
+          className={s.buttonSignUp}
+          type="button"
+          variant="outlined"
+          onClick={onRegistrationPageClick}
+        >
           Sign Up
         </Button>
       </div>

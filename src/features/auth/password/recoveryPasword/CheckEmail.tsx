@@ -8,7 +8,7 @@ import { useAppSelector } from '../../../../app/store/store';
 import checkEmail from '../../../../assets/svg/checkEmail.svg';
 import style from '../../../../styles/commonStyles.module.css';
 import { ReturnComponentType } from '../../../../types';
-import s from '../../login/styles/Login.module.css';
+import s from '../../login/styles/Login.module.scss';
 
 const CheckEmail = (): ReturnComponentType => {
   const email = useAppSelector(state => state.forgot.email);
