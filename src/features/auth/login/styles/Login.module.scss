@@ -1,6 +1,9 @@
 .loginInputFormCheckbox {
   width: 100%;
   text-align: start;
+  span {
+    font-family: inherit;
+  }
 }
 
 .loginButtonForgot {

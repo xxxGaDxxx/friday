@@ -9,14 +9,14 @@ import ButtonAndProfile from '../buttutAndProfile/ButtonAndProfile';
 import { PATH } from '../pages/Pages';
 import { useAppSelector } from '../store/store';
 
-import s from './Header.module.css';
+import s from './Header.module.scss';
 
 export const Header = (): ReturnComponentType => {
   const isLoggedIn = useAppSelector(state => state.login.isLoggedIn);
 
   const navigate = useNavigate();
 
-  const onSingInClick = (): void => {
+  const onSignInClick = (): void => {
     return navigate(PATH.LOGIN);
   };
 
@@ -26,8 +26,8 @@ export const Header = (): ReturnComponentType => {
 
       {!isLoggedIn ? (
         <Button
-          onClick={onSingInClick}
-          style={{ borderRadius: '20px' }}
+          onClick={onSignInClick}
+          style={{ borderRadius: '20px', fontFamily: 'Montserrat' }}
           color="primary"
           variant="contained"
           type="button"

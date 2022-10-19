@@ -16,7 +16,7 @@ import { Navigate, useNavigate } from 'react-router-dom';
 
 import { PATH } from '../../../app/pages/Pages';
 import { useAppDispatch, useAppSelector } from '../../../app/store/store';
-import styles from '../../../styles/commonStyles.module.css';
+import styles from '../../../styles/commonStyles.module.scss';
 import { ReturnComponentType } from '../../../types';
 
 import { loginTC } from './reducer/loginReducer';

@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { PATH } from '../../../../app/pages/Pages';
 import { useAppSelector } from '../../../../app/store/store';
 import checkEmail from '../../../../assets/svg/checkEmail.svg';
-import style from '../../../../styles/commonStyles.module.css';
+import style from '../../../../styles/commonStyles.module.scss';
 import { ReturnComponentType } from '../../../../types';
 import s from '../../login/styles/Login.module.scss';
 
