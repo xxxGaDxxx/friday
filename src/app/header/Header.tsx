@@ -27,7 +27,7 @@ export const Header = (): ReturnComponentType => {
       {!isLoggedIn ? (
         <Button
           onClick={onSignInClick}
-          style={{ borderRadius: '20px', fontFamily: 'Montserrat' }}
+          style={{ borderRadius: '20px' }}
           color="primary"
           variant="contained"
           type="button"

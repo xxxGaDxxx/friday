@@ -10,6 +10,7 @@ import {
   Input,
   InputAdornment,
   InputLabel,
+  Paper,
 } from '@mui/material';
 import { useFormik } from 'formik';
 import { Navigate, useNavigate } from 'react-router-dom';
@@ -72,23 +73,18 @@ export const Login = (): ReturnComponentType => {
   }
 
   return (
-    <div className={styles.container}>
+    <Paper elevation={10} className={styles.container}>
       <h2>Sign in</h2>
 
       <form onSubmit={formik.handleSubmit}>
         <FormControl sx={{ m: 1, width: '100%' }} variant="standard">
-          <InputLabel style={{ fontFamily: 'inherit' }}>Email</InputLabel>
-          <Input
-            style={{ fontFamily: 'inherit' }}
-            type="email"
-            {...formik.getFieldProps('email')}
-          />
+          <InputLabel>Email</InputLabel>
+          <Input type="email" {...formik.getFieldProps('email')} />
         </FormControl>
 
         <FormControl sx={{ m: 1, width: '100%' }} variant="standard">
-          <InputLabel style={{ fontFamily: 'inherit' }}>Password</InputLabel>
+          <InputLabel>Password</InputLabel>
           <Input
-            style={{ fontFamily: 'inherit' }}
             type={inputType}
             {...formik.getFieldProps('password')}
             endAdornment={
@@ -116,11 +112,7 @@ export const Login = (): ReturnComponentType => {
         />
 
         <div className={s.loginButtonForgot}>
-          <Button
-            style={{ fontFamily: 'inherit' }}
-            type="button"
-            onClick={onForgotPasswordPageClick}
-          >
+          <Button type="button" onClick={onForgotPasswordPageClick}>
             Forgot Password?
           </Button>
         </div>
@@ -129,7 +121,7 @@ export const Login = (): ReturnComponentType => {
           type="submit"
           variant="contained"
           color="primary"
-          style={{ width: '100%', borderRadius: '20px', fontFamily: 'inherit' }}
+          style={{ width: '100%', borderRadius: '20px' }}
         >
           Sign in
         </Button>
@@ -147,6 +139,6 @@ export const Login = (): ReturnComponentType => {
           Sign Up
         </Button>
       </div>
-    </div>
+    </Paper>
   );
 };
