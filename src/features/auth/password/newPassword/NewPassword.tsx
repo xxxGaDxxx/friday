@@ -13,9 +13,9 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { PATH } from '../../../../app/pages/Pages';
 import { useAppDispatch, useAppSelector } from '../../../../app/store/store';
 import { validatePassword } from '../../../../common/utils/validateForm';
-import style from '../../../../styles/commonStyles.module.css';
+import style from '../../../../styles/commonStyles.module.scss';
 import { ReturnComponentType } from '../../../../types';
-import s from '../../login/styles/Login.module.css';
+import s from '../../login/styles/Login.module.scss';
 import {
   newPasswordTC,
   setIsInfoNewPasswordAC,

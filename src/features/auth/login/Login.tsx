@@ -9,17 +9,18 @@ import IconButton from '@mui/material/IconButton';
 import Input from '@mui/material/Input';
 import InputAdornment from '@mui/material/InputAdornment';
 import InputLabel from '@mui/material/InputLabel';
+import Paper from '@mui/material/Paper';
 import { useFormik } from 'formik';
 import { Navigate, useNavigate } from 'react-router-dom';
 
 import { PATH } from '../../../app/pages/Pages';
 import { useAppDispatch, useAppSelector } from '../../../app/store/store';
-import { validatePassword } from '../../../common/utils/validateForm';
-import styles from '../../../styles/commonStyles.module.css';
+import { validateAuthForm } from '../../../common/utils/validateForm';
+import styles from '../../../styles/commonStyles.module.scss';
 import { ReturnComponentType } from '../../../types';
 
 import { loginTC } from './reducer/loginReducer';
-import s from './styles/Login.module.css';
+import s from './styles/Login.module.scss';
 
 export const Login = (): ReturnComponentType => {
   const isLoggedIn = useAppSelector(state => state.login.isLoggedIn);
@@ -46,7 +47,9 @@ export const Login = (): ReturnComponentType => {
       password: '',
       rememberMe: false,
     },
-    validate: values => validatePassword(values),
+    validate: values => {
+      validateAuthForm(values);
+    },
     onSubmit: values => {
       dispatch(loginTC(values));
       /* зачищает форму после успешной отправки формы */
@@ -54,13 +57,14 @@ export const Login = (): ReturnComponentType => {
     },
   });
   const isPasswordError = formik.touched.password && formik.errors.password;
+  const isEmailError = formik.touched.email && formik.errors.email;
 
   if (isLoggedIn) {
     return <Navigate to={PATH.PROFILE} />;
   }
 
   return (
-    <div className={styles.container}>
+    <Paper elevation={10} className={styles.container}>
       <h2>Sign in</h2>
 
       <form onSubmit={formik.handleSubmit}>
@@ -68,6 +72,8 @@ export const Login = (): ReturnComponentType => {
           <InputLabel>Email</InputLabel>
           <Input type="email" {...formik.getFieldProps('email')} />
         </FormControl>
+
+        {isEmailError && <div className={s.warningPassword}>{formik.errors.email}</div>}
 
         <FormControl sx={{ m: 1, width: '100%' }} variant="standard">
           <InputLabel>Password</InputLabel>
@@ -110,16 +116,21 @@ export const Login = (): ReturnComponentType => {
           color="primary"
           style={{ width: '100%', borderRadius: '20px' }}
         >
-          Login
+          Sign In
         </Button>
       </form>
 
       <div className={s.loginFooter}>
-        <p>Already have an account?</p>
-        <Button type="button" onClick={onRegistrationPageClick}>
+        <p>{`You don't have an account?`}</p>
+        <Button
+          className={s.buttonSignUp}
+          type="button"
+          variant="outlined"
+          onClick={onRegistrationPageClick}
+        >
           Sign Up
         </Button>
       </div>
-    </div>
+    </Paper>
   );
 };

@@ -10,9 +10,9 @@ import { useNavigate } from 'react-router-dom';
 import { PATH } from '../../../../app/pages/Pages';
 import { useAppDispatch, useAppSelector } from '../../../../app/store/store';
 import { validateEmail } from '../../../../common/utils/validateForm';
-import styles from '../../../../styles/commonStyles.module.css';
+import styles from '../../../../styles/commonStyles.module.scss';
 import { ReturnComponentType } from '../../../../types';
-import s from '../../login/styles/Login.module.css';
+import s from '../../login/styles/Login.module.scss';
 
 import { forgotPasswordTC, setIsSuccessAC } from './reducer/forgotReducer';
 
