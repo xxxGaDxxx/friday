@@ -85,7 +85,7 @@ export const Registration = (): ReturnComponentType => {
                 }}
               />
               {formik.touched.password && formik.errors.password && (
-                <div style={{ color: 'purple' }}>{formik.errors.password}</div>
+                <div>{formik.errors.password}</div>
               )}
               <TextField
                 type={inputType}
