@@ -63,7 +63,6 @@ export const Login = (): ReturnComponentType => {
 
   return (
     <Paper elevation={10} className={styles.container}>
-      {/* <h2>Sign in</h2> */}
       <article className={s.article}>
         <Typography component="h2">Sign in</Typography>
         <form onSubmit={formik.handleSubmit}>
