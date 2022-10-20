@@ -15,7 +15,7 @@ import { Navigate, useNavigate } from 'react-router-dom';
 
 import { PATH } from '../../../app/pages/Pages';
 import { useAppDispatch, useAppSelector } from '../../../app/store/store';
-import { validatePassword } from '../../../common/utils/validateForm';
+import { validateAuthForm } from '../../../common/utils/validateForm';
 import styles from '../../../styles/commonStyles.module.scss';
 import { ReturnComponentType } from '../../../types';
 
@@ -47,7 +47,9 @@ export const Login = (): ReturnComponentType => {
       password: '',
       rememberMe: false,
     },
-    validate: values => validatePassword(values),
+    validate: values => {
+      validateAuthForm(values);
+    },
     onSubmit: values => {
       dispatch(loginTC(values));
       /* зачищает форму после успешной отправки формы */
@@ -55,6 +57,7 @@ export const Login = (): ReturnComponentType => {
     },
   });
   const isPasswordError = formik.touched.password && formik.errors.password;
+  const isEmailError = formik.touched.email && formik.errors.email;
 
   if (isLoggedIn) {
     return <Navigate to={PATH.PROFILE} />;
@@ -69,6 +72,8 @@ export const Login = (): ReturnComponentType => {
           <InputLabel>Email</InputLabel>
           <Input type="email" {...formik.getFieldProps('email')} />
         </FormControl>
+
+        {isEmailError && <div className={s.warningPassword}>{formik.errors.email}</div>}
 
         <FormControl sx={{ m: 1, width: '100%' }} variant="standard">
           <InputLabel>Password</InputLabel>

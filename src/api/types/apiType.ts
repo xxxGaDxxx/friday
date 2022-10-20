@@ -53,6 +53,11 @@ export type NewPasswordResponseType = {
 
 // registration
 export type RegisteredUserType = {
-  addedUser: Object;
+  addedUser: UserResponseType;
   error?: string;
+};
+
+export type RegistrationParamsType = {
+  email: string;
+  password: string;
 };

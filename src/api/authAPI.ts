@@ -4,12 +4,12 @@ import {
   LoginParamsType,
   UserUpdateParamsType,
 } from '../features/auth/login/types/LoginType';
-import { RegistrationParamsType } from '../features/auth/registration/types/RegistrateType';
 
 import { instance } from './config';
 import {
   LogoutResponse,
   RegisteredUserType,
+  RegistrationParamsType,
   UpdateUserResponseType,
   UserResponseType,
 } from './types/apiType';

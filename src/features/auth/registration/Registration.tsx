@@ -1,26 +1,24 @@
 import React, { useEffect, useState } from 'react';
 
 import { Visibility, VisibilityOff } from '@mui/icons-material';
-import {
-  Button,
-  FormControl,
-  FormGroup,
-  InputAdornment,
-  Paper,
-  Typography,
-} from '@mui/material';
+import Button from '@mui/material/Button';
+import FormControl from '@mui/material/FormControl';
+import FormGroup from '@mui/material/FormGroup';
+import InputAdornment from '@mui/material/InputAdornment';
+import Paper from '@mui/material/Paper';
 import TextField from '@mui/material/TextField';
+import Typography from '@mui/material/Typography';
 import { useFormik } from 'formik';
 import { useNavigate } from 'react-router-dom';
 
 import { PATH } from '../../../app/pages/Pages';
 import { useAppDispatch, useAppSelector } from '../../../app/store/store';
+import { validateAuthForm } from '../../../common/utils/validateForm';
 import styles from '../../../styles/commonStyles.module.scss';
 import { ReturnComponentType } from '../../../types';
 
 import { registrationTC } from './reducer/registrationReducer';
 import s from './styles/Registration.module.scss';
-import { FormikRegistrationErrorType } from './types/RegistrateType';
 
 export const Registration = (): ReturnComponentType => {
   const dispatch = useAppDispatch();
@@ -28,7 +26,6 @@ export const Registration = (): ReturnComponentType => {
   const isRegistered = useAppSelector(state => state.registration.isRegistered);
 
   const [inputType, setInputType] = useState<string>('password');
-  const PASSWORD_LENGTH = 8;
 
   const onShowHidePasswordClick = (): void => {
     setInputType(inputType === 'password' ? 'text' : 'password');
@@ -43,29 +40,7 @@ export const Registration = (): ReturnComponentType => {
       password: '',
       confirmPassword: '',
     },
-    validate: values => {
-      const errors: FormikRegistrationErrorType = {};
-
-      if (!values.email) {
-        errors.email = '😎 E-mail required!';
-      } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-        errors.email = '😔 Invalid email address';
-      }
-
-      if (!values.password) {
-        errors.password = '😎 Enter your password!';
-      } else if (values.password.length < PASSWORD_LENGTH) {
-        errors.password = '😎 Length of at least 8 characters';
-      }
-
-      if (!values.confirmPassword) {
-        errors.confirmPassword = '😎 Confirm your password!';
-      } else if (values.confirmPassword !== values.password) {
-        errors.confirmPassword = '😔 Passwords do not match!';
-      }
-
-      return errors;
-    },
+    validate: values => validateAuthForm(values),
     onSubmit: values => {
       dispatch(registrationTC(values));
       formik.resetForm();
@@ -76,7 +51,7 @@ export const Registration = (): ReturnComponentType => {
     if (isRegistered) {
       navigate(PATH.LOGIN);
     }
-  }, [isRegistered, dispatch]);
+  }, [isRegistered, dispatch, navigate]);
 
   return (
     <Paper elevation={20} className={styles.container}>
