@@ -1,4 +1,8 @@
-import { FormikAuthErrorType } from './types/ValidateFormTypes';
+import {
+  FormikAuthErrorType,
+  FormikAuthLoginErrorType,
+  FormikAuthLoginType,
+} from './types/ValidateFormTypes';
 
 const PASSWORD_LENGTH = 8;
 
@@ -38,6 +42,18 @@ export const validateAuthForm = (values: FormikAuthErrorType): FormikAuthErrorTy
   } else if (values.confirmPassword !== values.password) {
     errors.confirmPassword = '😔 Passwords do not match!';
   }
+
+  return errors;
+};
+
+export const validateAuthLoginForm = (
+  values: FormikAuthLoginType,
+): FormikAuthLoginErrorType => {
+  let errors: FormikAuthLoginErrorType = {};
+
+  errors = { ...errors, ...validateEmail(values) };
+
+  errors = { ...errors, ...validatePassword(values) };
 
   return errors;
 };
