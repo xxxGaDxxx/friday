@@ -1,8 +1,30 @@
 
 .article {
+  text-align: center;
+  width: 100%;
+
   h2 {
+
     font-weight: 600;
     font-size: 26px;
+  }
+
+  .regFooter {
+    font-weight: 600;
+    font-size: 14px;
+    margin-top: 31px;
+    text-align: center;
+
+    .buttonSignIn {
+      cursor: grab;
+      font-size: 16px;
+      border: 2px solid rgba(25, 118, 210, 0.5);
+
+      &:hover {
+        color: lawngreen;
+        border: 2px solid lawngreen;
+      }
+    }
   }
 
 }

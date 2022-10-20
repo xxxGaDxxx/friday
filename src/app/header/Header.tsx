@@ -4,6 +4,7 @@ import { Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
 import imgIncubator from '../../assets/img/Group 753.png';
+import imgIncubator2 from '../../assets/svg/Group 753.svg';
 import { ReturnComponentType } from '../../types';
 import ButtonAndProfile from '../buttutAndProfile/ButtonAndProfile';
 import { PATH } from '../pages/Pages';
@@ -23,6 +24,7 @@ export const Header = (): ReturnComponentType => {
   return (
     <div className={s.header}>
       <img className={s.iconIT} src={imgIncubator} alt="IT-INCUBATOR" />
+      <img className={s.iconIT} src={imgIncubator2} alt="IT-INCUBATOR" />
 
       {!isLoggedIn ? (
         <Button
