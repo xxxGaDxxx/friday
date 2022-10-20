@@ -50,7 +50,7 @@ export const Login = (): ReturnComponentType => {
     validate: values => validateAuthLoginForm(values),
     onSubmit: values => {
       dispatch(loginTC(values));
-      /* зачищает форму после успешной отправки формы */
+
       formik.resetForm();
     },
   });
@@ -69,11 +69,6 @@ export const Login = (): ReturnComponentType => {
         <form onSubmit={formik.handleSubmit}>
           <FormControl fullWidth>
             <FormGroup>
-              {/* <FormControl sx={{ m: 1, width: '100%' }} variant="standard"> */}
-              {/*  <InputLabel>Email</InputLabel> */}
-              {/*  <Input type="email" {...formik.getFieldProps('email')} /> */}
-              {/* </FormControl> */}
-
               <TextField
                 type="email"
                 variant="standard"
@@ -85,24 +80,6 @@ export const Login = (): ReturnComponentType => {
               {isEmailError && (
                 <div style={{ color: 'purple' }}>{formik.errors.email}</div>
               )}
-
-              {/* <FormControl sx={{ m: 1, width: '100%' }} variant="standard"> */}
-              {/*  <InputLabel>Password</InputLabel> */}
-              {/*  <Input */}
-              {/*    type={inputType} */}
-              {/*    {...formik.getFieldProps('password')} */}
-              {/*    endAdornment={ */}
-              {/*      <InputAdornment position="end"> */}
-              {/*        <IconButton */}
-              {/*          aria-label="toggle password visibility" */}
-              {/*          onClick={onShowHidePasswordClick} */}
-              {/*        > */}
-              {/*          {inputType === 'password' ? <VisibilityOff /> : <Visibility />} */}
-              {/*        </IconButton> */}
-              {/*      </InputAdornment> */}
-              {/*    } */}
-              {/*  /> */}
-              {/* </FormControl> */}
 
               <TextField
                 type={inputType}
