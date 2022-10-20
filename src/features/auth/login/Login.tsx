@@ -1,34 +1,29 @@
 import React, { useState } from 'react';
 
 import { Visibility, VisibilityOff } from '@mui/icons-material';
-import {
-  Button,
-  Checkbox,
-  FormControl,
-  FormControlLabel,
-  IconButton,
-  Input,
-  InputAdornment,
-  InputLabel,
-  Paper,
-} from '@mui/material';
+import Button from '@mui/material/Button';
+import Checkbox from '@mui/material/Checkbox';
+import FormControl from '@mui/material/FormControl';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import IconButton from '@mui/material/IconButton';
+import Input from '@mui/material/Input';
+import InputAdornment from '@mui/material/InputAdornment';
+import InputLabel from '@mui/material/InputLabel';
 import { useFormik } from 'formik';
 import { Navigate, useNavigate } from 'react-router-dom';
 
 import { PATH } from '../../../app/pages/Pages';
 import { useAppDispatch, useAppSelector } from '../../../app/store/store';
-import styles from '../../../styles/commonStyles.module.scss';
+import { validatePassword } from '../../../common/utils/validateForm';
+import styles from '../../../styles/commonStyles.module.css';
 import { ReturnComponentType } from '../../../types';
 
 import { loginTC } from './reducer/loginReducer';
-import s from './styles/Login.module.scss';
-import { FormikErrorType } from './types/LoginType';
+import s from './styles/Login.module.css';
 
 export const Login = (): ReturnComponentType => {
   const isLoggedIn = useAppSelector(state => state.login.isLoggedIn);
   const dispatch = useAppDispatch();
-
-  const PASSWORD_LENGTH = 8;
 
   const navigate = useNavigate();
 
@@ -51,15 +46,7 @@ export const Login = (): ReturnComponentType => {
       password: '',
       rememberMe: false,
     },
-    validate: values => {
-      const errors: FormikErrorType = {};
-
-      if (values.password.length < PASSWORD_LENGTH) {
-        errors.password = 'Length of at least 8 characters ';
-      }
-
-      return errors;
-    },
+    validate: values => validatePassword(values),
     onSubmit: values => {
       dispatch(loginTC(values));
       /* зачищает форму после успешной отправки формы */
@@ -73,7 +60,7 @@ export const Login = (): ReturnComponentType => {
   }
 
   return (
-    <Paper elevation={10} className={styles.container}>
+    <div className={styles.container}>
       <h2>Sign in</h2>
 
       <form onSubmit={formik.handleSubmit}>
@@ -123,22 +110,16 @@ export const Login = (): ReturnComponentType => {
           color="primary"
           style={{ width: '100%', borderRadius: '20px' }}
         >
-          Sign In
+          Login
         </Button>
       </form>
 
       <div className={s.loginFooter}>
-        {/* eslint-disable-next-line react/no-unescaped-entities */}
-        <p>You don't have an account?</p>
-        <Button
-          className={s.buttonSignUp}
-          type="button"
-          variant="outlined"
-          onClick={onRegistrationPageClick}
-        >
+        <p>Already have an account?</p>
+        <Button type="button" onClick={onRegistrationPageClick}>
           Sign Up
         </Button>
       </div>
-    </Paper>
+    </div>
   );
 };
