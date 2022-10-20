@@ -1,6 +1,11 @@
 import React, { useEffect } from 'react';
 
-import { CircularProgress, LinearProgress } from '@mui/material';
+import {
+  CircularProgress,
+  createTheme,
+  LinearProgress,
+  ThemeProvider,
+} from '@mui/material';
 
 import { ErrorSnackbar } from '../common/ErrorSnackbar/ErrorSnackbar';
 import { ReturnComponentType } from '../types';
@@ -15,6 +20,11 @@ const App = (): ReturnComponentType => {
   const status = useAppSelector(state => state.app.status);
   const isInitialized = useAppSelector(state => state.app.isInitialized);
   const dispatch = useAppDispatch();
+  const theme = createTheme({
+    typography: {
+      fontFamily: 'Montserrat',
+    },
+  });
 
   useEffect(() => {
     dispatch(initializeAppTC());
@@ -30,10 +40,12 @@ const App = (): ReturnComponentType => {
 
   return (
     <div>
-      <Header />
-      {status === 'loading' && <LinearProgress color="secondary" />}
-      <Pages />
-      <ErrorSnackbar />
+      <ThemeProvider theme={theme}>
+        <Header />
+        {status === 'loading' && <LinearProgress color="secondary" />}
+        <Pages />
+        <ErrorSnackbar />
+      </ThemeProvider>
     </div>
   );
 };

@@ -50,3 +50,9 @@ export type NewPasswordResponseType = {
   info?: string;
   error?: string;
 };
+
+// registration
+export type RegisteredUserType = {
+  addedUser: Object;
+  error?: string;
+};

@@ -4,10 +4,12 @@ import {
   LoginParamsType,
   UserUpdateParamsType,
 } from '../features/auth/login/types/LoginType';
+import { RegistrationParamsType } from '../features/auth/registration/types/RegistrateType';
 
 import { instance } from './config';
 import {
   LogoutResponse,
+  RegisteredUserType,
   UpdateUserResponseType,
   UserResponseType,
 } from './types/apiType';
@@ -16,6 +18,12 @@ export const authAPI = {
   login(data: LoginParamsType) {
     return instance.post<LoginParamsType, AxiosResponse<UserResponseType>>(
       'auth/login',
+      data,
+    );
+  },
+  toRegistrate(data: RegistrationParamsType) {
+    return instance.post<RegistrationParamsType, AxiosResponse<RegisteredUserType>>(
+      'auth/register',
       data,
     );
   },
