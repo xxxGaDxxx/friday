@@ -1,10 +1,10 @@
 import React from 'react';
 
+import Button from '@mui/material/Button';
 import { useNavigate } from 'react-router-dom';
 
 import { PATH } from '../../app/pages/Pages';
 import svgError from '../../assets/svg/error/404.svg';
-import Button from '../../common/button/Button';
 import { ReturnComponentType } from '../../types';
 
 import s from './styles/PageNotFound.module.css';
@@ -21,7 +21,14 @@ export const PageNotFound = (): ReturnComponentType => {
       <div className={s.bloc}>
         <h2>Ooops!</h2>
         <span>Sorry! Page not found!</span>
-        <Button onClick={onBackToHomePageClick}>Back to home page</Button>
+        <Button
+          className={s.buttonSignUp}
+          type="button"
+          variant="outlined"
+          onClick={onBackToHomePageClick}
+        >
+          Back to home page
+        </Button>
       </div>
       <img src={svgError} alt="Error" />
     </div>

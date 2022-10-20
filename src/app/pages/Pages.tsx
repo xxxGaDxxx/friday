@@ -7,7 +7,6 @@ import { NewPassword } from '../../features/auth/password/newPassword/NewPasswor
 import CheckEmail from '../../features/auth/password/recoveryPasword/CheckEmail';
 import { RecoveryPassword } from '../../features/auth/password/recoveryPasword/RecoveryPassword';
 import { Registration } from '../../features/auth/registration/Registration';
-import { DemonstrationComponent } from '../../features/demonstration/DemonstrationComponent';
 import { PageNotFound } from '../../features/pageNotFound/PageNotFound';
 import { Profile } from '../../features/profile/Profile';
 import { ReturnComponentType } from '../../types';
@@ -18,7 +17,6 @@ export const PATH = {
   PROFILE: '/profile',
   NEW_PASSWORD: '/new_password/:resetPasswordToken',
   RECOVERY_PASSWORD: '/recovery_password/',
-  DEMONSTRATION: '/demonstration',
   ERRORS: '/error',
   CHECK_EMAIL: '/check_email',
 };
@@ -34,7 +32,6 @@ export const Pages = (): ReturnComponentType => {
         <Route path={PATH.NEW_PASSWORD} element={<NewPassword />} />
         <Route path={PATH.RECOVERY_PASSWORD} element={<RecoveryPassword />} />
         <Route path={PATH.CHECK_EMAIL} element={<CheckEmail />} />
-        <Route path={PATH.DEMONSTRATION} element={<DemonstrationComponent />} />
 
         <Route path="*" element={<Navigate to={PATH.ERRORS} />} />
       </Routes>
