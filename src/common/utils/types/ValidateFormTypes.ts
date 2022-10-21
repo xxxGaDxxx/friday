@@ -1,17 +1,17 @@
-export type FormikAuthErrorType = {
+export type FormikRegistrationErrorType = {
   email?: string;
   password?: string;
   confirmPassword?: string;
   rememberMe?: boolean;
 };
 
-export type FormikAuthLoginType = {
+export type FormikLoginType = {
   email: string;
   password: string;
   rememberMe: boolean;
 };
 
-export type FormikAuthLoginErrorType = {
+export type FormikLoginErrorType = {
   email?: string;
   password?: string;
   rememberMe?: boolean;

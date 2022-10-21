@@ -13,7 +13,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { PATH } from '../../../app/pages/Pages';
 import { useAppDispatch, useAppSelector } from '../../../app/store/store';
-import { validateAuthForm } from '../../../common/utils/validateForm';
+import { validateRegistrationForm } from '../../../common/utils/validateForm';
 import styles from '../../../styles/commonStyles.module.scss';
 import { ReturnComponentType } from '../../../types';
 
@@ -40,7 +40,7 @@ export const Registration = (): ReturnComponentType => {
       password: '',
       confirmPassword: '',
     },
-    validate: values => validateAuthForm(values),
+    validate: values => validateRegistrationForm(values),
     onSubmit: values => {
       dispatch(registrationTC(values));
       formik.resetForm();

@@ -15,7 +15,7 @@ import { Navigate, useNavigate } from 'react-router-dom';
 
 import { PATH } from '../../../app/pages/Pages';
 import { useAppDispatch, useAppSelector } from '../../../app/store/store';
-import { validateAuthLoginForm } from '../../../common/utils/validateForm';
+import { validateLoginForm } from '../../../common/utils/validateForm';
 import styles from '../../../styles/commonStyles.module.scss';
 import { ReturnComponentType } from '../../../types';
 
@@ -47,7 +47,7 @@ export const Login = (): ReturnComponentType => {
       password: '',
       rememberMe: false,
     },
-    validate: values => validateAuthLoginForm(values),
+    validate: values => validateLoginForm(values),
     onSubmit: values => {
       dispatch(loginTC(values));
 
