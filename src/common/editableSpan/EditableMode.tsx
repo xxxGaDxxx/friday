@@ -24,13 +24,19 @@ export const EditableMode = ({
   return (
     <div>
       <TextField
+        error={!value}
         value={value}
         onChange={onTextChange}
         autoFocus
         InputProps={{
           endAdornment: (
             <InputAdornment position="end">
-              <Button onClick={activateViewMode} variant="contained" color="primary">
+              <Button
+                onClick={activateViewMode}
+                variant="contained"
+                color="primary"
+                disabled={!value}
+              >
                 Save
               </Button>
             </InputAdornment>
