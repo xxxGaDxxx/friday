@@ -43,7 +43,7 @@ export const EditableMode = ({
           ),
         }}
       />
-      {!value && <div style={{ color: 'purple' }}>you must enter the name</div>}
+      {!value && <div style={{ color: 'purple' }}>😔 you have to write something here</div>}
     </div>
   );
 };
