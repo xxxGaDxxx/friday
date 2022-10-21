@@ -13,8 +13,8 @@ import Typography from '@mui/material/Typography';
 import { useFormik } from 'formik';
 import { Navigate, useNavigate } from 'react-router-dom';
 
-import { PATH } from '../../../app/pages/Pages';
 import { useAppDispatch, useAppSelector } from '../../../app/store/store';
+import { PATH } from '../../../common/enum/pathEnum';
 import { validateLoginForm } from '../../../common/utils/validateForm';
 import styles from '../../../styles/commonStyles.module.scss';
 import { ReturnComponentType } from '../../../types';

@@ -4,9 +4,9 @@ import { Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
 import imgIncubator from '../../assets/svg/Group 753.svg';
+import { PATH } from '../../common/enum/pathEnum';
 import { ReturnComponentType } from '../../types';
 import ButtonAndProfile from '../buttutAndProfile/ButtonAndProfile';
-import { PATH } from '../pages/Pages';
 import { useAppSelector } from '../store/store';
 
 import s from './Header.module.scss';

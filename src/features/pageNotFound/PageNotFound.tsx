@@ -3,8 +3,8 @@ import React from 'react';
 import Button from '@mui/material/Button';
 import { useNavigate } from 'react-router-dom';
 
-import { PATH } from '../../app/pages/Pages';
 import svgError from '../../assets/svg/error/404.svg';
+import { PATH } from '../../common/enum/pathEnum';
 import { ReturnComponentType } from '../../types';
 
 import s from './styles/PageNotFound.module.css';

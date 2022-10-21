@@ -3,10 +3,10 @@ import React from 'react';
 import Button from '@mui/material/Button';
 import { Navigate } from 'react-router-dom';
 
-import { PATH } from '../../app/pages/Pages';
 import { useAppDispatch, useAppSelector } from '../../app/store/store';
 import avaImg from '../../assets/img/defultAvatar.png';
 import { EditableSpan } from '../../common/editableSpan/EditableSpan';
+import { PATH } from '../../common/enum/pathEnum';
 import styles from '../../styles/commonStyles.module.scss';
 import { ReturnComponentType } from '../../types';
 

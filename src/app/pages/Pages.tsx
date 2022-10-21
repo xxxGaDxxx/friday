@@ -2,6 +2,7 @@ import React from 'react';
 
 import { Navigate, Route, Routes } from 'react-router-dom';
 
+import { PATH } from '../../common/enum/pathEnum';
 import { Login } from '../../features/auth/login/Login';
 import { NewPassword } from '../../features/auth/password/newPassword/NewPassword';
 import CheckEmail from '../../features/auth/password/recoveryPasword/CheckEmail';
@@ -10,16 +11,6 @@ import { Registration } from '../../features/auth/registration/Registration';
 import { PageNotFound } from '../../features/pageNotFound/PageNotFound';
 import { Profile } from '../../features/profile/Profile';
 import { ReturnComponentType } from '../../types';
-
-export const PATH = {
-  LOGIN: '/',
-  REGISTRATION: '/registration',
-  PROFILE: '/profile',
-  NEW_PASSWORD: '/new_password/:resetPasswordToken',
-  RECOVERY_PASSWORD: '/recovery_password/',
-  ERRORS: '/error',
-  CHECK_EMAIL: '/check_email',
-};
 
 export const Pages = (): ReturnComponentType => {
   return (
