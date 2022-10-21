@@ -25,12 +25,13 @@
 
     .buttonSignUp {
       cursor: grab;
+      font-weight: 600;
       font-size: 16px;
-      border: 2px solid rgba(25, 118, 210, 0.5);
+      border: 3px solid rgba(25, 118, 210, 0.9);
 
       &:hover {
         color: lawngreen;
-        border: 2px solid lawngreen;
+        border: 3px solid lawngreen;
       }
     }
   }

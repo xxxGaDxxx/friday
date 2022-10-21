@@ -4,9 +4,33 @@
   width: 100%;
 
   h2 {
-
     font-weight: 600;
     font-size: 26px;
+  }
+
+  .formControl {
+    margin-top: 41px;
+
+    div {
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 24px;
+    }
+
+    h3 {
+      margin: 0;
+      line-height: 25px;
+      color: purple;
+      font-weight: 500;
+      font-size: 13px;
+    }
+
+    button {
+      margin-top: 35px;
+      font-weight: 500;
+      font-size: 16px;
+      text-transform: none;
+    }
   }
 
   .regFooter {
@@ -17,53 +41,15 @@
 
     .buttonSignIn {
       cursor: grab;
+      font-weight: 600;
       font-size: 16px;
-      border: 2px solid rgba(25, 118, 210, 0.5);
+      border: 3px solid rgba(25, 118, 210, 0.9);
 
       &:hover {
         color: lawngreen;
-        border: 2px solid lawngreen;
+        border: 3px solid lawngreen;
       }
     }
   }
-
 }
 
-
-.loginInputFormCheckbox {
-  width: 100%;
-  text-align: start;
-}
-
-.loginButtonForgot {
-  text-align: end;
-  margin: 20px 0;
-}
-
-.loginWrapper h2 {
-  text-align: center;
-}
-
-.loginFooter {
-  font-weight: 600;
-  font-size: 14px;
-  margin-top: 31px;
-  text-align: center;
-
-  .buttonSignUp {
-    cursor: grab;
-    font-size: 16px;
-    border: 2px solid rgba(25, 118, 210, 0.5);
-
-    &:hover {
-      color: lawngreen;
-      border: 2px solid lawngreen;
-    }
-  }
-}
-
-.warningPassword {
-  font-size: 12px;
-  text-align: center;
-  color: #9a4d4d;
-}

@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import Button from '@mui/material/Button';
 import FormControl from '@mui/material/FormControl';
-import FormGroup from '@mui/material/FormGroup';
 import InputAdornment from '@mui/material/InputAdornment';
 import Paper from '@mui/material/Paper';
 import TextField from '@mui/material/TextField';
@@ -46,6 +45,24 @@ export const Registration = (): ReturnComponentType => {
       formik.resetForm();
     },
   });
+  const errorEmail =
+    formik.touched.email && formik.errors.email ? (
+      <h3>{formik.errors.email}</h3>
+    ) : (
+      <h3 style={{ color: '#fff' }}>element</h3>
+    );
+  const errorPassword =
+    formik.touched.password && formik.errors.password ? (
+      <h3>{formik.errors.password}</h3>
+    ) : (
+      <h3 style={{ color: '#fff' }}>element</h3>
+    );
+  const errorConfirmPswrd =
+    formik.touched.confirmPassword && formik.errors.confirmPassword ? (
+      <h3>{formik.errors.confirmPassword}</h3>
+    ) : (
+      <h3 style={{ color: '#fff' }}>element</h3>
+    );
 
   useEffect(() => {
     if (isRegistered) {
@@ -58,61 +75,53 @@ export const Registration = (): ReturnComponentType => {
       <article className={s.article}>
         <Typography component="h2">Sign Up</Typography>
         <form onSubmit={formik.handleSubmit}>
-          <FormControl fullWidth>
-            <FormGroup>
-              <TextField
-                type="email"
-                variant="standard"
-                label="Email"
-                margin="normal"
-                {...formik.getFieldProps('email')}
-              />
-              {formik.touched.email && formik.errors.email && (
-                <div style={{ color: 'purple' }}>{formik.errors.email}</div>
-              )}
-              <TextField
-                type={inputType}
-                variant="standard"
-                label="Password"
-                margin="normal"
-                {...formik.getFieldProps('password')}
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment onClick={onShowHidePasswordClick} position="end">
-                      {inputType === 'password' ? <VisibilityOff /> : <Visibility />}
-                    </InputAdornment>
-                  ),
-                }}
-              />
-              {formik.touched.password && formik.errors.password && (
-                <div>{formik.errors.password}</div>
-              )}
-              <TextField
-                type={inputType}
-                variant="standard"
-                label="Confirm password"
-                margin="normal"
-                {...formik.getFieldProps('confirmPassword')}
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment onClick={onShowHidePasswordClick} position="end">
-                      {inputType === 'password' ? <VisibilityOff /> : <Visibility />}
-                    </InputAdornment>
-                  ),
-                }}
-              />
-              {formik.touched.confirmPassword && formik.errors.confirmPassword && (
-                <div style={{ color: 'purple' }}>{formik.errors.confirmPassword}</div>
-              )}
-              <Button
-                type="submit"
-                variant="contained"
-                color="primary"
-                style={{ width: '100%', borderRadius: '20px' }}
-              >
-                Sign Up
-              </Button>
-            </FormGroup>
+          <FormControl fullWidth className={s.formControl}>
+            <TextField
+              type="email"
+              variant="standard"
+              label="Email"
+              margin="none"
+              {...formik.getFieldProps('email')}
+            />
+            {errorEmail}
+            <TextField
+              type={inputType}
+              variant="standard"
+              label="Password"
+              margin="none"
+              {...formik.getFieldProps('password')}
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment onClick={onShowHidePasswordClick} position="end">
+                    {inputType === 'password' ? <VisibilityOff /> : <Visibility />}
+                  </InputAdornment>
+                ),
+              }}
+            />
+            {errorPassword}
+            <TextField
+              type={inputType}
+              variant="standard"
+              label="Confirm password"
+              margin="none"
+              {...formik.getFieldProps('confirmPassword')}
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment onClick={onShowHidePasswordClick} position="end">
+                    {inputType === 'password' ? <VisibilityOff /> : <Visibility />}
+                  </InputAdornment>
+                ),
+              }}
+            />
+            {errorConfirmPswrd}
+            <Button
+              type="submit"
+              variant="contained"
+              color="primary"
+              style={{ width: '100%', borderRadius: '20px' }}
+            >
+              Sign Up
+            </Button>
           </FormControl>
         </form>
 
