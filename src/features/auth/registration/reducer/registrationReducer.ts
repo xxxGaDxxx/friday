@@ -34,7 +34,7 @@ export const registrationTC =
   async dispatch => {
     try {
       dispatch(setAppStatusAC('loading'));
-      await authAPI.toRegistrate(data);
+      await authAPI.registration(data);
 
       dispatch(setAppStatusAC('succeeded'));
       dispatch(setRegistered(true));

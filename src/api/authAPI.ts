@@ -21,7 +21,7 @@ export const authAPI = {
       data,
     );
   },
-  toRegistrate(data: RegistrationParamsType) {
+  registration(data: RegistrationParamsType) {
     return instance.post<RegistrationParamsType, AxiosResponse<RegisteredUserType>>(
       'auth/register',
       data,

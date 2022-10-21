@@ -12,6 +12,7 @@ export type UserResponseType = {
   __v: number;
   token: string;
   tokenDeathTime: number;
+  avatar: string;
 };
 
 export type UpdateUserResponseType = {

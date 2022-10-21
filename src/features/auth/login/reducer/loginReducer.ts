@@ -2,7 +2,7 @@ import { authAPI } from '../../../../api/authAPI';
 import { setAppStatusAC } from '../../../../app/store/app-reducer';
 import { AppThunk } from '../../../../app/store/store';
 import { errorUtils } from '../../../../common/utils/errorUtils';
-import { setUserEmailAC, setUserNameAC } from '../../../profile/profile-reducer';
+import { setUserDateAC } from '../../../profile/profile-reducer';
 import { LoginParamsType } from '../types/LoginType';
 
 import { InitialStateLoginType, LoginReducerActionsType } from './loginReducerType';
@@ -36,8 +36,7 @@ export const loginTC =
       .login(data)
       .then(res => {
         dispatch(setIsLoggedInAC(true));
-        dispatch(setUserNameAC(res.data.name));
-        dispatch(setUserEmailAC(res.data.email));
+        dispatch(setUserDateAC(res.data));
         dispatch(setAppStatusAC('succeeded'));
       })
       .catch(err => {

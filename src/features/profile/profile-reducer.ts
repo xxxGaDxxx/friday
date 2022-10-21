@@ -1,6 +1,7 @@
 import { AxiosError } from 'axios';
 
 import { authAPI, userAPI } from '../../api/authAPI';
+import { UserResponseType } from '../../api/types/apiType';
 import { setAppStatusAC } from '../../app/store/app-reducer';
 import { AppThunk } from '../../app/store/store';
 import { errorUtils } from '../../common/utils/errorUtils';
@@ -18,25 +19,22 @@ export const profileReducer = (
   action: ProfileReducerActionsType,
 ): InitialStateType => {
   switch (action.type) {
-    case 'PROFILE/SET-USER-NAME':
+    case 'PROFILE/SET-USER-DATE':
       return {
         ...state,
-        name: action.payload.userName,
-      };
-    case 'PROFILE/SET-USER-EMAIL':
-      return {
-        ...state,
-        email: action.payload.userEmail,
+        ...action.payload.userDate,
       };
     default:
       return state;
   }
 };
 
-export const setUserNameAC = (userName: string) =>
+export const setUserDateAC = (userDate: UserResponseType) =>
   ({
-    type: 'PROFILE/SET-USER-NAME',
-    payload: { userName },
+    type: 'PROFILE/SET-USER-DATE',
+    payload: {
+      userDate,
+    },
   } as const);
 export const setUserEmailAC = (userEmail: string) =>
   ({
@@ -51,7 +49,7 @@ export const updateUserNameTC =
     userAPI
       .updateUser(data)
       .then(res => {
-        dispatch(setUserNameAC(res.data.updatedUser.name));
+        dispatch(setUserDateAC(res.data.updatedUser));
         dispatch(setAppStatusAC('succeeded'));
       })
       .catch(err => {
@@ -77,5 +75,5 @@ type InitialStateType = {
   email?: string;
 };
 type setUserEmailACType = ReturnType<typeof setUserEmailAC>;
-type setUserNameACType = ReturnType<typeof setUserNameAC>;
+type setUserNameACType = ReturnType<typeof setUserDateAC>;
 export type ProfileReducerActionsType = setUserNameACType | setUserEmailACType;
