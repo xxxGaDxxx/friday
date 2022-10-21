@@ -28,10 +28,10 @@ export const authAPI = {
     );
   },
   me() {
-    return instance.post<{}, AxiosResponse<UserResponseType>>('auth/me');
+    return instance.post<UserResponseType>('auth/me');
   },
   logout() {
-    return instance.delete<{}, AxiosResponse<LogoutResponse>>('auth/me');
+    return instance.delete<LogoutResponse>('auth/me');
   },
 };
 

@@ -1,5 +1,4 @@
 import { authAPI } from '../../api/authAPI';
-import { errorUtils } from '../../common/utils/errorUtils';
 import { setIsLoggedInAC } from '../../features/auth/login/reducer/loginReducer';
 import { setUserEmailAC, setUserNameAC } from '../../features/profile/profile-reducer';
 
@@ -65,8 +64,8 @@ export const initializeAppTC = (): AppThunk => dispatch => {
       dispatch(setAppStatusAC('succeeded'));
     })
 
-    .catch(err => {
-      errorUtils(err, dispatch);
+    .catch(() => {
+      dispatch(setAppStatusAC('failed'));
     })
     .finally(() => {
       dispatch(setIsInitializedAC(true));
