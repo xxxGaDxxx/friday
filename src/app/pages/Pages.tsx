@@ -11,19 +11,21 @@ import { Registration } from '../../features/auth/registration/Registration';
 import { PageNotFound } from '../../features/pageNotFound/PageNotFound';
 import { Profile } from '../../features/profile/Profile';
 import { ReturnComponentType } from '../../types';
+import PrivateRoutes from '../PrivateRoutes';
 
 export const Pages = (): ReturnComponentType => {
   return (
     <div>
       <Routes>
+        <Route path="/" element={<PrivateRoutes />}>
+          <Route path={PATH.PROFILE} element={<Profile />} />
+        </Route>
         <Route path={PATH.LOGIN} element={<Login />} />
-        <Route path={PATH.PROFILE} element={<Profile />} />
         <Route path={PATH.ERRORS} element={<PageNotFound />} />
         <Route path={PATH.REGISTRATION} element={<Registration />} />
         <Route path={PATH.NEW_PASSWORD} element={<NewPassword />} />
         <Route path={PATH.RECOVERY_PASSWORD} element={<RecoveryPassword />} />
         <Route path={PATH.CHECK_EMAIL} element={<CheckEmail />} />
-
         <Route path="*" element={<Navigate to={PATH.ERRORS} />} />
       </Routes>
     </div>

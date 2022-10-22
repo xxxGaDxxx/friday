@@ -16,10 +16,7 @@ import { validatePassword } from '../../../../common/utils/validateForm';
 import style from '../../../../styles/commonStyles.module.scss';
 import { ReturnComponentType } from '../../../../types';
 import s from '../../login/styles/Login.module.scss';
-import {
-  newPasswordTC,
-  setIsInfoNewPasswordAC,
-} from '../recoveryPasword/reducer/forgotReducer';
+import { newPasswordTC, setIsInfoNewPasswordAC } from '../recoveryPasword/reducer/forgotReducer';
 
 export const NewPassword = (): ReturnComponentType => {
   const infoNewPassword = useAppSelector(state => state.forgot.infoNewPassword);

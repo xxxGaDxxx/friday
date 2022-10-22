@@ -1,11 +1,6 @@
 import React, { useEffect } from 'react';
 
-import {
-  CircularProgress,
-  createTheme,
-  LinearProgress,
-  ThemeProvider,
-} from '@mui/material';
+import { CircularProgress, createTheme, LinearProgress, ThemeProvider } from '@mui/material';
 
 import { ErrorSnackbar } from '../common/ErrorSnackbar/ErrorSnackbar';
 import { ReturnComponentType } from '../types';

@@ -1,12 +1,10 @@
 import React from 'react';
 
 import Button from '@mui/material/Button';
-import { Navigate } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from '../../app/store/store';
 import avaImg from '../../assets/img/defultAvatar.png';
 import { EditableSpan } from '../../common/editableSpan/EditableSpan';
-import { PATH } from '../../common/enum/pathEnum';
 import styles from '../../styles/commonStyles.module.scss';
 import { ReturnComponentType } from '../../types';
 
@@ -15,7 +13,6 @@ import s from './styles/Profile.module.css';
 
 export const Profile = (): ReturnComponentType => {
   const dispatch = useAppDispatch();
-  const isLoggedIn = useAppSelector(state => state.login.isLoggedIn);
   const email = useAppSelector(state => state.profile.email);
   const userName = useAppSelector(state => state.profile.name);
 
@@ -26,10 +23,6 @@ export const Profile = (): ReturnComponentType => {
   const onLogOutClick = (): void => {
     dispatch(logOutUserTC());
   };
-
-  if (!isLoggedIn) {
-    return <Navigate to={PATH.LOGIN} />;
-  }
 
   return (
     <div className={styles.container}>

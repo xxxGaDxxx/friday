@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import Button from '@mui/material/Button';
@@ -11,7 +11,7 @@ import Paper from '@mui/material/Paper';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { useFormik } from 'formik';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from '../../../app/store/store';
 import { PATH } from '../../../common/enum/pathEnum';
@@ -57,9 +57,11 @@ export const Login = (): ReturnComponentType => {
   const isPasswordError = formik.touched.password && formik.errors.password;
   const isEmailError = formik.touched.email && formik.errors.email;
 
-  if (isLoggedIn) {
-    return <Navigate to={PATH.PROFILE} />;
-  }
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate(PATH.PROFILE);
+    }
+  }, [isLoggedIn, navigate]);
 
   return (
     <Paper elevation={10} className={styles.container}>
@@ -76,9 +78,7 @@ export const Login = (): ReturnComponentType => {
                 {...formik.getFieldProps('email')}
               />
 
-              {isEmailError && (
-                <div style={{ color: 'purple' }}>{formik.errors.email}</div>
-              )}
+              {isEmailError && <div style={{ color: 'purple' }}>{formik.errors.email}</div>}
 
               <TextField
                 type={inputType}
@@ -95,9 +95,7 @@ export const Login = (): ReturnComponentType => {
                 }}
               />
 
-              {isPasswordError && (
-                <div style={{ color: 'purple' }}>{formik.errors.password}</div>
-              )}
+              {isPasswordError && <div style={{ color: 'purple' }}>{formik.errors.password}</div>}
 
               <FormControlLabel
                 className={s.loginInputFormCheckbox}
