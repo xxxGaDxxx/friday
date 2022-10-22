@@ -4,5 +4,5 @@ import { initialStateLogin, setIsLoggedInAC } from './loginReducer';
 export type InitialStateLoginType = typeof initialStateLogin;
 
 // action type
-export type setIsLoggedInACType = ReturnType<typeof setIsLoggedInAC>;
-export type LoginReducerActionsType = setIsLoggedInACType;
+export type SetIsLoggedInACType = ReturnType<typeof setIsLoggedInAC>;
+export type LoginReducerActionsType = SetIsLoggedInACType;

@@ -17,7 +17,7 @@ export const loginReducer = (
 ): InitialStateLoginType => {
   switch (action.type) {
     case 'LOGIN/SET-IS-LOGGED-IN':
-      return { ...state, isLoggedIn: action.value };
+      return { ...state, isLoggedIn: action.payload.value };
     default:
       return state;
   }
@@ -25,7 +25,12 @@ export const loginReducer = (
 
 // action
 export const setIsLoggedInAC = (value: boolean) =>
-  ({ type: 'LOGIN/SET-IS-LOGGED-IN', value } as const);
+  ({
+    type: 'LOGIN/SET-IS-LOGGED-IN',
+    payload: {
+      value,
+    },
+  } as const);
 
 // thunk
 export const loginTC =

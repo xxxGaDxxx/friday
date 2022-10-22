@@ -10,10 +10,7 @@ import {
 
 export const forgotPasswordAPI = {
   forgot(data: ForgotParamsType) {
-    return instance.post<ForgotParamsType, AxiosResponse<ForgotResponseType>>(
-      'auth/forgot',
-      data,
-    );
+    return instance.post<ForgotParamsType, AxiosResponse<ForgotResponseType>>('auth/forgot', data);
   },
   newPassword(data: NewPasswordType) {
     return instance.post<NewPasswordType, AxiosResponse<NewPasswordResponseType>>(
