@@ -1,29 +1,27 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 
 import { useAppDispatch, useAppSelector } from '../../../app/store/store';
 import { PaginationPage } from '../../../common/components/pagination/PaginationPage';
 import { ReturnComponentType } from '../../../types';
 
 import { PackTable } from './PackTable';
-import { packDateTC, setPacksPerPageAC } from './reducer/packTableReducer';
+import { packDateTC, setPacksPerPageAC, setSelectedPageAC } from './reducer/packTableReducer';
 
 export const Packs = (): ReturnComponentType => {
   const dispatch = useAppDispatch();
   const page = useAppSelector(state => state.pack.page);
   const pageCount = useAppSelector(state => state.pack.pageCount);
-  const [selectedPage, setSelectedPage] = useState(page);
+
   const changePacksPerPage = (count: number): void => {
     dispatch(setPacksPerPageAC(count));
   };
+  const setSelectedPage = (page: number): void => {
+    dispatch(setSelectedPageAC(page));
+  };
 
   useEffect(() => {
-    const params = {
-      page: selectedPage,
-      pageCount,
-    };
-
-    dispatch(packDateTC(params));
-  }, [dispatch, pageCount, selectedPage]);
+    dispatch(packDateTC());
+  }, [dispatch, pageCount, page]);
 
   return (
     <div>

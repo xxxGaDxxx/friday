@@ -1,13 +1,17 @@
 import { cardsPack } from '../../../../api/cardsPack';
-import { PackDateResponseType, ParamsPacksType } from '../../../../api/types/apiType';
+import {
+  PackCardPacks,
+  PackDateResponseType,
+  ParamsPacksType,
+} from '../../../../api/types/apiType';
 import { setAppStatusAC } from '../../../../app/store/app-reducer';
 import { AppThunk } from '../../../../app/store/store';
 import { errorUtils } from '../../../../common/utils/errorUtils';
 
 import { InitialStatePackTable, StatePackReducerActionsType } from './packTableReducerType';
 
-export const initialStatePackTable: PackDateResponseType = {
-  cardPacks: [],
+export const initialStatePackTable = {
+  cardPacks: [] as PackCardPacks[],
   page: 1,
   pageCount: 5,
   cardPacksTotalCount: 0,
@@ -15,10 +19,13 @@ export const initialStatePackTable: PackDateResponseType = {
   maxCardsCount: 110,
   token: '',
   tokenDeathTime: 0,
+  packName: '',
+  sortPacks: '',
+  user_id: '',
 };
 
 export const packTableReducer = (
-  state: PackDateResponseType = initialStatePackTable,
+  state = initialStatePackTable,
   action: StatePackReducerActionsType,
 ): InitialStatePackTable => {
   switch (action.type) {
@@ -31,6 +38,11 @@ export const packTableReducer = (
       return {
         ...state,
         pageCount: action.payload.count,
+      };
+    case 'PACK/SET-SELECTED-PAGE':
+      return {
+        ...state,
+        page: action.payload.page,
       };
     default:
       return state;
@@ -54,18 +66,44 @@ export const setPacksPerPageAC = (count: number) =>
     },
   } as const);
 
+export const setSelectedPageAC = (page: number) =>
+  ({
+    type: 'PACK/SET-SELECTED-PAGE',
+    payload: {
+      page,
+    },
+  } as const);
+
 // thunk
-export const packDateTC =
-  (params?: ParamsPacksType): AppThunk =>
-  dispatch => {
-    dispatch(setAppStatusAC('loading'));
-    cardsPack
-      .cardPacksDate(params)
-      .then(res => {
-        dispatch(setPackDateAC(res.data));
-        dispatch(setAppStatusAC('succeeded'));
-      })
-      .catch(err => {
-        errorUtils(err, dispatch);
-      });
+export const packDateTC = (): AppThunk => (dispatch, getState) => {
+  const {
+    pageCount,
+    page,
+    maxCardsCount: max,
+    minCardsCount: min,
+    packName,
+    sortPacks,
+    user_id,
+  } = getState().pack;
+
+  const params: ParamsPacksType = {
+    page,
+    pageCount,
+    packName,
+    min,
+    max,
+    sortPacks,
+    user_id,
   };
+
+  dispatch(setAppStatusAC('loading'));
+  cardsPack
+    .cardPacksDate(params)
+    .then(res => {
+      dispatch(setPackDateAC(res.data));
+      dispatch(setAppStatusAC('succeeded'));
+    })
+    .catch(err => {
+      errorUtils(err, dispatch);
+    });
+};
