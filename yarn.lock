@@ -1654,6 +1654,20 @@
     prop-types "^15.8.1"
     react-is "^18.2.0"
 
+"@mui/base@^5.0.0-alpha.102":
+  version "5.0.0-alpha.102"
+  resolved "https://registry.yarnpkg.com/@mui/base/-/base-5.0.0-alpha.102.tgz#53b07d0b73d3afe1d2a3feb3b43c8188bb821796"
+  integrity sha512-5e/qAIP+DlkrZxIt/cwnDw/A3ii22WkoEoWKHyu4+oeGs3/1Flh7qLaN4h5EAIBB9TvTEZEUzvmsTInmIj6ghg==
+  dependencies:
+    "@babel/runtime" "^7.19.0"
+    "@emotion/is-prop-valid" "^1.2.0"
+    "@mui/types" "^7.2.0"
+    "@mui/utils" "^5.10.9"
+    "@popperjs/core" "^2.11.6"
+    clsx "^1.2.1"
+    prop-types "^15.8.1"
+    react-is "^18.2.0"
+
 "@mui/core-downloads-tracker@^5.10.9":
   version "5.10.9"
   resolved "https://registry.yarnpkg.com/@mui/core-downloads-tracker/-/core-downloads-tracker-5.10.9.tgz#0279aaeecd7903c91730258b242aba4cf674fde5"

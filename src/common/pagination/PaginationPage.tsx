@@ -44,7 +44,7 @@ export const PaginationPage = ({
         size="small"
         defaultValue={itemsPerPage.toString()}
       >
-        <MenuItem value={4}>4</MenuItem>
+        <MenuItem value={5}>5</MenuItem>
         <MenuItem value={10}>10</MenuItem>
         <MenuItem value={15}>15</MenuItem>
         <MenuItem value={25}>25</MenuItem>

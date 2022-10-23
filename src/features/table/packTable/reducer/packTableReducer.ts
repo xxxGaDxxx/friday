@@ -9,7 +9,7 @@ import { InitialStatePackTable, StatePackReducerActionsType } from './packTableR
 export const initialStatePackTable: PackDateResponseType = {
   cardPacks: [],
   page: 1,
-  pageCount: 4,
+  pageCount: 5,
   cardPacksTotalCount: 0,
   minCardsCount: 0,
   maxCardsCount: 110,

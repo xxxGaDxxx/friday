@@ -1,24 +1,58 @@
 import React from 'react';
 
+import ClickAwayListener from '@mui/base/ClickAwayListener';
+import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
+import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
 import Paper from '@mui/material/Paper';
-import { NavLink } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { PATH } from '../../../common/enum/pathEnum';
 import { logOutUserTC } from '../../../features/profile/profile-reducer';
 import { ReturnComponentType } from '../../../types';
 import { useAppDispatch } from '../../store/store';
 
-export const ToggleMenu = (): ReturnComponentType => {
+type Props = {
+  hideMenu: () => void;
+};
+
+export const ToggleMenu = ({ hideMenu }: Props): ReturnComponentType => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const onLogOutClick = (): void => {
     dispatch(logOutUserTC());
+  };
+  const onProfileClick = (): void => {
+    navigate(PATH.PROFILE);
+    hideMenu();
   };
 
   return (
     <Paper elevation={3}>
-      <NavLink to={PATH.PROFILE}>Profile</NavLink>
-      {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
-      <div onClick={onLogOutClick}>Log out</div>
+      <ClickAwayListener onClickAway={hideMenu}>
+        <List>
+          <ListItem disablePadding>
+            <ListItemButton onClick={onProfileClick}>
+              <ListItemIcon>
+                <PersonOutlineOutlinedIcon />
+              </ListItemIcon>
+              <ListItemText primary="Profile" />
+            </ListItemButton>
+          </ListItem>
+          <ListItem disablePadding>
+            <ListItemButton onClick={onLogOutClick}>
+              <ListItemIcon>
+                <LogoutOutlinedIcon />
+              </ListItemIcon>
+              <ListItemText primary="Log out" />
+            </ListItemButton>
+          </ListItem>
+        </List>
+      </ClickAwayListener>
     </Paper>
   );
 };

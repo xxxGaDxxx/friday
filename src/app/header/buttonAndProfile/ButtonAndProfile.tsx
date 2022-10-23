@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+import Avatar from '@mui/material/Avatar';
+
 import avatar from '../../../assets/img/defultAvatar.png';
 import { ReturnComponentType } from '../../../types';
 import { useAppSelector } from '../../store/store';
@@ -15,14 +17,12 @@ const ButtonAndProfile = (): ReturnComponentType => {
   };
 
   return (
-    <div className={s.containerProfile}>
-      <div>
+    <div className={s.container}>
+      <div className={s.containerProfile}>
         <span>{name}</span>
-        {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-noninteractive-element-interactions */}
-        <img src={avatar} alt="avatar" onClick={showMenu} />
+        <Avatar src={avatar} alt="avatar" onClick={showMenu} />
       </div>
-
-      {isShowedMenu && <ToggleMenu />}
+      <div className={s.menu}>{isShowedMenu && <ToggleMenu hideMenu={showMenu} />}</div>
     </div>
   );
 };
