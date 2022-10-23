@@ -6,9 +6,9 @@ import { useNavigate } from 'react-router-dom';
 import imgIncubator from '../../assets/svg/Group 753.svg';
 import { PATH } from '../../common/enum/pathEnum';
 import { ReturnComponentType } from '../../types';
-import ButtonAndProfile from '../buttutAndProfile/ButtonAndProfile';
 import { useAppSelector } from '../store/store';
 
+import ButtonAndProfile from './buttonAndProfile/ButtonAndProfile';
 import s from './Header.module.scss';
 
 export const Header = (): ReturnComponentType => {
