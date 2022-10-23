@@ -44,7 +44,7 @@ export const Packs = (): ReturnComponentType => {
           type="button"
           variant="contained"
           color="primary"
-          style={{ borderRadius: '20px', zIndex: '3', position: 'relative' }}
+          style={{ borderRadius: '20px' }}
           onClick={onAddPackClick}
         >
           Add new pack
