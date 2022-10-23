@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { useEffect } from 'react';
 
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
@@ -9,10 +8,8 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 
-import { useAppDispatch, useAppSelector } from '../../../app/store/store';
+import { useAppSelector } from '../../../app/store/store';
 import { ReturnComponentType } from '../../../types';
-
-import { packDateTC } from './reducer/packTableReducer';
 
 type CreateData = {
   name: string;
@@ -23,7 +20,7 @@ type CreateData = {
 };
 
 export const PackTable = (): ReturnComponentType => {
-  const dispatch = useAppDispatch();
+  // const dispatch = useAppDispatch();
   const cardPacks = useAppSelector(state => state.pack.cardPacks);
 
   const cardsDateType = (
@@ -45,9 +42,9 @@ export const PackTable = (): ReturnComponentType => {
     cardsDateType(pack.name, pack.cardsCount, dateString(pack.created), pack.user_name, pack.type),
   );
 
-  useEffect(() => {
-    dispatch(packDateTC());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(packDateTC());
+  // }, [dispatch]);
 
   return (
     <TableContainer sx={{ minWidth: 650, maxWidth: 1008 }} component={Paper}>

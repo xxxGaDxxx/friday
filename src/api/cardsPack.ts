@@ -1,13 +1,10 @@
 import { instance } from './config';
-import { PackDateResponseType } from './types/apiType';
+import { PackDateResponseType, ParamsPacksType } from './types/apiType';
 
 export const cardsPack = {
-  cardPacksDate() {
+  cardPacksDate(params?: ParamsPacksType) {
     return instance.get<PackDateResponseType>('/cards/pack', {
-      params: {
-        page: 15,
-        pageCount: 4,
-      },
+      params,
     });
   },
 };

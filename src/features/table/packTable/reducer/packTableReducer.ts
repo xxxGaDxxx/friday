@@ -1,5 +1,5 @@
 import { cardsPack } from '../../../../api/cardsPack';
-import { PackDateResponseType } from '../../../../api/types/apiType';
+import { PackDateResponseType, ParamsPacksType } from '../../../../api/types/apiType';
 import { setAppStatusAC } from '../../../../app/store/app-reducer';
 import { AppThunk } from '../../../../app/store/store';
 import { errorUtils } from '../../../../common/utils/errorUtils';
@@ -27,6 +27,11 @@ export const packTableReducer = (
         ...state,
         ...action.payload.date,
       };
+    case 'PACK/SET-PACKS-PER-PAGE':
+      return {
+        ...state,
+        pageCount: action.payload.count,
+      };
     default:
       return state;
   }
@@ -41,16 +46,26 @@ export const setPackDateAC = (date: PackDateResponseType) =>
     },
   } as const);
 
+export const setPacksPerPageAC = (count: number) =>
+  ({
+    type: 'PACK/SET-PACKS-PER-PAGE',
+    payload: {
+      count,
+    },
+  } as const);
+
 // thunk
-export const packDateTC = (): AppThunk => dispatch => {
-  dispatch(setAppStatusAC('loading'));
-  cardsPack
-    .cardPacksDate()
-    .then(res => {
-      dispatch(setPackDateAC(res.data));
-      dispatch(setAppStatusAC('succeeded'));
-    })
-    .catch(err => {
-      errorUtils(err, dispatch);
-    });
-};
+export const packDateTC =
+  (params?: ParamsPacksType): AppThunk =>
+  dispatch => {
+    dispatch(setAppStatusAC('loading'));
+    cardsPack
+      .cardPacksDate(params)
+      .then(res => {
+        dispatch(setPackDateAC(res.data));
+        dispatch(setAppStatusAC('succeeded'));
+      })
+      .catch(err => {
+        errorUtils(err, dispatch);
+      });
+  };

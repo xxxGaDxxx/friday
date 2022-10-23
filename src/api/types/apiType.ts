@@ -92,3 +92,14 @@ export type PackCardPacks = {
   more_id: string;
   __v: number;
 };
+
+export type ParamsPacksType = {
+  page?: number;
+  pageCount?: number;
+  packName?: string;
+  min?: number;
+  max?: number;
+  sortPacks?: string;
+  user_id?: string;
+  block?: boolean;
+};
