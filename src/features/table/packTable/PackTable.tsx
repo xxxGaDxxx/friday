@@ -13,46 +13,14 @@ import { ActionsSvg } from '../../../common/components/actionsSvg/ActionsSvg';
 import { dayMonthYear } from '../../../common/utils/dayMonthYear';
 import { ReturnComponentType } from '../../../types';
 
-type CreateData = {
-  id: string;
-  name: string;
-  cards: number;
-  lastUpdated: string;
-  createdBy: string;
-  actions: any;
-};
-
 export const PackTable = (): ReturnComponentType => {
   const cardPacks = useAppSelector(state => state.pack.cardPacks);
-  // @ts-ignore
   const userId = useAppSelector(state => state.profile._id);
 
   const isMyPack = (id: string): boolean => userId === id;
 
-  const cardsDateType = (
-    id: string,
-    name: string,
-    cards: number,
-    lastUpdated: string,
-    createdBy: string,
-    actions: any,
-  ): CreateData => {
-    return { id, name, cards, lastUpdated, createdBy, actions };
-  };
-
-  const rows = cardPacks.map(pack =>
-    cardsDateType(
-      pack._id,
-      pack.name,
-      pack.cardsCount,
-      dayMonthYear(pack.created),
-      pack.user_name,
-      <ActionsSvg key={pack._id} isMyPack={isMyPack(pack.user_id)} packId={pack._id} />,
-    ),
-  );
-
   return (
-    <TableContainer sx={{ minWidth: 650, maxWidth: 1008 }} component={Paper}>
+    <TableContainer sx={{ maxWidth: '1010px' }} component={Paper}>
       <Table aria-label="caption table">
         <TableHead>
           <TableRow sx={{ background: '#EFEFEF' }}>
@@ -64,15 +32,17 @@ export const PackTable = (): ReturnComponentType => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map(row => (
-            <TableRow key={row.id}>
+          {cardPacks.map(pack => (
+            <TableRow key={pack._id}>
               <TableCell component="th" scope="row">
-                {row.name}
+                {pack.name}
               </TableCell>
-              <TableCell align="right">{row.cards}</TableCell>
-              <TableCell align="right">{row.lastUpdated}</TableCell>
-              <TableCell align="right">{row.createdBy}</TableCell>
-              <TableCell align="right">{row.actions}</TableCell>
+              <TableCell align="right">{pack.cardsCount}</TableCell>
+              <TableCell align="right">{dayMonthYear(pack.created)}</TableCell>
+              <TableCell align="right">{pack.user_name}</TableCell>
+              <TableCell align="right">
+                <ActionsSvg key={pack._id} isMyPack={isMyPack(pack.user_id)} packId={pack._id} />
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>

@@ -1,5 +1,10 @@
 import { instance } from './config';
-import { PackDateResponseType, ParamsPacksType, UpdatePackType } from './types/apiType';
+import {
+  CardsPackType,
+  PackDateResponseType,
+  ParamsPacksType,
+  UpdatePackType,
+} from './types/apiType';
 
 export const cardsPack = {
   cardPacksDate(params?: ParamsPacksType) {
@@ -12,5 +17,8 @@ export const cardsPack = {
   },
   putPackName(packNew: UpdatePackType) {
     return instance.put('/cards/pack', { cardsPack: packNew });
+  },
+  addPack(cardsPack: CardsPackType) {
+    return instance.post('/cards/pack', { cardsPack });
   },
 };

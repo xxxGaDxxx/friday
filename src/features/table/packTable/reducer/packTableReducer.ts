@@ -142,3 +142,22 @@ export const packNewNameTC =
         errorUtils(err, dispatch);
       });
   };
+
+export const addPackTC = (): AppThunk => dispatch => {
+  dispatch(setAppStatusAC('loading'));
+  const packNew = {
+    name: 'NEW PACK',
+    deckCover: '',
+    private: false,
+  };
+
+  cardsPack
+    .addPack(packNew)
+    .then(() => {
+      dispatch(packDateTC());
+      dispatch(setAppStatusAC('succeeded'));
+    })
+    .catch(err => {
+      errorUtils(err, dispatch);
+    });
+};

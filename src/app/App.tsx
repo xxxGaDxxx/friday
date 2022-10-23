@@ -14,7 +14,11 @@ import { useAppDispatch, useAppSelector } from './store/store';
 const App = (): ReturnComponentType => {
   const status = useAppSelector(state => state.app.status);
   const isInitialized = useAppSelector(state => state.app.isInitialized);
+
   const dispatch = useAppDispatch();
+
+  const isLoading: boolean = status === 'loading';
+
   const theme = createTheme({
     typography: {
       fontFamily: 'Montserrat',
@@ -37,7 +41,7 @@ const App = (): ReturnComponentType => {
     <div>
       <ThemeProvider theme={theme}>
         <Header />
-        {status === 'loading' && <LinearProgress color="secondary" />}
+        <LinearProgress color="secondary" sx={{ visibility: isLoading ? 'visible' : 'hidden' }} />
         <Pages />
         <ErrorSnackbar />
       </ThemeProvider>

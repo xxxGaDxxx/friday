@@ -32,7 +32,7 @@ export const ToggleMenu = ({ hideMenu }: Props): ReturnComponentType => {
   };
 
   return (
-    <Paper elevation={3}>
+    <Paper elevation={24} style={{ zIndex: '10' }}>
       <ClickAwayListener onClickAway={hideMenu}>
         <List>
           <ListItem disablePadding>

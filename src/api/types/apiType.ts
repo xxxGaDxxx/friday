@@ -108,3 +108,9 @@ export type UpdatePackType = {
   _id: string;
   name: string;
 };
+
+export type CardsPackType = {
+  name: string;
+  deckCover: string;
+  private: boolean;
+};

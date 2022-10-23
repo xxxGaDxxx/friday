@@ -1,0 +1,22 @@
+.container {
+  max-width: 1010px;
+  margin: 30px auto;
+
+  .titleButton {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  h2 {
+    font-weight: 600;
+    font-size: 26px;
+  }
+
+  .packTable {
+    margin-top: 24px;
+  }
+
+  .pagination {
+    margin-top: 36px;
+  }
+}
