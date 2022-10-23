@@ -12,7 +12,7 @@ import Paper from '@mui/material/Paper';
 import { useNavigate } from 'react-router-dom';
 
 import { PATH } from '../../../common/enum/pathEnum';
-import { logOutUserTC } from '../../../features/profile/profile-reducer';
+import { logOutUserTC } from '../../../features/profile/reducer/profileReducer';
 import { ReturnComponentType } from '../../../types';
 import { useAppDispatch } from '../../store/store';
 

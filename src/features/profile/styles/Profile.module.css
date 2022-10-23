@@ -9,6 +9,9 @@
     align-items: center;
     color: #000000;
 }
+.editableName svg{
+    cursor: pointer;
+}
 
 .header {
     font-family: 'Montserrat', sans-serif;

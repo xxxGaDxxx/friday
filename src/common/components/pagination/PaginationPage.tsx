@@ -5,8 +5,8 @@ import Pagination from '@mui/material/Pagination';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import Stack from '@mui/material/Stack';
 
-import { useAppSelector } from '../../app/store/store';
-import { ReturnComponentType } from '../../types';
+import { useAppSelector } from '../../../app/store/store';
+import { ReturnComponentType } from '../../../types';
 
 import s from './styles/Pagination.module.scss';
 

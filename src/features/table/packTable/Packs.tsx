@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import { useAppDispatch, useAppSelector } from '../../../app/store/store';
-import { PaginationPage } from '../../../common/pagination/PaginationPage';
+import { PaginationPage } from '../../../common/components/pagination/PaginationPage';
 import { ReturnComponentType } from '../../../types';
 
 import { PackTable } from './PackTable';

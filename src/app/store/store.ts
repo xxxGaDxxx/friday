@@ -8,7 +8,8 @@ import { forgotReducer } from '../../features/auth/password/recoveryPasword/redu
 import { ForgotReducerActionsType } from '../../features/auth/password/recoveryPasword/reducer/forgotReducerType';
 import { registrationReducer } from '../../features/auth/registration/reducer/registrationReducer';
 import { SetRegisteredType } from '../../features/auth/registration/reducer/registrationReducerType';
-import { profileReducer, ProfileReducerActionsType } from '../../features/profile/profile-reducer';
+import { profileReducer } from '../../features/profile/reducer/profileReducer';
+import { ProfileReducerActionsType } from '../../features/profile/reducer/profileReducerType';
 import { packTableReducer } from '../../features/table/packTable/reducer/packTableReducer';
 import { StatePackReducerActionsType } from '../../features/table/packTable/reducer/packTableReducerType';
 

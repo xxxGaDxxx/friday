@@ -2,7 +2,7 @@ import { authAPI } from '../../../../api/authAPI';
 import { setAppStatusAC } from '../../../../app/store/app-reducer';
 import { AppThunk } from '../../../../app/store/store';
 import { errorUtils } from '../../../../common/utils/errorUtils';
-import { setUserDateAC } from '../../../profile/profile-reducer';
+import { setUserDateAC } from '../../../profile/reducer/profileReducer';
 import { LoginParamsType } from '../types/LoginType';
 
 import { InitialStateLoginType, LoginReducerActionsType } from './loginReducerType';

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 
 import { CircularProgress, createTheme, LinearProgress, ThemeProvider } from '@mui/material';
 
-import { ErrorSnackbar } from '../common/ErrorSnackbar/ErrorSnackbar';
+import { ErrorSnackbar } from '../common/components/errorSnackbar/ErrorSnackbar';
 import { ReturnComponentType } from '../types';
 
 import s from './App.module.css';

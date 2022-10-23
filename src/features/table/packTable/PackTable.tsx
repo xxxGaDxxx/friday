@@ -9,6 +9,8 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 
 import { useAppSelector } from '../../../app/store/store';
+import { ActionsSvg } from '../../../common/components/actionsSvg/ActionsSvg';
+import { dayMonthYear } from '../../../common/utils/dayMonthYear';
 import { ReturnComponentType } from '../../../types';
 
 type CreateData = {
@@ -16,11 +18,10 @@ type CreateData = {
   cards: number;
   lastUpdated: string;
   createdBy: string;
-  actions: string;
+  actions: any;
 };
 
 export const PackTable = (): ReturnComponentType => {
-  // const dispatch = useAppDispatch();
   const cardPacks = useAppSelector(state => state.pack.cardPacks);
 
   const cardsDateType = (
@@ -28,23 +29,20 @@ export const PackTable = (): ReturnComponentType => {
     cards: number,
     lastUpdated: string,
     createdBy: string,
-    actions: string,
+    actions: any,
   ): CreateData => {
     return { name, cards, lastUpdated, createdBy, actions };
   };
 
-  const dateString = (dateStr: string): string => {
-    const date = new Date(Date.parse(dateStr));
-
-    return `${date.getDate()}.${date.getDay()}.${date.getFullYear()}`;
-  };
   const rows = cardPacks.map(pack =>
-    cardsDateType(pack.name, pack.cardsCount, dateString(pack.created), pack.user_name, pack.type),
+    cardsDateType(
+      pack.name,
+      pack.cardsCount,
+      dayMonthYear(pack.created),
+      pack.user_name,
+      ActionsSvg(),
+    ),
   );
-
-  // useEffect(() => {
-  //   dispatch(packDateTC());
-  // }, [dispatch]);
 
   return (
     <TableContainer sx={{ minWidth: 650, maxWidth: 1008 }} component={Paper}>

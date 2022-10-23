@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
 
-import { ReturnComponentType } from '../../types';
+import { ReturnComponentType } from '../../../types';
 
 import { EditableMode } from './EditableMode';
 

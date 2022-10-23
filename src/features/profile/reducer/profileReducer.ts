@@ -1,21 +1,24 @@
 import { AxiosError } from 'axios';
 
-import { authAPI, userAPI } from '../../api/authAPI';
-import { UserResponseType } from '../../api/types/apiType';
-import { setAppStatusAC } from '../../app/store/app-reducer';
-import { AppThunk } from '../../app/store/store';
-import { errorUtils } from '../../common/utils/errorUtils';
-import { setIsLoggedInAC } from '../auth/login/reducer/loginReducer';
-import { UserUpdateParamsType } from '../auth/login/types/LoginType';
+import { authAPI, userAPI } from '../../../api/authAPI';
+import { UserResponseType } from '../../../api/types/apiType';
+import { setAppStatusAC } from '../../../app/store/app-reducer';
+import { AppThunk } from '../../../app/store/store';
+import { errorUtils } from '../../../common/utils/errorUtils';
+import { setIsLoggedInAC } from '../../auth/login/reducer/loginReducer';
+import { UserUpdateParamsType } from '../../auth/login/types/LoginType';
 
-const initialState: InitialStateType = {
+import { InitialStateType, ProfileReducerActionsType } from './profileReducerType';
+
+export const initialStateProfile = {
   avatar: '',
   name: '',
   email: '',
+  _id: '',
 };
 
 export const profileReducer = (
-  state = initialState,
+  state = initialStateProfile,
   action: ProfileReducerActionsType,
 ): InitialStateType => {
   switch (action.type) {
@@ -35,11 +38,6 @@ export const setUserDateAC = (userDate: UserResponseType) =>
     payload: {
       userDate,
     },
-  } as const);
-export const setUserEmailAC = (userEmail: string) =>
-  ({
-    type: 'PROFILE/SET-USER-EMAIL',
-    payload: { userEmail },
   } as const);
 
 export const updateUserNameTC =
@@ -68,12 +66,3 @@ export const logOutUserTC = (): AppThunk => dispatch => {
       errorUtils(err, dispatch);
     });
 };
-
-type InitialStateType = {
-  avatar?: string;
-  name: string;
-  email?: string;
-};
-type setUserEmailACType = ReturnType<typeof setUserEmailAC>;
-type setUserNameACType = ReturnType<typeof setUserDateAC>;
-export type ProfileReducerActionsType = setUserNameACType | setUserEmailACType;

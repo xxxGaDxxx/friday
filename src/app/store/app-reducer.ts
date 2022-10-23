@@ -1,6 +1,6 @@
 import { authAPI } from '../../api/authAPI';
 import { setIsLoggedInAC } from '../../features/auth/login/reducer/loginReducer';
-import { setUserDateAC } from '../../features/profile/profile-reducer';
+import { setUserDateAC } from '../../features/profile/reducer/profileReducer';
 
 import { AppThunk } from './store';
 import {
