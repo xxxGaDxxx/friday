@@ -56,6 +56,7 @@
       }
     ],
     "no-underscore-dangle": ["off", { "allow": [] }],
+    "camelcase": "off",
     "import/extensions": "off",
     "import/prefer-default-export": "off",
     "consistent-return": "off",
