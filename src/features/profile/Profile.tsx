@@ -4,7 +4,9 @@ import Button from '@mui/material/Button';
 
 import { useAppDispatch, useAppSelector } from '../../app/store/store';
 import avaImg from '../../assets/img/defultAvatar.png';
+import { BackTo } from '../../common/components/backTo/BackTo';
 import { EditableSpan } from '../../common/editableSpan/EditableSpan';
+import { PATH } from '../../common/enum/pathEnum';
 import styles from '../../styles/commonStyles.module.scss';
 import { ReturnComponentType } from '../../types';
 
@@ -25,16 +27,19 @@ export const Profile = (): ReturnComponentType => {
   };
 
   return (
-    <div className={styles.container}>
-      <h2 className={s.header}>Personal Information</h2>
-      <img src={avaImg} alt="ava" />
-      <div className={s.editableName}>
-        <EditableSpan onChange={onNameChange} value={userName} />
+    <>
+      <BackTo path={PATH.PACKS_LIST} nameOfPath="Packs List" />
+      <div className={styles.container}>
+        <h2 className={s.header}>Personal Information</h2>
+        <img src={avaImg} alt="ava" />
+        <div className={s.editableName}>
+          <EditableSpan onChange={onNameChange} value={userName} />
+        </div>
+        <div className={s.email}>{email}</div>
+        <Button onClick={onLogOutClick} color="primary" variant="outlined">
+          Log out
+        </Button>
       </div>
-      <div className={s.email}>{email}</div>
-      <Button onClick={onLogOutClick} color="primary" variant="outlined">
-        Log out
-      </Button>
-    </div>
+    </>
   );
 };
