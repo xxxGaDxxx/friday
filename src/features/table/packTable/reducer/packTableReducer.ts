@@ -110,19 +110,12 @@ export const packDateTC = (): AppThunk => (dispatch, getState) => {
 
 export const packDeleteTC =
   (packId: string): AppThunk =>
-  (dispatch, getState) => {
-    const { page, pageCount } = getState().pack;
-    const params = {
-      page,
-      pageCount,
-    };
-
+  dispatch => {
     dispatch(setAppStatusAC('loading'));
     cardsPack
       .deletePack(packId)
-      .then(res => {
-        console.log(res);
-        dispatch(packDateTC(params));
+      .then(() => {
+        dispatch(packDateTC());
         dispatch(setAppStatusAC('succeeded'));
       })
       .catch(err => {
@@ -132,13 +125,7 @@ export const packDeleteTC =
 
 export const packNewNameTC =
   (packId: string): AppThunk =>
-  (dispatch, getState) => {
-    const { page, pageCount } = getState().pack;
-    const params = {
-      page,
-      pageCount,
-    };
-
+  dispatch => {
     const packNew = {
       _id: packId,
       name: 'NEW NAME!!!',
@@ -147,9 +134,8 @@ export const packNewNameTC =
     dispatch(setAppStatusAC('loading'));
     cardsPack
       .putPackName(packNew)
-      .then(res => {
-        console.log(res);
-        dispatch(packDateTC(params));
+      .then(() => {
+        dispatch(packDateTC());
         dispatch(setAppStatusAC('succeeded'));
       })
       .catch(err => {

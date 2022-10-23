@@ -24,6 +24,7 @@ type CreateData = {
 
 export const PackTable = (): ReturnComponentType => {
   const cardPacks = useAppSelector(state => state.pack.cardPacks);
+  // @ts-ignore
   const userId = useAppSelector(state => state.profile._id);
 
   const isMyPack = (id: string): boolean => userId === id;
