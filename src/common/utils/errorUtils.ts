@@ -1,11 +1,11 @@
 import axios, { AxiosError } from 'axios';
 
 import { setAppErrorAC, setAppStatusAC } from '../../app/store/app-reducer';
-import { AppDispatch } from '../../app/store/store';
+import { AppDispatchType } from '../../app/store/store';
 
 export const errorUtils = (
   e: Error | AxiosError<{ error: string }>,
-  dispatch: AppDispatch,
+  dispatch: AppDispatchType,
 ): void => {
   const err = e as Error | AxiosError<{ error: string }>;
 

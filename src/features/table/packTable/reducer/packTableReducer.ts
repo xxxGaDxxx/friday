@@ -69,3 +69,52 @@ export const packDateTC =
         errorUtils(err, dispatch);
       });
   };
+
+export const packDeleteTC =
+  (packId: string): AppThunk =>
+  (dispatch, getState) => {
+    const { page, pageCount } = getState().pack;
+    const params = {
+      page,
+      pageCount,
+    };
+
+    dispatch(setAppStatusAC('loading'));
+    cardsPack
+      .deletePack(packId)
+      .then(res => {
+        console.log(res);
+        dispatch(packDateTC(params));
+        dispatch(setAppStatusAC('succeeded'));
+      })
+      .catch(err => {
+        errorUtils(err, dispatch);
+      });
+  };
+
+export const packNewNameTC =
+  (packId: string): AppThunk =>
+  (dispatch, getState) => {
+    const { page, pageCount } = getState().pack;
+    const params = {
+      page,
+      pageCount,
+    };
+
+    const packNew = {
+      _id: packId,
+      name: 'NEW NAME!!!',
+    };
+
+    dispatch(setAppStatusAC('loading'));
+    cardsPack
+      .putPackName(packNew)
+      .then(res => {
+        console.log(res);
+        dispatch(packDateTC(params));
+        dispatch(setAppStatusAC('succeeded'));
+      })
+      .catch(err => {
+        errorUtils(err, dispatch);
+      });
+  };

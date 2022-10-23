@@ -103,3 +103,8 @@ export type ParamsPacksType = {
   user_id?: string;
   block?: boolean;
 };
+
+export type UpdatePackType = {
+  _id: string;
+  name: string;
+};

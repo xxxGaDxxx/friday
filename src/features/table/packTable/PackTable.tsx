@@ -14,6 +14,7 @@ import { dayMonthYear } from '../../../common/utils/dayMonthYear';
 import { ReturnComponentType } from '../../../types';
 
 type CreateData = {
+  id: string;
   name: string;
   cards: number;
   lastUpdated: string;
@@ -23,24 +24,29 @@ type CreateData = {
 
 export const PackTable = (): ReturnComponentType => {
   const cardPacks = useAppSelector(state => state.pack.cardPacks);
+  const userId = useAppSelector(state => state.profile._id);
+
+  const isMyPack = (id: string): boolean => userId === id;
 
   const cardsDateType = (
+    id: string,
     name: string,
     cards: number,
     lastUpdated: string,
     createdBy: string,
     actions: any,
   ): CreateData => {
-    return { name, cards, lastUpdated, createdBy, actions };
+    return { id, name, cards, lastUpdated, createdBy, actions };
   };
 
   const rows = cardPacks.map(pack =>
     cardsDateType(
+      pack._id,
       pack.name,
       pack.cardsCount,
       dayMonthYear(pack.created),
       pack.user_name,
-      ActionsSvg(),
+      <ActionsSvg key={pack._id} isMyPack={isMyPack(pack.user_id)} packId={pack._id} />,
     ),
   );
 
@@ -58,7 +64,7 @@ export const PackTable = (): ReturnComponentType => {
         </TableHead>
         <TableBody>
           {rows.map(row => (
-            <TableRow key={row.name}>
+            <TableRow key={row.id}>
               <TableCell component="th" scope="row">
                 {row.name}
               </TableCell>
