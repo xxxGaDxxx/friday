@@ -37,6 +37,7 @@ export const packTableReducer = (
     case 'PACK/SET-PACKS-PER-PAGE':
     case 'PACK/SET-SELECTED-PAGE':
     case 'PACK/SET-PACK-NAME':
+    case 'PACK/SET-PACK-SORT':
       return {
         ...state,
         ...action.payload,
@@ -76,6 +77,14 @@ export const setPackNameAC = (packName: string) =>
     type: 'PACK/SET-PACK-NAME',
     payload: {
       packName,
+    },
+  } as const);
+
+export const setPackSortAC = (sortPacks: string) =>
+  ({
+    type: 'PACK/SET-PACK-SORT',
+    payload: {
+      sortPacks,
     },
   } as const);
 
@@ -133,7 +142,7 @@ export const packNewNameTC =
   dispatch => {
     const packNew = {
       _id: packId,
-      name: 'NEW NAME!!!',
+      name: 'A NEW NAME!!!',
     };
 
     dispatch(setAppStatusAC('loading'));
@@ -151,7 +160,7 @@ export const packNewNameTC =
 export const addPackTC = (): AppThunk => dispatch => {
   dispatch(setAppStatusAC('loading'));
   const packNew = {
-    name: 'NEW PACK',
+    name: 'A NEW PACK',
     deckCover: '',
     private: false,
   };

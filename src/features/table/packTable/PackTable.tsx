@@ -5,13 +5,14 @@ import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 
 import { useAppSelector } from '../../../app/store/store';
 import { ActionsSvg } from '../../../common/components/actionsSvg/ActionsSvg';
 import { dayMonthYear } from '../../../common/utils/dayMonthYear';
 import { ReturnComponentType } from '../../../types';
+
+import { HatTable } from './hatTable/HatTable';
 
 export const PackTable = (): ReturnComponentType => {
   const cardPacks = useAppSelector(state => state.pack.cardPacks);
@@ -22,15 +23,18 @@ export const PackTable = (): ReturnComponentType => {
   return (
     <TableContainer sx={{ maxWidth: '1010px' }} component={Paper}>
       <Table aria-label="caption table">
-        <TableHead>
-          <TableRow sx={{ background: '#EFEFEF' }}>
-            <TableCell>Name</TableCell>
-            <TableCell align="right">Cards</TableCell>
-            <TableCell align="right">Last Updated</TableCell>
-            <TableCell align="right">Created by</TableCell>
-            <TableCell align="right">Actions</TableCell>
-          </TableRow>
-        </TableHead>
+        {/* <TableHead> */}
+        {/*  <TableRow sx={{ background: '#EFEFEF' }}> */}
+        {/*    <TableCell>Name</TableCell> */}
+        {/*    <TableCell align="right"> */}
+        {/*      Cards <img src={arrow} alt="arrow" /> */}
+        {/*    </TableCell> */}
+        {/*    <TableCell align="right">Last Updated</TableCell> */}
+        {/*    <TableCell align="right">Created by</TableCell> */}
+        {/*    <TableCell align="right">Actions</TableCell> */}
+        {/*  </TableRow> */}
+        {/* </TableHead> */}
+        <HatTable />
         <TableBody>
           {cardPacks.map(pack => (
             <TableRow key={pack._id}>
