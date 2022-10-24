@@ -22,7 +22,7 @@ const ButtonAndProfile = (): ReturnComponentType => {
         <span>{name}</span>
         <Avatar src={avatar} alt="avatar" onClick={showMenu} />
       </div>
-      <div className={s.menu} style={{ zIndex: '999' }}>
+      <div className={s.menu} style={{ zIndex: '10' }}>
         {isShowedMenu && <ToggleMenu hideMenu={showMenu} />}
       </div>
     </div>
