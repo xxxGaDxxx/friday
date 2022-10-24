@@ -35,14 +35,11 @@ export const packTableReducer = (
         ...action.payload.date,
       };
     case 'PACK/SET-PACKS-PER-PAGE':
-      return {
-        ...state,
-        pageCount: action.payload.count,
-      };
     case 'PACK/SET-SELECTED-PAGE':
+    case 'PACK/SET-PACK-NAME':
       return {
         ...state,
-        page: action.payload.page,
+        ...action.payload,
       };
     default:
       return state;
@@ -71,6 +68,14 @@ export const setSelectedPageAC = (page: number) =>
     type: 'PACK/SET-SELECTED-PAGE',
     payload: {
       page,
+    },
+  } as const);
+
+export const setPackNameAC = (packName: string) =>
+  ({
+    type: 'PACK/SET-PACK-NAME',
+    payload: {
+      packName,
     },
   } as const);
 

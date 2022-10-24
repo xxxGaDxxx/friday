@@ -14,12 +14,14 @@ import {
   setPacksPerPageAC,
   setSelectedPageAC,
 } from './reducer/packTableReducer';
+import { SortBar } from './sortBar/SortBar';
 import s from './style/Packs.module.scss';
 
 export const Packs = (): ReturnComponentType => {
   const dispatch = useAppDispatch();
   const page = useAppSelector(state => state.pack.page);
   const pageCount = useAppSelector(state => state.pack.pageCount);
+  const packName = useAppSelector(state => state.pack.packName);
 
   const changePacksPerPage = (count: number): void => {
     dispatch(setPacksPerPageAC(count));
@@ -34,7 +36,7 @@ export const Packs = (): ReturnComponentType => {
 
   useEffect(() => {
     dispatch(packDateTC());
-  }, [dispatch, pageCount, page]);
+  }, [dispatch, pageCount, page, packName]);
 
   return (
     <div className={s.container}>
@@ -50,9 +52,13 @@ export const Packs = (): ReturnComponentType => {
           Add new pack
         </Button>
       </div>
+
+      <SortBar />
+
       <div className={s.packTable}>
         <PackTable />
       </div>
+
       <div className={s.pagination}>
         <PaginationPage
           itemsPerPage={pageCount}

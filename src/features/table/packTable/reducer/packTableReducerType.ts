@@ -1,6 +1,7 @@
 import {
   initialStatePackTable,
   setPackDateAC,
+  setPackNameAC,
   setPacksPerPageAC,
   setSelectedPageAC,
 } from './packTableReducer';
@@ -12,7 +13,9 @@ export type InitialStatePackTable = typeof initialStatePackTable;
 export type SetPackDateACType = ReturnType<typeof setPackDateAC>;
 export type SetPackPerPageACType = ReturnType<typeof setPacksPerPageAC>;
 export type SetSelectedPageACType = ReturnType<typeof setSelectedPageAC>;
+export type SetPackNameACType = ReturnType<typeof setPackNameAC>;
 export type StatePackReducerActionsType =
   | SetPackDateACType
   | SetPackPerPageACType
-  | SetSelectedPageACType;
+  | SetSelectedPageACType
+  | SetPackNameACType;
