@@ -45,7 +45,11 @@ export const PackTable = (): ReturnComponentType => {
               <TableCell align="right">{dayMonthYear(pack.created)}</TableCell>
               <TableCell align="right">{pack.user_name}</TableCell>
               <TableCell align="right">
-                <ActionsSvg key={pack._id} isMyPack={isMyPack(pack.user_id)} packId={pack._id} />
+                <ActionsSvg
+                  key={pack._id}
+                  isMyPack={isMyPack(pack.user_id)}
+                  packId={pack._id}
+                />
               </TableCell>
             </TableRow>
           ))}

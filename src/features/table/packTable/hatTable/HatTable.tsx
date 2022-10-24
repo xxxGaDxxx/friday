@@ -5,7 +5,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 
 import { useAppDispatch, useAppSelector } from '../../../../app/store/store';
-import arrow from '../../../../assets/svg/Polygon 2.svg';
+import arrow from '../../../../assets/svg/arrow.svg';
 import { ReturnComponentType } from '../../../../types';
 import { packDateTC, setPackSortAC } from '../reducer/packTableReducer';
 
