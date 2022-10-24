@@ -23,6 +23,9 @@ export const Packs = (): ReturnComponentType => {
   const pageCount = useAppSelector(state => state.pack.pageCount);
   const packName = useAppSelector(state => state.pack.packName);
   const sortPacks = useAppSelector(state => state.pack.sortPacks);
+  const userId = useAppSelector(state => state.pack.user_id);
+  const minCardsCount = useAppSelector(state => state.pack.minCardsCount);
+  const maxCardsCount = useAppSelector(state => state.pack.maxCardsCount);
 
   const changePacksPerPage = (count: number): void => {
     dispatch(setPacksPerPageAC(count));
@@ -37,7 +40,7 @@ export const Packs = (): ReturnComponentType => {
 
   useEffect(() => {
     dispatch(packDateTC());
-  }, [dispatch, pageCount, page, packName, sortPacks]);
+  }, [dispatch, pageCount, page, packName, sortPacks, userId, maxCardsCount, minCardsCount]);
 
   return (
     <div className={s.container}>

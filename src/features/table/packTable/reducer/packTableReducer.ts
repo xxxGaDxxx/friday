@@ -38,6 +38,8 @@ export const packTableReducer = (
     case 'PACK/SET-SELECTED-PAGE':
     case 'PACK/SET-PACK-NAME':
     case 'PACK/SET-PACK-SORT':
+    case 'PACK/SET-USER-ID':
+    case 'PACK/SET-MIN-MAX-COUNT':
       return {
         ...state,
         ...action.payload,
@@ -71,12 +73,27 @@ export const setSelectedPageAC = (page: number) =>
       page,
     },
   } as const);
+export const setUserIdAC = (user_id: string) =>
+  ({
+    type: 'PACK/SET-USER-ID',
+    payload: {
+      user_id,
+    },
+  } as const);
 
 export const setPackNameAC = (packName: string) =>
   ({
     type: 'PACK/SET-PACK-NAME',
     payload: {
       packName,
+    },
+  } as const);
+export const setMinMaxCountAC = (minMaxCount: number[]) =>
+  ({
+    type: 'PACK/SET-MIN-MAX-COUNT',
+    payload: {
+      minCardsCount: minMaxCount[0],
+      maxCardsCount: minMaxCount[1],
     },
   } as const);
 
