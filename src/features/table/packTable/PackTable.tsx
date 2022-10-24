@@ -23,17 +23,6 @@ export const PackTable = (): ReturnComponentType => {
   return (
     <TableContainer sx={{ maxWidth: '1010px' }} component={Paper}>
       <Table aria-label="caption table">
-        {/* <TableHead> */}
-        {/*  <TableRow sx={{ background: '#EFEFEF' }}> */}
-        {/*    <TableCell>Name</TableCell> */}
-        {/*    <TableCell align="right"> */}
-        {/*      Cards <img src={arrow} alt="arrow" /> */}
-        {/*    </TableCell> */}
-        {/*    <TableCell align="right">Last Updated</TableCell> */}
-        {/*    <TableCell align="right">Created by</TableCell> */}
-        {/*    <TableCell align="right">Actions</TableCell> */}
-        {/*  </TableRow> */}
-        {/* </TableHead> */}
         <HatTable />
         <TableBody>
           {cardPacks.map(pack => (
