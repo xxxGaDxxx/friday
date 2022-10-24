@@ -13,7 +13,11 @@ import { ReturnComponentType } from '../../../types';
 import s from './style/ActionsSvg.module.scss';
 import { ActionsSvgType } from './style/ActionsSvgType';
 
-export const ActionsSvg = ({ isMyPack, packId }: ActionsSvgType): ReturnComponentType => {
+export const ActionsSvg = ({
+  isMyPack,
+  packId,
+  cardsCount,
+}: ActionsSvgType): ReturnComponentType => {
   const dispatch = useAppDispatch();
 
   const onEditClick = (): void => {
@@ -23,10 +27,22 @@ export const ActionsSvg = ({ isMyPack, packId }: ActionsSvgType): ReturnComponen
   const onDeleteClick = (): void => {
     dispatch(packDeleteTC(packId));
   };
+  const onTrainingClick = (): void => {
+    console.log('educ');
+  };
+
+  const thereAreCards = cardsCount === 0;
+  const opacitySvg = thereAreCards ? '50%' : '100%';
 
   return (
     <div>
-      <button type="button" className={s.button}>
+      <button
+        type="button"
+        className={s.button}
+        disabled={thereAreCards}
+        style={{ opacity: opacitySvg }}
+        onClick={onTrainingClick}
+      >
         <img src={teacherSvg} alt="teacherSvg" />
       </button>
 

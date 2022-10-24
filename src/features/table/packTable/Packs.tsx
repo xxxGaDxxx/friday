@@ -22,6 +22,7 @@ export const Packs = (): ReturnComponentType => {
   const page = useAppSelector(state => state.pack.page);
   const pageCount = useAppSelector(state => state.pack.pageCount);
   const packName = useAppSelector(state => state.pack.packName);
+  const sortPacks = useAppSelector(state => state.pack.sortPacks);
 
   const changePacksPerPage = (count: number): void => {
     dispatch(setPacksPerPageAC(count));
@@ -36,7 +37,7 @@ export const Packs = (): ReturnComponentType => {
 
   useEffect(() => {
     dispatch(packDateTC());
-  }, [dispatch, pageCount, page, packName]);
+  }, [dispatch, pageCount, page, packName, sortPacks]);
 
   return (
     <div className={s.container}>
