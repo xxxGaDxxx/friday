@@ -9,18 +9,17 @@ import { useAppDispatch } from '../../../../../app/store/store';
 import { ReturnComponentType } from '../../../../../types';
 import { setPackNameAC } from '../../reducer/packTableReducer';
 
-const timeWait = 1000;
+const timeWait = 700;
 
 export const Search = (): ReturnComponentType => {
   const dispatch = useAppDispatch();
+  const debounceSearch = debounce(text => {
+    dispatch(setPackNameAC(text));
+  }, timeWait);
 
   const onChangeTextSearch = (event: ChangeEvent<HTMLInputElement>): void => {
-    debounce(() => {
-      dispatch(setPackNameAC(event.target.value));
-    }, timeWait);
+    debounceSearch(event.target.value);
   };
-
-  debounce(onChangeTextSearch, timeWait);
 
   return (
     <div>
