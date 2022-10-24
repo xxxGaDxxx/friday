@@ -1,7 +1,7 @@
 import {
-  FormikRegistrationErrorType,
   FormikLoginErrorType,
   FormikLoginType,
+  FormikRegistrationErrorType,
 } from './types/ValidateFormTypes';
 
 const PASSWORD_LENGTH = 8;
@@ -20,9 +20,7 @@ export const validatePassword = (
   return errors;
 };
 
-export const validateEmail = (
-  values: FormikRegistrationErrorType,
-): FormikRegistrationErrorType => {
+export const validateEmail = (values: FormikRegistrationErrorType): FormikRegistrationErrorType => {
   const errors: FormikRegistrationErrorType = {};
 
   if (!values.email) {
