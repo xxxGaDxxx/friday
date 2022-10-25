@@ -10,6 +10,7 @@ import { RecoveryPassword } from '../../features/auth/password/recoveryPasword/R
 import { Registration } from '../../features/auth/registration/Registration';
 import { PageNotFound } from '../../features/pageNotFound/PageNotFound';
 import { Profile } from '../../features/profile/Profile';
+import { CardsList } from '../../features/table/CardsList/CardsList';
 import { Packs } from '../../features/table/packTable/Packs';
 import { ReturnComponentType } from '../../types';
 import PrivateRoutes from '../PrivateRoutes';
@@ -21,6 +22,7 @@ export const Pages = (): ReturnComponentType => {
         <Route path="/" element={<PrivateRoutes />}>
           <Route index element={<Profile />} />
           <Route path={PATH.PACKS_LIST} element={<Packs />} />
+          <Route path={PATH.CARDS_LIST} element={<CardsList />} />
         </Route>
         <Route path={PATH.LOGIN} element={<Login />} />
         <Route path={PATH.ERRORS} element={<PageNotFound />} />

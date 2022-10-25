@@ -40,7 +40,16 @@ export const Packs = (): ReturnComponentType => {
 
   useEffect(() => {
     dispatch(packDateTC());
-  }, [dispatch, pageCount, page, packName, sortPacks, userId, maxCardsCount, minCardsCount]);
+  }, [
+    dispatch,
+    pageCount,
+    page,
+    packName,
+    sortPacks,
+    userId,
+    maxCardsCount,
+    minCardsCount,
+  ]);
 
   return (
     <div className={s.container}>

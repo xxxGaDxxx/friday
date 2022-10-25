@@ -8,4 +8,5 @@ export enum PATH {
   CHECK_EMAIL = '/check_email',
 
   PACKS_LIST = '/packs_list',
+  CARDS_LIST = '/cards',
 }

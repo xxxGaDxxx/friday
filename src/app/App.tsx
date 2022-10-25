@@ -1,6 +1,11 @@
 import React, { useEffect } from 'react';
 
-import { CircularProgress, createTheme, LinearProgress, ThemeProvider } from '@mui/material';
+import {
+  CircularProgress,
+  createTheme,
+  LinearProgress,
+  ThemeProvider,
+} from '@mui/material';
 
 import { ErrorSnackbar } from '../common/components/errorSnackbar/ErrorSnackbar';
 import { ReturnComponentType } from '../types';
@@ -41,7 +46,10 @@ const App = (): ReturnComponentType => {
     <div>
       <ThemeProvider theme={theme}>
         <Header />
-        <LinearProgress color="secondary" sx={{ visibility: isLoading ? 'visible' : 'hidden' }} />
+        <LinearProgress
+          color="secondary"
+          sx={{ visibility: isLoading ? 'visible' : 'hidden' }}
+        />
         <Pages />
         <ErrorSnackbar />
       </ThemeProvider>
