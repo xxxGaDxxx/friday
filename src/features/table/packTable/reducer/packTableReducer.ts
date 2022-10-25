@@ -8,10 +8,7 @@ import { setAppStatusAC } from '../../../../app/store/app-reducer';
 import { AppThunk } from '../../../../app/store/store';
 import { errorUtils } from '../../../../common/utils/errorUtils';
 
-import {
-  InitialStatePackTable,
-  StatePackReducerActionsType,
-} from './packTableReducerType';
+import { InitialStatePackTable, StatePackReducerActionsType } from './packTableReducerType';
 
 export const initialStatePackTable = {
   cardPacks: [] as PackCardPacks[],

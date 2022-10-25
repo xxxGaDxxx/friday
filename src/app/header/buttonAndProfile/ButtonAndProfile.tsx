@@ -6,7 +6,7 @@ import avatar from '../../../assets/img/defultAvatar.png';
 import { ReturnComponentType } from '../../../types';
 import { useAppSelector } from '../../store/store';
 
-import s from './style/ButtonAndProfile.module.css';
+import s from './style/ButtonAndProfile.module.scss';
 import { ToggleMenu } from './ToggleMenu';
 
 const ButtonAndProfile = (): ReturnComponentType => {

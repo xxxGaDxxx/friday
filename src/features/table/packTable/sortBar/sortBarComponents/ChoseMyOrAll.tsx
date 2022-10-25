@@ -23,10 +23,10 @@ export const ChoseMyOrAll = (): ReturnComponentType => {
 
   return (
     <ToggleButtonGroup color="primary" value={alignment} exclusive onChange={handleChange}>
-      <ToggleButton sx={{ width: 90 }} value="My">
+      <ToggleButton sx={{ width: '50px', height: '50px' }} value="My">
         My
       </ToggleButton>
-      <ToggleButton sx={{ width: 90 }} value="All">
+      <ToggleButton sx={{ width: '50px', height: '50px' }} value="All">
         All
       </ToggleButton>
     </ToggleButtonGroup>
