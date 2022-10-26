@@ -78,7 +78,11 @@ export const Login = (): ReturnComponentType => {
                 {...formik.getFieldProps('email')}
               />
 
-              {isEmailError && <div style={{ color: 'purple' }}>{formik.errors.email}</div>}
+              {isEmailError ? (
+                <h3 style={{ color: 'purple' }}>{formik.errors.email}</h3>
+              ) : (
+                <h3 style={{ color: '#fff' }}>element</h3>
+              )}
 
               <TextField
                 type={inputType}
@@ -95,7 +99,11 @@ export const Login = (): ReturnComponentType => {
                 }}
               />
 
-              {isPasswordError && <div style={{ color: 'purple' }}>{formik.errors.password}</div>}
+              {isPasswordError ? (
+                <h3 style={{ color: 'purple' }}>{formik.errors.password}</h3>
+              ) : (
+                <h3 style={{ color: '#fff' }}>element</h3>
+              )}
 
               <FormControlLabel
                 className={s.loginInputFormCheckbox}

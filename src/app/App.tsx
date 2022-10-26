@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react';
 
-import { CircularProgress, createTheme, LinearProgress, ThemeProvider } from '@mui/material';
+import { CircularProgress, LinearProgress, ThemeProvider } from '@mui/material';
 
 import { ErrorSnackbar } from '../common/components/errorSnackbar/ErrorSnackbar';
+import { theme } from '../common/utils/styles/muiTheme';
 import { ReturnComponentType } from '../types';
 
-import s from './App.module.css';
+import s from './App.module.scss';
 import { Header } from './header/Header';
 import { Pages } from './pages/Pages';
 import { initializeAppTC } from './store/app-reducer';
@@ -18,12 +19,6 @@ const App = (): ReturnComponentType => {
   const dispatch = useAppDispatch();
 
   const isLoading: boolean = status === 'loading';
-
-  const theme = createTheme({
-    typography: {
-      fontFamily: 'Montserrat',
-    },
-  });
 
   useEffect(() => {
     dispatch(initializeAppTC());

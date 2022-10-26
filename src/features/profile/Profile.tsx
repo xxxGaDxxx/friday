@@ -11,7 +11,7 @@ import styles from '../../styles/commonStyles.module.scss';
 import { ReturnComponentType } from '../../types';
 
 import { logOutUserTC, updateUserNameTC } from './reducer/profileReducer';
-import s from './styles/Profile.module.css';
+import s from './styles/Profile.module.scss';
 
 export const Profile = (): ReturnComponentType => {
   const dispatch = useAppDispatch();

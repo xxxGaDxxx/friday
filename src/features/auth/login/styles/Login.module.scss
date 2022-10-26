@@ -8,13 +8,21 @@
     text-align: start;
   }
 
+  h2 {
+    font-weight: 600;
+    font-size: 26px;
+  }
+  h3{
+    margin: 0;
+    line-height: 25px;
+    color: purple;
+    font-weight: 500;
+    font-size: 13px;
+  }
+
   .loginButtonForgot {
     text-align: end;
     margin: 20px 0;
-  }
-
-  .loginWrapper h2 {
-    text-align: center;
   }
 
   .loginFooter {

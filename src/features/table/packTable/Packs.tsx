@@ -1,23 +1,21 @@
-import React, { memo, useEffect } from 'react';
-
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
+import React, { useCallback, useEffect } from 'react';
 
 import { useAppDispatch, useAppSelector } from '../../../app/store/store';
 import { PaginationPage } from '../../../common/components/pagination/PaginationPage';
 import { ReturnComponentType } from '../../../types';
 
-import { PackTable } from './PackTable';
+import { AddNewPack } from './PackComponent/AddNewPack';
+import { PackTable } from './PackComponent/PackTable';
+import { SortBar } from './PackComponent/sortBar/SortBar';
 import {
   addPackTC,
   packDateTC,
   setPacksPerPageAC,
   setSelectedPageAC,
 } from './reducer/packTableReducer';
-import { SortBar } from './sortBar/SortBar';
 import s from './style/Packs.module.scss';
 
-export const Packs = memo((): ReturnComponentType => {
+export const Packs = (): ReturnComponentType => {
   const dispatch = useAppDispatch();
   const page = useAppSelector(state => state.pack.page);
   const pageCount = useAppSelector(state => state.pack.pageCount);
@@ -27,16 +25,22 @@ export const Packs = memo((): ReturnComponentType => {
   // const minCardsCount = useAppSelector(state => state.pack.minCardsCount);
   const minMaxCount = useAppSelector(state => state.pack.minMaxCount);
 
-  const changePacksPerPage = (count: number): void => {
-    dispatch(setPacksPerPageAC(count));
-  };
-  const setSelectedPage = (page: number): void => {
-    dispatch(setSelectedPageAC(page));
-  };
+  const changePacksPerPage = useCallback(
+    (count: number): void => {
+      dispatch(setPacksPerPageAC(count));
+    },
+    [dispatch],
+  );
+  const setSelectedPage = useCallback(
+    (page: number): void => {
+      dispatch(setSelectedPageAC(page));
+    },
+    [dispatch],
+  );
 
-  const onAddPackClick = (): void => {
+  const onAddPackClick = useCallback((): void => {
     dispatch(addPackTC());
-  };
+  }, [dispatch]);
 
   useEffect(() => {
     dispatch(packDateTC());
@@ -45,16 +49,7 @@ export const Packs = memo((): ReturnComponentType => {
   return (
     <div className={s.container}>
       <div className={s.titleButton}>
-        <Typography component="h2">Packs list</Typography>
-        <Button
-          type="button"
-          variant="contained"
-          color="primary"
-          style={{ borderRadius: '20px' }}
-          onClick={onAddPackClick}
-        >
-          Add new pack
-        </Button>
+        <AddNewPack onAddPackClick={onAddPackClick} />
       </div>
 
       <SortBar />
@@ -72,4 +67,4 @@ export const Packs = memo((): ReturnComponentType => {
       </div>
     </div>
   );
-});
+};

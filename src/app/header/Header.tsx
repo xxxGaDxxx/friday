@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 
 import { Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
@@ -11,7 +11,7 @@ import { useAppSelector } from '../store/store';
 import ButtonAndProfile from './buttonAndProfile/ButtonAndProfile';
 import s from './Header.module.scss';
 
-export const Header = (): ReturnComponentType => {
+export const Header = memo((): ReturnComponentType => {
   const isLoggedIn = useAppSelector(state => state.login.isLoggedIn);
 
   const navigate = useNavigate();
@@ -39,4 +39,4 @@ export const Header = (): ReturnComponentType => {
       )}
     </div>
   );
-};
+});

@@ -7,7 +7,7 @@ import svgError from '../../assets/svg/error/404.svg';
 import { PATH } from '../../common/enum/pathEnum';
 import { ReturnComponentType } from '../../types';
 
-import s from './styles/PageNotFound.module.css';
+import s from './styles/PageNotFound.module.scss';
 
 export const PageNotFound = (): ReturnComponentType => {
   const navigate = useNavigate();
