@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useCallback } from 'react';
 
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
@@ -18,10 +19,12 @@ import { HatTable } from './hatTable/HatTable';
 
 export const PackTable = (): ReturnComponentType => {
   const navigate = useNavigate();
+
   const cardPacks = useAppSelector(state => state.pack.cardPacks);
   const userId = useAppSelector(state => state.profile._id);
 
-  const isMyPack = (id: string): boolean => userId === id;
+  const isMyPack = useCallback((id: string): boolean => userId === id, [userId]);
+
   const goToCardslist = (): void => navigate(PATH.CARDS_LIST);
 
   return (

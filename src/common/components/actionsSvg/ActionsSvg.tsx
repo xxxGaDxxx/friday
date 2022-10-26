@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 
 import { useAppDispatch } from '../../../app/store/store';
 import deleteSvg from '../../../assets/svg/actions/Delete.svg';
@@ -13,49 +13,45 @@ import { ReturnComponentType } from '../../../types';
 import s from './style/ActionsSvg.module.scss';
 import { ActionsSvgType } from './style/ActionsSvgType';
 
-export const ActionsSvg = ({
-  isMyPack,
-  packId,
-  cardsCount,
-}: ActionsSvgType): ReturnComponentType => {
-  const dispatch = useAppDispatch();
+export const ActionsSvg = memo(
+  ({ isMyPack, packId, cardsCount }: ActionsSvgType): ReturnComponentType => {
+    const dispatch = useAppDispatch();
 
-  const onEditClick = (): void => {
-    dispatch(packNewNameTC(packId));
-  };
+    const onEditClick = (): void => {
+      dispatch(packNewNameTC(packId));
+    };
 
-  const onDeleteClick = (): void => {
-    dispatch(packDeleteTC(packId));
-  };
-  const onTrainingClick = (): void => {
-    console.log('educ');
-  };
+    const onDeleteClick = (): void => {
+      dispatch(packDeleteTC(packId));
+    };
+    const onTrainingClick = (): void => {};
 
-  const thereAreCards = cardsCount === 0;
-  const opacitySvg = thereAreCards ? '50%' : '100%';
+    const thereAreCards = cardsCount === 0;
+    const opacitySvg = thereAreCards ? '50%' : '100%';
 
-  return (
-    <div>
-      <button
-        type="button"
-        className={s.button}
-        disabled={thereAreCards}
-        style={{ opacity: opacitySvg }}
-        onClick={onTrainingClick}
-      >
-        <img src={teacherSvg} alt="teacherSvg" />
-      </button>
+    return (
+      <div>
+        <button
+          type="button"
+          className={s.button}
+          disabled={thereAreCards}
+          style={{ opacity: opacitySvg }}
+          onClick={onTrainingClick}
+        >
+          <img src={teacherSvg} alt="teacherSvg" />
+        </button>
 
-      {isMyPack && (
-        <>
-          <button type="button" onClick={onEditClick} className={s.button}>
-            <img src={editSvg} alt="editSvg" />
-          </button>
-          <button type="button" onClick={onDeleteClick} className={s.button}>
-            <img src={deleteSvg} alt="deleteSvg" />
-          </button>
-        </>
-      )}
-    </div>
-  );
-};
+        {isMyPack && (
+          <>
+            <button type="button" onClick={onEditClick} className={s.button}>
+              <img src={editSvg} alt="editSvg" />
+            </button>
+            <button type="button" onClick={onDeleteClick} className={s.button}>
+              <img src={deleteSvg} alt="deleteSvg" />
+            </button>
+          </>
+        )}
+      </div>
+    );
+  },
+);
