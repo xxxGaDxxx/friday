@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from 'react';
+import React, { ChangeEvent, memo } from 'react';
 
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import InputAdornment from '@mui/material/InputAdornment';
@@ -11,8 +11,9 @@ import { setPackNameAC } from '../../../reducer/packTableReducer';
 
 const timeWait = 700;
 
-export const Search = (): ReturnComponentType => {
+export const Search = memo((): ReturnComponentType => {
   const dispatch = useAppDispatch();
+
   const debounceSearch = debounce(text => {
     dispatch(setPackNameAC(text));
   }, timeWait);
@@ -40,4 +41,4 @@ export const Search = (): ReturnComponentType => {
       />
     </div>
   );
-};
+});
