@@ -27,7 +27,7 @@ export const Profile = (): ReturnComponentType => {
   };
 
   return (
-    <>
+    <main style={{ padding: '0 136px' }}>
       <BackTo path={PATH.PACKS_LIST} nameOfPath="Packs List" />
       <div className={styles.container}>
         <h2 className={s.header}>Personal Information</h2>
@@ -40,6 +40,6 @@ export const Profile = (): ReturnComponentType => {
           Log out
         </Button>
       </div>
-    </>
+    </main>
   );
 };

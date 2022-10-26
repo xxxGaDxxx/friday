@@ -8,7 +8,7 @@ import { ReturnComponentType } from '../../../types';
 import s from './styles/BackTo.module.scss';
 
 type BackToPropsType = {
-  classname?: string;
+  className?: string;
   path: string;
   nameOfPath: string;
 };
@@ -16,9 +16,9 @@ type BackToPropsType = {
 export const BackTo = ({
   path,
   nameOfPath,
-  classname,
+  className,
 }: BackToPropsType): ReturnComponentType => {
-  const defineClassname = classname || s.navLink;
+  const defineClassname = `${s.navLink}${className || ''}`;
 
   return (
     <NavLink to={path} className={defineClassname}>

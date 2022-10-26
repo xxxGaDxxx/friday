@@ -1,7 +1,38 @@
 .main {
-  //border: 1px solid red;
   max-width: 1280px;
   margin: 0 auto;
   padding: 0 136px;
   box-sizing: border-box;
+
+  section {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 27px;
+
+    .box {
+      display: flex;
+
+      h1 {
+        font-weight: 600;
+        font-size: 22px;
+        margin-right: 9px;
+      }
+
+      button {
+        padding: 0;
+      }
+    }
+
+    .addCardButton {
+      cursor: grab;
+      font-weight: 500;
+      font-size: 16px;
+      border-radius: 20px;
+      text-transform: none;
+      width: 184px;
+      height: 36px;
+    }
+  }
 }
+
+
