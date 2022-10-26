@@ -10,7 +10,7 @@ import { RecoveryPassword } from '../../features/auth/password/recoveryPasword/R
 import { Registration } from '../../features/auth/registration/Registration';
 import { PageNotFound } from '../../features/pageNotFound/PageNotFound';
 import { Profile } from '../../features/profile/Profile';
-import { CardsList } from '../../features/table/CardsList/CardsList';
+import { CardsList } from '../../features/table/cardsList/CardsList';
 import { Packs } from '../../features/table/packTable/Packs';
 import { ReturnComponentType } from '../../types';
 import PrivateRoutes from '../PrivateRoutes';
