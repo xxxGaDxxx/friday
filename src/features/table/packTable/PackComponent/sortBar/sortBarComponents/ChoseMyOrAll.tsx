@@ -3,9 +3,9 @@ import React, { useState } from 'react';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 
-import { useAppDispatch, useAppSelector } from '../../../../../app/store/store';
-import { ReturnComponentType } from '../../../../../types';
-import { setUserIdAC } from '../../reducer/packTableReducer';
+import { useAppDispatch, useAppSelector } from '../../../../../../app/store/store';
+import { ReturnComponentType } from '../../../../../../types';
+import { setUserIdAC } from '../../../reducer/packTableReducer';
 
 export const ChoseMyOrAll = (): ReturnComponentType => {
   const dispatch = useAppDispatch();

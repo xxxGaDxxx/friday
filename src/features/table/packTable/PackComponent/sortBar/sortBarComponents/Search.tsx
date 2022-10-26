@@ -5,9 +5,9 @@ import InputAdornment from '@mui/material/InputAdornment';
 import TextField from '@mui/material/TextField';
 import debounce from 'lodash.debounce';
 
-import { useAppDispatch } from '../../../../../app/store/store';
-import { ReturnComponentType } from '../../../../../types';
-import { setPackNameAC } from '../../reducer/packTableReducer';
+import { useAppDispatch } from '../../../../../../app/store/store';
+import { ReturnComponentType } from '../../../../../../types';
+import { setPackNameAC } from '../../../reducer/packTableReducer';
 
 const timeWait = 700;
 

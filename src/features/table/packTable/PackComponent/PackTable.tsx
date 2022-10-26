@@ -9,11 +9,11 @@ import TableContainer from '@mui/material/TableContainer';
 import TableRow from '@mui/material/TableRow';
 import { useNavigate } from 'react-router-dom';
 
-import { useAppSelector } from '../../../app/store/store';
-import { ActionsSvg } from '../../../common/components/actionsSvg/ActionsSvg';
-import { PATH } from '../../../common/enum/pathEnum';
-import { dayMonthYear } from '../../../common/utils/dayMonthYear';
-import { ReturnComponentType } from '../../../types';
+import { useAppSelector } from '../../../../app/store/store';
+import { ActionsSvg } from '../../../../common/components/actionsSvg/ActionsSvg';
+import { PATH } from '../../../../common/enum/pathEnum';
+import { dayMonthYear } from '../../../../common/utils/dayMonthYear';
+import { ReturnComponentType } from '../../../../types';
 
 import { HatTable } from './hatTable/HatTable';
 
