@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { memo, useEffect } from 'react';
 
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
@@ -17,15 +17,15 @@ import {
 import { SortBar } from './sortBar/SortBar';
 import s from './style/Packs.module.scss';
 
-export const Packs = (): ReturnComponentType => {
+export const Packs = memo((): ReturnComponentType => {
   const dispatch = useAppDispatch();
   const page = useAppSelector(state => state.pack.page);
   const pageCount = useAppSelector(state => state.pack.pageCount);
   const packName = useAppSelector(state => state.pack.packName);
   const sortPacks = useAppSelector(state => state.pack.sortPacks);
   const userId = useAppSelector(state => state.pack.user_id);
-  const minCardsCount = useAppSelector(state => state.pack.minCardsCount);
-  const maxCardsCount = useAppSelector(state => state.pack.maxCardsCount);
+  // const minCardsCount = useAppSelector(state => state.pack.minCardsCount);
+  const minMaxCount = useAppSelector(state => state.pack.minMaxCount);
 
   const changePacksPerPage = (count: number): void => {
     dispatch(setPacksPerPageAC(count));
@@ -40,7 +40,7 @@ export const Packs = (): ReturnComponentType => {
 
   useEffect(() => {
     dispatch(packDateTC());
-  }, [dispatch, pageCount, page, packName, sortPacks, userId, maxCardsCount, minCardsCount]);
+  }, [dispatch, pageCount, page, packName, sortPacks, userId, minMaxCount]);
 
   return (
     <div className={s.container}>
@@ -72,4 +72,4 @@ export const Packs = (): ReturnComponentType => {
       </div>
     </div>
   );
-};
+});

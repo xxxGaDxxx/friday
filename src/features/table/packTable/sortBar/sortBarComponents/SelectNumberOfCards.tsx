@@ -1,40 +1,63 @@
-import React, { useState } from 'react';
+import React, { memo, SyntheticEvent, useEffect, useState } from 'react';
 
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
-import debounce from 'lodash.debounce';
+import TextField from '@mui/material/TextField';
 
 import { useAppDispatch, useAppSelector } from '../../../../../app/store/store';
+import useDebounce from '../../../../../common/hooks/useDebounce';
 import { ReturnComponentType } from '../../../../../types';
 import { setMinMaxCountAC } from '../../reducer/packTableReducer';
 
 // const valuetext = (value: number): string => `${value}°C`;
-const timeWait = 700;
+const timeWait = 1500;
 
-export const SelectNumberOfCards = (): ReturnComponentType => {
+export const SelectNumberOfCards = memo((): ReturnComponentType => {
   const dispatch = useAppDispatch();
-  const minCount = useAppSelector(state => state.pack.minCardsCount);
-  const maxCount = useAppSelector(state => state.pack.maxCardsCount);
+  const maxCardsCount = useAppSelector(state => state.pack.maxCardsCount);
+  // const minMaxCount = useAppSelector(state => state.pack.minMaxCount);
 
-  const [value, setValue] = useState<number[]>([minCount, maxCount]);
+  const [selectedCount, setSelectedCount] = useState<number[]>([0, maxCardsCount]);
+  const debounceSelect = useDebounce<number[]>(selectedCount, timeWait);
 
-  const handleChange = (event: Event, newValue: number | number[]): void => {
-    setValue(newValue as number[]);
-    debounceSelect(newValue as number[]);
+  const handleChange = (
+    event: Event | SyntheticEvent<Element, Event>,
+    newValue: number | number[],
+  ): void => {
+    setSelectedCount(newValue as number[]);
   };
-  const debounceSelect = debounce(count => {
-    dispatch(setMinMaxCountAC(count as number[]));
-  }, timeWait);
+
+  useEffect(() => {
+    dispatch(setMinMaxCountAC(debounceSelect));
+  }, [debounceSelect, dispatch]);
+  // useEffect(() => {
+  //   setSelectedCount(minMaxCount);
+  // }, [minMaxCount]);
 
   return (
-    <Box sx={{ width: 300 }}>
-      <Slider
-        max={maxCount}
-        value={value}
-        onChange={handleChange}
-        valueLabelDisplay="auto"
-        disableSwap
+    <div>
+      <TextField
+        value={selectedCount[0]}
+        InputProps={{
+          readOnly: true,
+        }}
       />
-    </Box>
+      <Box sx={{ width: 300 }}>
+        <Slider
+          getAriaLabel={() => 'Cards count range'}
+          max={maxCardsCount}
+          value={selectedCount}
+          onChangeCommitted={handleChange}
+          valueLabelDisplay="auto"
+          disableSwap
+        />
+      </Box>
+      <TextField
+        value={selectedCount[1]}
+        InputProps={{
+          readOnly: true,
+        }}
+      />
+    </div>
   );
-};
+});

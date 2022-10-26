@@ -22,6 +22,8 @@ export const initialStatePackTable = {
   packName: '',
   sortPacks: '',
   user_id: '',
+  // eslint-disable-next-line no-magic-numbers
+  minMaxCount: [0, 110],
 };
 
 export const packTableReducer = (
@@ -92,8 +94,7 @@ export const setMinMaxCountAC = (minMaxCount: number[]) =>
   ({
     type: 'PACK/SET-MIN-MAX-COUNT',
     payload: {
-      minCardsCount: minMaxCount[0],
-      maxCardsCount: minMaxCount[1],
+      minMaxCount,
     },
   } as const);
 
@@ -107,22 +108,14 @@ export const setPackSortAC = (sortPacks: string) =>
 
 // thunk
 export const packDateTC = (): AppThunk => (dispatch, getState) => {
-  const {
-    pageCount,
-    page,
-    maxCardsCount: max,
-    minCardsCount: min,
-    packName,
-    sortPacks,
-    user_id,
-  } = getState().pack;
+  const { pageCount, page, minMaxCount, packName, sortPacks, user_id } = getState().pack;
 
   const params: ParamsPacksType = {
     page,
     pageCount,
     packName,
-    min,
-    max,
+    min: minMaxCount[0],
+    max: minMaxCount[1],
     sortPacks,
     user_id,
   };
