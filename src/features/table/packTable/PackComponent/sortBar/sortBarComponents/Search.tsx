@@ -1,11 +1,11 @@
-import React, { ChangeEvent, memo, useState, useState } from 'react';
+import React, { ChangeEvent, memo, useEffect, useState } from 'react';
 
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import InputAdornment from '@mui/material/InputAdornment';
 import TextField from '@mui/material/TextField';
 
 import { useAppDispatch } from '../../../../../../app/store/store';
-import useDebounce from '../../../../../common/hooks/useDebounce';
+import useDebounce from '../../../../../../common/hooks/useDebounce';
 import { ReturnComponentType } from '../../../../../../types';
 import { setPackNameAC } from '../../../reducer/packTableReducer';
 

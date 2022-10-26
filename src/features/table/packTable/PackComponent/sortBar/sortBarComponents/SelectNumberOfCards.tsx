@@ -4,10 +4,10 @@ import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
 import TextField from '@mui/material/TextField';
 
-import { useAppDispatch, useAppSelector } from '../../../../../app/store/store';
-import useDebounce from '../../../../../common/hooks/useDebounce';
-import { ReturnComponentType } from '../../../../../types';
-import { setMinMaxCountAC } from '../../reducer/packTableReducer';
+import { useAppDispatch, useAppSelector } from '../../../../../../app/store/store';
+import useDebounce from '../../../../../../common/hooks/useDebounce';
+import { ReturnComponentType } from '../../../../../../types';
+import { setMinMaxCountAC } from '../../../reducer/packTableReducer';
 
 // const valuetext = (value: number): string => `${value}°C`;
 const timeWait = 1500;
