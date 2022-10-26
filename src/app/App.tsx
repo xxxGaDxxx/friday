@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
 
-import { CircularProgress, createTheme, LinearProgress, ThemeProvider } from '@mui/material';
+import { CircularProgress, LinearProgress, ThemeProvider } from '@mui/material';
 
 import { ErrorSnackbar } from '../common/components/errorSnackbar/ErrorSnackbar';
+import { theme } from '../common/utils/styles/muiTheme';
 import { ReturnComponentType } from '../types';
 
 import s from './App.module.scss';
@@ -18,12 +19,6 @@ const App = (): ReturnComponentType => {
   const dispatch = useAppDispatch();
 
   const isLoading: boolean = status === 'loading';
-
-  const theme = createTheme({
-    typography: {
-      fontFamily: 'Montserrat',
-    },
-  });
 
   useEffect(() => {
     dispatch(initializeAppTC());
@@ -41,7 +36,10 @@ const App = (): ReturnComponentType => {
     <div>
       <ThemeProvider theme={theme}>
         <Header />
-        <LinearProgress color="secondary" sx={{ visibility: isLoading ? 'visible' : 'hidden' }} />
+        <LinearProgress
+          color="secondary"
+          sx={{ visibility: isLoading ? 'visible' : 'hidden' }}
+        />
         <Pages />
         <ErrorSnackbar />
       </ThemeProvider>
