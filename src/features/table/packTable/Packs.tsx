@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
@@ -27,12 +27,18 @@ export const Packs = (): ReturnComponentType => {
   const minCardsCount = useAppSelector(state => state.pack.minCardsCount);
   const maxCardsCount = useAppSelector(state => state.pack.maxCardsCount);
 
-  const changePacksPerPage = (count: number): void => {
-    dispatch(setPacksPerPageAC(count));
-  };
-  const setSelectedPage = (page: number): void => {
-    dispatch(setSelectedPageAC(page));
-  };
+  const changePacksPerPage = useCallback(
+    (count: number): void => {
+      dispatch(setPacksPerPageAC(count));
+    },
+    [dispatch],
+  );
+  const setSelectedPage = useCallback(
+    (page: number): void => {
+      dispatch(setSelectedPageAC(page));
+    },
+    [dispatch],
+  );
 
   const onAddPackClick = (): void => {
     dispatch(addPackTC());
