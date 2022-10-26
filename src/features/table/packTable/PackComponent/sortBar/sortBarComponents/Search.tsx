@@ -6,7 +6,7 @@ import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 
 import { useAppDispatch } from '../../../../../../app/store/store';
-import useDebounce from '../../../../../../common/hooks/useDebounce';
+import { useDebounce } from '../../../../../../common/hooks/useDebounce';
 import { ReturnComponentType } from '../../../../../../types';
 import { setPackNameAC } from '../../../reducer/packTableReducer';
 

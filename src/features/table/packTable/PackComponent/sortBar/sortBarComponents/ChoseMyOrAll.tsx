@@ -2,6 +2,7 @@ import React, { memo, useState } from 'react';
 
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
+import Typography from '@mui/material/Typography';
 
 import { useAppDispatch, useAppSelector } from '../../../../../../app/store/store';
 import { ReturnComponentType } from '../../../../../../types';
@@ -24,13 +25,16 @@ export const ChoseMyOrAll = memo((): ReturnComponentType => {
   };
 
   return (
-    <ToggleButtonGroup color="primary" value={alignment} exclusive onChange={handleChange}>
-      <ToggleButton sx={{ width: '50px', height: '50px' }} value="My">
-        My
-      </ToggleButton>
-      <ToggleButton sx={{ width: '50px', height: '50px' }} value="All">
-        All
-      </ToggleButton>
-    </ToggleButtonGroup>
+    <div>
+      <Typography component="p">Show packs cards</Typography>
+      <ToggleButtonGroup color="primary" value={alignment} exclusive onChange={handleChange}>
+        <ToggleButton sx={{ width: '50px', height: '50px' }} value="My">
+          My
+        </ToggleButton>
+        <ToggleButton sx={{ width: '50px', height: '50px' }} value="All">
+          All
+        </ToggleButton>
+      </ToggleButtonGroup>
+    </div>
   );
 });

@@ -9,7 +9,7 @@ import popUpActions from '../../../assets/svg/actions/myPackPopupActions.svg';
 import { BackTo } from '../../../common/components/backTo/BackTo';
 import { PATH } from '../../../common/enum/pathEnum';
 import { ReturnComponentType } from '../../../types';
-import { Search } from '../packTable/sortBar/sortBarComponents/Search';
+import { Search } from '../packTable/PackComponent/sortBar/sortBarComponents/Search';
 
 import s from './CardsList.module.scss';
 
