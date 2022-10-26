@@ -36,10 +36,7 @@ const App = (): ReturnComponentType => {
     <div>
       <ThemeProvider theme={theme}>
         <Header />
-        <LinearProgress
-          color="secondary"
-          sx={{ visibility: isLoading ? 'visible' : 'hidden' }}
-        />
+        <LinearProgress color="secondary" sx={{ visibility: isLoading ? 'visible' : 'hidden' }} />
         <Pages />
         <ErrorSnackbar />
       </ThemeProvider>
