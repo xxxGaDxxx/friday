@@ -29,7 +29,7 @@ export const SelectNumberOfCards = memo((): ReturnComponentType => {
   }, [minMaxCount, dispatch]);
 
   return (
-    <div>
+    <div className={s.search}>
       <Typography component="p">Number of Cards</Typography>
       <div className={s.container}>
         <div className={s.count}>{selectedCount[0]}</div>

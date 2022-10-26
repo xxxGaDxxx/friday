@@ -8,6 +8,8 @@ import { useAppDispatch, useAppSelector } from '../../../../../../app/store/stor
 import { ReturnComponentType } from '../../../../../../types';
 import { setUserIdAC } from '../../../reducer/packTableReducer';
 
+import s from './styles/Search.module.scss';
+
 export const ChoseMyOrAll = memo((): ReturnComponentType => {
   const dispatch = useAppDispatch();
 
@@ -25,15 +27,11 @@ export const ChoseMyOrAll = memo((): ReturnComponentType => {
   };
 
   return (
-    <div>
+    <div className={s.search}>
       <Typography component="p">Show packs cards</Typography>
       <ToggleButtonGroup color="primary" value={alignment} exclusive onChange={handleChange}>
-        <ToggleButton sx={{ width: '50px', height: '50px' }} value="My">
-          My
-        </ToggleButton>
-        <ToggleButton sx={{ width: '50px', height: '50px' }} value="All">
-          All
-        </ToggleButton>
+        <ToggleButton value="My">My</ToggleButton>
+        <ToggleButton value="All">All</ToggleButton>
       </ToggleButtonGroup>
     </div>
   );

@@ -52,7 +52,9 @@ export const PackTable = (): ReturnComponentType => {
               </TableRow>
             ))
           ) : (
-            <h3>Packs not found</h3>
+            <TableRow>
+              <TableCell>Packs not found</TableCell>
+            </TableRow>
           )}
         </TableBody>
       </Table>
