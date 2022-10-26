@@ -25,31 +25,35 @@ export const PackTable = (): ReturnComponentType => {
 
   const isMyPack = useCallback((id: string): boolean => userId === id, [userId]);
 
-  const goToCardslist = (): void => navigate(PATH.CARDS_LIST);
+  const goToCardsList = (): void => navigate(PATH.CARDS_LIST);
 
   return (
     <TableContainer sx={{ maxWidth: '1010px' }} component={Paper}>
       <Table aria-label="caption table">
         <HatTable />
         <TableBody>
-          {cardPacks.map(pack => (
-            <TableRow key={pack._id}>
-              <TableCell onClick={goToCardslist} component="th" scope="row">
-                {pack.name}
-              </TableCell>
-              <TableCell align="right">{pack.cardsCount}</TableCell>
-              <TableCell align="right">{dayMonthYear(pack.created)}</TableCell>
-              <TableCell align="right">{pack.user_name}</TableCell>
-              <TableCell align="right">
-                <ActionsSvg
-                  key={pack._id}
-                  isMyPack={isMyPack(pack.user_id)}
-                  packId={pack._id}
-                  cardsCount={pack.cardsCount}
-                />
-              </TableCell>
-            </TableRow>
-          ))}
+          {cardPacks.length ? (
+            cardPacks.map(pack => (
+              <TableRow key={pack._id}>
+                <TableCell onClick={goToCardsList} component="th" scope="row">
+                  {pack.name}
+                </TableCell>
+                <TableCell align="right">{pack.cardsCount}</TableCell>
+                <TableCell align="right">{dayMonthYear(pack.created)}</TableCell>
+                <TableCell align="right">{pack.user_name}</TableCell>
+                <TableCell align="right">
+                  <ActionsSvg
+                    key={pack._id}
+                    isMyPack={isMyPack(pack.user_id)}
+                    packId={pack._id}
+                    cardsCount={pack.cardsCount}
+                  />
+                </TableCell>
+              </TableRow>
+            ))
+          ) : (
+            <h3>Packs not found</h3>
+          )}
         </TableBody>
       </Table>
     </TableContainer>

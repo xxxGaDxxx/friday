@@ -22,7 +22,6 @@ export const Packs = (): ReturnComponentType => {
   const packName = useAppSelector(state => state.pack.packName);
   const sortPacks = useAppSelector(state => state.pack.sortPacks);
   const userId = useAppSelector(state => state.pack.user_id);
-  // const minCardsCount = useAppSelector(state => state.pack.minCardsCount);
   const minMaxCount = useAppSelector(state => state.pack.minMaxCount);
 
   const changePacksPerPage = useCallback(
