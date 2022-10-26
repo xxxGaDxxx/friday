@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { memo, useState } from 'react';
 
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
@@ -7,9 +7,11 @@ import { useAppDispatch, useAppSelector } from '../../../../../../app/store/stor
 import { ReturnComponentType } from '../../../../../../types';
 import { setUserIdAC } from '../../../reducer/packTableReducer';
 
-export const ChoseMyOrAll = (): ReturnComponentType => {
+export const ChoseMyOrAll = memo((): ReturnComponentType => {
   const dispatch = useAppDispatch();
+
   const userId = useAppSelector(state => state.profile._id);
+
   const [alignment, setAlignment] = useState<'My' | 'All'>('All');
 
   const handleChange = (
@@ -31,4 +33,4 @@ export const ChoseMyOrAll = (): ReturnComponentType => {
       </ToggleButton>
     </ToggleButtonGroup>
   );
-};
+});

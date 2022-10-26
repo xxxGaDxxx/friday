@@ -11,7 +11,9 @@ import { ToggleMenu } from './ToggleMenu';
 
 const ButtonAndProfile = (): ReturnComponentType => {
   const name = useAppSelector(state => state.profile.name);
+
   const [isShowedMenu, setIsShowedMenu] = useState(false);
+
   const showMenu = (): void => {
     setIsShowedMenu(!isShowedMenu);
   };
