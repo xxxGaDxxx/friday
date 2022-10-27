@@ -8,7 +8,7 @@ import { Search } from '../packs/packTable/sortBar/sortBarComponents/Search';
 
 import { CardsTable } from './cardTable/CardsTable';
 import { NoCard } from './noCard/noCard';
-import { cardDataTC } from './reducer/cardTableReducer';
+import { cardDataTC, setQuestionSearchAC } from './reducer/cardTableReducer';
 import s from './styles/Cards.module.scss';
 import { TitleButton } from './titleButton/TitleButton';
 
@@ -19,6 +19,7 @@ export const Cards = (): ReturnComponentType => {
   const packName = useAppSelector(state => state.card.packName);
   const cardPackId = useAppSelector(state => state.card.cardsPackId);
   const sortCards = useAppSelector(state => state.card.sortCards);
+  const questionSearch = useAppSelector(state => state.card.questionSearch);
 
   const dispatch = useAppDispatch();
 
@@ -26,7 +27,7 @@ export const Cards = (): ReturnComponentType => {
 
   useEffect(() => {
     dispatch(cardDataTC(cardPackId));
-  }, [dispatch, cardPackId, cards.length, sortCards]);
+  }, [dispatch, cardPackId, cards.length, sortCards, questionSearch]);
 
   if (cards.length === 0) {
     return <NoCard isMyPack={isMyPack} packName={packName} cardPackId={cardPackId} />;
@@ -36,7 +37,7 @@ export const Cards = (): ReturnComponentType => {
     <main className={s.main}>
       <BackTo path={PATH.PACKS_LIST} nameOfPath="Packs List" />
       <TitleButton isMyPack={isMyPack} packName={packName} cardPackId={cardPackId} />
-      <Search />
+      <Search action={setQuestionSearchAC} />
       <section className={s.table}>
         <CardsTable />
       </section>

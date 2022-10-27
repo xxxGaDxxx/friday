@@ -22,6 +22,7 @@ export const initialStateCardTable = {
   tokenDeathTime: 0,
   cardsPackId: '',
   sortCards: '',
+  questionSearch: '',
 };
 
 export const cardsTableReducer = (
@@ -45,6 +46,7 @@ export const cardsTableReducer = (
         cardsPackId: action.payload.cardsPackId,
       };
     case 'CARDS/SET-CARD-SORT':
+    case 'CARDS/SET-QUESTION-SEARCH':
       return {
         ...state,
         ...action.payload,
@@ -84,6 +86,14 @@ export const setCardSortAC = (sortCards: string) =>
     type: 'CARDS/SET-CARD-SORT',
     payload: {
       sortCards,
+    },
+  } as const);
+
+export const setQuestionSearchAC = (questionSearch: string) =>
+  ({
+    type: 'CARDS/SET-QUESTION-SEARCH',
+    payload: {
+      questionSearch,
     },
   } as const);
 

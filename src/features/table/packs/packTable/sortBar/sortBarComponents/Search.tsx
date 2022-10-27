@@ -5,15 +5,18 @@ import InputAdornment from '@mui/material/InputAdornment';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 
-import { useAppDispatch } from '../../../../../../app/store/store';
+import { AppActionsType, useAppDispatch } from '../../../../../../app/store/store';
 import { useDebounce } from '../../../../../../common/hooks/useDebounce';
 import { ReturnComponentType } from '../../../../../../common/types';
-import { setPackNameAC } from '../../../reducer/packTableReducer';
 import s from '../styles/SortBar.module.scss';
+
+type SearchPropsType = {
+  action: (value: string) => AppActionsType;
+};
 
 const timeWait = 700;
 
-export const Search = memo((): ReturnComponentType => {
+export const Search = memo(({ action }: SearchPropsType): ReturnComponentType => {
   const dispatch = useAppDispatch();
 
   const [text, setText] = useState<string>('');
@@ -24,8 +27,8 @@ export const Search = memo((): ReturnComponentType => {
   };
 
   useEffect(() => {
-    dispatch(setPackNameAC(debounceText));
-  }, [debounceText, dispatch]);
+    dispatch(action(debounceText));
+  }, [action, debounceText, dispatch]);
 
   return (
     <div className={s.search}>

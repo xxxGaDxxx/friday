@@ -11,7 +11,6 @@ import { setUserIdAC } from '../../../reducer/packTableReducer';
 import s from './styles/Search.module.scss';
 
 export const ChoseMyOrAll = memo((): ReturnComponentType => {
-  console.log('ChoseMyOrAll');
   const dispatch = useAppDispatch();
 
   const userId = useAppSelector(state => state.profile._id);
