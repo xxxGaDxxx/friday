@@ -9,23 +9,28 @@ import TableContainer from '@mui/material/TableContainer';
 import TableRow from '@mui/material/TableRow';
 import { useNavigate } from 'react-router-dom';
 
-import { useAppSelector } from '../../../../app/store/store';
+import { useAppDispatch, useAppSelector } from '../../../../app/store/store';
 import { ActionsSvg } from '../../../../common/components/actionsSvg/ActionsSvg';
 import { PATH } from '../../../../common/enum/pathEnum';
 import { ReturnComponentType } from '../../../../common/types';
 import { dayMonthYear } from '../../../../common/utils/dayMonthYear';
+import { cardDataTC } from '../../cardsList/reducer/cardTableReducer';
 
 import { HatTable } from './hatTable/HatTable';
 
 export const PackTable = (): ReturnComponentType => {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   const cardPacks = useAppSelector(state => state.pack.cardPacks);
   const userId = useAppSelector(state => state.profile._id);
 
   const isMyPack = useCallback((id: string): boolean => userId === id, [userId]);
 
-  const goToCardsList = (): void => navigate(PATH.CARDS_LIST);
+  const goToCardsList = (_id: string): void => {
+    navigate(PATH.CARDS_LIST);
+    dispatch(cardDataTC(_id));
+  };
 
   return (
     <TableContainer sx={{ maxWidth: '1010px' }} component={Paper}>
@@ -35,7 +40,7 @@ export const PackTable = (): ReturnComponentType => {
           {cardPacks.length ? (
             cardPacks.map(pack => (
               <TableRow key={pack._id}>
-                <TableCell onClick={goToCardsList} component="th" scope="row">
+                <TableCell onClick={() => goToCardsList(pack._id)} component="th" scope="row">
                   {pack.name}
                 </TableCell>
                 <TableCell align="right">{pack.cardsCount}</TableCell>

@@ -1,6 +1,7 @@
 import { instance } from './config';
 import {
   CardsPackType,
+  CardsResponseType,
   PackDateResponseType,
   ParamsPacksType,
   UpdatePackType,
@@ -20,5 +21,11 @@ export const cardsPack = {
   },
   addPack(cardsPack: CardsPackType) {
     return instance.post('/cards/pack', { cardsPack });
+  },
+};
+
+export const cards = {
+  cardsData(params?: any) {
+    return instance.get<CardsResponseType>('/cards/card', { params });
   },
 };

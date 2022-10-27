@@ -10,6 +10,8 @@ import { registrationReducer } from '../../features/auth/registration/reducer/re
 import { SetRegisteredType } from '../../features/auth/registration/reducer/registrationReducerType';
 import { profileReducer } from '../../features/profile/reducer/profileReducer';
 import { ProfileReducerActionsType } from '../../features/profile/reducer/profileReducerType';
+import { cardsTableReducer } from '../../features/table/cardsList/reducer/cardTableReducer';
+import { StateCardsReducerActionsType } from '../../features/table/cardsList/reducer/cardTableReducerType';
 import { packTableReducer } from '../../features/table/packTable/reducer/packTableReducer';
 import { StatePackReducerActionsType } from '../../features/table/packTable/reducer/packTableReducerType';
 
@@ -23,6 +25,7 @@ const rootReducer = combineReducers({
   forgot: forgotReducer,
   registration: registrationReducer,
   pack: packTableReducer,
+  card: cardsTableReducer,
 });
 
 export const store = createStore(rootReducer, applyMiddleware(thunk));
@@ -39,7 +42,8 @@ export type AppActionsType =
   | LoginReducerActionsType
   | ForgotReducerActionsType
   | SetRegisteredType
-  | StatePackReducerActionsType;
+  | StatePackReducerActionsType
+  | StateCardsReducerActionsType;
 
 export type AppThunk<ReturnType = void> = ThunkAction<
   ReturnType,
