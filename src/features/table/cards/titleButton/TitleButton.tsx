@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -8,6 +8,7 @@ import Typography from '@mui/material/Typography';
 import { useAppDispatch } from '../../../../app/store/store';
 import popUpActions from '../../../../assets/svg/actions/myPackPopupActions.svg';
 import { ReturnComponentType } from '../../../../common/types';
+import { MyPackMenu } from '../myPackMenu/MyPackMenu';
 import { addCardTC } from '../reducer/cardTableReducer';
 import s from '../styles/Cards.module.scss';
 
@@ -24,6 +25,12 @@ export const TitleButton = ({
 }: TitleButtonType): ReturnComponentType => {
   const dispatch = useAppDispatch();
 
+  const [isShowedMenu, setIsShowedMenu] = useState(false);
+
+  const showMenu = (): void => {
+    setIsShowedMenu(!isShowedMenu);
+  };
+
   const onAddNewCardClick = (): void => {
     dispatch(addCardTC(cardPackId));
   };
@@ -33,10 +40,13 @@ export const TitleButton = ({
       <Box className={s.box}>
         <Typography component="h1">{packName}</Typography>
         {isMyPack && (
-          <IconButton>
+          <IconButton onClick={showMenu}>
             <img src={popUpActions} alt="popup actions" />
           </IconButton>
         )}
+        <div className={s.menu} style={{ zIndex: '10' }}>
+          {isShowedMenu && <MyPackMenu hideMenu={showMenu} />}
+        </div>
       </Box>
       {isMyPack ? (
         <Button
