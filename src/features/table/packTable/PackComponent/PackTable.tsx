@@ -14,7 +14,7 @@ import { ActionsSvg } from '../../../../common/components/actionsSvg/ActionsSvg'
 import { PATH } from '../../../../common/enum/pathEnum';
 import { ReturnComponentType } from '../../../../common/types';
 import { dayMonthYear } from '../../../../common/utils/dayMonthYear';
-import { cardDataTC } from '../../cardsList/reducer/cardTableReducer';
+import { setCardsPackIdAC } from '../../cardsList/reducer/cardTableReducer';
 
 import { HatTable } from './hatTable/HatTable';
 
@@ -29,7 +29,7 @@ export const PackTable = (): ReturnComponentType => {
 
   const goToCardsList = (_id: string): void => {
     navigate(PATH.CARDS_LIST);
-    dispatch(cardDataTC(_id));
+    dispatch(setCardsPackIdAC(_id));
   };
 
   return (

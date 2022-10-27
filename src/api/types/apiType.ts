@@ -121,6 +121,7 @@ export type CardsResponseType = {
   packUserId: string;
   packName: string;
   packPrivate: boolean;
+  packDeckCover: string;
   packCreated: string;
   packUpdated: string;
   page: number;
@@ -139,8 +140,6 @@ export type CardsTypeCards = {
   question: string;
   grade: number;
   shots: number;
-  questionImg: string;
-  answerImg: string;
   comments: string;
   type: string;
   rating: number;
@@ -162,24 +161,13 @@ export type ParamsCardsType = {
 };
 
 export type AddCardResponseType = {
-  newCard: AddCardResponseTypeNewCard;
+  newCard: CardsTypeCards;
   token: string;
   tokenDeathTime: number;
 };
 
-export type AddCardResponseTypeNewCard = {
+export type UpdateCardType = {
   _id: string;
-  cardsPack_id: string;
-  user_id: string;
-  answer: string;
-  question: string;
-  grade: number;
-  shots: number;
-  comments: string;
-  type: string;
-  rating: number;
-  more_id: string;
-  created: string;
-  updated: string;
-  __v: number;
+  question?: string;
+  answer?: string;
 };

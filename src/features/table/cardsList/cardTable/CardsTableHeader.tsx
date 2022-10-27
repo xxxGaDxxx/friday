@@ -9,7 +9,11 @@ import ImageArrowTable from '../../../../common/components/imgArrowTable/ImageAr
 import { ReturnComponentType } from '../../../../common/types';
 import { onFilteringClick } from '../../../../common/utils/sortTable';
 
-export const CardsTableHeader = (): ReturnComponentType => {
+type CardsTableHeaderType = {
+  isMyPack: boolean;
+};
+
+export const CardsTableHeader = ({ isMyPack }: CardsTableHeaderType): ReturnComponentType => {
   const sortPacks = useAppSelector(state => state.pack.sortPacks);
   const dispatch = useAppDispatch();
 
@@ -20,30 +24,16 @@ export const CardsTableHeader = (): ReturnComponentType => {
           Question
           {sortPacks === '0name' || sortPacks === '1name' ? <ImageArrowTable /> : ''}
         </TableCell>
-        <TableCell
-          align="right"
-          onClick={() => onFilteringClick('card', dispatch, sortPacks)}
-        >
+        <TableCell align="right" onClick={() => onFilteringClick('card', dispatch, sortPacks)}>
           Answer
-          {sortPacks === '0cardsCount' || sortPacks === '1cardsCount' ? (
-            <ImageArrowTable />
-          ) : (
-            ''
-          )}
+          {sortPacks === '0cardsCount' || sortPacks === '1cardsCount' ? <ImageArrowTable /> : ''}
         </TableCell>
-        <TableCell
-          align="right"
-          onClick={() => onFilteringClick('updated', dispatch, sortPacks)}
-        >
+        <TableCell align="right" onClick={() => onFilteringClick('updated', dispatch, sortPacks)}>
           Last Updated
-          {sortPacks === '0updated' || sortPacks === '1updated' ? (
-            <ImageArrowTable />
-          ) : (
-            ''
-          )}
+          {sortPacks === '0updated' || sortPacks === '1updated' ? <ImageArrowTable /> : ''}
         </TableCell>
         <TableCell align="right">Grade</TableCell>
-        <TableCell align="right">Actions</TableCell>
+        {isMyPack && <TableCell align="right">Actions</TableCell>}
       </TableRow>
     </TableHead>
   );

@@ -6,6 +6,7 @@ import {
   PackDateResponseType,
   ParamsCardsType,
   ParamsPacksType,
+  UpdateCardType,
   UpdatePackType,
 } from './types/apiType';
 
@@ -26,11 +27,17 @@ export const cardsPack = {
   },
 };
 
-export const cards = {
+export const cardsItems = {
   cardsData(params?: ParamsCardsType) {
     return instance.get<CardsResponseType>('/cards/card', { params });
   },
   addCard(card: any) {
     return instance.post<AddCardResponseType>('/cards/card', { card });
+  },
+  deleteCard(cardId: string) {
+    return instance.delete(`/cards/card?id=${cardId}`);
+  },
+  putCard(card: UpdateCardType) {
+    return instance.put('/cards/card', { card });
   },
 };

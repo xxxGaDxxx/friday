@@ -1,51 +1,44 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-
-import popUpActions from '../../../assets/svg/actions/myPackPopupActions.svg';
+import { useAppDispatch, useAppSelector } from '../../../app/store/store';
 import { BackTo } from '../../../common/components/backTo/BackTo';
 import { PATH } from '../../../common/enum/pathEnum';
 import { ReturnComponentType } from '../../../common/types';
 import { Search } from '../packTable/PackComponent/sortBar/sortBarComponents/Search';
 
 import { CardsTable } from './cardTable/CardsTable';
+import { NoCard } from './noCard/noCard';
+import { cardDataTC } from './reducer/cardTableReducer';
 import s from './styles/CardsList.module.scss';
+import { TitleButton } from './titleButton/TitleButton';
 
 export const CardsList = (): ReturnComponentType => {
+  const userId = useAppSelector(state => state.profile._id);
+  const cards = useAppSelector(state => state.card.cards);
+  const packUserId = useAppSelector(state => state.card.packUserId);
+  const packName = useAppSelector(state => state.card.packName);
+  const cardPackId = useAppSelector(state => state.card.cardsPackId);
+
+  const dispatch = useAppDispatch();
+
+  const isMyPack = userId === packUserId;
+
+  useEffect(() => {
+    dispatch(cardDataTC(cardPackId));
+  }, [dispatch, cardPackId, cards.length]);
+
+  if (cards.length === 0) {
+    return <NoCard isMyPack={isMyPack} packName={packName} cardPackId={cardPackId} />;
+  }
+
   return (
     <main className={s.main}>
       <BackTo path={PATH.PACKS_LIST} nameOfPath="Packs List" />
-      <section className={s.section}>
-        <Box className={s.box}>
-          <Typography component="h1">My Pack</Typography>
-          <IconButton>
-            <img src={popUpActions} alt="popup actions" />
-          </IconButton>
-        </Box>
-        <Button
-          className={s.addCardButton}
-          type="button"
-          variant="contained"
-          color="primary"
-          onClick={() => {}} // needs to create!!!
-        >
-          Add new card
-        </Button>
-      </section>
+      <TitleButton isMyPack={isMyPack} packName={packName} cardPackId={cardPackId} />
       <Search />
       <section className={s.table}>
         <CardsTable />
       </section>
-      {/* <section className={s.pagination}> */}
-      {/*  <PaginationPage */}
-      {/*    itemsPerPage={pageCount} */}
-      {/*    selectPage={setSelectedPage} */}
-      {/*    changeCountItemsPerPage={changePacksPerPage} */}
-      {/*  /> */}
-      {/* </section> */}
     </main>
   );
 };

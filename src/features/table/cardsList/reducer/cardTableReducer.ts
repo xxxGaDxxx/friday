@@ -1,10 +1,5 @@
-import { cards } from '../../../../api/cardsPack';
-import {
-  AddCardResponseType,
-  CardsResponseType,
-  CardsTypeCards,
-  ParamsCardsType,
-} from '../../../../api/types/apiType';
+import { cardsItems } from '../../../../api/cardsPack';
+import { CardsResponseType, CardsTypeCards, ParamsCardsType } from '../../../../api/types/apiType';
 import { setAppStatusAC } from '../../../../app/store/app-reducer';
 import { AppThunk } from '../../../../app/store/store';
 import { errorUtils } from '../../../../common/utils/errorUtils';
@@ -25,6 +20,7 @@ export const initialStateCardTable = {
   maxGrade: 0,
   token: '',
   tokenDeathTime: 0,
+  cardsPackId: '',
 };
 
 export const cardsTableReducer = (
@@ -33,10 +29,19 @@ export const cardsTableReducer = (
 ): InitialStateCardTable => {
   switch (action.type) {
     case 'CARDS/SET-CARDS-DATA':
-    case 'CARDS/ADD-CARDS':
       return {
         ...state,
         ...action.payload.date,
+      };
+    case 'CARDS/ADD-CARDS':
+      return {
+        ...state,
+        cards: [...state.cards, action.payload.newCard],
+      };
+    case 'CARDS/SET-CARDS-PACK-ID':
+      return {
+        ...state,
+        cardsPackId: action.payload.cardsPackId,
       };
     default:
       return state;
@@ -52,11 +57,19 @@ export const setCardsDataAC = (date: CardsResponseType) =>
     },
   } as const);
 
-export const addCardsAC = (date: AddCardResponseType) =>
+export const addCardsAC = (newCard: CardsTypeCards) =>
   ({
     type: 'CARDS/ADD-CARDS',
     payload: {
-      date,
+      newCard,
+    },
+  } as const);
+
+export const setCardsPackIdAC = (cardsPackId: string) =>
+  ({
+    type: 'CARDS/SET-CARDS-PACK-ID',
+    payload: {
+      cardsPackId,
     },
   } as const);
 
@@ -69,7 +82,7 @@ export const cardDataTC =
     };
 
     dispatch(setAppStatusAC('loading'));
-    cards
+    cardsItems
       .cardsData(params)
       .then(res => {
         dispatch(setCardsDataAC(res.data));
@@ -88,10 +101,46 @@ export const addCardTC =
     };
 
     dispatch(setAppStatusAC('loading'));
-    cards
+    cardsItems
       .addCard(card)
       .then(res => {
-        dispatch(addCardsAC(res.data));
+        dispatch(addCardsAC(res.data.newCard));
+        dispatch(setAppStatusAC('succeeded'));
+      })
+      .catch(err => {
+        errorUtils(err, dispatch);
+      });
+  };
+
+export const cardDeleteTC =
+  (cardId: string, cardPackId: string): AppThunk =>
+  dispatch => {
+    dispatch(setAppStatusAC('loading'));
+    cardsItems
+      .deleteCard(cardId)
+      .then(() => {
+        dispatch(cardDataTC(cardPackId));
+        dispatch(setAppStatusAC('succeeded'));
+      })
+      .catch(err => {
+        errorUtils(err, dispatch);
+      });
+  };
+
+export const cardUpdateTC =
+  (cardId: string, cardPackId: string): AppThunk =>
+  dispatch => {
+    const card = {
+      _id: cardId,
+      question: 'NEW Question',
+      answer: 'NEW Answer',
+    };
+
+    dispatch(setAppStatusAC('loading'));
+    cardsItems
+      .putCard(card)
+      .then(() => {
+        dispatch(cardDataTC(cardPackId));
         dispatch(setAppStatusAC('succeeded'));
       })
       .catch(err => {
