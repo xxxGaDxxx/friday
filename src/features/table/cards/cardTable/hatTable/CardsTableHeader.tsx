@@ -22,18 +22,30 @@ export const CardsTableHeader = ({ isMyPack }: CardsTableHeaderType): ReturnComp
       <TableRow sx={{ background: '#EFEFEF' }}>
         <TableCell onClick={() => onFilteringClick('question', dispatch, sortCards)}>
           Question
-          {sortCards === '0question' || sortCards === '1question' ? <ImageArrowTable /> : ''}
+          {sortCards === '0question' || sortCards === '1question' ? (
+            <ImageArrowTable sort={sortCards} />
+          ) : (
+            ''
+          )}
         </TableCell>
         <TableCell align="right" onClick={() => onFilteringClick('answer', dispatch, sortCards)}>
           Answer
-          {sortCards === '0answer' || sortCards === '1answer' ? <ImageArrowTable /> : ''}
+          {sortCards === '0answer' || sortCards === '1answer' ? (
+            <ImageArrowTable sort={sortCards} />
+          ) : (
+            ''
+          )}
         </TableCell>
         <TableCell
           align="right"
           onClick={() => onFilteringClick('updatedCard', dispatch, sortCards)}
         >
           Last Updated
-          {sortCards === '0updated' || sortCards === '1updated' ? <ImageArrowTable /> : ''}
+          {sortCards === '0updated' || sortCards === '1updated' ? (
+            <ImageArrowTable sort={sortCards} />
+          ) : (
+            ''
+          )}
         </TableCell>
         <TableCell align="right">Grade</TableCell>
         {isMyPack && <TableCell align="right">Actions</TableCell>}

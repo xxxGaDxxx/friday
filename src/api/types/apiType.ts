@@ -115,6 +115,42 @@ export type CardsPackType = {
   private: boolean;
 };
 
+export type AddPackResponseType = {
+  newCardsPack: AddPackResponseTypeNewCardsPack;
+  token: string;
+  tokenDeathTime: number;
+};
+export type AddPackResponseTypeNewCardsPack = {
+  _id: string;
+  user_id: string;
+  user_name: string;
+  private: boolean;
+  name: string;
+  path: string;
+  grade: number;
+  shots: number;
+  cardsCount: number;
+  type: string;
+  rating: number;
+  created: string;
+  updated: string;
+  more_id: string;
+  __v: number;
+  deckCover?: any;
+};
+
+export type PutPackResponseType = {
+  updatedCardsPack: AddPackResponseTypeNewCardsPack;
+  token: string;
+  tokenDeathTime: number;
+};
+
+export type DeletePackResponseType = {
+  deletedCardsPack: AddPackResponseTypeNewCardsPack;
+  token: string;
+  tokenDeathTime: number;
+};
+
 // cards table
 export type CardsResponseType = {
   cards: CardsTypeCards[];
@@ -170,4 +206,36 @@ export type UpdateCardType = {
   _id: string;
   question?: string;
   answer?: string;
+};
+
+export type DeleteCardResponseType = {
+  deletedCard: CardsTypeCards;
+  token: string;
+  tokenDeathTime: number;
+};
+
+export type PutCardResponseType = {
+  updatedCard: PutCardResponseTypeUpdatedCard;
+  token: string;
+  tokenDeathTime: number;
+};
+export type PutCardResponseTypeUpdatedCard = {
+  _id: string;
+  cardsPack_id: string;
+  user_id: string;
+  answer: string;
+  question: string;
+  grade: number;
+  shots: number;
+  comments: string;
+  type: string;
+  rating: number;
+  more_id: string;
+  created: string;
+  updated: string;
+  __v: number;
+  answerImg: string;
+  answerVideo: string;
+  questionImg: string;
+  questionVideo: string;
 };
