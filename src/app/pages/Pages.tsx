@@ -3,6 +3,7 @@ import React from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 
 import { PATH } from '../../common/enum/pathEnum';
+import { ReturnComponentType } from '../../common/types';
 import { Login } from '../../features/auth/login/Login';
 import { NewPassword } from '../../features/auth/password/newPassword/NewPassword';
 import CheckEmail from '../../features/auth/password/recoveryPasword/CheckEmail';
@@ -12,7 +13,6 @@ import { PageNotFound } from '../../features/pageNotFound/PageNotFound';
 import { Profile } from '../../features/profile/Profile';
 import { CardsList } from '../../features/table/cardsList/CardsList';
 import { Packs } from '../../features/table/packTable/Packs';
-import { ReturnComponentType } from '../../types';
 import PrivateRoutes from '../PrivateRoutes';
 
 export const Pages = (): ReturnComponentType => {

@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 import svgError from '../../assets/svg/error/404.svg';
 import { PATH } from '../../common/enum/pathEnum';
-import { ReturnComponentType } from '../../types';
+import { ReturnComponentType } from '../../common/types';
 
 import s from './styles/PageNotFound.module.scss';
 

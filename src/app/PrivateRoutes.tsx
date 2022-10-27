@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Navigate, Outlet } from 'react-router-dom';
 
-import { ReturnComponentType } from '../types';
+import { ReturnComponentType } from '../common/types';
 
 import { useAppSelector } from './store/store';
 

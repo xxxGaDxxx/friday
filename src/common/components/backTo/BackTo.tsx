@@ -3,7 +3,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 import arrow from '../../../assets/svg/arrow.svg';
-import { ReturnComponentType } from '../../../types';
+import { ReturnComponentType } from '../../types';
 
 import s from './styles/BackTo.module.scss';
 

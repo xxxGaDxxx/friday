@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ReturnComponentType } from '../../../types';
+import { ReturnComponentType } from '../../../../common/types';
 
 const CardTable = (): ReturnComponentType => {
   return <div>CardTable</div>;

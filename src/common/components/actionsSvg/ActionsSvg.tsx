@@ -8,7 +8,7 @@ import {
   packDeleteTC,
   packNewNameTC,
 } from '../../../features/table/packTable/reducer/packTableReducer';
-import { ReturnComponentType } from '../../../types';
+import { ReturnComponentType } from '../../types';
 
 import s from './style/ActionsSvg.module.scss';
 import { ActionsSvgType } from './style/ActionsSvgType';
