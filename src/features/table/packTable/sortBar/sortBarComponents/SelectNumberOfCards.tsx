@@ -5,7 +5,7 @@ import Slider from '@mui/material/Slider';
 import debounce from 'lodash.debounce';
 
 import { useAppDispatch, useAppSelector } from '../../../../../app/store/store';
-import { ReturnComponentType } from '../../../../../types';
+import { ReturnComponentType } from '../../../../../common/types';
 import { setMinMaxCountAC } from '../../reducer/packTableReducer';
 
 // const valuetext = (value: number): string => `${value}°C`;

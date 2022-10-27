@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import Avatar from '@mui/material/Avatar';
 
 import avatar from '../../../assets/img/defultAvatar.png';
-import { ReturnComponentType } from '../../../types';
+import { ReturnComponentType } from '../../../common/types';
 import { useAppSelector } from '../../store/store';
 
 import s from './style/ButtonAndProfile.module.scss';

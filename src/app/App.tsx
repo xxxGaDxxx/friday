@@ -3,8 +3,8 @@ import React, { useEffect } from 'react';
 import { CircularProgress, LinearProgress, ThemeProvider } from '@mui/material';
 
 import { ErrorSnackbar } from '../common/components/errorSnackbar/ErrorSnackbar';
+import { ReturnComponentType } from '../common/types';
 import { theme } from '../common/utils/styles/muiTheme';
-import { ReturnComponentType } from '../types';
 
 import s from './App.module.scss';
 import { Header } from './header/Header';

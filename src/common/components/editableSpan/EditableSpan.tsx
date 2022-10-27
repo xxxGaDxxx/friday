@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
 
-import { ReturnComponentType } from '../../../types';
+import { ReturnComponentType } from '../../types';
 
 import { EditableMode } from './EditableMode';
 
@@ -11,7 +11,10 @@ type EditableSpanProps = {
   value: string;
 };
 
-export const EditableSpan = ({ onChange, value }: EditableSpanProps): ReturnComponentType => {
+export const EditableSpan = ({
+  onChange,
+  value,
+}: EditableSpanProps): ReturnComponentType => {
   const [editMode, setEditMode] = useState(false);
   const [currentValue, setCurrentValue] = useState(value);
 

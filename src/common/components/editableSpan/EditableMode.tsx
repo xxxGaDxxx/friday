@@ -4,7 +4,7 @@ import Button from '@mui/material/Button';
 import InputAdornment from '@mui/material/InputAdornment';
 import TextField from '@mui/material/TextField';
 
-import { ReturnComponentType } from '../../../types';
+import { ReturnComponentType } from '../../types';
 
 type EditableModeProps = {
   value: string;
@@ -43,7 +43,9 @@ export const EditableMode = ({
           ),
         }}
       />
-      {!value && <div style={{ color: 'purple' }}>😔 you have to write something here</div>}
+      {!value && (
+        <div style={{ color: 'purple' }}>😔 you have to write something here</div>
+      )}
     </div>
   );
 };

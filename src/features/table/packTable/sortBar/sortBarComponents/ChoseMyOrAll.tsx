@@ -4,7 +4,7 @@ import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 
 import { useAppDispatch, useAppSelector } from '../../../../../app/store/store';
-import { ReturnComponentType } from '../../../../../types';
+import { ReturnComponentType } from '../../../../../common/types';
 import { setUserIdAC } from '../../reducer/packTableReducer';
 
 export const ChoseMyOrAll = (): ReturnComponentType => {
@@ -22,7 +22,12 @@ export const ChoseMyOrAll = (): ReturnComponentType => {
   };
 
   return (
-    <ToggleButtonGroup color="primary" value={alignment} exclusive onChange={handleChange}>
+    <ToggleButtonGroup
+      color="primary"
+      value={alignment}
+      exclusive
+      onChange={handleChange}
+    >
       <ToggleButton sx={{ width: '50px', height: '50px' }} value="My">
         My
       </ToggleButton>

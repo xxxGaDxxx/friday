@@ -11,8 +11,8 @@ import { useNavigate } from 'react-router-dom';
 import { useAppSelector } from '../../../app/store/store';
 import { ActionsSvg } from '../../../common/components/actionsSvg/ActionsSvg';
 import { PATH } from '../../../common/enum/pathEnum';
+import { ReturnComponentType } from '../../../common/types';
 import { dayMonthYear } from '../../../common/utils/dayMonthYear';
-import { ReturnComponentType } from '../../../types';
 
 import { HatTable } from './hatTable/HatTable';
 

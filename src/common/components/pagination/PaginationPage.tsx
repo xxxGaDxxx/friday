@@ -6,7 +6,7 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 import Stack from '@mui/material/Stack';
 
 import { useAppSelector } from '../../../app/store/store';
-import { ReturnComponentType } from '../../../types';
+import { ReturnComponentType } from '../../types';
 
 import s from './styles/Pagination.module.scss';
 
@@ -35,7 +35,12 @@ export const PaginationPage = ({
   return (
     <div className={s.container}>
       <Stack spacing={2}>
-        <Pagination count={pageCount} shape="rounded" color="primary" onChange={onPageClick} />
+        <Pagination
+          count={pageCount}
+          shape="rounded"
+          color="primary"
+          onChange={onPageClick}
+        />
       </Stack>
       <span>Show</span>
       <Select

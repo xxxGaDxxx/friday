@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 
 import { setAppErrorAC } from '../../../app/store/app-reducer';
 import { useAppSelector } from '../../../app/store/store';
-import { ReturnComponentType } from '../../../types';
+import { ReturnComponentType } from '../../types';
 
 const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;

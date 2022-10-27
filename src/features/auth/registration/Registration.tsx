@@ -12,9 +12,9 @@ import { useNavigate } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from '../../../app/store/store';
 import { PATH } from '../../../common/enum/pathEnum';
+import styles from '../../../common/styles/commonStyles.module.scss';
+import { ReturnComponentType } from '../../../common/types';
 import { validateRegistrationForm } from '../../../common/utils/validateForm';
-import styles from '../../../styles/commonStyles.module.scss';
-import { ReturnComponentType } from '../../../types';
 
 import { registrationTC } from './reducer/registrationReducer';
 import s from './styles/Registration.module.scss';

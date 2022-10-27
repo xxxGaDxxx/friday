@@ -1,8 +1,15 @@
+@import "./src/common/scss/variables/variables";
+
 .container {
-  max-width: 1010px;
-  margin: 30px auto;
+  max-width: 100vw;
+  height: 100vh;
+  margin: 0 auto;
+  padding: 0 17%;
+  box-sizing: border-box;
+  background-color: $bg;
 
   .titleButton {
+    margin-top: 39px;
     display: flex;
     justify-content: space-between;
   }

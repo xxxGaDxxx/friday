@@ -5,7 +5,7 @@ import Typography from '@mui/material/Typography';
 
 import { useAppDispatch, useAppSelector } from '../../../app/store/store';
 import { PaginationPage } from '../../../common/components/pagination/PaginationPage';
-import { ReturnComponentType } from '../../../types';
+import { ReturnComponentType } from '../../../common/types';
 
 import { PackTable } from './PackTable';
 import {
@@ -40,7 +40,16 @@ export const Packs = (): ReturnComponentType => {
 
   useEffect(() => {
     dispatch(packDateTC());
-  }, [dispatch, pageCount, page, packName, sortPacks, userId, maxCardsCount, minCardsCount]);
+  }, [
+    dispatch,
+    pageCount,
+    page,
+    packName,
+    sortPacks,
+    userId,
+    maxCardsCount,
+    minCardsCount,
+  ]);
 
   return (
     <div className={s.container}>
