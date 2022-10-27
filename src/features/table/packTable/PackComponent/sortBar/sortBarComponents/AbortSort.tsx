@@ -3,8 +3,12 @@ import React from 'react';
 import FilterAltOffIcon from '@mui/icons-material/FilterAltOff';
 
 import { useAppDispatch } from '../../../../../../app/store/store';
-import { ReturnComponentType } from '../../../../../../types';
-import { setMinMaxCountAC, setPackNameAC, setUserIdAC } from '../../../reducer/packTableReducer';
+import { ReturnComponentType } from '../../../../../../common/types';
+import {
+  setMinMaxCountAC,
+  setPackNameAC,
+  setUserIdAC,
+} from '../../../reducer/packTableReducer';
 
 import s from './styles/AbortSort.module.scss';
 

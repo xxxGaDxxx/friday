@@ -8,7 +8,7 @@ import Typography from '@mui/material/Typography';
 import popUpActions from '../../../assets/svg/actions/myPackPopupActions.svg';
 import { BackTo } from '../../../common/components/backTo/BackTo';
 import { PATH } from '../../../common/enum/pathEnum';
-import { ReturnComponentType } from '../../../types';
+import { ReturnComponentType } from '../../../common/types';
 import { Search } from '../packTable/PackComponent/sortBar/sortBarComponents/Search';
 
 import s from './styles/CardsList.module.scss';

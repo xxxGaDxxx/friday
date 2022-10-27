@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ReturnComponentType } from '../../../../../types';
+import { ReturnComponentType } from '../../../../../common/types';
 
 import { AbortSort } from './sortBarComponents/AbortSort';
 import { ChoseMyOrAll } from './sortBarComponents/ChoseMyOrAll';

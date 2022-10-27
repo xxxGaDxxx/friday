@@ -5,7 +5,7 @@ import Slider from '@mui/material/Slider';
 import Typography from '@mui/material/Typography';
 
 import { useAppDispatch, useAppSelector } from '../../../../../../app/store/store';
-import { ReturnComponentType } from '../../../../../../types';
+import { ReturnComponentType } from '../../../../../../common/types';
 import { setMinMaxCountAC } from '../../../reducer/packTableReducer';
 
 import s from './styles/SelectNumberOfCards.module.scss';

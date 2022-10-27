@@ -2,7 +2,7 @@ import React, { useCallback, useEffect } from 'react';
 
 import { useAppDispatch, useAppSelector } from '../../../app/store/store';
 import { PaginationPage } from '../../../common/components/pagination/PaginationPage';
-import { ReturnComponentType } from '../../../types';
+import { ReturnComponentType } from '../../../common/types';
 
 import { AddNewPack } from './PackComponent/AddNewPack';
 import { PackTable } from './PackComponent/PackTable';

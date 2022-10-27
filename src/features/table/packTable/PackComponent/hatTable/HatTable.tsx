@@ -4,10 +4,10 @@ import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 
-import { useAppDispatch, useAppSelector } from '../../../../app/store/store';
-import ImageArrowTable from '../../../../common/components/imgArrowTable/ImageArrowTable';
-import { ReturnComponentType } from '../../../../common/types';
-import { onFilteringClick } from '../../../../common/utils/sortTable';
+import { useAppDispatch, useAppSelector } from '../../../../../app/store/store';
+import ImageArrowTable from '../../../../../common/components/imgArrowTable/ImageArrowTable';
+import { ReturnComponentType } from '../../../../../common/types';
+import { onFilteringClick } from '../../../../../common/utils/sortTable';
 
 export const HatTable = (): ReturnComponentType => {
   const sortPacks = useAppSelector(state => state.pack.sortPacks);

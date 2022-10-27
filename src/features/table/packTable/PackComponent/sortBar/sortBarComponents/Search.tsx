@@ -7,7 +7,7 @@ import Typography from '@mui/material/Typography';
 
 import { useAppDispatch } from '../../../../../../app/store/store';
 import { useDebounce } from '../../../../../../common/hooks/useDebounce';
-import { ReturnComponentType } from '../../../../../../types';
+import { ReturnComponentType } from '../../../../../../common/types';
 import { setPackNameAC } from '../../../reducer/packTableReducer';
 
 import s from './styles/Search.module.scss';

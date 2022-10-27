@@ -5,7 +5,7 @@ import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import Typography from '@mui/material/Typography';
 
 import { useAppDispatch, useAppSelector } from '../../../../../../app/store/store';
-import { ReturnComponentType } from '../../../../../../types';
+import { ReturnComponentType } from '../../../../../../common/types';
 import { setUserIdAC } from '../../../reducer/packTableReducer';
 
 import s from './styles/Search.module.scss';
@@ -29,7 +29,12 @@ export const ChoseMyOrAll = memo((): ReturnComponentType => {
   return (
     <div className={s.search}>
       <Typography component="p">Show packs cards</Typography>
-      <ToggleButtonGroup color="primary" value={alignment} exclusive onChange={handleChange}>
+      <ToggleButtonGroup
+        color="primary"
+        value={alignment}
+        exclusive
+        onChange={handleChange}
+      >
         <ToggleButton value="My">My</ToggleButton>
         <ToggleButton value="All">All</ToggleButton>
       </ToggleButtonGroup>

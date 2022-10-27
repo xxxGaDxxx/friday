@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ReturnComponentType } from '../../../types';
+import { ReturnComponentType } from '../../../common/types';
 
 const InputEmail = (): ReturnComponentType => {
   return <div />;
