@@ -4,11 +4,7 @@ import FilterAltOffIcon from '@mui/icons-material/FilterAltOff';
 
 import { useAppDispatch } from '../../../../../../app/store/store';
 import { ReturnComponentType } from '../../../../../../common/types';
-import {
-  setMinMaxCountAC,
-  setPackNameAC,
-  setUserIdAC,
-} from '../../../reducer/packTableReducer';
+import { setMinMaxCountAC, setPackNameAC, setUserIdAC } from '../../../reducer/packTableReducer';
 
 import s from './styles/AbortSort.module.scss';
 

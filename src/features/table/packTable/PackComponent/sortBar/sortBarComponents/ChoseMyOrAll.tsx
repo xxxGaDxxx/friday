@@ -11,6 +11,7 @@ import { setUserIdAC } from '../../../reducer/packTableReducer';
 import s from './styles/Search.module.scss';
 
 export const ChoseMyOrAll = memo((): ReturnComponentType => {
+  console.log('ChoseMyOrAll');
   const dispatch = useAppDispatch();
 
   const userId = useAppSelector(state => state.profile._id);
@@ -29,12 +30,7 @@ export const ChoseMyOrAll = memo((): ReturnComponentType => {
   return (
     <div className={s.search}>
       <Typography component="p">Show packs cards</Typography>
-      <ToggleButtonGroup
-        color="primary"
-        value={alignment}
-        exclusive
-        onChange={handleChange}
-      >
+      <ToggleButtonGroup color="primary" value={alignment} exclusive onChange={handleChange}>
         <ToggleButton value="My">My</ToggleButton>
         <ToggleButton value="All">All</ToggleButton>
       </ToggleButtonGroup>

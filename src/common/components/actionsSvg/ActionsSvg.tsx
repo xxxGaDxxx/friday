@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 
-import { useAppDispatch } from '../../../app/store/store';
+import { useAppDispatch, useAppSelector } from '../../../app/store/store';
 import deleteSvg from '../../../assets/svg/actions/Delete.svg';
 import editSvg from '../../../assets/svg/actions/Edit.svg';
 import teacherSvg from '../../../assets/svg/actions/teacher.svg';
@@ -15,6 +15,7 @@ import { ActionsSvgType } from './style/ActionsSvgType';
 
 export const ActionsSvg = memo(
   ({ isMyPack, packId, cardsCount }: ActionsSvgType): ReturnComponentType => {
+    const status = useAppSelector(state => state.app.status);
     const dispatch = useAppDispatch();
 
     const onEditClick = (): void => {
@@ -27,15 +28,18 @@ export const ActionsSvg = memo(
     const onTrainingClick = (): void => {};
 
     const thereAreCards = cardsCount === 0;
-    const opacitySvg = thereAreCards ? '50%' : '100%';
+    const opacitySvgTeacher = thereAreCards ? '50%' : '100%';
+
+    const success = status !== 'succeeded';
+    const opacitySvg = success ? '50%' : '100%';
 
     return (
       <div>
         <button
           type="button"
           className={s.button}
-          disabled={thereAreCards}
-          style={{ opacity: opacitySvg }}
+          disabled={thereAreCards && success}
+          style={{ opacity: opacitySvgTeacher }}
           onClick={onTrainingClick}
         >
           <img src={teacherSvg} alt="teacherSvg" />
@@ -43,10 +47,22 @@ export const ActionsSvg = memo(
 
         {isMyPack && (
           <>
-            <button type="button" onClick={onEditClick} className={s.button}>
+            <button
+              type="button"
+              onClick={onEditClick}
+              className={s.button}
+              disabled={success}
+              style={{ opacity: opacitySvg }}
+            >
               <img src={editSvg} alt="editSvg" />
             </button>
-            <button type="button" onClick={onDeleteClick} className={s.button}>
+            <button
+              type="button"
+              onClick={onDeleteClick}
+              className={s.button}
+              disabled={success}
+              style={{ opacity: opacitySvg }}
+            >
               <img src={deleteSvg} alt="deleteSvg" />
             </button>
           </>

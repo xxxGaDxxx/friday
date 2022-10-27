@@ -9,8 +9,7 @@ import { useAppDispatch } from '../../../../../../app/store/store';
 import { useDebounce } from '../../../../../../common/hooks/useDebounce';
 import { ReturnComponentType } from '../../../../../../common/types';
 import { setPackNameAC } from '../../../reducer/packTableReducer';
-
-import s from './styles/Search.module.scss';
+import s from '../styles/SortBar.module.scss';
 
 const timeWait = 700;
 

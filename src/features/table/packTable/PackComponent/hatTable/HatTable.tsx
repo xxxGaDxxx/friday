@@ -20,38 +20,17 @@ export const HatTable = (): ReturnComponentType => {
           Name
           {sortPacks === '0name' || sortPacks === '1name' ? <ImageArrowTable /> : ''}
         </TableCell>
-        <TableCell
-          align="right"
-          onClick={() => onFilteringClick('card', dispatch, sortPacks)}
-        >
+        <TableCell align="right" onClick={() => onFilteringClick('card', dispatch, sortPacks)}>
           Cards
-          {sortPacks === '0cardsCount' || sortPacks === '1cardsCount' ? (
-            <ImageArrowTable />
-          ) : (
-            ''
-          )}
+          {sortPacks === '0cardsCount' || sortPacks === '1cardsCount' ? <ImageArrowTable /> : ''}
         </TableCell>
-        <TableCell
-          align="right"
-          onClick={() => onFilteringClick('updated', dispatch, sortPacks)}
-        >
+        <TableCell align="right" onClick={() => onFilteringClick('updated', dispatch, sortPacks)}>
           Last Updated
-          {sortPacks === '0updated' || sortPacks === '1updated' ? (
-            <ImageArrowTable />
-          ) : (
-            ''
-          )}
+          {sortPacks === '0updated' || sortPacks === '1updated' ? <ImageArrowTable /> : ''}
         </TableCell>
-        <TableCell
-          align="right"
-          onClick={() => onFilteringClick('user_name', dispatch, sortPacks)}
-        >
+        <TableCell align="right" onClick={() => onFilteringClick('user_name', dispatch, sortPacks)}>
           Created by
-          {sortPacks === '0user_name' || sortPacks === '1user_name' ? (
-            <ImageArrowTable />
-          ) : (
-            ''
-          )}
+          {sortPacks === '0user_name' || sortPacks === '1user_name' ? <ImageArrowTable /> : ''}
         </TableCell>
         <TableCell align="right">Actions</TableCell>
       </TableRow>

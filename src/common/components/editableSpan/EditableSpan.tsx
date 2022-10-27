@@ -11,10 +11,7 @@ type EditableSpanProps = {
   value: string;
 };
 
-export const EditableSpan = ({
-  onChange,
-  value,
-}: EditableSpanProps): ReturnComponentType => {
+export const EditableSpan = ({ onChange, value }: EditableSpanProps): ReturnComponentType => {
   const [editMode, setEditMode] = useState(false);
   const [currentValue, setCurrentValue] = useState(value);
 

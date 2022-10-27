@@ -36,12 +36,7 @@ export const PaginationPage = memo(
     return (
       <div className={s.container}>
         <Stack spacing={2}>
-          <Pagination
-            count={pageCount}
-            shape="rounded"
-            color="primary"
-            onChange={onPageClick}
-          />
+          <Pagination count={pageCount} shape="rounded" color="primary" onChange={onPageClick} />
         </Stack>
         <span>Show</span>
         <Select

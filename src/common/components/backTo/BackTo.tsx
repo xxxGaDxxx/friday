@@ -13,11 +13,7 @@ type BackToPropsType = {
   nameOfPath: string;
 };
 
-export const BackTo = ({
-  path,
-  nameOfPath,
-  className,
-}: BackToPropsType): ReturnComponentType => {
+export const BackTo = ({ path, nameOfPath, className }: BackToPropsType): ReturnComponentType => {
   const defineClassname = `${s.navLink}${className || ''}`;
 
   return (
