@@ -9,7 +9,6 @@ import { AppActionsType, useAppDispatch } from '../../../../../../app/store/stor
 import { useDebounce } from '../../../../../../common/hooks/useDebounce';
 import { ReturnComponentType } from '../../../../../../common/types';
 
-
 import s from './styles/Search.module.scss';
 
 type SearchPropsType = {

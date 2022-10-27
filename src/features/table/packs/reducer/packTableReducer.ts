@@ -41,7 +41,6 @@ export const packTableReducer = (
         ...state,
         ...action.payload,
       };
-    case 'PACK/SET-PACKS-PER-PAGE':
     case 'PACK/SET-SELECTED-PAGE':
     case 'PACK/SET-PACK-NAME':
     case 'PACK/SET-PACK-SORT':
@@ -50,6 +49,11 @@ export const packTableReducer = (
       return {
         ...state,
         ...action.payload,
+      };
+    case 'PACK/SET-PACKS-PER-PAGE':
+      return {
+        ...state,
+        pageCount: action.payload.count,
       };
     default:
       return state;

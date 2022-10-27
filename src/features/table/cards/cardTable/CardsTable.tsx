@@ -25,7 +25,7 @@ export const CardsTable = (): ReturnComponentType => {
 
   return (
     <TableContainer sx={{ maxWidth: '1010px' }} component={Paper}>
-      <Table aria-label="caption table">
+      <Table stickyHeader aria-label="caption table">
         <CardsTableHeader isMyPack={isMyPack} />
         <TableBody>
           {cards.length ? (

@@ -47,9 +47,15 @@ export const cardsTableReducer = (
       };
     case 'CARDS/SET-CARD-SORT':
     case 'CARDS/SET-QUESTION-SEARCH':
+    case 'CARDS/SET-SELECTED-PAGE':
       return {
         ...state,
         ...action.payload,
+      };
+    case 'CARDS/SET-CARDS-PER-PAGE':
+      return {
+        ...state,
+        pageCount: action.payload.count,
       };
     default:
       return state;
@@ -94,6 +100,22 @@ export const setQuestionSearchAC = (cardQuestion: string) =>
     type: 'CARDS/SET-QUESTION-SEARCH',
     payload: {
       cardQuestion,
+    },
+  } as const);
+
+export const setCardsPerPageAC = (count: number) =>
+  ({
+    type: 'CARDS/SET-CARDS-PER-PAGE',
+    payload: {
+      count,
+    },
+  } as const);
+
+export const setSelectedCardsPageAC = (page: number) =>
+  ({
+    type: 'CARDS/SET-SELECTED-PAGE',
+    payload: {
+      page,
     },
   } as const);
 
