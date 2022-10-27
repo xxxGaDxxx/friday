@@ -19,7 +19,7 @@ export const Cards = (): ReturnComponentType => {
   const packName = useAppSelector(state => state.card.packName);
   const cardPackId = useAppSelector(state => state.card.cardsPackId);
   const sortCards = useAppSelector(state => state.card.sortCards);
-  const questionSearch = useAppSelector(state => state.card.questionSearch);
+  const cardQuestion = useAppSelector(state => state.card.cardQuestion);
 
   const dispatch = useAppDispatch();
 
@@ -27,7 +27,7 @@ export const Cards = (): ReturnComponentType => {
 
   useEffect(() => {
     dispatch(cardDataTC(cardPackId));
-  }, [dispatch, cardPackId, cards.length, sortCards, questionSearch]);
+  }, [dispatch, cardPackId, cards.length, sortCards, cardQuestion]);
 
   if (cards.length === 0) {
     return <NoCard isMyPack={isMyPack} packName={packName} cardPackId={cardPackId} />;

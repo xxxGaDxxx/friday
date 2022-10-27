@@ -22,7 +22,7 @@ export const initialStateCardTable = {
   tokenDeathTime: 0,
   cardsPackId: '',
   sortCards: '',
-  questionSearch: '',
+  cardQuestion: '',
 };
 
 export const cardsTableReducer = (
@@ -89,11 +89,11 @@ export const setCardSortAC = (sortCards: string) =>
     },
   } as const);
 
-export const setQuestionSearchAC = (questionSearch: string) =>
+export const setQuestionSearchAC = (cardQuestion: string) =>
   ({
     type: 'CARDS/SET-QUESTION-SEARCH',
     payload: {
-      questionSearch,
+      cardQuestion,
     },
   } as const);
 
@@ -101,7 +101,7 @@ export const setQuestionSearchAC = (questionSearch: string) =>
 export const cardDataTC =
   (_id: string): AppThunk =>
   (dispatch, getState) => {
-    const { pageCount, page, sortCards, minGrade, maxGrade } = getState().card;
+    const { pageCount, page, sortCards, minGrade, maxGrade, cardQuestion } = getState().card;
 
     const params: ParamsCardsType = {
       cardsPack_id: _id,
@@ -110,6 +110,7 @@ export const cardDataTC =
       pageCount,
       min: minGrade,
       max: maxGrade,
+      cardQuestion,
     };
 
     dispatch(setAppStatusAC('loading'));
