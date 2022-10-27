@@ -10,10 +10,10 @@ import { registrationReducer } from '../../features/auth/registration/reducer/re
 import { SetRegisteredType } from '../../features/auth/registration/reducer/registrationReducerType';
 import { profileReducer } from '../../features/profile/reducer/profileReducer';
 import { ProfileReducerActionsType } from '../../features/profile/reducer/profileReducerType';
-import { cardsTableReducer } from '../../features/table/cardsList/reducer/cardTableReducer';
-import { StateCardsReducerActionsType } from '../../features/table/cardsList/reducer/cardTableReducerType';
-import { packTableReducer } from '../../features/table/packTable/reducer/packTableReducer';
-import { StatePackReducerActionsType } from '../../features/table/packTable/reducer/packTableReducerType';
+import { cardsTableReducer } from '../../features/table/cards/reducer/cardTableReducer';
+import { StateCardsReducerActionsType } from '../../features/table/cards/reducer/cardTableReducerType';
+import { packTableReducer } from '../../features/table/packs/reducer/packTableReducer';
+import { StatePackReducerActionsType } from '../../features/table/packs/reducer/packTableReducerType';
 
 import { appReducer } from './app-reducer';
 import { AppReducerActionsType } from './types/appReducerTypes';

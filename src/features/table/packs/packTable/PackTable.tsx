@@ -14,7 +14,7 @@ import { ActionsSvg } from '../../../../common/components/actionsSvg/ActionsSvg'
 import { PATH } from '../../../../common/enum/pathEnum';
 import { ReturnComponentType } from '../../../../common/types';
 import { dayMonthYear } from '../../../../common/utils/dayMonthYear';
-import { setCardsPackIdAC } from '../../cardsList/reducer/cardTableReducer';
+import { setCardsPackIdAC } from '../../cards/reducer/cardTableReducer';
 
 import { HatTable } from './hatTable/HatTable';
 

@@ -4,9 +4,9 @@ import { useAppDispatch, useAppSelector } from '../../../app/store/store';
 import { PaginationPage } from '../../../common/components/pagination/PaginationPage';
 import { ReturnComponentType } from '../../../common/types';
 
-import { AddNewPack } from './PackComponent/AddNewPack';
-import { PackTable } from './PackComponent/PackTable';
-import { SortBar } from './PackComponent/sortBar/SortBar';
+import { AddNewPack } from './packTable/AddNewPack';
+import { PackTable } from './packTable/PackTable';
+import { SortBar } from './packTable/sortBar/SortBar';
 import {
   addPackTC,
   packDateTC,

@@ -11,8 +11,8 @@ import { useAppSelector } from '../../../../app/store/store';
 import { ReturnComponentType } from '../../../../common/types';
 import { dayMonthYear } from '../../../../common/utils/dayMonthYear';
 
-import { CardsTableHeader } from './CardsTableHeader';
-import { SvgCard } from './SvgCard';
+import { CardsTableHeader } from './hatTable/CardsTableHeader';
+import { SvgCard } from './svgCard/SvgCard';
 
 export const CardsTable = (): ReturnComponentType => {
   // const navigate = useNavigate();

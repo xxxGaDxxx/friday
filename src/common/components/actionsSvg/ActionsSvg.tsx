@@ -7,11 +7,11 @@ import teacherSvg from '../../../assets/svg/actions/teacher.svg';
 import {
   packDeleteTC,
   packNewNameTC,
-} from '../../../features/table/packTable/reducer/packTableReducer';
+} from '../../../features/table/packs/reducer/packTableReducer';
 import { ReturnComponentType } from '../../types';
 
 import s from './style/ActionsSvg.module.scss';
-import { ActionsSvgType } from './style/ActionsSvgType';
+import { ActionsSvgType } from './type/ActionsSvgType';
 
 export const ActionsSvg = memo(
   ({ isMyPack, packId, cardsCount }: ActionsSvgType): ReturnComponentType => {

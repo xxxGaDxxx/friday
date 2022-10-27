@@ -11,8 +11,8 @@ import { RecoveryPassword } from '../../features/auth/password/recoveryPasword/R
 import { Registration } from '../../features/auth/registration/Registration';
 import { PageNotFound } from '../../features/pageNotFound/PageNotFound';
 import { Profile } from '../../features/profile/Profile';
-import { CardsList } from '../../features/table/cardsList/CardsList';
-import { Packs } from '../../features/table/packTable/Packs';
+import { Cards } from '../../features/table/cards/Cards';
+import { Packs } from '../../features/table/packs/Packs';
 import PrivateRoutes from '../PrivateRoutes';
 
 export const Pages = (): ReturnComponentType => {
@@ -22,7 +22,7 @@ export const Pages = (): ReturnComponentType => {
         <Route path="/" element={<PrivateRoutes />}>
           <Route index element={<Profile />} />
           <Route path={PATH.PACKS_LIST} element={<Packs />} />
-          <Route path={PATH.CARDS_LIST} element={<CardsList />} />
+          <Route path={PATH.CARDS_LIST} element={<Cards />} />
         </Route>
         <Route path={PATH.LOGIN} element={<Login />} />
         <Route path={PATH.ERRORS} element={<PageNotFound />} />

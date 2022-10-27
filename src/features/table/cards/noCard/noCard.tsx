@@ -9,7 +9,7 @@ import { BackTo } from '../../../../common/components/backTo/BackTo';
 import { PATH } from '../../../../common/enum/pathEnum';
 import { ReturnComponentType } from '../../../../common/types';
 import { addCardTC } from '../reducer/cardTableReducer';
-import s from '../styles/CardsList.module.scss';
+import s from '../styles/Cards.module.scss';
 
 type NoCardType = {
   isMyPack: boolean;

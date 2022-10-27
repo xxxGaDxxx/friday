@@ -1,16 +1,13 @@
 import React from 'react';
 
-import { useAppDispatch } from '../../../../app/store/store';
-import deleteSvg from '../../../../assets/svg/actions/Delete.svg';
-import editSvg from '../../../../assets/svg/actions/Edit.svg';
-import s from '../../../../common/components/actionsSvg/style/ActionsSvg.module.scss';
-import { ReturnComponentType } from '../../../../common/types';
-import { cardDeleteTC, cardUpdateTC } from '../reducer/cardTableReducer';
+import { useAppDispatch } from '../../../../../app/store/store';
+import deleteSvg from '../../../../../assets/svg/actions/Delete.svg';
+import editSvg from '../../../../../assets/svg/actions/Edit.svg';
+import s from '../../../../../common/components/actionsSvg/style/ActionsSvg.module.scss';
+import { ReturnComponentType } from '../../../../../common/types';
+import { cardDeleteTC, cardUpdateTC } from '../../reducer/cardTableReducer';
 
-type SvgCardType = {
-  cardId: string;
-  cardPackId: string;
-};
+import { SvgCardType } from './types/svgCardTypes';
 
 export const SvgCard = ({ cardId, cardPackId }: SvgCardType): ReturnComponentType => {
   const dispatch = useAppDispatch();

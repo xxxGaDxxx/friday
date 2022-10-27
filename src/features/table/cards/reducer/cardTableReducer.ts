@@ -21,6 +21,7 @@ export const initialStateCardTable = {
   token: '',
   tokenDeathTime: 0,
   cardsPackId: '',
+  sortCards: '',
 };
 
 export const cardsTableReducer = (
@@ -42,6 +43,11 @@ export const cardsTableReducer = (
       return {
         ...state,
         cardsPackId: action.payload.cardsPackId,
+      };
+    case 'CARDS/SET-CARD-SORT':
+      return {
+        ...state,
+        ...action.payload,
       };
     default:
       return state;
@@ -73,12 +79,27 @@ export const setCardsPackIdAC = (cardsPackId: string) =>
     },
   } as const);
 
+export const setCardSortAC = (sortCards: string) =>
+  ({
+    type: 'CARDS/SET-CARD-SORT',
+    payload: {
+      sortCards,
+    },
+  } as const);
+
 // thunk
 export const cardDataTC =
   (_id: string): AppThunk =>
-  dispatch => {
+  (dispatch, getState) => {
+    const { pageCount, page, sortCards, minGrade, maxGrade } = getState().card;
+
     const params: ParamsCardsType = {
       cardsPack_id: _id,
+      sortCards,
+      page,
+      pageCount,
+      min: minGrade,
+      max: maxGrade,
     };
 
     dispatch(setAppStatusAC('loading'));

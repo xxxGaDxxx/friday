@@ -9,7 +9,7 @@ import { useAppDispatch } from '../../../../app/store/store';
 import popUpActions from '../../../../assets/svg/actions/myPackPopupActions.svg';
 import { ReturnComponentType } from '../../../../common/types';
 import { addCardTC } from '../reducer/cardTableReducer';
-import s from '../styles/CardsList.module.scss';
+import s from '../styles/Cards.module.scss';
 
 type TitleButtonType = {
   isMyPack: boolean;
