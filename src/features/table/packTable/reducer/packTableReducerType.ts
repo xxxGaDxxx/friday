@@ -1,5 +1,6 @@
 import {
   initialStatePackTable,
+  setAbortSortBarAC,
   setMinMaxCountAC,
   setPackDateAC,
   setPackNameAC,
@@ -20,6 +21,7 @@ export type SetPackNameACType = ReturnType<typeof setPackNameAC>;
 export type SetPackSortACType = ReturnType<typeof setPackSortAC>;
 export type setUserIdACType = ReturnType<typeof setUserIdAC>;
 export type setMinMaxCountACType = ReturnType<typeof setMinMaxCountAC>;
+export type setAbortSortBarACType = ReturnType<typeof setAbortSortBarAC>;
 export type StatePackReducerActionsType =
   | SetPackDateACType
   | SetPackPerPageACType
@@ -27,4 +29,5 @@ export type StatePackReducerActionsType =
   | SetPackNameACType
   | SetPackSortACType
   | setUserIdACType
-  | setMinMaxCountACType;
+  | setMinMaxCountACType
+  | setAbortSortBarACType;

@@ -65,7 +65,7 @@ export type RegistrationParamsType = {
 
 // pack table
 export type PackDateResponseType = {
-  cardPacks: PackCardPacks[];
+  cardPacks?: PackCardPacks[];
   page: number;
   pageCount: number;
   cardPacksTotalCount: number;

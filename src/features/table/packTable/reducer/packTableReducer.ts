@@ -36,6 +36,11 @@ export const packTableReducer = (
         ...state,
         ...action.payload.date,
       };
+    case 'PACK/SET-ABORT-SORT-BAR':
+      return {
+        ...state,
+        ...action.payload,
+      };
     case 'PACK/SET-PACKS-PER-PAGE':
     case 'PACK/SET-SELECTED-PAGE':
     case 'PACK/SET-PACK-NAME':
@@ -103,6 +108,19 @@ export const setPackSortAC = (sortPacks: string) =>
     type: 'PACK/SET-PACK-SORT',
     payload: {
       sortPacks,
+    },
+  } as const);
+
+export const setAbortSortBarAC = (data: {
+  packName: string;
+  sortPacks: string;
+  user_id: string;
+  minMaxCount: number[];
+}) =>
+  ({
+    type: 'PACK/SET-ABORT-SORT-BAR',
+    payload: {
+      data,
     },
   } as const);
 
