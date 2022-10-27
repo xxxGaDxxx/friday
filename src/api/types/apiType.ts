@@ -139,6 +139,42 @@ export type CardsTypeCards = {
   question: string;
   grade: number;
   shots: number;
+  questionImg: string;
+  answerImg: string;
+  comments: string;
+  type: string;
+  rating: number;
+  more_id: string;
+  created: string;
+  updated: string;
+  __v: number;
+};
+
+export type ParamsCardsType = {
+  cardAnswer?: string;
+  cardQuestion?: string;
+  cardsPack_id: string;
+  min?: number;
+  max?: number;
+  sortCards?: string;
+  page?: number;
+  pageCount?: number;
+};
+
+export type AddCardResponseType = {
+  newCard: AddCardResponseTypeNewCard;
+  token: string;
+  tokenDeathTime: number;
+};
+
+export type AddCardResponseTypeNewCard = {
+  _id: string;
+  cardsPack_id: string;
+  user_id: string;
+  answer: string;
+  question: string;
+  grade: number;
+  shots: number;
   comments: string;
   type: string;
   rating: number;
