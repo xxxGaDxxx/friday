@@ -11,6 +11,7 @@ import { PATH } from '../../../common/enum/pathEnum';
 import { ReturnComponentType } from '../../../common/types';
 import { Search } from '../packTable/PackComponent/sortBar/sortBarComponents/Search';
 
+import { CardsTable } from './cardTable/CardsTable';
 import s from './styles/CardsList.module.scss';
 
 export const CardsList = (): ReturnComponentType => {
@@ -35,6 +36,16 @@ export const CardsList = (): ReturnComponentType => {
         </Button>
       </section>
       <Search />
+      <section className={s.table}>
+        <CardsTable />
+      </section>
+      {/* <section className={s.pagination}> */}
+      {/*  <PaginationPage */}
+      {/*    itemsPerPage={pageCount} */}
+      {/*    selectPage={setSelectedPage} */}
+      {/*    changeCountItemsPerPage={changePacksPerPage} */}
+      {/*  /> */}
+      {/* </section> */}
     </main>
   );
 };
