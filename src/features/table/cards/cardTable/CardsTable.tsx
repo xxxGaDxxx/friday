@@ -16,8 +16,6 @@ import { CardsTableHeader } from './hatTable/CardsTableHeader';
 import { SvgCard } from './svgCard/SvgCard';
 
 export const CardsTable = (): ReturnComponentType => {
-  // const navigate = useNavigate();
-
   const cards = useAppSelector(state => state.card.cards);
   const userId = useAppSelector(state => state.profile._id);
   const packUserId = useAppSelector(state => state.card.packUserId);

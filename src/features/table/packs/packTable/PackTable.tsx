@@ -19,11 +19,11 @@ import { setCardsPackIdAC } from '../../cards/reducer/cardTableReducer';
 import { HatTable } from './hatTable/HatTable';
 
 export const PackTable = (): ReturnComponentType => {
-  const navigate = useNavigate();
-  const dispatch = useAppDispatch();
-
   const cardPacks = useAppSelector(state => state.pack.cardPacks);
   const userId = useAppSelector(state => state.profile._id);
+
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const isMyPack = useCallback((id: string): boolean => userId === id, [userId]);
 

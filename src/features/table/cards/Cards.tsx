@@ -49,7 +49,7 @@ export const Cards = (): ReturnComponentType => {
 
   useEffect(() => {
     dispatch(cardDataTC(cardPackId));
-  }, [dispatch, cardPackId, cards.length, sortCards, cardQuestion, page, cardsTotalCount]);
+  }, [dispatch, cardPackId, sortCards, cardQuestion, page, cardsTotalCount]);
 
   if (cards.length === 0) {
     return <NoCard isMyPack={isMyPack} packName={packName} cardPackId={cardPackId} />;
