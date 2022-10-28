@@ -87,6 +87,14 @@ export const setCardsPackIdAC = (cardsPackId: string) =>
     },
   } as const);
 
+export const setCardsPackNameAC = (name: string) =>
+  ({
+    type: 'CARDS/SET-CARDS-PACK-NAME',
+    payload: {
+      packName: name,
+    },
+  } as const);
+
 export const setCardSortAC = (sortCards: string) =>
   ({
     type: 'CARDS/SET-CARD-SORT',

@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { Rating } from '@mui/material';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -36,7 +37,14 @@ export const CardsTable = (): ReturnComponentType => {
                 </TableCell>
                 <TableCell align="right">{card.answer}</TableCell>
                 <TableCell align="right">{dayMonthYear(card.updated)}</TableCell>
-                <TableCell align="right">{card.grade}</TableCell>
+                <TableCell align="right">
+                  <Rating
+                    name="half-rating-read"
+                    defaultValue={card.grade}
+                    precision={0.5}
+                    readOnly
+                  />
+                </TableCell>
                 {isMyPack && (
                   <TableCell align="right">
                     <SvgCard key={card._id} cardId={card._id} cardPackId={card.cardsPack_id} />

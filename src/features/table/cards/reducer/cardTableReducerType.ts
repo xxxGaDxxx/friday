@@ -17,15 +17,15 @@ export type SetCardsDataACType = ReturnType<typeof setCardsDataAC>;
 export type AddCardsACType = ReturnType<typeof addCardsAC>;
 export type SetCardsPackIdACType = ReturnType<typeof setCardsPackIdAC>;
 export type SetCardSortACType = ReturnType<typeof setCardSortAC>;
-export type setQuestionSearchACType = ReturnType<typeof setQuestionSearchAC>;
-export type setCardsPerPageACType = ReturnType<typeof setCardsPerPageAC>;
-export type setSelectedCardsPageACType = ReturnType<typeof setSelectedCardsPageAC>;
+export type SetQuestionSearchACType = ReturnType<typeof setQuestionSearchAC>;
+export type SetCardsPerPageACType = ReturnType<typeof setCardsPerPageAC>;
+export type SetSelectedCardsPageACType = ReturnType<typeof setSelectedCardsPageAC>;
 
 export type StateCardsReducerActionsType =
   | SetCardsDataACType
   | AddCardsACType
   | SetCardsPackIdACType
   | SetCardSortACType
-  | setQuestionSearchACType
-  | setCardsPerPageACType
-  | setSelectedCardsPageACType;
+  | SetQuestionSearchACType
+  | SetCardsPerPageACType
+  | SetSelectedCardsPageACType;

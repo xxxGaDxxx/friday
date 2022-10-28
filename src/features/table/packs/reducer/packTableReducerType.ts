@@ -19,15 +19,16 @@ export type SetPackPerPageACType = ReturnType<typeof setPacksPerPageAC>;
 export type SetSelectedPageACType = ReturnType<typeof setSelectedPageAC>;
 export type SetPackNameACType = ReturnType<typeof setPackNameAC>;
 export type SetPackSortACType = ReturnType<typeof setPackSortAC>;
-export type setUserIdACType = ReturnType<typeof setUserIdAC>;
-export type setMinMaxCountACType = ReturnType<typeof setMinMaxCountAC>;
-export type setAbortSortBarACType = ReturnType<typeof setAbortSortBarAC>;
+export type SetUserIdACType = ReturnType<typeof setUserIdAC>;
+export type SetMinMaxCountACType = ReturnType<typeof setMinMaxCountAC>;
+export type SetAbortSortBarACType = ReturnType<typeof setAbortSortBarAC>;
+
 export type StatePackReducerActionsType =
   | SetPackDateACType
   | SetPackPerPageACType
   | SetSelectedPageACType
   | SetPackNameACType
   | SetPackSortACType
-  | setUserIdACType
-  | setMinMaxCountACType
-  | setAbortSortBarACType;
+  | SetUserIdACType
+  | SetMinMaxCountACType
+  | SetAbortSortBarACType;
