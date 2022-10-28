@@ -1,17 +1,16 @@
 import React from 'react';
 
 import ClickAwayListener from '@mui/base/ClickAwayListener';
-import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Paper from '@mui/material/Paper';
 
 import { useAppDispatch, useAppSelector } from '../../../../app/store/store';
 import deleteSvg from '../../../../assets/svg/actions/Delete.svg';
 import editSvg from '../../../../assets/svg/actions/Edit.svg';
+import teacherSvg from '../../../../assets/svg/actions/teacher.svg';
 import { ReturnComponentType } from '../../../../common/types';
 import { packDeleteTC, packNewNameTC } from '../../packs/reducer/packTableReducer';
 
@@ -42,21 +41,19 @@ export const MyPackMenu = ({ hideMenu }: Props): ReturnComponentType => {
         <List>
           <ListItem disablePadding>
             <ListItemButton onClick={onEditClick}>
-              <img src={editSvg} alt="editSvg" />
+              <img src={editSvg} alt="editSvg" style={{ paddingRight: '15px' }} />
               <ListItemText primary="Edit" />
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding>
             <ListItemButton onClick={onDeleteClick}>
-              <img src={deleteSvg} alt="deleteSvg" />
+              <img src={deleteSvg} alt="deleteSvg" style={{ paddingRight: '15px' }} />
               <ListItemText primary="Delete" />
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding>
             <ListItemButton onClick={onTrainingClick}>
-              <ListItemIcon>
-                <LogoutOutlinedIcon />
-              </ListItemIcon>
+              <img src={teacherSvg} alt="teacherSvg" style={{ paddingRight: '15px' }} />
               <ListItemText primary="Learn" />
             </ListItemButton>
           </ListItem>
