@@ -1,13 +1,11 @@
 import React, { memo } from 'react';
 
-import { useAppDispatch, useAppSelector } from '../../../app/store/store';
 import deleteSvg from '../../../assets/svg/actions/Delete.svg';
 import editSvg from '../../../assets/svg/actions/Edit.svg';
 import teacherSvg from '../../../assets/svg/actions/teacher.svg';
-import {
-  packDeleteTC,
-  packNewNameTC,
-} from '../../../features/table/packs/reducer/packTableReducer';
+import { packDeleteTC, packNewNameTC } from '../../../features/packs/reducer/packTableReducer';
+import { useAppDispatch } from '../../hooks/useAppDispatch';
+import { useAppSelector } from '../../hooks/useAppSelector';
 import { ReturnComponentType } from '../../types';
 
 import s from './style/ActionsSvg.module.scss';

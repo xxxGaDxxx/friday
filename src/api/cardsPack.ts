@@ -18,7 +18,7 @@ import {
 } from './types/apiType';
 
 export const cardsPack = {
-  cardPacksDate(params?: ParamsPacksType) {
+  getPacks(params?: ParamsPacksType) {
     return instance.get<PackDateResponseType>('/cards/pack', {
       params,
     });
@@ -26,8 +26,8 @@ export const cardsPack = {
   deletePack(packId: string) {
     return instance.delete<DeletePackResponseType>(`/cards/pack?id=${packId}`);
   },
-  putPackName(packNew: UpdatePackType) {
-    return instance.put<UpdatePackType, PutPackResponseType>('/cards/pack', { cardsPack: packNew });
+  updatePack(cardsPack: UpdatePackType) {
+    return instance.put<UpdatePackType, PutPackResponseType>('/cards/pack', { cardsPack });
   },
   addPack(cardsPack: CardsPackType) {
     return instance.post<CardsPackType, AddPackResponseType>('/cards/pack', { cardsPack });
@@ -35,7 +35,7 @@ export const cardsPack = {
 };
 
 export const cardsItems = {
-  cardsData(params?: ParamsCardsType) {
+  getCards(params?: ParamsCardsType) {
     return instance.get<ParamsCardsType, AxiosResponse<CardsResponseType>>('/cards/card', {
       params,
     });
@@ -48,7 +48,7 @@ export const cardsItems = {
   deleteCard(cardId: string) {
     return instance.delete<DeleteCardResponseType>(`/cards/card?id=${cardId}`);
   },
-  putCard(card: UpdateCardType) {
+  updateCard(card: UpdateCardType) {
     return instance.put<UpdateCardType, PutCardResponseType>('/cards/card', { card });
   },
 };

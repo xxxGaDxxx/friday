@@ -2,11 +2,12 @@ import React from 'react';
 
 import Button from '@mui/material/Button';
 
-import { useAppDispatch, useAppSelector } from '../../app/store/store';
 import avaImg from '../../assets/img/defultAvatar.png';
 import { BackTo } from '../../common/components/backTo/BackTo';
 import { EditableSpan } from '../../common/components/editableSpan/EditableSpan';
 import { PATH } from '../../common/enum/pathEnum';
+import { useAppDispatch } from '../../common/hooks/useAppDispatch';
+import { useAppSelector } from '../../common/hooks/useAppSelector';
 import styles from '../../common/styles/commonStyles.module.scss';
 import { ReturnComponentType } from '../../common/types';
 

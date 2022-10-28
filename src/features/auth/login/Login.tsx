@@ -13,8 +13,9 @@ import Typography from '@mui/material/Typography';
 import { useFormik } from 'formik';
 import { useNavigate } from 'react-router-dom';
 
-import { useAppDispatch, useAppSelector } from '../../../app/store/store';
 import { PATH } from '../../../common/enum/pathEnum';
+import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
+import { useAppSelector } from '../../../common/hooks/useAppSelector';
 import styles from '../../../common/styles/commonStyles.module.scss';
 import { ReturnComponentType } from '../../../common/types';
 import { validateLoginForm } from '../../../common/utils/validateForm';
@@ -25,7 +26,6 @@ import s from './styles/Login.module.scss';
 export const Login = (): ReturnComponentType => {
   const isLoggedIn = useAppSelector(state => state.login.isLoggedIn);
   const dispatch = useAppDispatch();
-
   const navigate = useNavigate();
 
   const [inputType, setInputType] = useState<string>('password');
@@ -52,6 +52,7 @@ export const Login = (): ReturnComponentType => {
       dispatch(loginTC(values));
     },
   });
+
   const isPasswordError = formik.touched.password && formik.errors.password;
   const isEmailError = formik.touched.email && formik.errors.email;
 

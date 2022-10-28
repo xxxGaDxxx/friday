@@ -10,8 +10,9 @@ import Typography from '@mui/material/Typography';
 import { useFormik } from 'formik';
 import { useNavigate } from 'react-router-dom';
 
-import { useAppDispatch, useAppSelector } from '../../../app/store/store';
 import { PATH } from '../../../common/enum/pathEnum';
+import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
+import { useAppSelector } from '../../../common/hooks/useAppSelector';
 import styles from '../../../common/styles/commonStyles.module.scss';
 import { ReturnComponentType } from '../../../common/types';
 import { validateRegistrationForm } from '../../../common/utils/validateForm';
@@ -29,6 +30,7 @@ export const Registration = (): ReturnComponentType => {
   const onShowHidePasswordClick = (): void => {
     setInputType(inputType === 'password' ? 'text' : 'password');
   };
+
   const onLoginPageClick = (): void => {
     navigate(PATH.LOGIN);
   };
@@ -44,19 +46,22 @@ export const Registration = (): ReturnComponentType => {
       dispatch(registrationTC(values));
     },
   });
+
   const errorEmail =
     formik.touched.email && formik.errors.email ? (
       <h3>{formik.errors.email}</h3>
     ) : (
       <h3 style={{ color: '#fff' }}>element</h3>
     );
+
   const errorPassword =
     formik.touched.password && formik.errors.password ? (
       <h3>{formik.errors.password}</h3>
     ) : (
       <h3 style={{ color: '#fff' }}>element</h3>
     );
-  const errorConfirmPswrd =
+
+  const errorConfirmPassword =
     formik.touched.confirmPassword && formik.errors.confirmPassword ? (
       <h3>{formik.errors.confirmPassword}</h3>
     ) : (
@@ -82,7 +87,9 @@ export const Registration = (): ReturnComponentType => {
               margin="none"
               {...formik.getFieldProps('email')}
             />
+
             {errorEmail}
+
             <TextField
               type={inputType}
               variant="standard"
@@ -97,7 +104,9 @@ export const Registration = (): ReturnComponentType => {
                 ),
               }}
             />
+
             {errorPassword}
+
             <TextField
               type={inputType}
               variant="standard"
@@ -112,7 +121,9 @@ export const Registration = (): ReturnComponentType => {
                 ),
               }}
             />
-            {errorConfirmPswrd}
+
+            {errorConfirmPassword}
+
             <Button
               type="submit"
               variant="contained"

@@ -5,10 +5,10 @@ import Pagination from '@mui/material/Pagination';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import Stack from '@mui/material/Stack';
 
-import { useAppSelector } from '../../hooks/useAppSelector';
-import { ReturnComponentType } from '../../types';
+import { useAppSelector } from '../../../common/hooks/useAppSelector';
+import { ReturnComponentType } from '../../../common/types';
 
-import s from './styles/Pagination.module.scss';
+import s from './styles/PaginationCards.module.scss';
 
 type PaginationPageType = {
   itemsPerPage: number;
@@ -16,20 +16,21 @@ type PaginationPageType = {
   changeCountItemsPerPage: (itemsPerPage: number) => void;
 };
 
-export const PaginationPage = memo(
+export const PaginationCardsPage = memo(
   ({
     itemsPerPage,
     selectPage,
     changeCountItemsPerPage,
   }: PaginationPageType): ReturnComponentType => {
     const [valueItemsPerPage, setValueItemsPerPage] = useState<number>(itemsPerPage);
-    const totalItems = useAppSelector(state => state.pack.cardPacksTotalCount); // add props
+    const totalItems = useAppSelector(state => state.card.cardsTotalCount); // add props
 
     const pageCount = Math.ceil(totalItems / valueItemsPerPage);
 
     const onPageClick = (event: ChangeEvent<unknown>, page: number): void => {
       selectPage(page);
     };
+
     const onItemsPerPageChange = (): void => {
       changeCountItemsPerPage(valueItemsPerPage);
     };

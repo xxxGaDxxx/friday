@@ -3,6 +3,8 @@ import React, { useEffect } from 'react';
 import { CircularProgress, LinearProgress, ThemeProvider } from '@mui/material';
 
 import { ErrorSnackbar } from '../common/components/errorSnackbar/ErrorSnackbar';
+import { useAppDispatch } from '../common/hooks/useAppDispatch';
+import { useAppSelector } from '../common/hooks/useAppSelector';
 import { ReturnComponentType } from '../common/types';
 import { theme } from '../common/utils/styles/muiTheme';
 
@@ -10,7 +12,6 @@ import s from './App.module.scss';
 import { Header } from './header/Header';
 import { Pages } from './pages/Pages';
 import { initializeAppTC } from './store/app-reducer';
-import { useAppDispatch, useAppSelector } from './store/store';
 
 const App = (): ReturnComponentType => {
   const status = useAppSelector(state => state.app.status);
