@@ -42,7 +42,6 @@ export const Registration = (): ReturnComponentType => {
     validate: values => validateRegistrationForm(values),
     onSubmit: values => {
       dispatch(registrationTC(values));
-      formik.resetForm();
     },
   });
   const errorEmail =

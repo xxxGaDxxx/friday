@@ -50,8 +50,6 @@ export const Login = (): ReturnComponentType => {
     validate: values => validateLoginForm(values),
     onSubmit: values => {
       dispatch(loginTC(values));
-
-      formik.resetForm();
     },
   });
   const isPasswordError = formik.touched.password && formik.errors.password;
