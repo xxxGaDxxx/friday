@@ -40,13 +40,16 @@ export const Packs = (): ReturnComponentType => {
     [dispatch],
   );
 
-  const onAddPackClick = useCallback((): void => {
-    dispatch(addPackTC());
-  }, [dispatch]);
+  const onAddPackClick = useCallback(
+    (titlePack: string, privatePack: boolean): void => {
+      dispatch(addPackTC(titlePack, privatePack));
+    },
+    [dispatch],
+  );
 
   useEffect(() => {
     dispatch(packDateTC());
-  }, [dispatch, pageCount, page, packName, sortPacks, userId, minMaxCount]);
+  }, [dispatch, pageCount, page, sortPacks, userId, minMaxCount, packName]);
 
   return (
     <div className={s.container}>

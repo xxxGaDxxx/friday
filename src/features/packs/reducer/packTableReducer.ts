@@ -135,7 +135,7 @@ export const packDeleteTC =
       });
   };
 
-export const packNewNameTC =
+export const updatePackTC =
   (packId: string): AppThunk =>
   dispatch => {
     const packNew = {
@@ -158,23 +158,26 @@ export const packNewNameTC =
       });
   };
 
-export const addPackTC = (): AppThunk => dispatch => {
-  dispatch(setAppStatusAC('loading'));
-  const packNew = {
-    name: 'A NEW PACK',
-    deckCover: '',
-    private: false,
+export const addPackTC =
+  (titlePack: string, privatePack: boolean): AppThunk =>
+  dispatch => {
+    dispatch(setAppStatusAC('loading'));
+
+    const packNew = {
+      name: titlePack,
+      deckCover: '',
+      private: privatePack,
+    };
+
+    cardsPack
+      .addPack(packNew)
+
+      .then(() => {
+        dispatch(packDateTC());
+        dispatch(setAppStatusAC('succeeded'));
+      })
+
+      .catch(err => {
+        errorUtils(err, dispatch);
+      });
   };
-
-  cardsPack
-    .addPack(packNew)
-
-    .then(() => {
-      dispatch(packDateTC());
-      dispatch(setAppStatusAC('succeeded'));
-    })
-
-    .catch(err => {
-      errorUtils(err, dispatch);
-    });
-};

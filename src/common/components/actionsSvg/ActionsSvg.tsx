@@ -3,7 +3,7 @@ import React, { memo } from 'react';
 import deleteSvg from '../../../assets/svg/actions/Delete.svg';
 import editSvg from '../../../assets/svg/actions/Edit.svg';
 import teacherSvg from '../../../assets/svg/actions/teacher.svg';
-import { packDeleteTC, packNewNameTC } from '../../../features/packs/reducer/packTableReducer';
+import { packDeleteTC, updatePackTC } from '../../../features/packs/reducer/packTableReducer';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { useAppSelector } from '../../hooks/useAppSelector';
 import { ReturnComponentType } from '../../types';
@@ -18,7 +18,7 @@ export const ActionsSvg = memo(
     const dispatch = useAppDispatch();
 
     const onEditClick = (): void => {
-      dispatch(packNewNameTC(packId));
+      dispatch(updatePackTC(packId));
     };
 
     const onDeleteClick = (): void => {

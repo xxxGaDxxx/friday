@@ -15,7 +15,7 @@ import { PATH } from '../../../common/enum/pathEnum';
 import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
 import { useAppSelector } from '../../../common/hooks/useAppSelector';
 import { ReturnComponentType } from '../../../common/types';
-import { packDeleteTC, packNewNameTC } from '../../packs/reducer/packTableReducer';
+import { packDeleteTC, updatePackTC } from '../../packs/reducer/packTableReducer';
 
 import { MyPackMenuProps } from './type/MyPackMenuProps';
 
@@ -35,7 +35,7 @@ export const MyPackMenu = ({ hideMenu }: MyPackMenuProps): ReturnComponentType =
   };
 
   const onEditClick = (): void => {
-    dispatch(packNewNameTC(packId));
+    dispatch(updatePackTC(packId));
     hideMenu();
   };
 
