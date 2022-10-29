@@ -8,14 +8,14 @@ import TextField from '@mui/material/TextField';
 import UniversalModalWindow from '../../../../../common/components/universalModalWindow/UniversalModalWindow';
 import { ReturnComponentType } from '../../../../../common/types';
 
-import s from './styles/AddPackModal.module.scss';
+import s from './style/AddPackModal.module.scss';
+import { AddPackModalProps } from './type/AddPackModalType';
 
-type AddPackModalProps = {
-  onAddPackClick: (titlePack: string, privatePack: boolean) => void;
-};
-
-export const AddPackModal = ({ onAddPackClick }: AddPackModalProps): ReturnComponentType => {
-  const [open, setOpen] = useState(false);
+export const AddPackModal = ({
+  onAddPackClick,
+  open,
+  setOpen,
+}: AddPackModalProps): ReturnComponentType => {
   const [titlePack, setTitlePack] = useState('');
   const [privatePack, setPrivatePack] = useState(false);
 
@@ -23,11 +23,7 @@ export const AddPackModal = ({ onAddPackClick }: AddPackModalProps): ReturnCompo
     setPrivatePack(!privatePack);
   };
 
-  const handleOpen = (): void => {
-    setOpen(true);
-    setTitlePack('');
-  };
-  const handleClose = (): void => {
+  const HandleClose = (): void => {
     setOpen(false);
     setTitlePack('');
     setPrivatePack(false);
@@ -35,7 +31,7 @@ export const AddPackModal = ({ onAddPackClick }: AddPackModalProps): ReturnCompo
 
   const onSaveClick = (): void => {
     onAddPackClick(titlePack, privatePack);
-    handleClose();
+    HandleClose();
     setTitlePack('');
     setPrivatePack(false);
   };
@@ -45,13 +41,7 @@ export const AddPackModal = ({ onAddPackClick }: AddPackModalProps): ReturnCompo
   };
 
   return (
-    <UniversalModalWindow
-      title="Add new pack"
-      titleButton="Add new pack"
-      open={open}
-      handleOpen={handleOpen}
-      handleClose={handleClose}
-    >
+    <UniversalModalWindow title="Add new pack" open={open} handleClose={HandleClose}>
       <TextField
         type="text"
         variant="standard"
@@ -73,7 +63,7 @@ export const AddPackModal = ({ onAddPackClick }: AddPackModalProps): ReturnCompo
           variant="contained"
           color="inherit"
           style={{ borderRadius: '20px' }}
-          onClick={handleClose}
+          onClick={HandleClose}
         >
           Cancel
         </Button>

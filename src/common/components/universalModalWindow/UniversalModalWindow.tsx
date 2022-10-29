@@ -1,9 +1,7 @@
 import React, { ReactNode } from 'react';
 
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
-import Typography from '@mui/material/Typography';
 
 import close from '../../../assets/svg/close.svg';
 import { ReturnComponentType } from '../../types';
@@ -25,8 +23,6 @@ const style = {
 type UniversalModalWindowType = {
   children: ReactNode;
   title: string;
-  titleButton: string;
-  handleOpen: () => void;
   handleClose: () => void;
   open: boolean;
 };
@@ -34,45 +30,28 @@ type UniversalModalWindowType = {
 const UniversalModalWindow = ({
   children,
   title,
-  titleButton,
-  handleOpen,
   handleClose,
   open,
 }: UniversalModalWindowType): ReturnComponentType => {
   return (
-    <div>
-      <Button
-        onClick={handleOpen}
-        type="button"
-        variant="contained"
-        color="primary"
-        style={{ borderRadius: '20px' }}
-      >
-        {titleButton}
-      </Button>
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={style}>
-          <div className={s.header}>
-            <Typography id="modal-modal-title" variant="h6" component="h2">
-              <h2>{title}</h2>
-            </Typography>
+    <Modal
+      open={open}
+      onClose={handleClose}
+      aria-labelledby="modal-modal-title"
+      aria-describedby="modal-modal-description"
+    >
+      <Box sx={style}>
+        <div className={s.header}>
+          <h2>{title}</h2>
 
-            <button type="button" onClick={handleClose} className={s.button}>
-              <img src={close} alt="close" />
-            </button>
-          </div>
-          <hr className={s.strip} />
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            {children}
-          </Typography>
-        </Box>
-      </Modal>
-    </div>
+          <button type="button" onClick={handleClose} className={s.button}>
+            <img src={close} alt="close" />
+          </button>
+        </div>
+        <hr className={s.strip} />
+        <div>{children}</div>
+      </Box>
+    </Modal>
   );
 };
 

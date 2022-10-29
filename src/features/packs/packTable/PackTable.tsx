@@ -54,6 +54,7 @@ export const PackTable = (): ReturnComponentType => {
                     isMyPack={isMyPack(pack.user_id)}
                     packId={pack._id}
                     cardsCount={pack.cardsCount}
+                    namePack={pack.name}
                   />
                 </TableCell>
               </TableRow>
