@@ -32,11 +32,8 @@ export const packTableReducer = (
         ...state,
         ...action.payload.date,
       };
+
     case 'PACK/SET-ABORT-SORT-BAR':
-      return {
-        ...state,
-        ...action.payload,
-      };
     case 'PACK/SET-SELECTED-PAGE':
     case 'PACK/SET-PACK-NAME':
     case 'PACK/SET-PACK-SORT':
@@ -58,58 +55,25 @@ export const packTableReducer = (
 
 // action
 export const setPackDateAC = (date: PackDateResponseType) =>
-  ({
-    type: 'PACK/SET-PACK-DATE',
-    payload: {
-      date,
-    },
-  } as const);
+  ({ type: 'PACK/SET-PACK-DATE', payload: { date } } as const);
 
 export const setPacksPerPageAC = (count: number) =>
-  ({
-    type: 'PACK/SET-PACKS-PER-PAGE',
-    payload: {
-      count,
-    },
-  } as const);
+  ({ type: 'PACK/SET-PACKS-PER-PAGE', payload: { count } } as const);
 
 export const setSelectedPageAC = (page: number) =>
-  ({
-    type: 'PACK/SET-SELECTED-PAGE',
-    payload: {
-      page,
-    },
-  } as const);
+  ({ type: 'PACK/SET-SELECTED-PAGE', payload: { page } } as const);
+
 export const setUserIdAC = (user_id: string) =>
-  ({
-    type: 'PACK/SET-USER-ID',
-    payload: {
-      user_id,
-    },
-  } as const);
+  ({ type: 'PACK/SET-USER-ID', payload: { user_id } } as const);
 
 export const setPackNameAC = (packName: string) =>
-  ({
-    type: 'PACK/SET-PACK-NAME',
-    payload: {
-      packName,
-    },
-  } as const);
+  ({ type: 'PACK/SET-PACK-NAME', payload: { packName } } as const);
+
 export const setMinMaxCountAC = (minMaxCount: number[]) =>
-  ({
-    type: 'PACK/SET-MIN-MAX-COUNT',
-    payload: {
-      minMaxCount,
-    },
-  } as const);
+  ({ type: 'PACK/SET-MIN-MAX-COUNT', payload: { minMaxCount } } as const);
 
 export const setPackSortAC = (sortPacks: string) =>
-  ({
-    type: 'PACK/SET-PACK-SORT',
-    payload: {
-      sortPacks,
-    },
-  } as const);
+  ({ type: 'PACK/SET-PACK-SORT', payload: { sortPacks } } as const);
 
 export const setAbortSortBarAC = (data: {
   packName: string;
@@ -139,12 +103,15 @@ export const packDateTC = (): AppThunk => (dispatch, getState) => {
   };
 
   dispatch(setAppStatusAC('loading'));
+
   cardsPack
     .getPacks(params)
+
     .then(res => {
       dispatch(setPackDateAC(res.data));
       dispatch(setAppStatusAC('succeeded'));
     })
+
     .catch(err => {
       errorUtils(err, dispatch);
     });
@@ -154,12 +121,15 @@ export const packDeleteTC =
   (packId: string): AppThunk =>
   dispatch => {
     dispatch(setAppStatusAC('loading'));
+
     cardsPack
       .deletePack(packId)
+
       .then(() => {
         dispatch(packDateTC());
         dispatch(setAppStatusAC('succeeded'));
       })
+
       .catch(err => {
         errorUtils(err, dispatch);
       });
@@ -174,12 +144,15 @@ export const packNewNameTC =
     };
 
     dispatch(setAppStatusAC('loading'));
+
     cardsPack
       .updatePack(packNew)
+
       .then(() => {
         dispatch(packDateTC());
         dispatch(setAppStatusAC('succeeded'));
       })
+
       .catch(err => {
         errorUtils(err, dispatch);
       });
@@ -195,10 +168,12 @@ export const addPackTC = (): AppThunk => dispatch => {
 
   cardsPack
     .addPack(packNew)
+
     .then(() => {
       dispatch(packDateTC());
       dispatch(setAppStatusAC('succeeded'));
     })
+
     .catch(err => {
       errorUtils(err, dispatch);
     });

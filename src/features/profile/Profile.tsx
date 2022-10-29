@@ -15,9 +15,10 @@ import { logOutUserTC, updateUserNameTC } from './reducer/profileReducer';
 import s from './styles/Profile.module.scss';
 
 export const Profile = (): ReturnComponentType => {
-  const dispatch = useAppDispatch();
   const email = useAppSelector(state => state.profile.email);
   const userName = useAppSelector(state => state.profile.name);
+
+  const dispatch = useAppDispatch();
 
   const onNameChange = (name: string): void => {
     dispatch(updateUserNameTC({ name, avatar: 'https//avatar-url.img' }));

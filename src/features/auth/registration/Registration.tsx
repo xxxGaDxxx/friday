@@ -21,9 +21,11 @@ import { registrationTC } from './reducer/registrationReducer';
 import s from './styles/Registration.module.scss';
 
 export const Registration = (): ReturnComponentType => {
-  const dispatch = useAppDispatch();
-  const navigate = useNavigate();
   const isRegistered = useAppSelector(state => state.registration.isRegistered);
+
+  const dispatch = useAppDispatch();
+
+  const navigate = useNavigate();
 
   const [inputType, setInputType] = useState<string>('password');
 

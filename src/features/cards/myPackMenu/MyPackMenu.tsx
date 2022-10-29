@@ -17,15 +17,15 @@ import { useAppSelector } from '../../../common/hooks/useAppSelector';
 import { ReturnComponentType } from '../../../common/types';
 import { packDeleteTC, packNewNameTC } from '../../packs/reducer/packTableReducer';
 
-type Props = {
-  hideMenu: () => void;
-};
+import { MyPackMenuProps } from './type/MyPackMenuProps';
 
-export const MyPackMenu = ({ hideMenu }: Props): ReturnComponentType => {
-  const dispatch = useAppDispatch();
+export const MyPackMenu = ({ hideMenu }: MyPackMenuProps): ReturnComponentType => {
   const status = useAppSelector(state => state.app.status);
-  const navigate = useNavigate();
   const packId = useAppSelector(state => state.card.cardsPackId);
+
+  const dispatch = useAppDispatch();
+
+  const navigate = useNavigate();
 
   const onDeleteClick = (): void => {
     dispatch(packDeleteTC(packId));

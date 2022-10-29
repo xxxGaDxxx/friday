@@ -10,12 +10,11 @@ import { useAppSelector } from '../../../../common/hooks/useAppSelector';
 import { ReturnComponentType } from '../../../../common/types';
 import { onSortRows } from '../../../../common/utils/sortRows';
 
-type CardsTableHeaderType = {
-  isMyPack: boolean;
-};
+import { CardsTableHeaderType } from './type/CardsTableHeaderType';
 
 export const CardsTableHeader = ({ isMyPack }: CardsTableHeaderType): ReturnComponentType => {
   const sortCards = useAppSelector(state => state.card.sortCards);
+
   const dispatch = useAppDispatch();
 
   return (

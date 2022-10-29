@@ -25,7 +25,9 @@ import s from './styles/Login.module.scss';
 
 export const Login = (): ReturnComponentType => {
   const isLoggedIn = useAppSelector(state => state.login.isLoggedIn);
+
   const dispatch = useAppDispatch();
+
   const navigate = useNavigate();
 
   const [inputType, setInputType] = useState<string>('password');
@@ -37,6 +39,7 @@ export const Login = (): ReturnComponentType => {
   const onRegistrationPageClick = (): void => {
     navigate(PATH.REGISTRATION);
   };
+
   const onForgotPasswordPageClick = (): void => {
     navigate(PATH.RECOVERY_PASSWORD);
   };

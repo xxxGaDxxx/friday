@@ -21,11 +21,12 @@ import { newPasswordTC, setIsInfoNewPasswordAC } from '../recoveryPasword/reduce
 
 export const NewPassword = (): ReturnComponentType => {
   const infoNewPassword = useAppSelector(state => state.forgot.infoNewPassword);
+
   const dispatch = useAppDispatch();
 
-  const [inputType, setInputType] = useState<string>('password');
-
   const navigate = useNavigate();
+
+  const [inputType, setInputType] = useState<string>('password');
 
   const onShowHidePasswordClick = (): void => {
     setInputType(inputType === 'password' ? 'text' : 'password');

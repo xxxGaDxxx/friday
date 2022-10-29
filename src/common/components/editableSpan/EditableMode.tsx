@@ -6,11 +6,7 @@ import TextField from '@mui/material/TextField';
 
 import { ReturnComponentType } from '../../types';
 
-type EditableModeProps = {
-  value: string;
-  activateViewMode: () => void;
-  setText: (text: string) => void;
-};
+import { EditableModeProps } from './type/EditableModeProps';
 
 export const EditableMode = ({
   value,

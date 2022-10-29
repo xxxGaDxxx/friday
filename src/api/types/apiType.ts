@@ -20,6 +20,7 @@ export type UpdateUserResponseType = {
   token: string;
   tokenDeathTime: number;
 };
+
 type TokenDeathTimeType = {
   tokenDeathTime: number;
 };
@@ -74,6 +75,7 @@ export type PackDateResponseType = {
   token: string;
   tokenDeathTime: number;
 };
+
 export type PackCardPacks = {
   _id: string;
   user_id: string;
@@ -120,6 +122,7 @@ export type AddPackResponseType = {
   token: string;
   tokenDeathTime: number;
 };
+
 export type AddPackResponseTypeNewCardsPack = {
   _id: string;
   user_id: string;
@@ -168,6 +171,7 @@ export type CardsResponseType = {
   token: string;
   tokenDeathTime: number;
 };
+
 export type CardsTypeCards = {
   _id: string;
   cardsPack_id: string;
@@ -219,6 +223,7 @@ export type PutCardResponseType = {
   token: string;
   tokenDeathTime: number;
 };
+
 export type PutCardResponseTypeUpdatedCard = {
   _id: string;
   cardsPack_id: string;

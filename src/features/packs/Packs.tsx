@@ -17,7 +17,6 @@ import {
 import s from './style/Packs.module.scss';
 
 export const Packs = (): ReturnComponentType => {
-  const dispatch = useAppDispatch();
   const page = useAppSelector(state => state.pack.page);
   const pageCount = useAppSelector(state => state.pack.pageCount);
   const packName = useAppSelector(state => state.pack.packName);
@@ -25,12 +24,15 @@ export const Packs = (): ReturnComponentType => {
   const userId = useAppSelector(state => state.pack.user_id);
   const minMaxCount = useAppSelector(state => state.pack.minMaxCount);
 
+  const dispatch = useAppDispatch();
+
   const changePacksPerPage = useCallback(
     (count: number): void => {
       dispatch(setPacksPerPageAC(count));
     },
     [dispatch],
   );
+
   const setSelectedPage = useCallback(
     (page: number): void => {
       dispatch(setSelectedPageAC(page));

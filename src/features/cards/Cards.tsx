@@ -20,8 +20,6 @@ import s from './styles/Cards.module.scss';
 import { TitleButton } from './titleButton/TitleButton';
 
 export const Cards = (): ReturnComponentType => {
-  const dispatch = useAppDispatch();
-
   const userId = useAppSelector(state => state.profile._id);
   const cards = useAppSelector(state => state.card.cards);
   const packUserId = useAppSelector(state => state.card.packUserId);
@@ -32,6 +30,8 @@ export const Cards = (): ReturnComponentType => {
   const page = useAppSelector(state => state.card.page);
   const pageCount = useAppSelector(state => state.card.pageCount);
   const cardsTotalCount = useAppSelector(state => state.card.cardsTotalCount);
+
+  const dispatch = useAppDispatch();
 
   const changeCardsPerPage = useCallback(
     (count: number): void => {

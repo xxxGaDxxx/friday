@@ -7,51 +7,57 @@ export const onSortRows = (thName: string, dispatch: AppDispatchType, sort: stri
     case 'name':
       if (sort === '0name') {
         dispatch(setPackSortAC('1name'));
-      } else {
-        dispatch(setPackSortAC('0name'));
+        break;
       }
+      dispatch(setPackSortAC('0name'));
       break;
+
     case 'card':
       if (sort === '0cardsCount') {
         dispatch(setPackSortAC('1cardsCount'));
-      } else {
-        dispatch(setPackSortAC('0cardsCount'));
+        break;
       }
+      dispatch(setPackSortAC('0cardsCount'));
       break;
+
     case 'updated':
       if (sort === '0updated') {
         dispatch(setPackSortAC('1updated'));
-      } else {
-        dispatch(setPackSortAC('0updated'));
+        break;
       }
+      dispatch(setPackSortAC('0updated'));
       break;
+
     case 'user_name':
       if (sort === '0user_name') {
         dispatch(setPackSortAC('1user_name'));
-      } else {
-        dispatch(setPackSortAC('0user_name'));
+        break;
       }
+      dispatch(setPackSortAC('0user_name'));
       break;
+
     case 'question':
       if (sort === '0question') {
         dispatch(setCardSortAC('1question'));
-      } else {
-        dispatch(setCardSortAC('0question'));
+        break;
       }
+      dispatch(setCardSortAC('0question'));
       break;
+
     case 'answer':
       if (sort === '0answer') {
         dispatch(setCardSortAC('1answer'));
-      } else {
-        dispatch(setCardSortAC('0answer'));
+        break;
       }
+      dispatch(setCardSortAC('0answer'));
       break;
+
     case 'updatedCard':
       if (sort === '0updated') {
         dispatch(setCardSortAC('1updated'));
-      } else {
-        dispatch(setCardSortAC('0updated'));
+        break;
       }
+      dispatch(setCardSortAC('0updated'));
       break;
     default:
       break;

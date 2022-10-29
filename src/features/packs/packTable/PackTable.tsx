@@ -24,6 +24,7 @@ export const PackTable = (): ReturnComponentType => {
   const userId = useAppSelector(state => state.profile._id);
 
   const dispatch = useAppDispatch();
+
   const navigate = useNavigate();
 
   const isMyPack = useCallback((id: string): boolean => userId === id, [userId]);

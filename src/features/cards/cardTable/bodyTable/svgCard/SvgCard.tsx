@@ -1,20 +1,21 @@
-import React from 'react';
+import React, { memo } from 'react';
 
-import deleteSvg from '../../../../assets/svg/actions/Delete.svg';
-import editSvg from '../../../../assets/svg/actions/Edit.svg';
-import s from '../../../../common/components/actionsSvg/style/ActionsSvg.module.scss';
-import { useAppDispatch } from '../../../../common/hooks/useAppDispatch';
-import { ReturnComponentType } from '../../../../common/types';
-import { cardDeleteTC, cardUpdateTC } from '../../reducer/cardTableReducer';
+import deleteSvg from '../../../../../assets/svg/actions/Delete.svg';
+import editSvg from '../../../../../assets/svg/actions/Edit.svg';
+import s from '../../../../../common/components/actionsSvg/style/ActionsSvg.module.scss';
+import { useAppDispatch } from '../../../../../common/hooks/useAppDispatch';
+import { ReturnComponentType } from '../../../../../common/types';
+import { cardDeleteTC, cardUpdateTC } from '../../../reducer/cardTableReducer';
 
 import { SvgCardType } from './types/svgCardTypes';
 
-export const SvgCard = ({ cardId, cardPackId }: SvgCardType): ReturnComponentType => {
+export const SvgCard = memo(({ cardId, cardPackId }: SvgCardType): ReturnComponentType => {
   const dispatch = useAppDispatch();
 
   const onDeleteClick = (): void => {
     dispatch(cardDeleteTC(cardId, cardPackId));
   };
+
   const onEditClick = (): void => {
     dispatch(cardUpdateTC(cardId, cardPackId));
   };
@@ -41,4 +42,4 @@ export const SvgCard = ({ cardId, cardPackId }: SvgCardType): ReturnComponentTyp
       </button>
     </>
   );
-};
+});

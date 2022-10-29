@@ -12,11 +12,7 @@ import { MyPackMenu } from '../myPackMenu/MyPackMenu';
 import { addCardTC } from '../reducer/cardTableReducer';
 import s from '../styles/Cards.module.scss';
 
-type TitleButtonType = {
-  isMyPack: boolean;
-  packName: string;
-  cardPackId: string;
-};
+import { TitleButtonType } from './type/TitleButtonType';
 
 export const TitleButton = ({
   isMyPack,

@@ -11,11 +11,7 @@ import { ReturnComponentType } from '../../../common/types';
 import { addCardTC } from '../reducer/cardTableReducer';
 import s from '../styles/Cards.module.scss';
 
-type NoCardType = {
-  isMyPack: boolean;
-  packName: string;
-  cardPackId: string;
-};
+import { NoCardType } from './type/NoCardType';
 
 export const NoCard = memo(
   ({ isMyPack, packName, cardPackId }: NoCardType): ReturnComponentType => {

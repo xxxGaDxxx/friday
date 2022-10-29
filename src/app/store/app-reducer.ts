@@ -22,8 +22,10 @@ export const appReducer = (
   switch (action.type) {
     case 'APP/SET-STATUS':
       return { ...state, status: action.payload.status };
+
     case 'APP/SET-ERROR':
       return { ...state, error: action.payload.error };
+
     case 'APP/SET-INITIALIZED':
       return { ...state, isInitialized: action.payload.value };
     default:
@@ -55,8 +57,10 @@ export const setIsInitializedAC = (value: boolean) =>
 export const initializeAppTC = (): AppThunk => dispatch => {
   dispatch(setAppStatusAC('loading'));
   dispatch(setAppErrorAC(null));
+
   authAPI
     .me()
+
     .then(res => {
       dispatch(setIsLoggedInAC(true));
       dispatch(setUserDateAC(res.data));
@@ -66,6 +70,7 @@ export const initializeAppTC = (): AppThunk => dispatch => {
     .catch(() => {
       dispatch(setAppStatusAC('failed'));
     })
+
     .finally(() => {
       dispatch(setIsInitializedAC(true));
     });

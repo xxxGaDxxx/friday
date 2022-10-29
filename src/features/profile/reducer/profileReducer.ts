@@ -32,36 +32,40 @@ export const profileReducer = (
   }
 };
 
+// actions
 export const setUserDateAC = (userDate: UserResponseType) =>
-  ({
-    type: 'PROFILE/SET-USER-DATE',
-    payload: {
-      userDate,
-    },
-  } as const);
+  ({ type: 'PROFILE/SET-USER-DATE', payload: { userDate } } as const);
 
+// thunk
 export const updateUserNameTC =
   (data: UserUpdateParamsType): AppThunk =>
   dispatch => {
     dispatch(setAppStatusAC('loading'));
+
     userAPI
       .updateUser(data)
+
       .then(res => {
         dispatch(setUserDateAC(res.data.updatedUser));
         dispatch(setAppStatusAC('succeeded'));
       })
+
       .catch(err => {
         errorUtils(err, dispatch);
       });
   };
+
 export const logOutUserTC = (): AppThunk => dispatch => {
   dispatch(setAppStatusAC('loading'));
+
   authAPI
     .logout()
+
     .then(() => {
       dispatch(setIsLoggedInAC(false));
       dispatch(setAppStatusAC('succeeded'));
     })
+
     .catch((err: Error | AxiosError<{ error: string }, any>) => {
       errorUtils(err, dispatch);
     });

@@ -25,25 +25,23 @@ export const loginReducer = (
 
 // action
 export const setIsLoggedInAC = (value: boolean) =>
-  ({
-    type: 'LOGIN/SET-IS-LOGGED-IN',
-    payload: {
-      value,
-    },
-  } as const);
+  ({ type: 'LOGIN/SET-IS-LOGGED-IN', payload: { value } } as const);
 
 // thunk
 export const loginTC =
   (data: LoginParamsType): AppThunk =>
   dispatch => {
     dispatch(setAppStatusAC('loading'));
+
     authAPI
       .login(data)
+
       .then(res => {
         dispatch(setIsLoggedInAC(true));
         dispatch(setUserDateAC(res.data));
         dispatch(setAppStatusAC('succeeded'));
       })
+
       .catch(err => {
         errorUtils(err, dispatch);
       });

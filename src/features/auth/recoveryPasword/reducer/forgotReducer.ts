@@ -43,13 +43,16 @@ export const forgotPasswordTC =
   (data: ForgotParamsType): AppThunk =>
   dispatch => {
     dispatch(setAppStatusAC('loading'));
+
     forgotPasswordAPI
       .forgot(data)
+
       .then(res => {
         dispatch(setEmailAC(data.email));
         dispatch(setIsSuccessAC(res.data.success));
         dispatch(setAppStatusAC('succeeded'));
       })
+
       .catch(err => {
         errorUtils(err, dispatch);
       });
@@ -59,14 +62,17 @@ export const newPasswordTC =
   (data: NewPasswordType): AppThunk =>
   dispatch => {
     dispatch(setAppStatusAC('loading'));
+
     forgotPasswordAPI
       .newPassword(data)
+
       .then(res => {
         const info = res.data.info ? res.data.info : '';
 
         dispatch(setIsInfoNewPasswordAC(info));
         dispatch(setAppStatusAC('succeeded'));
       })
+
       .catch(err => {
         errorUtils(err, dispatch);
       });

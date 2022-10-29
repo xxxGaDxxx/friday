@@ -15,15 +15,18 @@ export const authAPI = {
   login(data: LoginParamsType) {
     return instance.post<LoginParamsType, AxiosResponse<UserResponseType>>('auth/login', data);
   },
+
   registration(data: RegistrationParamsType) {
     return instance.post<RegistrationParamsType, AxiosResponse<RegisteredUserType>>(
       'auth/register',
       data,
     );
   },
+
   me() {
     return instance.post<UserResponseType>('auth/me');
   },
+
   logout() {
     return instance.delete<LogoutResponse>('auth/me');
   },

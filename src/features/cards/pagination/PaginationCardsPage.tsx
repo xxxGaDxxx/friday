@@ -9,12 +9,7 @@ import { useAppSelector } from '../../../common/hooks/useAppSelector';
 import { ReturnComponentType } from '../../../common/types';
 
 import s from './styles/PaginationCards.module.scss';
-
-type PaginationPageType = {
-  itemsPerPage: number;
-  selectPage: (page: number) => void;
-  changeCountItemsPerPage: (itemsPerPage: number) => void;
-};
+import { PaginationPageType } from './type/PaginationPageType';
 
 export const PaginationCardsPage = memo(
   ({
@@ -22,8 +17,9 @@ export const PaginationCardsPage = memo(
     selectPage,
     changeCountItemsPerPage,
   }: PaginationPageType): ReturnComponentType => {
-    const [valueItemsPerPage, setValueItemsPerPage] = useState<number>(itemsPerPage);
     const totalItems = useAppSelector(state => state.card.cardsTotalCount); // add props
+
+    const [valueItemsPerPage, setValueItemsPerPage] = useState<number>(itemsPerPage);
 
     const pageCount = Math.ceil(totalItems / valueItemsPerPage);
 

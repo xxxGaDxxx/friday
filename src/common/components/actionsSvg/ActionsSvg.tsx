@@ -14,6 +14,7 @@ import { ActionsSvgType } from './type/ActionsSvgType';
 export const ActionsSvg = memo(
   ({ isMyPack, packId, cardsCount }: ActionsSvgType): ReturnComponentType => {
     const status = useAppSelector(state => state.app.status);
+
     const dispatch = useAppDispatch();
 
     const onEditClick = (): void => {

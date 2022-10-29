@@ -6,12 +6,7 @@ import arrow from '../../../assets/svg/arrow.svg';
 import { ReturnComponentType } from '../../types';
 
 import s from './styles/BackTo.module.scss';
-
-type BackToPropsType = {
-  className?: string;
-  path: string;
-  nameOfPath: string;
-};
+import { BackToPropsType } from './type/BackToPropsType';
 
 export const BackTo = ({ path, nameOfPath, className }: BackToPropsType): ReturnComponentType => {
   const defineClassname = `${s.navLink}${className || ''}`;

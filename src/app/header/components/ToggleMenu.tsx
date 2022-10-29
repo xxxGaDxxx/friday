@@ -22,6 +22,7 @@ type Props = {
 
 export const ToggleMenu = ({ hideMenu }: Props): ReturnComponentType => {
   const dispatch = useAppDispatch();
+
   const navigate = useNavigate();
 
   const onLogOutClick = (): void => {

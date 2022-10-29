@@ -12,9 +12,10 @@ import { setMinMaxCountAC } from '../../../reducer/packTableReducer';
 import s from './styles/SelectNumberOfCards.module.scss';
 
 export const SelectNumberOfCards = memo((): ReturnComponentType => {
-  const dispatch = useAppDispatch();
   const maxCardsCount = useAppSelector(state => state.pack.maxCardsCount);
   const minMaxCount = useAppSelector(state => state.pack.minMaxCount);
+
+  const dispatch = useAppDispatch();
 
   const [selectedCount, setSelectedCount] = useState<number[]>(minMaxCount);
 

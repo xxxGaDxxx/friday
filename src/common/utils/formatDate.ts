@@ -4,6 +4,6 @@ export const formatDate = (dateStr: string): string => {
   const date = new Date(Date.parse(dateStr));
 
   return `${get2digitsString(date.getDate())}.${get2digitsString(
-    date.getMonth(),
+    date.getMonth() + 1,
   )}.${get2digitsString(date.getFullYear())}`;
 };

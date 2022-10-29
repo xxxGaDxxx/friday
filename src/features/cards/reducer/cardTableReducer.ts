@@ -64,68 +64,28 @@ export const cardsTableReducer = (
 
 // action
 export const setCardsDataAC = (date: CardsResponseType) =>
-  ({
-    type: 'CARDS/SET-CARDS-DATA',
-    payload: {
-      date,
-    },
-  } as const);
+  ({ type: 'CARDS/SET-CARDS-DATA', payload: { date } } as const);
 
 export const addCardsAC = (newCard: CardsTypeCards) =>
-  ({
-    type: 'CARDS/ADD-CARDS',
-    payload: {
-      newCard,
-    },
-  } as const);
+  ({ type: 'CARDS/ADD-CARDS', payload: { newCard } } as const);
 
 export const setCardsPackIdAC = (cardsPackId: string) =>
-  ({
-    type: 'CARDS/SET-CARDS-PACK-ID',
-    payload: {
-      cardsPackId,
-    },
-  } as const);
+  ({ type: 'CARDS/SET-CARDS-PACK-ID', payload: { cardsPackId } } as const);
 
-export const setCardsPackNameAC = (name: string) =>
-  ({
-    type: 'CARDS/SET-CARDS-PACK-NAME',
-    payload: {
-      packName: name,
-    },
-  } as const);
+export const setCardsPackNameAC = (packName: string) =>
+  ({ type: 'CARDS/SET-CARDS-PACK-NAME', payload: { packName } } as const);
 
 export const setCardSortAC = (sortCards: string) =>
-  ({
-    type: 'CARDS/SET-CARD-SORT',
-    payload: {
-      sortCards,
-    },
-  } as const);
+  ({ type: 'CARDS/SET-CARD-SORT', payload: { sortCards } } as const);
 
 export const setQuestionSearchAC = (cardQuestion: string) =>
-  ({
-    type: 'CARDS/SET-QUESTION-SEARCH',
-    payload: {
-      cardQuestion,
-    },
-  } as const);
+  ({ type: 'CARDS/SET-QUESTION-SEARCH', payload: { cardQuestion } } as const);
 
 export const setCardsPerPageAC = (count: number) =>
-  ({
-    type: 'CARDS/SET-CARDS-PER-PAGE',
-    payload: {
-      count,
-    },
-  } as const);
+  ({ type: 'CARDS/SET-CARDS-PER-PAGE', payload: { count } } as const);
 
 export const setSelectedCardsPageAC = (page: number) =>
-  ({
-    type: 'CARDS/SET-SELECTED-PAGE',
-    payload: {
-      page,
-    },
-  } as const);
+  ({ type: 'CARDS/SET-SELECTED-PAGE', payload: { page } } as const);
 
 // thunk
 export const cardDataTC =
@@ -144,12 +104,15 @@ export const cardDataTC =
     };
 
     dispatch(setAppStatusAC('loading'));
+
     cardsItems
       .getCards(params)
+
       .then(res => {
         dispatch(setCardsDataAC(res.data));
         dispatch(setAppStatusAC('succeeded'));
       })
+
       .catch(err => {
         errorUtils(err, dispatch);
       });
@@ -163,12 +126,15 @@ export const addCardTC =
     };
 
     dispatch(setAppStatusAC('loading'));
+
     cardsItems
       .addCard(card)
+
       .then(res => {
         dispatch(addCardsAC(res.data.newCard));
         dispatch(setAppStatusAC('succeeded'));
       })
+
       .catch(err => {
         errorUtils(err, dispatch);
       });
@@ -178,12 +144,15 @@ export const cardDeleteTC =
   (cardId: string, cardPackId: string): AppThunk =>
   dispatch => {
     dispatch(setAppStatusAC('loading'));
+
     cardsItems
       .deleteCard(cardId)
+
       .then(() => {
         dispatch(cardDataTC(cardPackId));
         dispatch(setAppStatusAC('succeeded'));
       })
+
       .catch(err => {
         errorUtils(err, dispatch);
       });
@@ -199,12 +168,15 @@ export const cardUpdateTC =
     };
 
     dispatch(setAppStatusAC('loading'));
+
     cardsItems
       .updateCard(card)
+
       .then(() => {
         dispatch(cardDataTC(cardPackId));
         dispatch(setAppStatusAC('succeeded'));
       })
+
       .catch(err => {
         errorUtils(err, dispatch);
       });
