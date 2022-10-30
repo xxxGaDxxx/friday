@@ -1,11 +1,10 @@
 import React, { ChangeEvent, useState } from 'react';
 
-import Button from '@mui/material/Button';
 import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import TextField from '@mui/material/TextField';
 
-import UniversalModalWindow from '../../../../../common/components/universalModalWindow/UniversalModalWindow';
+import { UniversalModalWindow } from '../../../../../common/components/universalModalWindow/UniversalModalWindow';
 import { ReturnComponentType } from '../../../../../common/types';
 
 import s from './style/AddPackModal.module.scss';
@@ -23,7 +22,7 @@ export const AddPackModal = ({
     setPrivatePack(!privatePack);
   };
 
-  const HandleClose = (): void => {
+  const handleClose = (): void => {
     setOpen(false);
     setTitlePack('');
     setPrivatePack(false);
@@ -31,7 +30,7 @@ export const AddPackModal = ({
 
   const onSaveClick = (): void => {
     onAddPackClick(titlePack, privatePack);
-    HandleClose();
+    handleClose();
     setTitlePack('');
     setPrivatePack(false);
   };
@@ -41,11 +40,17 @@ export const AddPackModal = ({
   };
 
   return (
-    <UniversalModalWindow title="Add new pack" open={open} handleClose={HandleClose}>
+    <UniversalModalWindow
+      onAcceptActionClick={onSaveClick}
+      titleButtonAccept="Save"
+      title="Add new pack"
+      open={open}
+      handleClose={handleClose}
+    >
       <TextField
         type="text"
         variant="standard"
-        label="text"
+        label="Name pack"
         margin="normal"
         style={{ width: '100%' }}
         value={titlePack}
@@ -57,26 +62,26 @@ export const AddPackModal = ({
         onClick={onPrivatePackClick}
         control={<Checkbox checked={privatePack} />}
       />
-      <div className={s.footer}>
-        <Button
-          type="button"
-          variant="contained"
-          color="inherit"
-          style={{ borderRadius: '20px' }}
-          onClick={HandleClose}
-        >
-          Cancel
-        </Button>
-        <Button
-          type="button"
-          variant="contained"
-          color="primary"
-          style={{ borderRadius: '20px' }}
-          onClick={onSaveClick}
-        >
-          Save
-        </Button>
-      </div>
+      {/* <div className={s.footer}> */}
+      {/*  <Button */}
+      {/*    type="button" */}
+      {/*    variant="contained" */}
+      {/*    color="inherit" */}
+      {/*    style={{ borderRadius: '20px' }} */}
+      {/*    onClick={HandleClose} */}
+      {/*  > */}
+      {/*    Cancel */}
+      {/*  </Button> */}
+      {/*  <Button */}
+      {/*    type="button" */}
+      {/*    variant="contained" */}
+      {/*    color="primary" */}
+      {/*    style={{ borderRadius: '20px' }} */}
+      {/*    onClick={onSaveClick} */}
+      {/*  > */}
+      {/*    Save */}
+      {/*  </Button> */}
+      {/* </div> */}
     </UniversalModalWindow>
   );
 };

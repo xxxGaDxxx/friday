@@ -1,6 +1,7 @@
 import React, { ReactNode } from 'react';
 
 import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 
 import close from '../../../assets/svg/close.svg';
@@ -25,21 +26,22 @@ type UniversalModalWindowType = {
   title: string;
   handleClose: () => void;
   open: boolean;
+  onAcceptActionClick: () => void;
+  titleButtonAccept: string;
+  buttonColor?: 'inherit' | 'primary' | 'secondary' | 'success' | 'error' | 'info' | 'warning';
 };
 
-const UniversalModalWindow = ({
+export const UniversalModalWindow = ({
   children,
   title,
   handleClose,
   open,
+  onAcceptActionClick,
+  titleButtonAccept,
+  buttonColor,
 }: UniversalModalWindowType): ReturnComponentType => {
   return (
-    <Modal
-      open={open}
-      onClose={handleClose}
-      aria-labelledby="modal-modal-title"
-      aria-describedby="modal-modal-description"
-    >
+    <Modal open={open} onClose={handleClose}>
       <Box sx={style}>
         <div className={s.header}>
           <h2>{title}</h2>
@@ -50,9 +52,27 @@ const UniversalModalWindow = ({
         </div>
         <hr className={s.strip} />
         <div>{children}</div>
+        <div className={s.footer}>
+          <Button
+            type="button"
+            variant="contained"
+            color="inherit"
+            style={{ borderRadius: '20px' }}
+            onClick={handleClose}
+          >
+            Cancel
+          </Button>
+          <Button
+            type="button"
+            variant="contained"
+            color={buttonColor}
+            style={{ borderRadius: '20px' }}
+            onClick={onAcceptActionClick}
+          >
+            {titleButtonAccept}
+          </Button>
+        </div>
       </Box>
     </Modal>
   );
 };
-
-export default UniversalModalWindow;
