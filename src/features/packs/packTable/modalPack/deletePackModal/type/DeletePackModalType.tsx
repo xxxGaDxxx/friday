@@ -1,8 +1,8 @@
-import { OpenModal } from '../../../../../../common/components/actionsSvg/ActionsSvg';
+import { ReactNode } from 'react';
 
 export type DeletePackModalProps = {
-  setOpen: (value: OpenModal) => void;
-  open: string;
   namePack: string;
   packId: string;
+  clickHere: ReactNode;
+  stylesOfDeleteIcon: Object;
 };

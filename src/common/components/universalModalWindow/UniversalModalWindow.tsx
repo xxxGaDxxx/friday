@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useState } from 'react';
 
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -24,55 +24,96 @@ const style = {
 type UniversalModalWindowType = {
   children: ReactNode;
   title: string;
-  handleClose: () => void;
-  open: boolean;
+  handleClose?: () => void;
   onAcceptActionClick: () => void;
   titleButtonAccept: string;
-  buttonColor?: 'inherit' | 'primary' | 'secondary' | 'success' | 'error' | 'info' | 'warning';
+  clickHere: ReactNode; // name need to fix
+  variantOfButtonToCallModal: 'text' | 'outlined' | 'contained';
+  colorAcceptButton?:
+    | 'inherit'
+    | 'primary'
+    | 'secondary'
+    | 'success'
+    | 'error'
+    | 'info'
+    | 'warning';
+  styleOfButtonToCallModal?: Object;
 };
 
 export const UniversalModalWindow = ({
   children,
   title,
   handleClose,
-  open,
   onAcceptActionClick,
   titleButtonAccept,
-  buttonColor,
+  colorAcceptButton,
+  clickHere,
+  variantOfButtonToCallModal,
+  styleOfButtonToCallModal,
 }: UniversalModalWindowType): ReturnComponentType => {
-  return (
-    <Modal open={open} onClose={handleClose}>
-      <Box sx={style}>
-        <div className={s.header}>
-          <h2>{title}</h2>
+  const [open, setOpen] = useState(false);
 
-          <button type="button" onClick={handleClose} className={s.button}>
-            <img src={close} alt="close" />
-          </button>
-        </div>
-        <hr className={s.strip} />
-        <div>{children}</div>
-        <div className={s.footer}>
-          <Button
-            type="button"
-            variant="contained"
-            color="inherit"
-            style={{ borderRadius: '20px' }}
-            onClick={handleClose}
-          >
-            Cancel
-          </Button>
-          <Button
-            type="button"
-            variant="contained"
-            color={buttonColor}
-            style={{ borderRadius: '20px' }}
-            onClick={onAcceptActionClick}
-          >
-            {titleButtonAccept}
-          </Button>
-        </div>
-      </Box>
-    </Modal>
+  const HandleOpen = (): void => {
+    setOpen(true);
+  };
+
+  const handleCloseModal = (): void => {
+    setOpen(false);
+    handleClose?.();
+  };
+
+  const onAcceptActionClickHandle = (): void => {
+    handleCloseModal();
+    onAcceptActionClick();
+  };
+
+  return (
+    <div>
+      <Button
+        onClick={HandleOpen}
+        variant={variantOfButtonToCallModal}
+        style={styleOfButtonToCallModal}
+        type="button"
+      >
+        {clickHere}
+      </Button>
+
+      <Modal open={open} onClose={handleCloseModal}>
+        <Box sx={style}>
+          <div className={s.header}>
+            <h2>{title}</h2>
+            <button type="button" onClick={handleCloseModal} className={s.button}>
+              <img src={close} alt="close" />
+            </button>
+          </div>
+
+          <hr className={s.line} />
+
+          <div>{children}</div>
+
+          <div className={s.footer}>
+            <Button
+              type="button"
+              variant="contained"
+              color="inherit"
+              style={{ borderRadius: '20px' }}
+              onClick={handleCloseModal}
+            >
+              Cancel
+            </Button>
+
+            <Button
+              type="button"
+              variant="contained"
+              color={colorAcceptButton}
+              style={{ borderRadius: '20px' }}
+              onClick={onAcceptActionClickHandle}
+            >
+              {titleButtonAccept}
+            </Button>
+          </div>
+        </Box>
+      </Modal>
+    </div>
   );
 };

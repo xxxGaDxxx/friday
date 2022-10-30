@@ -1,4 +1,4 @@
-import React, { memo, useState } from 'react';
+import React, { memo } from 'react';
 
 import deleteSvg from '../../../assets/svg/actions/Delete.svg';
 import editSvg from '../../../assets/svg/actions/Edit.svg';
@@ -10,17 +10,11 @@ import { ReturnComponentType } from '../../types';
 import s from './style/ActionsSvg.module.scss';
 import { ActionsSvgType } from './type/ActionsSvgType';
 
-export type OpenModal = 'delete' | 'teacher' | 'edit' | '';
+const HALF_OPACITY = 0.5;
 
 export const ActionsSvg = memo(
   ({ isMyPack, packId, cardsCount, namePack }: ActionsSvgType): ReturnComponentType => {
     const status = useAppSelector(state => state.app.status);
-
-    const [open, setOpen] = useState<OpenModal>('');
-
-    const HandleOpen = (isOpen: OpenModal): void => {
-      setOpen(isOpen);
-    };
 
     // const dispatch = useAppDispatch();
 
@@ -37,46 +31,42 @@ export const ActionsSvg = memo(
     const opacitySvgTeacher = thereAreCards ? '50%' : '100%';
 
     const success = status !== 'succeeded';
-    const opacitySvg = success ? '50%' : '100%';
+    const opacitySvg = success ? HALF_OPACITY : 1;
 
     return (
-      <div>
+      <div className={s.container}>
         <button
           type="button"
           className={s.button}
           disabled={thereAreCards && success}
           style={{ opacity: opacitySvgTeacher }}
-          onClick={() => HandleOpen('teacher')}
         >
           <img src={teacherSvg} alt="teacherSvg" />
         </button>
 
         {isMyPack && (
-          <>
+          <div className={s.container}>
             <button
               type="button"
-              onClick={() => HandleOpen('edit')}
               className={s.button}
               disabled={success}
               style={{ opacity: opacitySvg }}
             >
               <img src={editSvg} alt="editSvg" />
             </button>
-            {open === 'edit' && <div />}
 
-            <button
-              type="button"
-              onClick={() => HandleOpen('delete')}
-              className={s.button}
-              disabled={success}
-              style={{ opacity: opacitySvg }}
-            >
-              <img src={deleteSvg} alt="deleteSvg" />
-            </button>
-            {open === 'delete' && (
-              <DeletePackModal setOpen={setOpen} open={open} namePack={namePack} packId={packId} />
-            )}
-          </>
+            <DeletePackModal
+              stylesOfDeleteIcon={{
+                minHeight: 0,
+                minWidth: 0,
+                padding: 0,
+                opacity: success ? HALF_OPACITY : 1,
+              }}
+              namePack={namePack}
+              packId={packId}
+              clickHere={<img src={deleteSvg} alt="deleteSvg" />}
+            />
+          </div>
         )}
       </div>
     );

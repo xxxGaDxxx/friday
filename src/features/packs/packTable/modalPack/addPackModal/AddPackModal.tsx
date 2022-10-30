@@ -12,8 +12,7 @@ import { AddPackModalProps } from './type/AddPackModalType';
 
 export const AddPackModal = ({
   onAddPackClick,
-  open,
-  setOpen,
+  clickHere,
 }: AddPackModalProps): ReturnComponentType => {
   const [titlePack, setTitlePack] = useState('');
   const [privatePack, setPrivatePack] = useState(false);
@@ -23,7 +22,6 @@ export const AddPackModal = ({
   };
 
   const handleClose = (): void => {
-    setOpen(false);
     setTitlePack('');
     setPrivatePack(false);
   };
@@ -41,10 +39,12 @@ export const AddPackModal = ({
 
   return (
     <UniversalModalWindow
+      styleOfButtonToCallModal={{ borderRadius: '20px' }}
+      variantOfButtonToCallModal="contained"
+      clickHere={clickHere}
       onAcceptActionClick={onSaveClick}
       titleButtonAccept="Save"
       title="Add new pack"
-      open={open}
       handleClose={handleClose}
     >
       <TextField
@@ -62,26 +62,6 @@ export const AddPackModal = ({
         onClick={onPrivatePackClick}
         control={<Checkbox checked={privatePack} />}
       />
-      {/* <div className={s.footer}> */}
-      {/*  <Button */}
-      {/*    type="button" */}
-      {/*    variant="contained" */}
-      {/*    color="inherit" */}
-      {/*    style={{ borderRadius: '20px' }} */}
-      {/*    onClick={HandleClose} */}
-      {/*  > */}
-      {/*    Cancel */}
-      {/*  </Button> */}
-      {/*  <Button */}
-      {/*    type="button" */}
-      {/*    variant="contained" */}
-      {/*    color="primary" */}
-      {/*    style={{ borderRadius: '20px' }} */}
-      {/*    onClick={onSaveClick} */}
-      {/*  > */}
-      {/*    Save */}
-      {/*  </Button> */}
-      {/* </div> */}
     </UniversalModalWindow>
   );
 };

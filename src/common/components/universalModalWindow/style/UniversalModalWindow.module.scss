@@ -1,15 +1,16 @@
-.header{
+.header {
   display: flex;
   justify-content: space-between;
   align-items: center;
 
-  .button{
+  .button {
     border: none;
     background: none;
-
+    cursor: pointer;
   }
 }
-.strip{
+
+.line {
   color: rgb(227, 216, 216);
   background-color: rgb(227, 216, 216);
   height: 1px;
@@ -17,11 +18,11 @@
 
 }
 
-.footer{
+.footer {
   display: flex;
   justify-content: space-between;
 
-  button{
+  button {
     width: 30%;
   }
 }
