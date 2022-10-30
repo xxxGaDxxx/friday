@@ -55,52 +55,43 @@ export const MyPackMenu = ({ hideMenu }: MyPackMenuProps): ReturnComponentType =
       <ClickAwayListener onClickAway={hideMenu}>
         <List>
           <ListItem disablePadding>
-            {/* <ListItemButton onClick={onEditClick}> */}
-            <ListItemButton>
-              <EditPackModal
-                currentPackTitle={namePack}
-                onEditPackClick={onEditClick}
-                stylesOfIcon={{
-                  minHeight: 0,
-                  minWidth: 0,
-                  padding: 0,
-                  color: 'black',
-                }}
-                clickHere={
-                  <span>
-                    <img src={editSvg} alt="editSvg" />
-                    Edit
-                  </span>
-                }
-              />
+            <EditPackModal
+              currentPackTitle={namePack}
+              onEditPackClick={onEditClick}
+              stylesOfIcon={{
+                minHeight: 0,
+                minWidth: 0,
+                padding: 0,
+                color: 'black',
+              }}
+              clickHere={
+                <ListItemButton>
+                  <img src={editSvg} alt="editSvg" />
+                  Edit
+                </ListItemButton>
+              }
+            />
+          </ListItem>
 
-              {/* <img src={editSvg} alt="editSvg" /> */}
-              {/* <ListItemText primary="Edit" /> */}
-            </ListItemButton>
-          </ListItem>
           <ListItem disablePadding>
-            {/* <ListItemButton onClick={onDeleteClick}> */}
-            <ListItemButton>
-              {/* <img src={deleteSvg} alt="deleteSvg" /> */}
-              <DeletePackModal
-                stylesOfIcon={{
-                  minHeight: 0,
-                  minWidth: 0,
-                  padding: '0',
-                  color: 'black',
-                }}
-                namePack={namePack}
-                packId={packId}
-                clickHere={
-                  <span>
-                    <img src={deleteSvg} alt="deleteSvg" />
-                    Delete
-                  </span>
-                }
-              />
-              {/* <ListItemText primary="Delete" /> */}
-            </ListItemButton>
+            <DeletePackModal
+              stylesOfIcon={{
+                minHeight: 0,
+                minWidth: 0,
+                padding: '0',
+                color: 'black',
+              }}
+              namePack={namePack}
+              packId={packId}
+              clickHere={
+                <ListItemButton>
+                  <img src={deleteSvg} alt="deleteSvg" />
+                  Delete
+                </ListItemButton>
+              }
+            />
           </ListItem>
+
           <ListItem disablePadding>
             <ListItemButton onClick={onTrainingClick}>
               <img src={teacherSvg} alt="teacherSvg" />

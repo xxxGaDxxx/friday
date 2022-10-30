@@ -48,6 +48,7 @@ export const cardsTableReducer = (
     case 'CARDS/SET-CARD-SORT':
     case 'CARDS/SET-QUESTION-SEARCH':
     case 'CARDS/SET-SELECTED-PAGE':
+    case 'CARDS/SET-CARDS-PACK-NAME':
       return {
         ...state,
         ...action.payload,
