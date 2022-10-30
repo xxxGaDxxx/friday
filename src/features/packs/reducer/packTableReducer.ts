@@ -120,7 +120,7 @@ export const packDateTC = (): AppThunk => (dispatch, getState) => {
 };
 
 export const packDeleteTC =
-  (packId: string): AppThunk =>
+  (packId: string, callPoint: string): AppThunk =>
   dispatch => {
     dispatch(setAppStatusAC('loading'));
 
@@ -128,7 +128,10 @@ export const packDeleteTC =
       .deletePack(packId)
 
       .then(() => {
-        dispatch(packDateTC());
+        if (callPoint === 'pack') {
+          dispatch(packDateTC());
+        }
+
         dispatch(setAppStatusAC('succeeded'));
       })
 

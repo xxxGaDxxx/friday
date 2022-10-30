@@ -20,7 +20,6 @@ import { updatePackTC } from '../../packs/reducer/packTableReducer';
 import { MyPackMenuProps } from './type/MyPackMenuProps';
 
 export const MyPackMenu = ({ hideMenu }: MyPackMenuProps): ReturnComponentType => {
-  // const status = useAppSelector(state => state.app.status);
   const packId = useAppSelector(state => state.card.cardsPackId);
   const namePack = useAppSelector(state => state.card.packName);
 
@@ -29,22 +28,6 @@ export const MyPackMenu = ({ hideMenu }: MyPackMenuProps): ReturnComponentType =
   const onEditClick = (name: string, privatePack: boolean): void => {
     dispatch(updatePackTC(packId, name, privatePack));
   };
-
-  // const dispatch = useAppDispatch();
-
-  // const navigate = useNavigate();
-
-  // const onDeleteClick = (): void => {
-  // dispatch(packDeleteTC(packId));
-  // if (status === 'succeeded') {
-  //   navigate(PATH.PACKS_LIST);
-  // }
-  // };
-
-  // const onEditClick = (): void => {
-  //   // dispatch(updatePackTC(packId));
-  //   hideMenu();
-  // };
 
   const onTrainingClick = (): void => {};
 
@@ -60,7 +43,7 @@ export const MyPackMenu = ({ hideMenu }: MyPackMenuProps): ReturnComponentType =
               onEditPackClick={onEditClick}
               stylesOfIcon={{
                 minHeight: 0,
-                minWidth: 0,
+                width: '105px',
                 padding: 0,
                 color: 'black',
               }}
@@ -77,10 +60,11 @@ export const MyPackMenu = ({ hideMenu }: MyPackMenuProps): ReturnComponentType =
             <DeletePackModal
               stylesOfIcon={{
                 minHeight: 0,
-                minWidth: 0,
+                width: '105px',
                 padding: '0',
                 color: 'black',
               }}
+              callPoint="card"
               namePack={namePack}
               packId={packId}
               clickHere={

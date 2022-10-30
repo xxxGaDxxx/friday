@@ -25,11 +25,6 @@ export const ActionsSvg = memo(
       dispatch(updatePackTC(packId, name, privatePack));
     };
 
-    // const onDeleteClick = (): void => {
-    //   dispatch(packDeleteTC(packId));
-    // };
-    // const onTrainingClick = (): void => {};
-
     const thereAreCards = cardsCount === 0;
     const opacitySvgTeacher = thereAreCards ? '50%' : '100%';
 
@@ -47,31 +42,32 @@ export const ActionsSvg = memo(
         </button>
 
         {isMyPack && (
-          <div className={s.container}>
-            <EditPackModal
-              currentPackTitle={namePack}
-              onEditPackClick={onEditClick}
-              stylesOfIcon={{
-                minHeight: 0,
-                minWidth: 0,
-                padding: 0,
-                opacity: success ? HALF_OPACITY : 1,
-              }}
-              clickHere={<img src={editSvg} alt="editSvg" />}
-            />
+          <EditPackModal
+            currentPackTitle={namePack}
+            onEditPackClick={onEditClick}
+            stylesOfIcon={{
+              minHeight: 0,
+              minWidth: 0,
+              padding: 0,
+              opacity: success ? HALF_OPACITY : 1,
+            }}
+            clickHere={<img src={editSvg} alt="editSvg" />}
+          />
+        )}
 
-            <DeletePackModal
-              stylesOfIcon={{
-                minHeight: 0,
-                minWidth: 0,
-                padding: 0,
-                opacity: success ? HALF_OPACITY : 1,
-              }}
-              namePack={namePack}
-              packId={packId}
-              clickHere={<img src={deleteSvg} alt="deleteSvg" />}
-            />
-          </div>
+        {isMyPack && (
+          <DeletePackModal
+            stylesOfIcon={{
+              minHeight: 0,
+              minWidth: 0,
+              padding: 0,
+              opacity: success ? HALF_OPACITY : 1,
+            }}
+            callPoint="pack"
+            namePack={namePack}
+            packId={packId}
+            clickHere={<img src={deleteSvg} alt="deleteSvg" />}
+          />
         )}
       </div>
     );

@@ -12,6 +12,7 @@ import { packDeleteTC } from '../../reducer/packTableReducer';
 import { DeletePackModalProps } from './type/DeletePackModalType';
 
 export const DeletePackModal = ({
+  callPoint,
   namePack,
   packId,
   clickHere,
@@ -24,7 +25,7 @@ export const DeletePackModal = ({
   const navigate = useNavigate();
 
   const onDeleteClick = (): void => {
-    dispatch(packDeleteTC(packId));
+    dispatch(packDeleteTC(packId, callPoint));
 
     if (status === 'succeeded') {
       navigate(PATH.PACKS_LIST);
