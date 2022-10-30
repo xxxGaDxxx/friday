@@ -4,7 +4,7 @@ import Typography from '@mui/material/Typography';
 
 import { ReturnComponentType } from '../../../common/types';
 
-import { AddPackModal } from './modalPack/addPackModal/AddPackModal';
+import { AddPackModal } from './modalPack/AddPackModal';
 
 type AddNewPackType = {
   onAddPackClick: (titlePack: string, privatePack: boolean) => void;

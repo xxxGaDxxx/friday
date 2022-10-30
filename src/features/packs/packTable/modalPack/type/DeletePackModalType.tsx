@@ -4,5 +4,5 @@ export type DeletePackModalProps = {
   namePack: string;
   packId: string;
   clickHere: ReactNode;
-  stylesOfDeleteIcon: Object;
+  stylesOfIcon: Object;
 };

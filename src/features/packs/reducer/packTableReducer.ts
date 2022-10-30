@@ -6,6 +6,8 @@ import { errorUtils } from '../../../common/utils/errorUtils';
 
 import { InitialStatePackTable, StatePackReducerActionsType } from './packTableReducerType';
 
+const defaultMaxCount = 110;
+
 export const initialStatePackTable = {
   cardPacks: [] as PackCardPacks[],
   page: 1,
@@ -18,8 +20,7 @@ export const initialStatePackTable = {
   packName: '',
   sortPacks: '',
   user_id: '',
-  // eslint-disable-next-line no-magic-numbers
-  minMaxCount: [0, 110],
+  minMaxCount: [0, defaultMaxCount],
 };
 
 export const packTableReducer = (
@@ -136,11 +137,12 @@ export const packDeleteTC =
   };
 
 export const updatePackTC =
-  (packId: string): AppThunk =>
+  (packId: string, name: string, privatePack: boolean): AppThunk =>
   dispatch => {
     const packNew = {
       _id: packId,
-      name: 'A NEW NAME!!!',
+      name,
+      privatePack,
     };
 
     dispatch(setAppStatusAC('loading'));

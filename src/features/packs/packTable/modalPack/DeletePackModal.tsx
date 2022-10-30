@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { UniversalModalWindow } from '../../../../../common/components/universalModalWindow/UniversalModalWindow';
-import { useAppDispatch } from '../../../../../common/hooks/useAppDispatch';
-import { ReturnComponentType } from '../../../../../common/types';
-import { packDeleteTC } from '../../../reducer/packTableReducer';
+import { UniversalModalWindow } from '../../../../common/components/universalModalWindow/UniversalModalWindow';
+import { useAppDispatch } from '../../../../common/hooks/useAppDispatch';
+import { ReturnComponentType } from '../../../../common/types';
+import { packDeleteTC } from '../../reducer/packTableReducer';
 
 import { DeletePackModalProps } from './type/DeletePackModalType';
 
@@ -11,7 +11,7 @@ export const DeletePackModal = ({
   namePack,
   packId,
   clickHere,
-  stylesOfDeleteIcon,
+  stylesOfIcon,
 }: DeletePackModalProps): ReturnComponentType => {
   const dispatch = useAppDispatch();
 
@@ -21,7 +21,7 @@ export const DeletePackModal = ({
 
   return (
     <UniversalModalWindow
-      styleOfButtonToCallModal={stylesOfDeleteIcon}
+      styleOfButtonToCallModal={stylesOfIcon}
       variantOfButtonToCallModal="text"
       clickHere={clickHere}
       onAcceptActionClick={onDeleteClick}
