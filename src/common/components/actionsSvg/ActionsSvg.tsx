@@ -22,7 +22,7 @@ export const ActionsSvg = memo(
     const dispatch = useAppDispatch();
 
     const onEditClick = (name: string, privatePack: boolean): void => {
-      dispatch(updatePackTC(packId, name, privatePack));
+      dispatch(updatePackTC(packId, name, privatePack, 'pack'));
     };
 
     const thereAreCards = cardsCount === 0;

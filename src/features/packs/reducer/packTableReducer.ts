@@ -141,7 +141,7 @@ export const packDeleteTC =
   };
 
 export const updatePackTC =
-  (packId: string, name: string, privatePack: boolean): AppThunk =>
+  (packId: string, name: string, privatePack: boolean, callPoint: string): AppThunk =>
   dispatch => {
     const packNew = {
       _id: packId,
@@ -155,8 +155,12 @@ export const updatePackTC =
       .updatePack(packNew)
 
       .then(() => {
-        dispatch(packDateTC());
         dispatch(setCardsPackNameAC(name));
+
+        if (callPoint === 'pack') {
+          dispatch(packDateTC());
+        }
+
         dispatch(setAppStatusAC('succeeded'));
       })
 

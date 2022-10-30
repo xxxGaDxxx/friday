@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useEffect } from 'react';
 
 import { PaginationPage } from '../../common/components/pagination/PaginationPage';
 import { useAppDispatch } from '../../common/hooks/useAppDispatch';
@@ -23,29 +23,21 @@ export const Packs = (): ReturnComponentType => {
   const sortPacks = useAppSelector(state => state.pack.sortPacks);
   const userId = useAppSelector(state => state.pack.user_id);
   const minMaxCount = useAppSelector(state => state.pack.minMaxCount);
+  const cardPacksTotalCount = useAppSelector(state => state.pack.cardPacksTotalCount);
 
   const dispatch = useAppDispatch();
 
-  const changePacksPerPage = useCallback(
-    (count: number): void => {
-      dispatch(setPacksPerPageAC(count));
-    },
-    [dispatch],
-  );
+  const changePacksPerPage = (count: number): void => {
+    dispatch(setPacksPerPageAC(count));
+  };
 
-  const setSelectedPage = useCallback(
-    (page: number): void => {
-      dispatch(setSelectedPageAC(page));
-    },
-    [dispatch],
-  );
+  const setSelectedPage = (page: number): void => {
+    dispatch(setSelectedPageAC(page));
+  };
 
-  const onAddPackClick = useCallback(
-    (titlePack: string, privatePack: boolean): void => {
-      dispatch(addPackTC(titlePack, privatePack));
-    },
-    [dispatch],
-  );
+  const onAddPackClick = (titlePack: string, privatePack: boolean): void => {
+    dispatch(addPackTC(titlePack, privatePack));
+  };
 
   useEffect(() => {
     dispatch(packDateTC());
@@ -65,6 +57,7 @@ export const Packs = (): ReturnComponentType => {
 
       <div className={s.pagination}>
         <PaginationPage
+          totalItems={cardPacksTotalCount}
           itemsPerPage={pageCount}
           selectPage={setSelectedPage}
           changeCountItemsPerPage={changePacksPerPage}

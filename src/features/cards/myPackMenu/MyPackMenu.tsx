@@ -26,7 +26,7 @@ export const MyPackMenu = ({ hideMenu }: MyPackMenuProps): ReturnComponentType =
   const dispatch = useAppDispatch();
 
   const onEditClick = (name: string, privatePack: boolean): void => {
-    dispatch(updatePackTC(packId, name, privatePack));
+    dispatch(updatePackTC(packId, name, privatePack, 'card'));
   };
 
   const onTrainingClick = (): void => {};

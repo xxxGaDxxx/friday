@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 
 import { BackTo } from '../../common/components/backTo/BackTo';
+import { PaginationPage } from '../../common/components/pagination/PaginationPage';
 import { PATH } from '../../common/enum/pathEnum';
 import { useAppDispatch } from '../../common/hooks/useAppDispatch';
 import { useAppSelector } from '../../common/hooks/useAppSelector';
@@ -9,7 +10,6 @@ import { Search } from '../packs/packTable/sortBar/sortBarComponents/Search';
 
 import { CardsTable } from './cardTable/CardsTable';
 import { NoCard } from './noCard/noCard';
-import { PaginationCardsPage } from './pagination/PaginationCardsPage';
 import {
   cardDataTC,
   setCardsPerPageAC,
@@ -45,7 +45,7 @@ export const Cards = (): ReturnComponentType => {
 
   useEffect(() => {
     dispatch(cardDataTC(cardPackId));
-  }, [dispatch, cardPackId, sortCards, cardQuestion, page, cardsTotalCount, packName]);
+  }, [dispatch, cardPackId, sortCards, cardQuestion, page, cardsTotalCount, packName, pageCount]);
 
   if (cards.length === 0) {
     return <NoCard isMyPack={isMyPack} packName={packName} cardPackId={cardPackId} />;
@@ -55,12 +55,16 @@ export const Cards = (): ReturnComponentType => {
     <main className={s.main}>
       <BackTo path={PATH.PACKS_LIST} nameOfPath="Packs List" />
       <TitleButton isMyPack={isMyPack} packName={packName} cardPackId={cardPackId} />
+
       <Search action={setQuestionSearchAC} />
+
       <section className={s.table}>
         <CardsTable />
       </section>
+
       <section className={s.pagination}>
-        <PaginationCardsPage
+        <PaginationPage
+          totalItems={cardsTotalCount}
           itemsPerPage={pageCount}
           selectPage={setSelectedCardsPage}
           changeCountItemsPerPage={changeCardsPerPage}

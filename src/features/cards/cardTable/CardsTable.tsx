@@ -20,6 +20,7 @@ export const CardsTable = (): ReturnComponentType => {
     <TableContainer sx={{ maxWidth: '1010px' }} component={Paper}>
       <Table stickyHeader aria-label="caption table">
         <CardsTableHeader isMyPack={isMyPack} />
+
         <CardsTableBody isMyPack={isMyPack} />
       </Table>
     </TableContainer>
