@@ -1,3 +1,5 @@
+import { setCardsPackNameAC } from '../../cards/reducer/cardTableReducer';
+
 import {
   initialStatePackTable,
   setAbortSortBarAC,
@@ -22,6 +24,7 @@ export type SetPackSortACType = ReturnType<typeof setPackSortAC>;
 export type SetUserIdACType = ReturnType<typeof setUserIdAC>;
 export type SetMinMaxCountACType = ReturnType<typeof setMinMaxCountAC>;
 export type SetAbortSortBarACType = ReturnType<typeof setAbortSortBarAC>;
+export type SetCardsPackNameACType = ReturnType<typeof setCardsPackNameAC>;
 
 export type StatePackReducerActionsType =
   | SetPackDateACType
@@ -31,4 +34,5 @@ export type StatePackReducerActionsType =
   | SetPackSortACType
   | SetUserIdACType
   | SetMinMaxCountACType
-  | SetAbortSortBarACType;
+  | SetAbortSortBarACType
+  | SetCardsPackNameACType;

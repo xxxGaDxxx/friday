@@ -3,6 +3,7 @@ import { PackCardPacks, PackDateResponseType, ParamsPacksType } from '../../../a
 import { setAppStatusAC } from '../../../app/store/app-reducer';
 import { AppThunk } from '../../../app/store/store';
 import { errorUtils } from '../../../common/utils/errorUtils';
+import { setCardsPackNameAC } from '../../cards/reducer/cardTableReducer';
 
 import { InitialStatePackTable, StatePackReducerActionsType } from './packTableReducerType';
 
@@ -142,7 +143,7 @@ export const updatePackTC =
     const packNew = {
       _id: packId,
       name,
-      privatePack,
+      private: privatePack,
     };
 
     dispatch(setAppStatusAC('loading'));
@@ -152,6 +153,7 @@ export const updatePackTC =
 
       .then(() => {
         dispatch(packDateTC());
+        dispatch(setCardsPackNameAC(name));
         dispatch(setAppStatusAC('succeeded'));
       })
 

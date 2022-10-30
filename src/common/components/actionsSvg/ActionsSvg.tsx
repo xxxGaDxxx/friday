@@ -21,8 +21,8 @@ export const ActionsSvg = memo(
 
     const dispatch = useAppDispatch();
 
-    const onEditClick = (): void => {
-      // dispatch(updatePackTC(packId));
+    const onEditClick = (name: string, privatePack: boolean): void => {
+      dispatch(updatePackTC(packId, name, privatePack));
     };
 
     // const onDeleteClick = (): void => {

@@ -16,7 +16,7 @@ export const EditPackModal = ({
   stylesOfIcon,
   currentPackTitle,
 }: EditPackModalProps): ReturnComponentType => {
-  const [packTitle, setPackTitle] = useState('');
+  const [packTitle, setPackTitle] = useState(currentPackTitle);
   const [isPrivatePack, setIsPrivatePack] = useState(false);
 
   const onPrivatePackClick = (): void => {
@@ -24,14 +24,14 @@ export const EditPackModal = ({
   };
 
   const handleClose = (): void => {
-    setPackTitle('');
+    // setPackTitle('');
     setIsPrivatePack(false);
   };
 
   const onSaveClick = (): void => {
     onEditPackClick(packTitle, isPrivatePack);
     handleClose();
-    setPackTitle('');
+    // setPackTitle('');
     setIsPrivatePack(false);
   };
 
@@ -57,7 +57,6 @@ export const EditPackModal = ({
         style={{ width: '100%' }}
         value={packTitle}
         onChange={onNamePackChange}
-        defaultValue={currentPackTitle}
       />
       <FormControlLabel
         className={s.addPackModalFormCheckbox}

@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useEffect } from 'react';
 
 import { BackTo } from '../../common/components/backTo/BackTo';
 import { PATH } from '../../common/enum/pathEnum';
@@ -33,25 +33,19 @@ export const Cards = (): ReturnComponentType => {
 
   const dispatch = useAppDispatch();
 
-  const changeCardsPerPage = useCallback(
-    (count: number): void => {
-      dispatch(setCardsPerPageAC(count));
-    },
-    [dispatch],
-  );
+  const changeCardsPerPage = (count: number): void => {
+    dispatch(setCardsPerPageAC(count));
+  };
 
-  const setSelectedCardsPage = useCallback(
-    (page: number): void => {
-      dispatch(setSelectedCardsPageAC(page));
-    },
-    [dispatch],
-  );
+  const setSelectedCardsPage = (page: number): void => {
+    dispatch(setSelectedCardsPageAC(page));
+  };
 
   const isMyPack = userId === packUserId;
 
   useEffect(() => {
     dispatch(cardDataTC(cardPackId));
-  }, [dispatch, cardPackId, sortCards, cardQuestion, page, cardsTotalCount]);
+  }, [dispatch, cardPackId, sortCards, cardQuestion, page, cardsTotalCount, packName]);
 
   if (cards.length === 0) {
     return <NoCard isMyPack={isMyPack} packName={packName} cardPackId={cardPackId} />;
