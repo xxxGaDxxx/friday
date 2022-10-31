@@ -176,13 +176,13 @@ export type CardsTypeCards = {
   _id: string;
   cardsPack_id: string;
   user_id: string;
-  answer: string;
-  question: string;
+  answer?: string;
+  question?: string;
   grade: number;
   shots: number;
-  comments: string;
-  type: string;
-  rating: number;
+  comments?: string;
+  type?: string;
+  rating?: number;
   more_id: string;
   created: string;
   updated: string;
@@ -243,4 +243,23 @@ export type PutCardResponseTypeUpdatedCard = {
   answerVideo: string;
   questionImg: string;
   questionVideo: string;
+};
+
+// learn
+export type updateGradeResponseType = {
+  updatedGrade: UpdateGradeResponseTypeUpdatedGrade;
+  token: string;
+  tokenDeathTime: number;
+};
+export type UpdateGradeResponseTypeUpdatedGrade = {
+  _id: string;
+  cardsPack_id: string;
+  card_id: string;
+  user_id: string;
+  grade: number;
+  shots: number;
+  more_id: string;
+  created: string;
+  updated: string;
+  __v: number;
 };

@@ -4,4 +4,4 @@ import { initialState, setRegistered } from './registrationReducer';
 export type InitialStateRegistration = typeof initialState;
 
 // action type
-export type SetRegisteredType = ReturnType<typeof setRegistered>;
+export type SetRegisteredReducerType = ReturnType<typeof setRegistered>;
