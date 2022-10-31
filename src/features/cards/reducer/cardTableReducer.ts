@@ -3,6 +3,8 @@ import { CardsResponseType, CardsTypeCards, ParamsCardsType } from '../../../api
 import { setAppStatusAC } from '../../../app/store/app-reducer';
 import { AppThunk } from '../../../app/store/store';
 import { errorUtils } from '../../../common/utils/errorUtils';
+import { getCard } from '../../learn/getCard';
+import { setCardLearnAC } from '../../learn/reducer/learnReducer';
 
 import { InitialStateCardTable, StateCardsReducerActionsType } from './cardTableReducerType';
 
@@ -111,6 +113,7 @@ export const cardDataTC =
 
       .then(res => {
         dispatch(setCardsDataAC(res.data));
+        dispatch(setCardLearnAC(getCard(res.data.cards)));
         dispatch(setAppStatusAC('succeeded'));
       })
 

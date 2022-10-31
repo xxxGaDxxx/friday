@@ -11,6 +11,7 @@ import CheckEmail from '../../features/auth/recoveryPasword/CheckEmail';
 import { RecoveryPassword } from '../../features/auth/recoveryPasword/RecoveryPassword';
 import { Registration } from '../../features/auth/registration/Registration';
 import { Cards } from '../../features/cards/Cards';
+import { Learn } from '../../features/learn/Learn';
 import { Packs } from '../../features/packs/Packs';
 import { PageNotFound } from '../../features/pageNotFound/PageNotFound';
 import { Profile } from '../../features/profile/Profile';
@@ -30,6 +31,7 @@ export const Pages = (): ReturnComponentType => {
         <Route path={PATH.NEW_PASSWORD} element={<NewPassword />} />
         <Route path={PATH.RECOVERY_PASSWORD} element={<RecoveryPassword />} />
         <Route path={PATH.CHECK_EMAIL} element={<CheckEmail />} />
+        <Route path={PATH.LEARN_CARDS} element={<Learn />} />
         <Route path="*" element={<Navigate to={PATH.ERRORS} />} />
       </Routes>
     </div>

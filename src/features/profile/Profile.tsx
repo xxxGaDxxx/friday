@@ -29,7 +29,7 @@ export const Profile = (): ReturnComponentType => {
   };
 
   return (
-    <main style={{ padding: '0 17%', background: '#F9F9FA' }}>
+    <main style={{ padding: '0 17%', background: '#F9F9FA', height: '91vh' }}>
       <BackTo path={PATH.PACKS_LIST} nameOfPath="Packs List" />
       <div className={styles.container}>
         <h2 className={s.header}>Personal Information</h2>

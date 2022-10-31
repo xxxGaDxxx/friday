@@ -6,9 +6,11 @@ import { LoginReducerActionsType } from '../../features/auth/login/reducer/login
 import { forgotReducer } from '../../features/auth/recoveryPasword/reducer/forgotReducer';
 import { ForgotReducerActionsType } from '../../features/auth/recoveryPasword/reducer/forgotReducerType';
 import { registrationReducer } from '../../features/auth/registration/reducer/registrationReducer';
-import { SetRegisteredType } from '../../features/auth/registration/reducer/registrationReducerType';
+import { SetRegisteredReducerType } from '../../features/auth/registration/reducer/registrationReducerType';
 import { cardsTableReducer } from '../../features/cards/reducer/cardTableReducer';
 import { StateCardsReducerActionsType } from '../../features/cards/reducer/cardTableReducerType';
+import { StateCardLearnReducerActionsType } from '../../features/learn/reducer/cardLearnReducerType';
+import { cardLearnReducer } from '../../features/learn/reducer/learnReducer';
 import { packTableReducer } from '../../features/packs/reducer/packTableReducer';
 import { StatePackReducerActionsType } from '../../features/packs/reducer/packTableReducerType';
 import { profileReducer } from '../../features/profile/reducer/profileReducer';
@@ -25,6 +27,7 @@ const rootReducer = combineReducers({
   registration: registrationReducer,
   pack: packTableReducer,
   card: cardsTableReducer,
+  learn: cardLearnReducer,
 });
 
 export const store = createStore(rootReducer, applyMiddleware(thunk));
@@ -37,9 +40,10 @@ export type AppActionsType =
   | ProfileReducerActionsType
   | LoginReducerActionsType
   | ForgotReducerActionsType
-  | SetRegisteredType
+  | SetRegisteredReducerType
   | StatePackReducerActionsType
-  | StateCardsReducerActionsType;
+  | StateCardsReducerActionsType
+  | StateCardLearnReducerActionsType;
 
 export type AppThunk<ReturnType = void> = ThunkAction<
   ReturnType,

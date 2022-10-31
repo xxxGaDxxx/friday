@@ -6,7 +6,7 @@ import { setAppStatusAC } from '../../../../app/store/app-reducer';
 import { AppThunk } from '../../../../app/store/store';
 import { errorUtils } from '../../../../common/utils/errorUtils';
 
-import { InitialStateRegistration, SetRegisteredType } from './registrationReducerType';
+import { InitialStateRegistration, SetRegisteredReducerType } from './registrationReducerType';
 
 export const initialState = {
   isRegistered: false,
@@ -14,7 +14,7 @@ export const initialState = {
 
 export const registrationReducer = (
   state: InitialStateRegistration = initialState,
-  action: SetRegisteredType,
+  action: SetRegisteredReducerType,
 ): InitialStateRegistration => {
   switch (action.type) {
     case 'REGISTRATION/SET-REGISTERED':
