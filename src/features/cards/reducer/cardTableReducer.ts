@@ -1,8 +1,8 @@
-import { cardsItems } from '../../../api/cardsPack';
+import { cardsAPI } from '../../../api/cardsAPI';
 import { CardsResponseType, CardsTypeCards, ParamsCardsType } from '../../../api/types/apiType';
-import { setAppStatusAC } from '../../../app/store/app-reducer';
-import { AppThunk } from '../../../app/store/store';
 import { errorUtils } from '../../../common/utils/errorUtils';
+import { setAppStatusAC } from '../../../store/app-reducer';
+import { AppThunk } from '../../../store/store';
 import { getCard } from '../../learn/getCard';
 import { setCardLearnAC } from '../../learn/reducer/learnReducer';
 
@@ -108,7 +108,7 @@ export const cardDataTC =
 
     dispatch(setAppStatusAC('loading'));
 
-    cardsItems
+    cardsAPI
       .getCards(params)
 
       .then(res => {
@@ -131,7 +131,7 @@ export const addCardTC =
 
     dispatch(setAppStatusAC('loading'));
 
-    cardsItems
+    cardsAPI
       .addCard(card)
 
       .then(res => {
@@ -149,7 +149,7 @@ export const cardDeleteTC =
   dispatch => {
     dispatch(setAppStatusAC('loading'));
 
-    cardsItems
+    cardsAPI
       .deleteCard(cardId)
 
       .then(() => {
@@ -173,7 +173,7 @@ export const cardUpdateTC =
 
     dispatch(setAppStatusAC('loading'));
 
-    cardsItems
+    cardsAPI
       .updateCard(card)
 
       .then(() => {

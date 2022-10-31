@@ -1,8 +1,8 @@
 import React, { memo } from 'react';
 
-import deleteSvg from '../../../../../assets/svg/actions/Delete.svg';
-import editSvg from '../../../../../assets/svg/actions/Edit.svg';
-import s from '../../../../../common/components/actionsSvg/style/ActionsSvg.module.scss';
+import deleteSvg from '../../../../../assets/svg/Delete.svg';
+import editSvg from '../../../../../assets/svg/Edit.svg';
+import s from '../../../../../common/components/actionIconButtons/styles/ActionsSvg.module.scss';
 import { useAppDispatch } from '../../../../../common/hooks/useAppDispatch';
 import { ReturnComponentType } from '../../../../../common/types';
 import { cardDeleteTC, cardUpdateTC } from '../../../reducer/cardTableReducer';

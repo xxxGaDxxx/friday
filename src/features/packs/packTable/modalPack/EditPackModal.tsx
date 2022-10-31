@@ -11,7 +11,7 @@ import s from './style/AddPackModal.module.scss';
 import { EditPackModalProps } from './type/EditPackModalType';
 
 export const EditPackModal = ({
-  onEditPackClick,
+  updatePack,
   clickHere,
   stylesOfIcon,
   currentPackTitle,
@@ -19,7 +19,7 @@ export const EditPackModal = ({
   const [packTitle, setPackTitle] = useState(currentPackTitle);
   const [isPrivatePack, setIsPrivatePack] = useState(false);
 
-  const onPrivatePackClick = (): void => {
+  const setPrivacy = (): void => {
     setIsPrivatePack(!isPrivatePack);
   };
 
@@ -29,13 +29,13 @@ export const EditPackModal = ({
   };
 
   const onSaveClick = (): void => {
-    onEditPackClick(packTitle, isPrivatePack);
+    updatePack(packTitle, isPrivatePack);
     handleClose();
     // setPackTitle('');
     setIsPrivatePack(false);
   };
 
-  const onNamePackChange = (event: ChangeEvent<HTMLInputElement>): void => {
+  const changePackName = (event: ChangeEvent<HTMLInputElement>): void => {
     setPackTitle(event.currentTarget.value);
   };
 
@@ -56,12 +56,12 @@ export const EditPackModal = ({
         margin="normal"
         style={{ width: '100%' }}
         value={packTitle}
-        onChange={onNamePackChange}
+        onChange={changePackName}
       />
       <FormControlLabel
         className={s.addPackModalFormCheckbox}
         label="private pack"
-        onClick={onPrivatePackClick}
+        onClick={setPrivacy}
         control={<Checkbox checked={isPrivatePack} />}
       />
     </UniversalModalWindow>

@@ -11,16 +11,16 @@ import ListItemText from '@mui/material/ListItemText';
 import Paper from '@mui/material/Paper';
 import { useNavigate } from 'react-router-dom';
 
-import { PATH } from '../../../common/enum/pathEnum';
-import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
-import { ReturnComponentType } from '../../../common/types';
-import { logOutUserTC } from '../../../features/profile/reducer/profileReducer';
+import { PATH } from '../../common/enum/pathEnum';
+import { useAppDispatch } from '../../common/hooks/useAppDispatch';
+import { ReturnComponentType } from '../../common/types';
+import { logOutUserTC } from '../../features/profile/reducer/profileReducer';
 
 type Props = {
   hideMenu: () => void;
 };
 
-export const ToggleMenu = ({ hideMenu }: Props): ReturnComponentType => {
+export const UserMenu = ({ hideMenu }: Props): ReturnComponentType => {
   const dispatch = useAppDispatch();
 
   const navigate = useNavigate();

@@ -5,10 +5,10 @@ import InputAdornment from '@mui/material/InputAdornment';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 
-import { AppActionsType } from '../../../../../app/store/store';
 import { useAppDispatch } from '../../../../../common/hooks/useAppDispatch';
 import { useDebounce } from '../../../../../common/hooks/useDebounce';
 import { ReturnComponentType } from '../../../../../common/types';
+import { AppActionsType } from '../../../../../store/store';
 
 import s from './styles/Search.module.scss';
 

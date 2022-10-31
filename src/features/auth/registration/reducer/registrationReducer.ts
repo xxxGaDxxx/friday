@@ -2,9 +2,9 @@ import { AxiosError } from 'axios';
 
 import { authAPI } from '../../../../api/authAPI';
 import { RegistrationParamsType } from '../../../../api/types/apiType';
-import { setAppStatusAC } from '../../../../app/store/app-reducer';
-import { AppThunk } from '../../../../app/store/store';
 import { errorUtils } from '../../../../common/utils/errorUtils';
+import { setAppStatusAC } from '../../../../store/app-reducer';
+import { AppThunk } from '../../../../store/store';
 
 import { InitialStateRegistration, SetRegisteredReducerType } from './registrationReducerType';
 

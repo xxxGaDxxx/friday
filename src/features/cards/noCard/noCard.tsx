@@ -23,7 +23,7 @@ export const NoCard = memo(
 
     return (
       <main className={s.main}>
-        <BackTo path={PATH.PACKS_LIST} nameOfPath="Packs List" />
+        <BackTo path={PATH.PACKS} nameOfPath="Packs List" />
         <section className={s.section}>
           <Box className={s.box}>
             <Typography component="h1">{packName}</Typography>

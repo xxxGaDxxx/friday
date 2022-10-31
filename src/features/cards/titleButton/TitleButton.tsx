@@ -5,7 +5,7 @@ import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 
-import popUpActions from '../../../assets/svg/actions/myPackPopupActions.svg';
+import popUpActions from '../../../assets/svg/myPackPopupActions.svg';
 import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
 import { ReturnComponentType } from '../../../common/types';
 import { MyPackMenu } from '../myPackMenu/MyPackMenu';

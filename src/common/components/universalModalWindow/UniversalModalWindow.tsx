@@ -53,24 +53,24 @@ export const UniversalModalWindow = ({
 }: UniversalModalWindowType): ReturnComponentType => {
   const [open, setOpen] = useState(false);
 
-  const HandleOpen = (): void => {
+  const openModalWindow = (): void => {
     setOpen(true);
   };
 
-  const handleCloseModal = (): void => {
+  const closeModalWindow = (): void => {
     setOpen(false);
     handleClose?.();
   };
 
   const onAcceptActionClickHandle = (): void => {
-    handleCloseModal();
+    closeModalWindow();
     onAcceptActionClick();
   };
 
   return (
     <div>
       <Button
-        onClick={HandleOpen}
+        onClick={openModalWindow}
         variant={variantOfButtonToCallModal}
         style={styleOfButtonToCallModal}
         type="button"
@@ -78,11 +78,11 @@ export const UniversalModalWindow = ({
         {clickHere}
       </Button>
 
-      <Modal open={open} onClose={handleCloseModal}>
+      <Modal open={open} onClose={closeModalWindow}>
         <Box sx={style}>
           <div className={s.header}>
             <h2>{title}</h2>
-            <button type="button" onClick={handleCloseModal} className={s.button}>
+            <button type="button" onClick={closeModalWindow} className={s.button}>
               <img src={close} alt="close" />
             </button>
           </div>
@@ -97,7 +97,7 @@ export const UniversalModalWindow = ({
               variant="contained"
               color="inherit"
               style={{ borderRadius: '20px' }}
-              onClick={handleCloseModal}
+              onClick={closeModalWindow}
             >
               Cancel
             </Button>

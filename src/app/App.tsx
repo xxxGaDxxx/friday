@@ -7,11 +7,11 @@ import { useAppDispatch } from '../common/hooks/useAppDispatch';
 import { useAppSelector } from '../common/hooks/useAppSelector';
 import { ReturnComponentType } from '../common/types';
 import { theme } from '../common/utils/styles/muiTheme';
+import { initializeAppTC } from '../store/app-reducer';
 
 import s from './App.module.scss';
-import { Header } from './header/Header';
-import { Pages } from './pages/Pages';
-import { initializeAppTC } from './store/app-reducer';
+import { Header } from './components/Header';
+import { Pages } from './components/Pages';
 
 const App = (): ReturnComponentType => {
   const status = useAppSelector(state => state.app.status);

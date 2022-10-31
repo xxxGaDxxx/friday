@@ -8,8 +8,8 @@ import { PATH } from '../../common/enum/pathEnum';
 import { useAppSelector } from '../../common/hooks/useAppSelector';
 import { ReturnComponentType } from '../../common/types';
 
-import { UserNameAndAva } from './components/UserNameAndAva';
-import s from './Header.module.scss';
+import s from './styles/Header.module.scss';
+import { UserNameAndAva } from './UserNameAndAva';
 
 export const Header = memo((): ReturnComponentType => {
   const isLoggedIn = useAppSelector(state => state.login.isLoggedIn);

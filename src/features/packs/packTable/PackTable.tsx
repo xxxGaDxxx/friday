@@ -9,7 +9,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableRow from '@mui/material/TableRow';
 import { useNavigate } from 'react-router-dom';
 
-import { ActionsSvg } from '../../../common/components/actionsSvg/ActionsSvg';
+import { ActionIconButtons } from '../../../common/components/actionIconButtons/ActionIconButtons';
 import { PATH } from '../../../common/enum/pathEnum';
 import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
 import { useAppSelector } from '../../../common/hooks/useAppSelector';
@@ -30,7 +30,7 @@ export const PackTable = (): ReturnComponentType => {
   const isMyPack = useCallback((id: string): boolean => userId === id, [userId]);
 
   const goToCardsList = (_id: string): void => {
-    navigate(PATH.CARDS_LIST);
+    navigate(PATH.CARDS);
     dispatch(setCardsPackIdAC(_id));
   };
 
@@ -49,7 +49,7 @@ export const PackTable = (): ReturnComponentType => {
                 <TableCell align="right">{formatDate(pack.created)}</TableCell>
                 <TableCell align="right">{pack.user_name}</TableCell>
                 <TableCell align="right">
-                  <ActionsSvg
+                  <ActionIconButtons
                     key={pack._id}
                     isMyPack={isMyPack(pack.user_id)}
                     packId={pack._id}

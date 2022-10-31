@@ -22,17 +22,17 @@ export const Pages = (): ReturnComponentType => {
       <Routes>
         <Route path="/" element={<PrivateRoutes />}>
           <Route index element={<Profile />} />
-          <Route path={PATH.PACKS_LIST} element={<Packs />} />
-          <Route path={PATH.CARDS_LIST} element={<Cards />} />
+          <Route path={PATH.PACKS} element={<Packs />} />
+          <Route path={PATH.CARDS} element={<Cards />} />
         </Route>
         <Route path={PATH.LOGIN} element={<Login />} />
-        <Route path={PATH.ERRORS} element={<PageNotFound />} />
+        <Route path={PATH.PAGE_NOT_FOUND} element={<PageNotFound />} />
         <Route path={PATH.REGISTRATION} element={<Registration />} />
         <Route path={PATH.NEW_PASSWORD} element={<NewPassword />} />
         <Route path={PATH.RECOVERY_PASSWORD} element={<RecoveryPassword />} />
         <Route path={PATH.CHECK_EMAIL} element={<CheckEmail />} />
-        <Route path={PATH.LEARN_CARDS} element={<Learn />} />
-        <Route path="*" element={<Navigate to={PATH.ERRORS} />} />
+        <Route path={PATH.LEARN} element={<Learn />} />
+        <Route path="*" element={<Navigate to={PATH.PAGE_NOT_FOUND} />} />
       </Routes>
     </div>
   );

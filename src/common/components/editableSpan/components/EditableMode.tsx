@@ -4,9 +4,13 @@ import Button from '@mui/material/Button';
 import InputAdornment from '@mui/material/InputAdornment';
 import TextField from '@mui/material/TextField';
 
-import { ReturnComponentType } from '../../types';
+import { ReturnComponentType } from '../../../types';
 
-import { EditableModeProps } from './type/EditableModeProps';
+type EditableModeProps = {
+  value: string;
+  activateViewMode: () => void;
+  setText: (text: string) => void;
+};
 
 export const EditableMode = ({
   value,

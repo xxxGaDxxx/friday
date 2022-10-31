@@ -31,24 +31,24 @@ export type LogoutResponse = {
 };
 
 // forgot type
-export type ForgotParamsType = {
+export type RestoreForgottenPasswordParamsType = {
   email: string;
   from: string;
   message: string;
 };
 
-export type ForgotResponseType = {
+export type RestoreForgottenPasswordResponseType = {
   info?: string;
   error?: string;
   success: boolean;
 };
 
-export type NewPasswordType = {
+export type SetNewPasswordType = {
   password: string;
   resetPasswordToken: string;
 };
 
-export type NewPasswordResponseType = {
+export type SetNewPasswordResponseType = {
   info?: string;
   error?: string;
 };
@@ -246,7 +246,7 @@ export type PutCardResponseTypeUpdatedCard = {
 };
 
 // learn
-export type updateGradeResponseType = {
+export type UpdateGradeResponseType = {
   updatedGrade: UpdateGradeResponseTypeUpdatedGrade;
   token: string;
   tokenDeathTime: number;

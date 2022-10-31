@@ -12,10 +12,7 @@ export type SetAppStatusACType = ReturnType<typeof setAppStatusAC>;
 export type SetAppErrorACType = ReturnType<typeof setAppErrorAC>;
 export type SetIsInitializedACType = ReturnType<typeof setIsInitializedAC>;
 
-export type AppReducerActionsType =
-  | SetAppStatusACType
-  | SetAppErrorACType
-  | SetIsInitializedACType;
+export type AppReducerActionsType = SetAppStatusACType | SetAppErrorACType | SetIsInitializedACType;
 
 // status type
 export type RequestStatusType = 'idle' | 'loading' | 'succeeded' | 'failed';

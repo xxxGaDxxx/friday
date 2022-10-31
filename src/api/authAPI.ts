@@ -12,14 +12,14 @@ import {
 } from './types/apiType';
 
 export const authAPI = {
-  login(data: LoginParamsType) {
-    return instance.post<LoginParamsType, AxiosResponse<UserResponseType>>('auth/login', data);
+  login(params: LoginParamsType) {
+    return instance.post<LoginParamsType, AxiosResponse<UserResponseType>>('auth/login', params);
   },
 
-  registration(data: RegistrationParamsType) {
+  registration(params: RegistrationParamsType) {
     return instance.post<RegistrationParamsType, AxiosResponse<RegisteredUserType>>(
       'auth/register',
-      data,
+      params,
     );
   },
 
@@ -33,10 +33,10 @@ export const authAPI = {
 };
 
 export const userAPI = {
-  updateUser(data: UserUpdateParamsType) {
+  updateUser(params: UserUpdateParamsType) {
     return instance.put<UserUpdateParamsType, AxiosResponse<UpdateUserResponseType>>(
       'auth/me',
-      data,
+      params,
     );
   },
 };

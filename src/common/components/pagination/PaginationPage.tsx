@@ -8,7 +8,13 @@ import Stack from '@mui/material/Stack';
 import { ReturnComponentType } from '../../types';
 
 import s from './styles/Pagination.module.scss';
-import { PaginationPageType } from './type/PaginationPageType';
+
+type PaginationPageType = {
+  itemsPerPage: number;
+  selectPage: (page: number) => void;
+  changeCountItemsPerPage: (itemsPerPage: number) => void;
+  totalItems: number;
+};
 
 export const PaginationPage = memo(
   ({
@@ -19,22 +25,22 @@ export const PaginationPage = memo(
   }: PaginationPageType): ReturnComponentType => {
     const pageCount = Math.ceil(totalItems / itemsPerPage);
 
-    const onPageClick = (event: ChangeEvent<unknown>, page: number): void => {
+    const choosePage = (event: ChangeEvent<unknown>, page: number): void => {
       selectPage(page);
     };
-    const onItemsPerPageChange = (event: SelectChangeEvent): void => {
+    const changeItemsPerPage = (event: SelectChangeEvent): void => {
       changeCountItemsPerPage(Number(event.target.value));
     };
 
     return (
       <div className={s.container}>
         <Stack spacing={2}>
-          <Pagination count={pageCount} shape="rounded" color="primary" onChange={onPageClick} />
+          <Pagination count={pageCount} shape="rounded" color="primary" onChange={choosePage} />
         </Stack>
         <span>Show</span>
         <Select
           value={itemsPerPage.toString()}
-          onChange={onItemsPerPageChange}
+          onChange={changeItemsPerPage}
           size="small"
           defaultValue={itemsPerPage.toString()}
         >

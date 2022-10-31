@@ -13,7 +13,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { PATH } from '../../../common/enum/pathEnum';
 import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
 import { useAppSelector } from '../../../common/hooks/useAppSelector';
-import style from '../../../common/styles/commonStyles.module.scss';
+import style from '../../../common/scss/commonStyles.module.scss';
 import { ReturnComponentType } from '../../../common/types';
 import { validatePassword } from '../../../common/utils/validateForm';
 import s from '../login/styles/Login.module.scss';

@@ -7,9 +7,9 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import Paper from '@mui/material/Paper';
 
-import deleteSvg from '../../../assets/svg/actions/Delete.svg';
-import editSvg from '../../../assets/svg/actions/Edit.svg';
-import teacherSvg from '../../../assets/svg/actions/teacher.svg';
+import deleteSvg from '../../../assets/svg/Delete.svg';
+import editSvg from '../../../assets/svg/Edit.svg';
+import teacherSvg from '../../../assets/svg/teacher.svg';
 import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
 import { useAppSelector } from '../../../common/hooks/useAppSelector';
 import { ReturnComponentType } from '../../../common/types';
@@ -40,7 +40,7 @@ export const MyPackMenu = ({ hideMenu }: MyPackMenuProps): ReturnComponentType =
           <ListItem disablePadding>
             <EditPackModal
               currentPackTitle={namePack}
-              onEditPackClick={onEditClick}
+              updatePack={onEditClick}
               stylesOfIcon={{
                 minHeight: 0,
                 width: '105px',

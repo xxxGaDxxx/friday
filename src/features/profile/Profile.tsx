@@ -8,7 +8,7 @@ import { EditableSpan } from '../../common/components/editableSpan/EditableSpan'
 import { PATH } from '../../common/enum/pathEnum';
 import { useAppDispatch } from '../../common/hooks/useAppDispatch';
 import { useAppSelector } from '../../common/hooks/useAppSelector';
-import styles from '../../common/styles/commonStyles.module.scss';
+import styles from '../../common/scss/commonStyles.module.scss';
 import { ReturnComponentType } from '../../common/types';
 
 import { logOutUserTC, updateUserNameTC } from './reducer/profileReducer';
@@ -30,7 +30,7 @@ export const Profile = (): ReturnComponentType => {
 
   return (
     <main style={{ padding: '0 17%', background: '#F9F9FA', height: '91vh' }}>
-      <BackTo path={PATH.PACKS_LIST} nameOfPath="Packs List" />
+      <BackTo path={PATH.PACKS} nameOfPath="Packs List" />
       <div className={styles.container}>
         <h2 className={s.header}>Personal Information</h2>
         <img src={avaImg} alt="ava" />

@@ -1,8 +1,8 @@
-import { cardsPack } from '../../../api/cardsPack';
+import { packsAPI } from '../../../api/packsAPI';
 import { PackCardPacks, PackDateResponseType, ParamsPacksType } from '../../../api/types/apiType';
-import { setAppStatusAC } from '../../../app/store/app-reducer';
-import { AppThunk } from '../../../app/store/store';
 import { errorUtils } from '../../../common/utils/errorUtils';
+import { setAppStatusAC } from '../../../store/app-reducer';
+import { AppThunk } from '../../../store/store';
 import { setCardsPackNameAC } from '../../cards/reducer/cardTableReducer';
 
 import { InitialStatePackTable, StatePackReducerActionsType } from './packTableReducerType';
@@ -106,7 +106,7 @@ export const packDateTC = (): AppThunk => (dispatch, getState) => {
 
   dispatch(setAppStatusAC('loading'));
 
-  cardsPack
+  packsAPI
     .getPacks(params)
 
     .then(res => {
@@ -124,7 +124,7 @@ export const packDeleteTC =
   dispatch => {
     dispatch(setAppStatusAC('loading'));
 
-    cardsPack
+    packsAPI
       .deletePack(packId)
 
       .then(() => {
@@ -151,7 +151,7 @@ export const updatePackTC =
 
     dispatch(setAppStatusAC('loading'));
 
-    cardsPack
+    packsAPI
       .updatePack(packNew)
 
       .then(() => {
@@ -180,7 +180,7 @@ export const addPackTC =
       private: privatePack,
     };
 
-    cardsPack
+    packsAPI
       .addPack(packNew)
 
       .then(() => {

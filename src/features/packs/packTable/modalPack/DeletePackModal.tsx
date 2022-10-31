@@ -28,7 +28,7 @@ export const DeletePackModal = ({
     dispatch(packDeleteTC(packId, callPoint));
 
     if (status === 'succeeded') {
-      navigate(PATH.PACKS_LIST);
+      navigate(PATH.PACKS);
     }
   };
 

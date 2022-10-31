@@ -3,7 +3,7 @@ import React from 'react';
 import Button from '@mui/material/Button';
 import { useNavigate } from 'react-router-dom';
 
-import svgError from '../../assets/svg/error/404.svg';
+import svgError from '../../assets/svg/404.svg';
 import { PATH } from '../../common/enum/pathEnum';
 import { ReturnComponentType } from '../../common/types';
 

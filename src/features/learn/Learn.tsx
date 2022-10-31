@@ -31,7 +31,7 @@ export const Learn = (): ReturnComponentType => {
 
   return (
     <main className={s.main}>
-      <BackTo path={PATH.PACKS_LIST} nameOfPath="Packs List" />
+      <BackTo path={PATH.PACKS} nameOfPath="Packs List" />
       <h2 className={s.titleCard}>{packName}</h2>
       <div className={s.container}>
         <p>

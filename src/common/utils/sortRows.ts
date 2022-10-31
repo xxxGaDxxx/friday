@@ -1,6 +1,6 @@
-import { AppDispatchType } from '../../app/store/store';
 import { setCardSortAC } from '../../features/cards/reducer/cardTableReducer';
 import { setPackSortAC } from '../../features/packs/reducer/packTableReducer';
+import { AppDispatchType } from '../../store/store';
 
 export const onSortRows = (thName: string, dispatch: AppDispatchType, sort: string): void => {
   switch (thName) {

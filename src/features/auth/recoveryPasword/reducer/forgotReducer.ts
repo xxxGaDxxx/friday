@@ -1,8 +1,11 @@
-import { forgotPasswordAPI } from '../../../../api/forgotPasswordAPI';
-import { ForgotParamsType, NewPasswordType } from '../../../../api/types/apiType';
-import { setAppStatusAC } from '../../../../app/store/app-reducer';
-import { AppThunk } from '../../../../app/store/store';
+import { restorePasswordAPI } from '../../../../api/restorePasswordAPI';
+import {
+  RestoreForgottenPasswordParamsType,
+  SetNewPasswordType,
+} from '../../../../api/types/apiType';
 import { errorUtils } from '../../../../common/utils/errorUtils';
+import { setAppStatusAC } from '../../../../store/app-reducer';
+import { AppThunk } from '../../../../store/store';
 
 import { ForgotReducerActionsType, InitialStateForgotType } from './forgotReducerType';
 
@@ -40,12 +43,12 @@ export const setIsInfoNewPasswordAC = (info: string) =>
 
 // thunk
 export const forgotPasswordTC =
-  (data: ForgotParamsType): AppThunk =>
+  (data: RestoreForgottenPasswordParamsType): AppThunk =>
   dispatch => {
     dispatch(setAppStatusAC('loading'));
 
-    forgotPasswordAPI
-      .forgot(data)
+    restorePasswordAPI
+      .restoreForgottenPassword(data)
 
       .then(res => {
         dispatch(setEmailAC(data.email));
@@ -59,12 +62,12 @@ export const forgotPasswordTC =
   };
 
 export const newPasswordTC =
-  (data: NewPasswordType): AppThunk =>
+  (data: SetNewPasswordType): AppThunk =>
   dispatch => {
     dispatch(setAppStatusAC('loading'));
 
-    forgotPasswordAPI
-      .newPassword(data)
+    restorePasswordAPI
+      .setNewPassword(data)
 
       .then(res => {
         const info = res.data.info ? res.data.info : '';

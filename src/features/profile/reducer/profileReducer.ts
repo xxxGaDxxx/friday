@@ -2,9 +2,9 @@ import { AxiosError } from 'axios';
 
 import { authAPI, userAPI } from '../../../api/authAPI';
 import { UserResponseType } from '../../../api/types/apiType';
-import { setAppStatusAC } from '../../../app/store/app-reducer';
-import { AppThunk } from '../../../app/store/store';
 import { errorUtils } from '../../../common/utils/errorUtils';
+import { setAppStatusAC } from '../../../store/app-reducer';
+import { AppThunk } from '../../../store/store';
 import { setIsLoggedInAC } from '../../auth/login/reducer/loginReducer';
 import { UserUpdateParamsType } from '../../auth/login/types/LoginType';
 

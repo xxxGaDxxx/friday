@@ -1,8 +1,8 @@
 import { learnAPI } from '../../../api/learnAPI';
 import { CardsTypeCards } from '../../../api/types/apiType';
-import { setAppStatusAC } from '../../../app/store/app-reducer';
-import { AppThunk } from '../../../app/store/store';
 import { errorUtils } from '../../../common/utils/errorUtils';
+import { setAppStatusAC } from '../../../store/app-reducer';
+import { AppThunk } from '../../../store/store';
 import { cardDataTC } from '../../cards/reducer/cardTableReducer';
 import { getCard } from '../getCard';
 
@@ -46,13 +46,13 @@ export const updateGradeTC =
 
     const { cards } = getState().card;
 
-    const data: updateGradeType = {
+    const data: UpdateGradeType = {
       grade,
       card_id,
     };
 
     learnAPI
-      .putGrade(data)
+      .updateGrade(data)
 
       .then(() => {
         dispatch(cardDataTC(cardsPack_id));
@@ -68,7 +68,7 @@ export const updateGradeTC =
       });
   };
 
-export type updateGradeType = {
+export type UpdateGradeType = {
   grade: number;
   card_id: string;
 };

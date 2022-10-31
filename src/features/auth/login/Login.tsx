@@ -16,7 +16,7 @@ import { useNavigate } from 'react-router-dom';
 import { PATH } from '../../../common/enum/pathEnum';
 import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
 import { useAppSelector } from '../../../common/hooks/useAppSelector';
-import styles from '../../../common/styles/commonStyles.module.scss';
+import styles from '../../../common/scss/commonStyles.module.scss';
 import { ReturnComponentType } from '../../../common/types';
 import { validateLoginForm } from '../../../common/utils/validateForm';
 

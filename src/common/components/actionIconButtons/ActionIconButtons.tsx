@@ -2,9 +2,9 @@ import React, { memo } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
-import deleteSvg from '../../../assets/svg/actions/Delete.svg';
-import editSvg from '../../../assets/svg/actions/Edit.svg';
-import teacherSvg from '../../../assets/svg/actions/teacher.svg';
+import deleteIcon from '../../../assets/svg/Delete.svg';
+import editIcon from '../../../assets/svg/Edit.svg';
+import learnIcon from '../../../assets/svg/teacher.svg';
 import { cardDataTC } from '../../../features/cards/reducer/cardTableReducer';
 import { DeletePackModal } from '../../../features/packs/packTable/modalPack/DeletePackModal';
 import { EditPackModal } from '../../../features/packs/packTable/modalPack/EditPackModal';
@@ -14,12 +14,16 @@ import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { useAppSelector } from '../../hooks/useAppSelector';
 import { ReturnComponentType } from '../../types';
 
-import s from './style/ActionsSvg.module.scss';
-import { ActionsSvgType } from './type/ActionsSvgType';
+import s from './styles/ActionsSvg.module.scss';
 
-const HALF_OPACITY = 0.5;
+type ActionsSvgType = {
+  isMyPack: boolean;
+  packId: string;
+  cardsCount: number;
+  namePack: string;
+};
 
-export const ActionsSvg = memo(
+export const ActionIconButtons = memo(
   ({ isMyPack, packId, cardsCount, namePack }: ActionsSvgType): ReturnComponentType => {
     const status = useAppSelector(state => state.app.status);
 
@@ -27,45 +31,42 @@ export const ActionsSvg = memo(
 
     const dispatch = useAppDispatch();
 
-    const onEditClick = (name: string, privatePack: boolean): void => {
+    const updatePack = (name: string, privatePack: boolean): void => {
       dispatch(updatePackTC(packId, name, privatePack, 'pack'));
     };
 
-    const onOpenCardsLearnClick = (): void => {
+    const navigateToLearnPage = (): void => {
       dispatch(cardDataTC(packId));
       if (status === 'succeeded') {
-        navigate(PATH.LEARN_CARDS);
+        navigate(PATH.LEARN);
       }
     };
 
-    const thereAreCards = cardsCount === 0;
-    const opacitySvgTeacher = thereAreCards ? '50%' : '100%';
-
-    const success = status !== 'succeeded';
+    const areCardsAvailable = cardsCount === 0;
+    const opacityIcon = areCardsAvailable ? '50%' : '100%';
 
     return (
       <div className={s.container}>
         <button
           type="button"
           className={s.button}
-          disabled={thereAreCards}
-          style={{ opacity: opacitySvgTeacher }}
-          onClick={onOpenCardsLearnClick}
+          disabled={areCardsAvailable}
+          style={{ opacity: opacityIcon }}
+          onClick={navigateToLearnPage}
         >
-          <img src={teacherSvg} alt="teacherSvg" />
+          <img src={learnIcon} alt="learnIcon" />
         </button>
 
         {isMyPack && (
           <EditPackModal
             currentPackTitle={namePack}
-            onEditPackClick={onEditClick}
+            updatePack={updatePack}
             stylesOfIcon={{
               minHeight: 0,
               minWidth: 0,
               padding: 0,
-              opacity: success ? HALF_OPACITY : 1,
             }}
-            clickHere={<img src={editSvg} alt="editSvg" />}
+            clickHere={<img src={editIcon} alt="editIcon" />}
           />
         )}
 
@@ -75,12 +76,11 @@ export const ActionsSvg = memo(
               minHeight: 0,
               minWidth: 0,
               padding: 0,
-              opacity: success ? HALF_OPACITY : 1,
             }}
             callPoint="pack"
             namePack={namePack}
             packId={packId}
-            clickHere={<img src={deleteSvg} alt="deleteSvg" />}
+            clickHere={<img src={deleteIcon} alt="deleteIcon" />}
           />
         )}
       </div>
