@@ -47,7 +47,7 @@ export const Cards = (): ReturnComponentType => {
     dispatch(cardDataTC(cardPackId));
   }, [dispatch, cardPackId, sortCards, cardQuestion, page, cardsTotalCount, packName, pageCount]);
 
-  if (cards.length === 0) {
+  if (cards.length && cardsTotalCount === 0) {
     return <NoCard isMyPack={isMyPack} packName={packName} cardPackId={cardPackId} />;
   }
 

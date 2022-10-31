@@ -38,7 +38,7 @@ export const cardsTableReducer = (
     case 'CARDS/ADD-CARDS':
       return {
         ...state,
-        cards: [...state.cards, action.payload.newCard],
+        cards: [action.payload.newCard, ...state.cards],
       };
     case 'CARDS/SET-CARDS-PACK-ID':
       return {
