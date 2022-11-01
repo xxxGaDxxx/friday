@@ -15,13 +15,12 @@ import s from './style/Learn.module.scss';
 export const Learn = (): ReturnComponentType => {
   const packName = useAppSelector(state => state.card.packName);
   const card = useAppSelector(state => state.learn.card);
-  const cardsPack_id = useAppSelector(state => state.learn.card.cardsPack_id);
   const showAnswer = useAppSelector(state => state.learn.showAnswer);
 
   const dispatch = useAppDispatch();
 
   const nextQuestionClick = (answer: string): void => {
-    dispatch(updateGradeTC(Number(answer), card._id, cardsPack_id));
+    dispatch(updateGradeTC(Number(answer), card._id));
     dispatch(isShowAnswerAc(false));
   };
 

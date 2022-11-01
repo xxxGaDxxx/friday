@@ -2,22 +2,22 @@ import React, { useEffect } from 'react';
 
 import { BackTo } from '../../common/components/backTo/BackTo';
 import { PaginationPage } from '../../common/components/pagination/PaginationPage';
+import { Search } from '../../common/components/search/Search';
 import { PATH } from '../../common/enum/pathEnum';
 import { useAppDispatch } from '../../common/hooks/useAppDispatch';
 import { useAppSelector } from '../../common/hooks/useAppSelector';
 import { ReturnComponentType } from '../../common/types';
-import { Search } from '../packs/packTable/sortBar/sortBarComponents/Search';
 
-import { CardsTable } from './cardTable/CardsTable';
-import { NoCard } from './noCard/noCard';
+import { CardsTableGeneral } from './components/CardsTableGeneral';
+import { EmptyPack } from './components/EmptyPack';
+import { PackNameAndButton } from './components/PackNameAndButton';
 import {
   cardDataTC,
   setCardsPerPageAC,
   setQuestionSearchAC,
   setSelectedCardsPageAC,
-} from './reducer/cardTableReducer';
+} from './reducer/cardsReducer';
 import s from './styles/Cards.module.scss';
-import { TitleButton } from './titleButton/TitleButton';
 
 export const Cards = (): ReturnComponentType => {
   const userId = useAppSelector(state => state.profile._id);
@@ -48,18 +48,18 @@ export const Cards = (): ReturnComponentType => {
   }, [dispatch, cardPackId, sortCards, cardQuestion, page, cardsTotalCount, packName, pageCount]);
 
   if (cards.length && cardsTotalCount === 0) {
-    return <NoCard isMyPack={isMyPack} packName={packName} cardPackId={cardPackId} />;
+    return <EmptyPack isMyPack={isMyPack} packName={packName} cardPackId={cardPackId} />;
   }
 
   return (
     <main className={s.main}>
       <BackTo path={PATH.PACKS} nameOfPath="Packs List" />
-      <TitleButton isMyPack={isMyPack} packName={packName} cardPackId={cardPackId} />
+      <PackNameAndButton isMyPack={isMyPack} packName={packName} cardPackId={cardPackId} />
 
       <Search action={setQuestionSearchAC} />
 
       <section className={s.table}>
-        <CardsTable />
+        <CardsTableGeneral />
       </section>
 
       <section className={s.pagination}>

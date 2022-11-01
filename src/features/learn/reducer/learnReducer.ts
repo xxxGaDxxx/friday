@@ -3,7 +3,6 @@ import { CardsTypeCards } from '../../../api/types/apiType';
 import { errorUtils } from '../../../common/utils/errorUtils';
 import { setAppStatusAC } from '../../../store/app-reducer';
 import { AppThunk } from '../../../store/store';
-import { cardDataTC } from '../../cards/reducer/cardTableReducer';
 import { getCard } from '../getCard';
 
 import { InitialStateCardLearn, StateCardLearnReducerActionsType } from './cardLearnReducerType';
@@ -21,7 +20,7 @@ export const cardLearnReducer = (
     case 'LEARN/SET-CARD-LEARN':
       return {
         ...state,
-        card: { ...action.payload.card },
+        card: { ...action.payload.card }, // СДЕЛАТЬ .map по _id
       };
     case 'LEARN/IS-SHOW-ANSWER':
       return {
@@ -40,7 +39,7 @@ export const isShowAnswerAc = (isShow: boolean) =>
   ({ type: 'LEARN/IS-SHOW-ANSWER', payload: { isShow } } as const);
 
 export const updateGradeTC =
-  (grade: number, card_id: string, cardsPack_id: string): AppThunk =>
+  (grade: number, card_id: string): AppThunk =>
   (dispatch, getState) => {
     dispatch(setAppStatusAC('loading'));
 
@@ -54,10 +53,10 @@ export const updateGradeTC =
     learnAPI
       .updateGrade(data)
 
-      .then(() => {
-        dispatch(cardDataTC(cardsPack_id));
-      })
-      .then(() => {
+      // .then(() => {
+      //   dispatch(cardDataTC(cardsPack_id));   ПЕРЕДЕЛАТЬ ВСЁ!!!
+      // })
+      .then(res => {
         dispatch(setCardLearnAC(getCard(cards)));
 
         dispatch(setAppStatusAC('succeeded'));

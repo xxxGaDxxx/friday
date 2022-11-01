@@ -14,7 +14,7 @@ import { useNavigate } from 'react-router-dom';
 import { PATH } from '../../common/enum/pathEnum';
 import { useAppDispatch } from '../../common/hooks/useAppDispatch';
 import { ReturnComponentType } from '../../common/types';
-import { logOutUserTC } from '../../features/profile/reducer/profileReducer';
+import { logOutTC } from '../../features/profile/reducer/profileReducer';
 
 type Props = {
   hideMenu: () => void;
@@ -26,7 +26,7 @@ export const UserMenu = ({ hideMenu }: Props): ReturnComponentType => {
   const navigate = useNavigate();
 
   const onLogOutClick = (): void => {
-    dispatch(logOutUserTC());
+    dispatch(logOutTC());
   };
 
   const onProfileClick = (): void => {

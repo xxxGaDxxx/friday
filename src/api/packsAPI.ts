@@ -3,7 +3,7 @@ import {
   AddPackResponseType,
   CardsPackType,
   DeletePackResponseType,
-  PackDateResponseType,
+  PackDataResponseType,
   ParamsPacksType,
   PutPackResponseType,
   UpdatePackType,
@@ -11,7 +11,7 @@ import {
 
 export const packsAPI = {
   getPacks(params?: ParamsPacksType) {
-    return instance.get<PackDateResponseType>('/cards/pack', {
+    return instance.get<PackDataResponseType>('/cards/pack', {
       params,
     });
   },

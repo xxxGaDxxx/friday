@@ -11,7 +11,7 @@ import { useAppSelector } from '../../common/hooks/useAppSelector';
 import styles from '../../common/scss/commonStyles.module.scss';
 import { ReturnComponentType } from '../../common/types';
 
-import { logOutUserTC, updateUserNameTC } from './reducer/profileReducer';
+import { logOutTC, updateUserNameTC } from './reducer/profileReducer';
 import s from './styles/Profile.module.scss';
 
 export const Profile = (): ReturnComponentType => {
@@ -25,19 +25,24 @@ export const Profile = (): ReturnComponentType => {
   };
 
   const onLogOutClick = (): void => {
-    dispatch(logOutUserTC());
+    dispatch(logOutTC());
   };
 
   return (
     <main style={{ padding: '0 17%', background: '#F9F9FA', height: '91vh' }}>
       <BackTo path={PATH.PACKS} nameOfPath="Packs List" />
+
       <div className={styles.container}>
         <h2 className={s.header}>Personal Information</h2>
+
         <img src={avaImg} alt="ava" />
+
         <div className={s.editableName}>
           <EditableSpan onChange={onNameChange} value={userName} />
         </div>
+
         <div className={s.email}>{email}</div>
+
         <Button onClick={onLogOutClick} color="primary" variant="outlined">
           Log out
         </Button>

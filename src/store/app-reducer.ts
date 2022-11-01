@@ -1,6 +1,6 @@
 import { authAPI } from '../api/authAPI';
-import { setIsLoggedInAC } from '../features/auth/login/reducer/loginReducer';
-import { setUserDateAC } from '../features/profile/reducer/profileReducer';
+import { setIsLoggedInAC } from '../features/login/reducer/loginReducer';
+import { setUserDataAC } from '../features/profile/reducer/profileReducer';
 
 import { AppThunk } from './store';
 import {
@@ -63,7 +63,7 @@ export const initializeAppTC = (): AppThunk => dispatch => {
 
     .then(res => {
       dispatch(setIsLoggedInAC(true));
-      dispatch(setUserDateAC(res.data));
+      dispatch(setUserDataAC(res.data));
       dispatch(setAppStatusAC('succeeded'));
     })
 

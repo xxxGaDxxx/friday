@@ -1,6 +1,6 @@
 import { AxiosResponse } from 'axios';
 
-import { LoginParamsType, UserUpdateParamsType } from '../features/auth/login/types/LoginType';
+import { LoginParamsType, UserUpdateParamsType } from '../features/login/types/LoginType';
 
 import { instance } from './config';
 import {
