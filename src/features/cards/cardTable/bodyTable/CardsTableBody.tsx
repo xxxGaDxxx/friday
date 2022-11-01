@@ -8,6 +8,7 @@ import TableRow from '@mui/material/TableRow';
 import { useAppSelector } from '../../../../common/hooks/useAppSelector';
 import { ReturnComponentType } from '../../../../common/types';
 import { formatDate } from '../../../../common/utils/formatDate';
+import s from '../../../packs/style/Packs.module.scss';
 
 import { SvgCard } from './svgCard/SvgCard';
 import { CardsTableBodyProps } from './type/CardsTableBodyProps';
@@ -20,20 +21,20 @@ export const CardsTableBody = memo(({ isMyPack }: CardsTableBodyProps): ReturnCo
       {cards.length ? (
         cards.map(card => (
           <TableRow key={card._id}>
-            <TableCell component="th" scope="row">
-              {card.question}
+            <TableCell className={s.firstColumn} component="th" scope="row">
+              <span>{card.question}</span>
             </TableCell>
 
-            <TableCell align="right">{card.answer}</TableCell>
+            <TableCell>{card.answer}</TableCell>
 
-            <TableCell align="right">{formatDate(card.updated)}</TableCell>
+            <TableCell>{formatDate(card.updated)}</TableCell>
 
-            <TableCell align="right">
+            <TableCell>
               <Rating name="half-rating-read" defaultValue={card.grade} precision={0.5} readOnly />
             </TableCell>
 
             {isMyPack && (
-              <TableCell align="right">
+              <TableCell>
                 <SvgCard key={card._id} cardId={card._id} cardPackId={card.cardsPack_id} />
               </TableCell>
             )}

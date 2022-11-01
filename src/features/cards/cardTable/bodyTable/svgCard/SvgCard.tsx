@@ -2,11 +2,11 @@ import React, { memo } from 'react';
 
 import deleteSvg from '../../../../../assets/svg/actions/Delete.svg';
 import editSvg from '../../../../../assets/svg/actions/Edit.svg';
-import s from '../../../../../common/components/actionsSvg/style/ActionsSvg.module.scss';
 import { useAppDispatch } from '../../../../../common/hooks/useAppDispatch';
 import { ReturnComponentType } from '../../../../../common/types';
 import { cardDeleteTC, cardUpdateTC } from '../../../reducer/cardTableReducer';
 
+import s from './CardSvg.module.scss';
 import { SvgCardType } from './types/svgCardTypes';
 
 export const SvgCard = memo(({ cardId, cardPackId }: SvgCardType): ReturnComponentType => {
@@ -21,7 +21,7 @@ export const SvgCard = memo(({ cardId, cardPackId }: SvgCardType): ReturnCompone
   };
 
   return (
-    <>
+    <div className={s.container}>
       <button
         type="button"
         onClick={onEditClick}
@@ -40,6 +40,6 @@ export const SvgCard = memo(({ cardId, cardPackId }: SvgCardType): ReturnCompone
       >
         <img src={deleteSvg} alt="deleteSvg" />
       </button>
-    </>
+    </div>
   );
 });

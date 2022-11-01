@@ -16,6 +16,7 @@ import { useAppSelector } from '../../../common/hooks/useAppSelector';
 import { ReturnComponentType } from '../../../common/types';
 import { formatDate } from '../../../common/utils/formatDate';
 import { setCardsPackIdAC } from '../../cards/reducer/cardTableReducer';
+import s from '../style/Packs.module.scss';
 
 import { HatTable } from './hatTable/HatTable';
 
@@ -42,13 +43,18 @@ export const PackTable = (): ReturnComponentType => {
           {cardPacks.length ? (
             cardPacks.map(pack => (
               <TableRow key={pack._id}>
-                <TableCell onClick={() => goToCardsList(pack._id)} component="th" scope="row">
-                  {pack.name}
+                <TableCell
+                  className={s.firstColumn}
+                  onClick={() => goToCardsList(pack._id)}
+                  component="th"
+                  scope="row"
+                >
+                  <span>{pack.name}</span>
                 </TableCell>
-                <TableCell align="right">{pack.cardsCount}</TableCell>
-                <TableCell align="right">{formatDate(pack.created)}</TableCell>
-                <TableCell align="right">{pack.user_name}</TableCell>
-                <TableCell align="right">
+                <TableCell>{pack.cardsCount}</TableCell>
+                <TableCell>{formatDate(pack.created)}</TableCell>
+                <TableCell>{pack.user_name}</TableCell>
+                <TableCell>
                   <ActionsSvg
                     key={pack._id}
                     isMyPack={isMyPack(pack.user_id)}

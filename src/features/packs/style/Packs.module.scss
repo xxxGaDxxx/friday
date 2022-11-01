@@ -22,18 +22,28 @@
 
   .packTable {
     margin-top: 24px;
-    //.tableRows {
-    //  cursor: grab;
-    //  position: relative;
-    //  &::before {
-    //    position: absolute;
-    //    content: '';
-    //    background: #FF3535;
-    //    border: 2px solid #FF3535;
-    //    top: -30px;
-    //    width: 150px;
-    //  }
-    //}
+    word-break: break-all;
+
+    .firstColumn {
+      max-width: 100px;
+
+      span {
+
+        cursor: pointer;
+        position: relative;
+
+        &:hover {
+          &::before {
+            position: absolute;
+            content: '';
+            background: #1976d2;
+            border: 2px solid #1976d2;
+            top: 19px;
+            width: 100%;
+          }
+        }
+      }
+    }
   }
 
   .pagination {
