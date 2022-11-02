@@ -1,4 +1,4 @@
-import React, { memo, useState } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
@@ -13,8 +13,11 @@ import s from './styles/Search.module.scss';
 
 export const ChooseMyOrAll = memo((): ReturnComponentType => {
   const userId = useAppSelector(state => state.profile._id);
+  const userCardId = useAppSelector(state => state.pack.user_id);
 
   const dispatch = useAppDispatch();
+
+  const My = userCardId ? 'My' : 'All';
 
   const [alignment, setAlignment] = useState<'My' | 'All'>('All');
 
@@ -26,6 +29,10 @@ export const ChooseMyOrAll = memo((): ReturnComponentType => {
     if (newAlignment === 'All') dispatch(setUserIdAC(''));
     if (newAlignment === 'My') dispatch(setUserIdAC(userId));
   };
+
+  useEffect(() => {
+    setAlignment(My);
+  }, [My]);
 
   return (
     <div className={s.search}>

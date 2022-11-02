@@ -22,10 +22,11 @@ export const initialStatePacks = {
   sortPacks: '',
   user_id: '',
   minMaxCount: [0, DEFAULT_MAX_COUNT],
+  search: '',
 };
 
 export const packsReducer = (
-  state = initialStatePacks,
+  state: InitialStatePacks = initialStatePacks,
   action: PacksReducerActionsType,
 ): InitialStatePacks => {
   switch (action.type) {
@@ -41,6 +42,7 @@ export const packsReducer = (
     case 'PACK/SET-PACK-SORT':
     case 'PACK/SET-USER-ID':
     case 'PACK/SET-MIN-MAX-COUNT':
+    case 'PACK/SET-SEARCH':
       return {
         ...state,
         ...action.payload,
@@ -76,6 +78,9 @@ export const setMinMaxCountAC = (minMaxCount: number[]) =>
 
 export const setPackSortAC = (sortPacks: string) =>
   ({ type: 'PACK/SET-PACK-SORT', payload: { sortPacks } } as const);
+
+export const setSearchAC = (search: string) =>
+  ({ type: 'PACK/SET-SEARCH', payload: { search } } as const);
 
 export const setCancelFilterAC = (data: {
   packName: string;

@@ -9,6 +9,7 @@ import {
   DEFAULT_MAX_COUNT,
   setMinMaxCountAC,
   setPackNameAC,
+  setSearchAC,
   setUserIdAC,
 } from '../reducer/packsReducer';
 
@@ -19,6 +20,7 @@ export const CancelFilter = (): ReturnComponentType => {
 
   const abortSortSettings = (): void => {
     dispatch(setPackNameAC(''));
+    dispatch(setSearchAC(''));
     dispatch(setUserIdAC(''));
     dispatch(setMinMaxCountAC([0, DEFAULT_MAX_COUNT]));
   };
