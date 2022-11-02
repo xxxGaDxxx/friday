@@ -12,8 +12,8 @@ import { useAppSelector } from '../../../common/hooks/useAppSelector';
 import { ReturnComponentType } from '../../../common/types';
 import { formatDate } from '../../../common/utils/formatDate';
 import { setCardsPackIdAC } from '../../cards/reducer/cardsReducer';
-import s from '../style/Packs.module.scss';
 import { setSearchAC } from '../reducer/packsReducer';
+import s from '../style/Packs.module.scss';
 
 export const PacksTableBody = (): ReturnComponentType => {
   const dispatch = useAppDispatch();
