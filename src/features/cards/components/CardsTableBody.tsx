@@ -21,31 +21,38 @@ export const CardsTableBody = memo(({ isMyPack }: CardsTableBodyProps): ReturnCo
   return (
     <TableBody>
       {cards.length ? (
-        cards.map(card => (
-          <TableRow key={card._id}>
-            <TableCell component="th" scope="row">
-              {card.question}
-            </TableCell>
+        cards.map(card => {
+          return (
+            <TableRow key={card._id}>
+              <TableCell component="th" scope="row">
+                {card.question}
+              </TableCell>
 
-            <TableCell align="right">{card.answer}</TableCell>
+              <TableCell align="right">{card.answer}</TableCell>
 
-            <TableCell align="right">{formatDate(card.updated)}</TableCell>
+              <TableCell align="right">{formatDate(card.updated)}</TableCell>
 
-            <TableCell align="right">
-              <Rating name="half-rating-read" defaultValue={card.grade} precision={0.5} readOnly />
-            </TableCell>
-
-            {isMyPack && (
               <TableCell align="right">
-                <ActionIconButtons
-                  key={card._id}
-                  cardId={card._id}
-                  cardPackId={card.cardsPack_id}
+                <Rating
+                  name="half-rating-read"
+                  defaultValue={card.grade}
+                  precision={0.1}
+                  readOnly
                 />
               </TableCell>
-            )}
-          </TableRow>
-        ))
+
+              {isMyPack && (
+                <TableCell align="right">
+                  <ActionIconButtons
+                    key={card._id}
+                    cardId={card._id}
+                    cardPackId={card.cardsPack_id}
+                  />
+                </TableCell>
+              )}
+            </TableRow>
+          );
+        })
       ) : (
         <TableRow>
           <TableCell>Cards not found</TableCell>

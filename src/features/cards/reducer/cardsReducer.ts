@@ -102,16 +102,18 @@ export const updateCarGradedAC = (card: CardsTypeCards) =>
 
 // thunk
 export const cardDataTC =
-  (_id: string, maxCount?: number): AppThunk =>
+  (_id: string, allPadeCount?: number): AppThunk =>
   (dispatch, getState) => {
     const { pageCount, page, sortCards, minGrade, maxGrade, cardQuestion } = getState().card;
-    const a = maxCount || pageCount;
+    const pageCountAll = allPadeCount || pageCount;
+
+    const DEFAULT_PAGE_COUNT = 5;
 
     const params: ParamsCardsType = {
       cardsPack_id: _id,
       sortCards,
       page,
-      pageCount: a,
+      pageCount: pageCountAll,
       min: minGrade,
       max: maxGrade,
       cardQuestion,
@@ -124,7 +126,13 @@ export const cardDataTC =
 
       .then(res => {
         dispatch(setCardsDataAC(res.data));
+
+        if (allPadeCount) {
+          dispatch(setCardsPerPageAC(DEFAULT_PAGE_COUNT));
+        }
+
         dispatch(setCardLearnAC(getCard(res.data.cards)));
+
         dispatch(setAppStatusAC('succeeded'));
       })
 

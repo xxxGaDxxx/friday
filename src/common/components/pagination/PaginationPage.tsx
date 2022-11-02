@@ -48,6 +48,7 @@ export const PaginationPage = memo(
           <MenuItem value={10}>10</MenuItem>
           <MenuItem value={15}>15</MenuItem>
           <MenuItem value={25}>25</MenuItem>
+          <MenuItem value={110}>110</MenuItem>
         </Select>
         <span>Items per Page</span>
       </div>
