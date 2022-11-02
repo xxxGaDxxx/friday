@@ -1,7 +1,7 @@
 import axios, { AxiosError } from 'axios';
 
-import { setAppErrorAC, setAppStatusAC } from '../../app/store/app-reducer';
-import { AppDispatchType } from '../../app/store/store';
+import { setAppErrorAC, setAppStatusAC } from '../../store/app-reducer';
+import { AppDispatchType } from '../../store/store';
 
 export const errorUtils = (
   e: Error | AxiosError<{ error: string }>,

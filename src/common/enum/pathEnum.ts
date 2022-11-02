@@ -4,9 +4,9 @@ export enum PATH {
   PROFILE = '/',
   NEW_PASSWORD = '/new_password/:resetPasswordToken',
   RECOVERY_PASSWORD = '/recovery_password/',
-  ERRORS = '/error',
+  PAGE_NOT_FOUND = '/error',
   CHECK_EMAIL = '/check_email',
-
-  PACKS_LIST = '/packs_list',
-  CARDS_LIST = '/cards',
+  PACKS = '/packs',
+  CARDS = '/cards',
+  LEARN = '/learn',
 }

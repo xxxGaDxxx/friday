@@ -5,15 +5,15 @@ import { useAppDispatch } from '../../common/hooks/useAppDispatch';
 import { useAppSelector } from '../../common/hooks/useAppSelector';
 import { ReturnComponentType } from '../../common/types';
 
-import { AddNewPack } from './packTable/AddNewPack';
-import { PackTable } from './packTable/PackTable';
-import { SortBar } from './packTable/sortBar/SortBar';
+import { AddNewPack } from './components/AddNewPack';
+import { FilterBar } from './components/FilterBar';
+import { PacksTableGeneral } from './components/PacksTableGeneral';
 import {
   addPackTC,
-  packDateTC,
+  packDataTC,
   setPacksPerPageAC,
   setSelectedPageAC,
-} from './reducer/packTableReducer';
+} from './reducer/packsReducer';
 import s from './style/Packs.module.scss';
 
 export const Packs = (): ReturnComponentType => {
@@ -35,24 +35,24 @@ export const Packs = (): ReturnComponentType => {
     dispatch(setSelectedPageAC(page));
   };
 
-  const onAddPackClick = (titlePack: string, privatePack: boolean): void => {
+  const addPack = (titlePack: string, privatePack: boolean): void => {
     dispatch(addPackTC(titlePack, privatePack));
   };
 
   useEffect(() => {
-    dispatch(packDateTC());
+    dispatch(packDataTC());
   }, [dispatch, pageCount, page, sortPacks, userId, minMaxCount, packName]);
 
   return (
     <div className={s.container}>
       <div className={s.titleButton}>
-        <AddNewPack onAddPackClick={onAddPackClick} />
+        <AddNewPack onAddPackClick={addPack} />
       </div>
 
-      <SortBar />
+      <FilterBar />
 
       <div className={s.packTable}>
-        <PackTable />
+        <PacksTableGeneral />
       </div>
 
       <div className={s.pagination}>

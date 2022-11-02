@@ -2,11 +2,11 @@ import { AxiosError } from 'axios';
 
 import { authAPI, userAPI } from '../../../api/authAPI';
 import { UserResponseType } from '../../../api/types/apiType';
-import { setAppStatusAC } from '../../../app/store/app-reducer';
-import { AppThunk } from '../../../app/store/store';
 import { errorUtils } from '../../../common/utils/errorUtils';
-import { setIsLoggedInAC } from '../../auth/login/reducer/loginReducer';
-import { UserUpdateParamsType } from '../../auth/login/types/LoginType';
+import { setAppStatusAC } from '../../../store/app-reducer';
+import { AppThunk } from '../../../store/store';
+import { setIsLoggedInAC } from '../../login/reducer/loginReducer';
+import { UserUpdateParamsType } from '../../login/types/LoginType';
 
 import { InitialStateType, ProfileReducerActionsType } from './profileReducerType';
 
@@ -22,7 +22,7 @@ export const profileReducer = (
   action: ProfileReducerActionsType,
 ): InitialStateType => {
   switch (action.type) {
-    case 'PROFILE/SET-USER-DATE':
+    case 'PROFILE/SET-USER-DATA':
       return {
         ...state,
         ...action.payload.userDate,
@@ -33,8 +33,8 @@ export const profileReducer = (
 };
 
 // actions
-export const setUserDateAC = (userDate: UserResponseType) =>
-  ({ type: 'PROFILE/SET-USER-DATE', payload: { userDate } } as const);
+export const setUserDataAC = (userData: UserResponseType) =>
+  ({ type: 'PROFILE/SET-USER-DATA', payload: { userDate: userData } } as const);
 
 // thunk
 export const updateUserNameTC =
@@ -46,7 +46,7 @@ export const updateUserNameTC =
       .updateUser(data)
 
       .then(res => {
-        dispatch(setUserDateAC(res.data.updatedUser));
+        dispatch(setUserDataAC(res.data.updatedUser));
         dispatch(setAppStatusAC('succeeded'));
       })
 
@@ -55,7 +55,7 @@ export const updateUserNameTC =
       });
   };
 
-export const logOutUserTC = (): AppThunk => dispatch => {
+export const logOutTC = (): AppThunk => dispatch => {
   dispatch(setAppStatusAC('loading'));
 
   authAPI

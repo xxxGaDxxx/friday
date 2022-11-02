@@ -1,0 +1,15 @@
+
+.container {
+  display: flex;
+  justify-content: space-around;
+
+  .button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    min-height: 0;
+    min-width: 0;
+    margin-top: 3px;
+  }
+}

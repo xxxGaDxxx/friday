@@ -4,8 +4,12 @@ import ModeEditIcon from '@mui/icons-material/ModeEdit';
 
 import { ReturnComponentType } from '../../types';
 
-import { EditableMode } from './EditableMode';
-import { EditableSpanProps } from './type/EditableSpanProps';
+import { EditableMode } from './components/EditableMode';
+
+type EditableSpanProps = {
+  onChange: (newValue: string) => void;
+  value: string;
+};
 
 export const EditableSpan = ({ onChange, value }: EditableSpanProps): ReturnComponentType => {
   const [editMode, setEditMode] = useState(false);

@@ -3,11 +3,11 @@ import * as React from 'react';
 import Snackbar from '@mui/material/Snackbar';
 import { useDispatch } from 'react-redux';
 
-import { setAppErrorAC } from '../../../app/store/app-reducer';
+import { setAppErrorAC } from '../../../store/app-reducer';
 import { useAppSelector } from '../../hooks/useAppSelector';
 import { ReturnComponentType } from '../../types';
 
-import { Alert } from './Alert';
+import { Alert } from './components/Alert';
 
 export const ErrorSnackbar = (): ReturnComponentType => {
   const error = useAppSelector(state => state.app.error);

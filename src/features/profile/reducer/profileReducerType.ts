@@ -1,9 +1,9 @@
 // initialState type
 
-import { initialStateProfile, setUserDateAC } from './profileReducer';
+import { initialStateProfile, setUserDataAC } from './profileReducer';
 
 export type InitialStateType = typeof initialStateProfile;
 
 // action
-export type setUserNameACType = ReturnType<typeof setUserDateAC>;
+export type setUserNameACType = ReturnType<typeof setUserDataAC>;
 export type ProfileReducerActionsType = setUserNameACType;
