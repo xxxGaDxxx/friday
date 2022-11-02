@@ -13,12 +13,12 @@ import {
   setUserIdAC,
 } from '../reducer/packsReducer';
 
-import s from './styles/AbortSort.module.scss';
+import s from './styles/CancelFilter.module.scss';
 
 export const CancelFilter = (): ReturnComponentType => {
   const dispatch = useAppDispatch();
 
-  const abortSortSettings = (): void => {
+  const cancelFilter = (): void => {
     dispatch(setPackNameAC(''));
     dispatch(setSearchAC(''));
     dispatch(setUserIdAC(''));
@@ -26,7 +26,7 @@ export const CancelFilter = (): ReturnComponentType => {
   };
 
   return (
-    <Box className={s.abortSort} onClick={abortSortSettings}>
+    <Box className={s.cancelFilter} onClick={cancelFilter}>
       <FilterAltOffIcon />
     </Box>
   );
