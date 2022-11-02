@@ -60,6 +60,13 @@ export const cardsReducer = (
         ...state,
         pageCount: action.payload.count,
       };
+    case 'CARDS/UPDATE-CARD-GRADE':
+      return {
+        ...state,
+        cards: state.cards.map(card =>
+          card._id === action.payload.card._id ? { ...card, ...action.payload.card } : card,
+        ),
+      };
     default:
       return state;
   }
@@ -90,17 +97,21 @@ export const setCardsPerPageAC = (count: number) =>
 export const setSelectedCardsPageAC = (page: number) =>
   ({ type: 'CARDS/SET-SELECTED-PAGE', payload: { page } } as const);
 
+export const updateCarGradedAC = (card: CardsTypeCards) =>
+  ({ type: 'CARDS/UPDATE-CARD-GRADE', payload: { card } } as const);
+
 // thunk
 export const cardDataTC =
-  (_id: string): AppThunk =>
+  (_id: string, maxCount?: number): AppThunk =>
   (dispatch, getState) => {
     const { pageCount, page, sortCards, minGrade, maxGrade, cardQuestion } = getState().card;
+    const a = maxCount || pageCount;
 
     const params: ParamsCardsType = {
       cardsPack_id: _id,
       sortCards,
       page,
-      pageCount,
+      pageCount: a,
       min: minGrade,
       max: maxGrade,
       cardQuestion,

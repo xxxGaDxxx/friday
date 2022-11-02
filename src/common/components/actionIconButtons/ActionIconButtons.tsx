@@ -8,7 +8,7 @@ import learnIcon from '../../../assets/svg/teacher.svg';
 import { cardDataTC } from '../../../features/cards/reducer/cardsReducer';
 import { DeletePackModal } from '../../../features/packs/components/modalPack/DeletePackModal';
 import { EditPackModal } from '../../../features/packs/components/modalPack/EditPackModal';
-import { updatePackTC } from '../../../features/packs/reducer/packsReducer';
+import { DEFAULT_MAX_COUNT, updatePackTC } from '../../../features/packs/reducer/packsReducer';
 import { PATH } from '../../enum/pathEnum';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { useAppSelector } from '../../hooks/useAppSelector';
@@ -36,7 +36,7 @@ export const ActionIconButtons = memo(
     };
 
     const navigateToLearnPage = (): void => {
-      dispatch(cardDataTC(packId));
+      dispatch(cardDataTC(packId, DEFAULT_MAX_COUNT));
       if (status === 'succeeded') {
         navigate(PATH.LEARN);
       }
