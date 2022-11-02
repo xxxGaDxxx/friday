@@ -54,7 +54,12 @@ export const Cards = (): ReturnComponentType => {
   return (
     <main className={s.main}>
       <BackTo path={PATH.PACKS} nameOfPath="Packs List" />
-      <PackNameAndButton isMyPack={isMyPack} packName={packName} cardPackId={cardPackId} />
+      <PackNameAndButton
+        isMyPack={isMyPack}
+        packName={packName}
+        cardPackId={cardPackId}
+        cardsTotalCount={cardsTotalCount}
+      />
 
       <Search action={setQuestionSearchAC} />
 

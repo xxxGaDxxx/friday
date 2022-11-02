@@ -19,9 +19,13 @@ import { updatePackTC } from '../../packs/reducer/packsReducer';
 
 type MyPackMenuProps = {
   hideMenu: () => void;
+  navigateToLearnPage: () => void;
 };
 
-export const MyPackMenu = ({ hideMenu }: MyPackMenuProps): ReturnComponentType => {
+export const MyPackMenu = ({
+  hideMenu,
+  navigateToLearnPage,
+}: MyPackMenuProps): ReturnComponentType => {
   const packId = useAppSelector(state => state.card.cardsPackId);
   const namePack = useAppSelector(state => state.card.packName);
 
@@ -31,8 +35,6 @@ export const MyPackMenu = ({ hideMenu }: MyPackMenuProps): ReturnComponentType =
     dispatch(updatePackTC(packId, name, privatePack, 'card'));
     hideMenu();
   };
-
-  const onLearnClick = (): void => {};
 
   return (
     <Paper elevation={24}>
@@ -78,7 +80,7 @@ export const MyPackMenu = ({ hideMenu }: MyPackMenuProps): ReturnComponentType =
           </ListItem>
 
           <ListItem disablePadding>
-            <ListItemButton onClick={onLearnClick}>
+            <ListItemButton onClick={navigateToLearnPage}>
               <img src={learnIcon} alt="learnIcon" />
               <ListItemText primary="Learn" />
             </ListItemButton>
