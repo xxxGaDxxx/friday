@@ -20,12 +20,12 @@ export const BackTo = ({ path, nameOfPath, className }: BackToPropsType): Return
 
   const defineClassname = `${s.navLink}${className || ''}`;
 
-  const deleteSearch = (): void => {
+  const cancelSearchValue = (): void => {
     dispatch(setSearchAC(''));
   };
 
   return (
-    <NavLink to={path} className={defineClassname} onClick={deleteSearch}>
+    <NavLink to={path} className={defineClassname} onClick={cancelSearchValue}>
       <span className={s.back}>
         <img src={arrow} alt="arrow" className={s.arrow} />
         Back to {nameOfPath}

@@ -12,7 +12,7 @@ import { CardsTableGeneral } from './components/CardsTableGeneral';
 import { EmptyPack } from './components/EmptyPack';
 import { PackNameAndButton } from './components/PackNameAndButton';
 import {
-  cardDataTC,
+  getCardDataTC,
   setCardsPerPageAC,
   setQuestionSearchAC,
   setSelectedCardsPageAC,
@@ -21,7 +21,7 @@ import s from './styles/Cards.module.scss';
 
 export const Cards = (): ReturnComponentType => {
   const userId = useAppSelector(state => state.profile._id);
-  const cards = useAppSelector(state => state.card.cards);
+  // const cards = useAppSelector(state => state.card.cards);
   const packUserId = useAppSelector(state => state.card.packUserId);
   const packName = useAppSelector(state => state.card.packName);
   const cardPackId = useAppSelector(state => state.card.cardsPackId);
@@ -44,10 +44,10 @@ export const Cards = (): ReturnComponentType => {
   const isMyPack = userId === packUserId;
 
   useEffect(() => {
-    dispatch(cardDataTC(cardPackId));
+    dispatch(getCardDataTC(cardPackId));
   }, [dispatch, cardPackId, sortCards, cardQuestion, page, cardsTotalCount, packName, pageCount]);
 
-  if (cards.length && cardsTotalCount === 0) {
+  if (cardsTotalCount === 0) {
     return <EmptyPack isMyPack={isMyPack} packName={packName} cardPackId={cardPackId} />;
   }
 

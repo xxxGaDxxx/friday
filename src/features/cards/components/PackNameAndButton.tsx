@@ -11,7 +11,7 @@ import { PATH } from '../../../common/enum/pathEnum';
 import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
 import { useAppSelector } from '../../../common/hooks/useAppSelector';
 import { ReturnComponentType } from '../../../common/types';
-import { addCardTC, cardDataTC } from '../reducer/cardsReducer';
+import { addCardTC, getCardDataTC } from '../reducer/cardsReducer';
 import s from '../styles/Cards.module.scss';
 
 import { MyPackMenu } from './MyPackMenu';
@@ -46,7 +46,7 @@ export const PackNameAndButton = ({
   };
 
   const navigateToLearnPage = (): void => {
-    dispatch(cardDataTC(cardPackId, cardsTotalCount));
+    dispatch(getCardDataTC(cardPackId, cardsTotalCount));
     if (status === 'succeeded') {
       navigate(PATH.LEARN);
     }

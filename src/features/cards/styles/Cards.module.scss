@@ -25,6 +25,8 @@
       display: flex;
 
       h1 {
+        max-width: 200px;
+        word-break: break-all;
         font-weight: 600;
         font-size: 22px;
         margin-right: 9px;

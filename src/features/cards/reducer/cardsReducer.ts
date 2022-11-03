@@ -108,7 +108,7 @@ export const updateCarGradedAC = (card: UpdateGradeResponseTypeUpdatedGrade) =>
   ({ type: 'CARDS/UPDATE-CARD-GRADE', payload: { card } } as const);
 
 // thunk
-export const cardDataTC =
+export const getCardDataTC =
   (_id: string, allPageCount?: number): AppThunk =>
   (dispatch, getState) => {
     const { pageCount, page, sortCards, minGrade, maxGrade, cardQuestion } = getState().card;
@@ -162,6 +162,7 @@ export const addCardTC =
 
       .then(res => {
         dispatch(addCardsAC(res.data.newCard));
+        dispatch(getCardDataTC(_id));
         dispatch(setAppStatusAC('succeeded'));
       })
 
@@ -179,7 +180,7 @@ export const deleteCardTC =
       .deleteCard(cardId)
 
       .then(() => {
-        dispatch(cardDataTC(cardPackId));
+        dispatch(getCardDataTC(cardPackId));
         dispatch(setAppStatusAC('succeeded'));
       })
 
@@ -203,7 +204,7 @@ export const updateCardTC =
       .updateCard(card)
 
       .then(() => {
-        dispatch(cardDataTC(cardPackId));
+        dispatch(getCardDataTC(cardPackId));
         dispatch(setAppStatusAC('succeeded'));
       })
 
