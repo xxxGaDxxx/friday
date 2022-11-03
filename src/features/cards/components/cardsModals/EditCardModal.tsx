@@ -47,7 +47,7 @@ export const EditCardModal = ({
 
   return (
     <UniversalModalWindow
-      styleOfButtonToCallModal={stylesOfIcon}
+      styleButtonActivateModal={stylesOfIcon}
       variantOfButtonToCallModal="text"
       clickHere={clickHere}
       onAcceptActionClick={onSaveClick}

@@ -43,7 +43,7 @@ export const AddPackModal = ({
 
   return (
     <UniversalModalWindow
-      styleOfButtonToCallModal={{ borderRadius: '20px' }}
+      styleButtonActivateModal={{ borderRadius: '20px' }}
       variantOfButtonToCallModal="contained"
       clickHere={clickHere}
       onAcceptActionClick={onSaveClick}

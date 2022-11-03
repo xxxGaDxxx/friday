@@ -6,6 +6,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import TextField from '@mui/material/TextField';
 
+import { styleButtonActivateModal } from '../../../../common/components/universalModalWindow/style/styleMUIComponents';
 import { UniversalModalWindow } from '../../../../common/components/universalModalWindow/UniversalModalWindow';
 import { useAppDispatch } from '../../../../common/hooks/useAppDispatch';
 import { ReturnComponentType } from '../../../../common/types';
@@ -58,7 +59,7 @@ export const AddCardModal = ({ cardPackId, clickHere }: AddCardModalProps): Retu
 
   return (
     <UniversalModalWindow
-      styleOfButtonToCallModal={{ borderRadius: '20px' }}
+      styleButtonActivateModal={styleButtonActivateModal}
       variantOfButtonToCallModal="contained"
       clickHere={clickHere}
       onAcceptActionClick={saveChanges}

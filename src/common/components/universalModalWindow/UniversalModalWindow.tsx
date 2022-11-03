@@ -7,18 +7,8 @@ import Modal from '@mui/material/Modal';
 import close from '../../../assets/svg/close.svg';
 import { ReturnComponentType } from '../../types';
 
+import { styleBox } from './style/styleMUIComponents';
 import s from './style/UniversalModalWindow.module.scss';
-
-const style = {
-  position: 'absolute' as 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 400,
-  backgroundColor: '#FFFFFF',
-  boxShadow: 24,
-  p: 4,
-};
 
 type UniversalModalWindowType = {
   children: ReactNode;
@@ -36,7 +26,7 @@ type UniversalModalWindowType = {
     | 'error'
     | 'info'
     | 'warning';
-  styleOfButtonToCallModal?: Object;
+  styleButtonActivateModal?: Object;
 };
 
 export const UniversalModalWindow = ({
@@ -48,7 +38,7 @@ export const UniversalModalWindow = ({
   colorAcceptButton,
   clickHere,
   variantOfButtonToCallModal,
-  styleOfButtonToCallModal,
+  styleButtonActivateModal,
 }: UniversalModalWindowType): ReturnComponentType => {
   const [open, setOpen] = useState(false);
 
@@ -71,14 +61,14 @@ export const UniversalModalWindow = ({
       <Button
         onClick={openModalWindow}
         variant={variantOfButtonToCallModal}
-        style={styleOfButtonToCallModal}
+        style={styleButtonActivateModal}
         type="button"
       >
         {clickHere}
       </Button>
 
       <Modal open={open} onClose={closeModalWindow}>
-        <Box sx={style}>
+        <Box sx={styleBox}>
           <div className={s.header}>
             <h2>{title}</h2>
             <button type="button" onClick={closeModalWindow} className={s.button}>
