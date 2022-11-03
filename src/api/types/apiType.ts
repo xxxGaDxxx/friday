@@ -156,7 +156,7 @@ export type DeletePackResponseType = {
 
 // cards table
 export type CardsResponseType = {
-  cards: CardsTypeCards[];
+  cards: CardsType[];
   packUserId: string;
   packName: string;
   packPrivate: boolean;
@@ -172,7 +172,7 @@ export type CardsResponseType = {
   tokenDeathTime: number;
 };
 
-export type CardsTypeCards = {
+export type CardsType = {
   _id: string;
   cardsPack_id: string;
   user_id: string;
@@ -202,10 +202,11 @@ export type ParamsCardsType = {
   sortCards?: string;
   page?: number;
   pageCount?: number;
+  search?: string;
 };
 
 export type AddCardResponseType = {
-  newCard: CardsTypeCards;
+  newCard: CardsType;
   token: string;
   tokenDeathTime: number;
 };
@@ -217,7 +218,7 @@ export type UpdateCardType = {
 };
 
 export type DeleteCardResponseType = {
-  deletedCard: CardsTypeCards;
+  deletedCard: CardsType;
   token: string;
   tokenDeathTime: number;
 };

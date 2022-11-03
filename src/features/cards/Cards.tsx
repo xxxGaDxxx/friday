@@ -21,7 +21,6 @@ import s from './styles/Cards.module.scss';
 
 export const Cards = (): ReturnComponentType => {
   const userId = useAppSelector(state => state.profile._id);
-  // const cards = useAppSelector(state => state.card.cards);
   const packUserId = useAppSelector(state => state.card.packUserId);
   const packName = useAppSelector(state => state.card.packName);
   const cardPackId = useAppSelector(state => state.card.cardsPackId);
@@ -47,7 +46,7 @@ export const Cards = (): ReturnComponentType => {
     dispatch(getCardDataTC(cardPackId));
   }, [dispatch, cardPackId, sortCards, question, page, cardsTotalCount, packName, pageCount]);
 
-  if (cardsTotalCount === 0) {
+  if (!cardsTotalCount) {
     return <EmptyPack isMyPack={isMyPack} packName={packName} cardPackId={cardPackId} />;
   }
 
@@ -61,7 +60,7 @@ export const Cards = (): ReturnComponentType => {
         cardsTotalCount={cardsTotalCount}
       />
 
-      <Search action={setQuestionSearchAC} />
+      <Search action={setQuestionSearchAC} search={question} />
 
       <section className={s.table}>
         <CardsTableGeneral />

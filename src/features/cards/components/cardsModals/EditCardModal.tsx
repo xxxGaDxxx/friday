@@ -1,74 +1,104 @@
 import React, { ChangeEvent, ReactNode, useState } from 'react';
 
-import Checkbox from '@mui/material/Checkbox';
-import FormControlLabel from '@mui/material/FormControlLabel';
+import FormControl from '@mui/material/FormControl';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
 import TextField from '@mui/material/TextField';
 
+import { CardsType } from '../../../../api/types/apiType';
 import { UniversalModalWindow } from '../../../../common/components/universalModalWindow/UniversalModalWindow';
 import { ReturnComponentType } from '../../../../common/types';
 
-import s from './style/CardsModals.module.scss';
-
-export type EditPackModalProps = {
-  updatePack: (titlePack: string, privatePack: boolean) => void;
+export type EditCardModalProps = {
+  card: CardsType;
+  editCard: (
+    cardId: string,
+    cardPackId: string,
+    answer?: string,
+    question?: string,
+    answerImg?: string,
+    questionImg?: string,
+  ) => void;
   clickHere: ReactNode;
-  stylesOfIcon: object;
-  currentPackTitle: string;
+  styleIcons: Object;
 };
 
 export const EditCardModal = ({
-  updatePack,
+  card,
+  editCard,
   clickHere,
-  stylesOfIcon,
-  currentPackTitle,
-}: EditPackModalProps): ReturnComponentType => {
-  const [packTitle, setPackTitle] = useState(currentPackTitle);
-  const [isPrivatePack, setIsPrivatePack] = useState(false);
+  styleIcons,
+}: EditCardModalProps): ReturnComponentType => {
+  const [question, setNewQuestion] = useState(card.question);
+  const [answer, setNewAnswer] = useState(card.answer);
+  const [selectValue, setSelectValue] = useState('Text');
 
-  const setPrivacy = (): void => {
-    setIsPrivatePack(!isPrivatePack);
+  const changeQuestionValue = (event: ChangeEvent<HTMLInputElement>): void => {
+    setNewQuestion(event.currentTarget.value);
+  };
+  const changeAnswerValue = (event: ChangeEvent<HTMLInputElement>): void => {
+    setNewAnswer(event.currentTarget.value);
+  };
+  const changeSelectValue = (event: SelectChangeEvent): void => {
+    setSelectValue(event.target.value);
   };
 
   const handleClose = (): void => {
-    // setPackTitle('');
-    setIsPrivatePack(false);
+    setNewQuestion('');
+    setNewAnswer('');
+    setSelectValue('Text');
   };
 
-  const onSaveClick = (): void => {
-    updatePack(packTitle, isPrivatePack);
+  const saveChanges = (): void => {
+    editCard(card._id, card.cardsPack_id, answer, question);
     handleClose();
-    // setPackTitle('');
-    setIsPrivatePack(false);
-  };
-
-  const changePackName = (event: ChangeEvent<HTMLInputElement>): void => {
-    setPackTitle(event.currentTarget.value);
+    setNewQuestion('');
+    setNewAnswer('');
+    setSelectValue('Text');
   };
 
   return (
     <UniversalModalWindow
-      styleButtonActivateModal={stylesOfIcon}
+      styleButtonActivateModal={styleIcons}
       variantOfButtonToCallModal="text"
       clickHere={clickHere}
-      onAcceptActionClick={onSaveClick}
+      onAcceptActionClick={saveChanges}
       titleButtonAccept="Save"
-      title="Edit pack"
+      title="Add new card"
       handleClose={handleClose}
     >
+      <FormControl style={{ width: '100%', marginTop: '21px' }}>
+        <InputLabel>Choose a question format</InputLabel>
+        <Select
+          value={selectValue}
+          label="Choose a question format"
+          onChange={changeSelectValue}
+          size="medium"
+          defaultValue="Text"
+        >
+          <MenuItem value="Text">Text</MenuItem>
+          <MenuItem value="Image">Image</MenuItem>
+        </Select>
+      </FormControl>
+
       <TextField
         type="text"
         variant="standard"
-        label="Name pack"
+        label="Question"
         margin="normal"
         style={{ width: '100%' }}
-        value={packTitle}
-        onChange={changePackName}
+        value={question}
+        onChange={changeQuestionValue}
       />
-      <FormControlLabel
-        className={s.addPackModalFormCheckbox}
-        label="private pack"
-        onClick={setPrivacy}
-        control={<Checkbox checked={isPrivatePack} />}
+      <TextField
+        type="text"
+        variant="standard"
+        label="Answer"
+        margin="normal"
+        style={{ width: '100%' }}
+        value={answer}
+        onChange={changeAnswerValue}
       />
     </UniversalModalWindow>
   );

@@ -10,7 +10,7 @@ import { ReturnComponentType } from '../../../common/types';
 import { formatDate } from '../../../common/utils/formatDate';
 import s from '../../packs/style/Packs.module.scss';
 
-import { ActionIconButtons } from './ActionIconButtons';
+import { CardsActionIconButtons } from './CardsActionIconButtons';
 
 type CardsTableBodyProps = {
   isMyPack: boolean;
@@ -44,11 +44,7 @@ export const CardsTableBody = memo(({ isMyPack }: CardsTableBodyProps): ReturnCo
 
               {isMyPack && (
                 <TableCell>
-                  <ActionIconButtons
-                    key={card._id}
-                    cardId={card._id}
-                    cardPackId={card.cardsPack_id}
-                  />
+                  <CardsActionIconButtons key={card._id} card={card} />
                 </TableCell>
               )}
             </TableRow>

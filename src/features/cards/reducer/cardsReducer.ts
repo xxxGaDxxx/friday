@@ -1,7 +1,7 @@
 import { cardsAPI } from '../../../api/cardsAPI';
 import {
   CardsResponseType,
-  CardsTypeCards,
+  CardsType,
   ParamsCardsType,
   UpdateGradeResponseTypeUpdatedGrade,
 } from '../../../api/types/apiType';
@@ -14,7 +14,7 @@ import { setCardLearnAC } from '../../learn/reducer/learnReducer';
 import { InitialStateCards, StateCardsReducerActionsType } from './cardsReducerType';
 
 export const initialStateCards = {
-  cards: [] as CardsTypeCards[],
+  cards: [] as CardsType[],
   packUserId: '',
   packName: '',
   packPrivate: false,
@@ -83,7 +83,7 @@ export const cardsReducer = (
 export const setCardsDataAC = (date: CardsResponseType) =>
   ({ type: 'CARDS/SET-CARDS-DATA', payload: { date } } as const);
 
-export const addCardsAC = (newCard: CardsTypeCards) =>
+export const addCardsAC = (newCard: CardsType) =>
   ({ type: 'CARDS/ADD-CARDS', payload: { newCard } } as const);
 
 export const setCardsPackIdAC = (cardsPackId: string) =>
@@ -95,8 +95,8 @@ export const setCardsPackNameAC = (packName: string) =>
 export const setCardSortAC = (sortCards: string) =>
   ({ type: 'CARDS/SET-CARD-SORT', payload: { sortCards } } as const);
 
-export const setQuestionSearchAC = (cardQuestion: string) =>
-  ({ type: 'CARDS/SET-QUESTION-SEARCH', payload: { cardQuestion } } as const);
+export const setQuestionSearchAC = (question: string) =>
+  ({ type: 'CARDS/SET-QUESTION-SEARCH', payload: { question } } as const);
 
 export const setCardsPerPageAC = (count: number) =>
   ({ type: 'CARDS/SET-CARDS-PER-PAGE', payload: { count } } as const);
@@ -171,7 +171,6 @@ export const addCardTC =
       .addCard(card)
 
       .then(res => {
-        // console.log(res);
         dispatch(addCardsAC(res.data.newCard));
         dispatch(getCardDataTC(_id));
         dispatch(setAppStatusAC('succeeded'));
@@ -201,12 +200,21 @@ export const deleteCardTC =
   };
 
 export const updateCardTC =
-  (cardId: string, cardPackId: string): AppThunk =>
+  (
+    cardId: string,
+    cardPackId: string,
+    answer?: string,
+    question?: string,
+    answerImg?: string,
+    questionImg?: string,
+  ): AppThunk =>
   dispatch => {
     const card = {
       _id: cardId,
-      question: 'NEW Question',
-      answer: 'NEW Answer',
+      answer,
+      question,
+      answerImg,
+      questionImg,
     };
 
     dispatch(setAppStatusAC('loading'));

@@ -1,5 +1,5 @@
 import { learnAPI } from '../../../api/learnAPI';
-import { CardsTypeCards } from '../../../api/types/apiType';
+import { CardsType } from '../../../api/types/apiType';
 import { errorUtils } from '../../../common/utils/errorUtils';
 import { setAppStatusAC } from '../../../store/app-reducer';
 import { AppThunk } from '../../../store/store';
@@ -9,7 +9,7 @@ import { getCard } from '../getCard';
 import { InitialStateCardLearn, StateCardLearnReducerActionsType } from './cardLearnReducerType';
 
 export const initialStateCardLearn = {
-  card: {} as CardsTypeCards,
+  card: {} as CardsType,
   showAnswer: false,
 };
 
@@ -33,7 +33,7 @@ export const cardLearnReducer = (
   }
 };
 
-export const setCardLearnAC = (card: CardsTypeCards) =>
+export const setCardLearnAC = (card: CardsType) =>
   ({ type: 'LEARN/SET-CARD-LEARN', payload: { card } } as const);
 
 export const isShowAnswerAc = (isShow: boolean) =>

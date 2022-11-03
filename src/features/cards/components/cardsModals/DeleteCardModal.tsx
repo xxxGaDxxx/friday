@@ -1,55 +1,42 @@
 import React, { ReactNode } from 'react';
 
-import { useNavigate } from 'react-router-dom';
-
 import { UniversalModalWindow } from '../../../../common/components/universalModalWindow/UniversalModalWindow';
-import { PATH } from '../../../../common/enum/pathEnum';
-import { useAppDispatch } from '../../../../common/hooks/useAppDispatch';
-import { useAppSelector } from '../../../../common/hooks/useAppSelector';
 import { ReturnComponentType } from '../../../../common/types';
-import { deletePackTC } from '../../../packs/reducer/packsReducer';
 
-export type DeletePackModalProps = {
-  namePack: string;
-  packId: string;
+export type DeleteCardModalProps = {
+  deleteCard: (cardId: string, cardPackId: string) => void;
+  cardId: string;
+  cardPackId: string;
   clickHere: ReactNode;
-  stylesOfIcon: Object;
-  callPoint: string;
+  styleIcons: Object;
 };
 
 export const DeleteCardModal = ({
-  callPoint,
-  namePack,
-  packId,
+  cardPackId,
+  deleteCard,
+  cardId,
   clickHere,
-  stylesOfIcon,
-}: DeletePackModalProps): ReturnComponentType => {
-  const status = useAppSelector(state => state.app.status);
-
-  const dispatch = useAppDispatch();
-
-  const navigate = useNavigate();
-
-  const onDeleteClick = (): void => {
-    dispatch(deletePackTC(packId, callPoint));
-
-    if (status === 'succeeded') {
-      navigate(PATH.PACKS);
-    }
+  styleIcons,
+}: DeleteCardModalProps): ReturnComponentType => {
+  const confirmDeleteCard = (): void => {
+    deleteCard(cardId, cardPackId);
   };
 
   return (
     <UniversalModalWindow
-      styleButtonActivateModal={stylesOfIcon}
+      styleButtonActivateModal={styleIcons}
       variantOfButtonToCallModal="text"
       clickHere={clickHere}
-      onAcceptActionClick={onDeleteClick}
+      onAcceptActionClick={confirmDeleteCard}
       titleButtonAccept="Delete"
-      title="Delete Pack"
+      title="Delete card"
       colorAcceptButton="error"
     >
       <p>
-        Do you really want to remove <strong>{namePack}</strong>? All cards will be deleted.
+        <strong>Do you really want to remove this card?</strong>
+        <br />
+        <br />
+        All existed properties will be deleted!
       </p>
     </UniversalModalWindow>
   );

@@ -1,4 +1,4 @@
-import React, { ChangeEvent, memo, useEffect } from 'react';
+import React, { ChangeEvent, memo, useEffect, useState } from 'react';
 
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import InputAdornment from '@mui/material/InputAdornment';
@@ -6,27 +6,27 @@ import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 
 import s from '../../../features/packs/components/styles/Search.module.scss';
-import { setSearchAC } from '../../../features/packs/reducer/packsReducer';
 import { AppActionsType } from '../../../store/store';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
-import { useAppSelector } from '../../hooks/useAppSelector';
 import { useDebounce } from '../../hooks/useDebounce';
 import { ReturnComponentType } from '../../types';
 
 type SearchPropsType = {
   action: (value: string) => AppActionsType;
+  search: string;
 };
 
 const timeWait = 700;
 
-export const Search = memo(({ action }: SearchPropsType): ReturnComponentType => {
-  const search = useAppSelector(state => state.pack.search);
+export const Search = memo(({ action, search }: SearchPropsType): ReturnComponentType => {
+  // );
+  const [searchValue, setSearchValue] = useState<string>(search);
   const dispatch = useAppDispatch();
 
-  const debounceText = useDebounce<string>(search, timeWait);
+  const debounceText = useDebounce<string>(searchValue, timeWait);
 
   const onChangeTextSearch = (event: ChangeEvent<HTMLInputElement>): void => {
-    dispatch(setSearchAC(event.target.value));
+    setSearchValue(event.target.value);
   };
 
   useEffect(() => {
@@ -42,7 +42,7 @@ export const Search = memo(({ action }: SearchPropsType): ReturnComponentType =>
         type="search"
         color="primary"
         variant="outlined"
-        value={search}
+        value={searchValue}
         onChange={onChangeTextSearch}
         InputProps={{
           startAdornment: (
