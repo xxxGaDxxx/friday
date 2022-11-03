@@ -5,6 +5,7 @@ import Pagination from '@mui/material/Pagination';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import Stack from '@mui/material/Stack';
 
+import { DEFAULT_MAX_COUNT } from '../../../features/packs/reducer/packsReducer';
 import { ReturnComponentType } from '../../types';
 
 import s from './styles/Pagination.module.scss';
@@ -45,9 +46,9 @@ export const PaginationPage = memo(
           defaultValue={itemsPerPage.toString()}
         >
           <MenuItem value={5}>5</MenuItem>
-          <MenuItem value={10}>10</MenuItem>
+          <MenuItem value={15}>15</MenuItem>
           <MenuItem value={25}>25</MenuItem>
-          <MenuItem value={110}>All</MenuItem>
+          <MenuItem value={DEFAULT_MAX_COUNT}>All</MenuItem>
         </Select>
         <span>Items per Page</span>
       </div>
