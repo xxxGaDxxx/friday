@@ -1,5 +1,10 @@
 import { cardsAPI } from '../../../api/cardsAPI';
-import { CardsResponseType, CardsTypeCards, ParamsCardsType } from '../../../api/types/apiType';
+import {
+  CardsResponseType,
+  CardsTypeCards,
+  ParamsCardsType,
+  UpdateGradeResponseTypeUpdatedGrade,
+} from '../../../api/types/apiType';
 import { errorUtils } from '../../../common/utils/errorUtils';
 import { setAppStatusAC } from '../../../store/app-reducer';
 import { AppThunk } from '../../../store/store';
@@ -64,7 +69,9 @@ export const cardsReducer = (
       return {
         ...state,
         cards: state.cards.map(card =>
-          card._id === action.payload.card._id ? { ...card, ...action.payload.card } : card,
+          card._id === action.payload.card.card_id
+            ? { ...card, shots: action.payload.card.shots, grade: action.payload.card.grade }
+            : card,
         ),
       };
     default:
@@ -97,7 +104,7 @@ export const setCardsPerPageAC = (count: number) =>
 export const setSelectedCardsPageAC = (page: number) =>
   ({ type: 'CARDS/SET-SELECTED-PAGE', payload: { page } } as const);
 
-export const updateCarGradedAC = (card: CardsTypeCards) =>
+export const updateCarGradedAC = (card: UpdateGradeResponseTypeUpdatedGrade) =>
   ({ type: 'CARDS/UPDATE-CARD-GRADE', payload: { card } } as const);
 
 // thunk
