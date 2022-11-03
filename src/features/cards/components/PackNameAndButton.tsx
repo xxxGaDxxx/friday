@@ -11,9 +11,10 @@ import { PATH } from '../../../common/enum/pathEnum';
 import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
 import { useAppSelector } from '../../../common/hooks/useAppSelector';
 import { ReturnComponentType } from '../../../common/types';
-import { addCardTC, getCardDataTC } from '../reducer/cardsReducer';
+import { getCardDataTC } from '../reducer/cardsReducer';
 import s from '../styles/Cards.module.scss';
 
+import { AddCardModal } from './cardsModals/AddCardModal';
 import { MyPackMenu } from './MyPackMenu';
 
 type PackNameAndButtonProps = {
@@ -41,10 +42,6 @@ export const PackNameAndButton = ({
     setIsShowedMenu(!isShowedMenu);
   };
 
-  const addNewCard = (): void => {
-    dispatch(addCardTC(cardPackId));
-  };
-
   const navigateToLearnPage = (): void => {
     dispatch(getCardDataTC(cardPackId, cardsTotalCount));
     if (status === 'succeeded') {
@@ -62,7 +59,7 @@ export const PackNameAndButton = ({
           </IconButton>
         )}
 
-        <div className={s.menu} style={{ zIndex: '10' }}>
+        <div className={s.menu}>
           {isShowedMenu && (
             <MyPackMenu hideMenu={showMenu} navigateToLearnPage={navigateToLearnPage} />
           )}
@@ -70,15 +67,7 @@ export const PackNameAndButton = ({
       </Box>
 
       {isMyPack ? (
-        <Button
-          className={s.addCardButton}
-          type="button"
-          variant="contained"
-          color="primary"
-          onClick={addNewCard}
-        >
-          Add new card
-        </Button>
+        <AddCardModal cardPackId={cardPackId} clickHere="Add new card" />
       ) : (
         <Button
           className={s.addCardButton}

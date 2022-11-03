@@ -26,7 +26,7 @@ export const Cards = (): ReturnComponentType => {
   const packName = useAppSelector(state => state.card.packName);
   const cardPackId = useAppSelector(state => state.card.cardsPackId);
   const sortCards = useAppSelector(state => state.card.sortCards);
-  const cardQuestion = useAppSelector(state => state.card.cardQuestion);
+  const question = useAppSelector(state => state.card.question);
   const page = useAppSelector(state => state.card.page);
   const pageCount = useAppSelector(state => state.card.pageCount);
   const cardsTotalCount = useAppSelector(state => state.card.cardsTotalCount);
@@ -45,7 +45,7 @@ export const Cards = (): ReturnComponentType => {
 
   useEffect(() => {
     dispatch(getCardDataTC(cardPackId));
-  }, [dispatch, cardPackId, sortCards, cardQuestion, page, cardsTotalCount, packName, pageCount]);
+  }, [dispatch, cardPackId, sortCards, question, page, cardsTotalCount, packName, pageCount]);
 
   if (cardsTotalCount === 0) {
     return <EmptyPack isMyPack={isMyPack} packName={packName} cardPackId={cardPackId} />;

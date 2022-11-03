@@ -29,7 +29,7 @@ export const initialStateCards = {
   tokenDeathTime: 0,
   cardsPackId: '',
   sortCards: '',
-  cardQuestion: '',
+  question: '',
 };
 
 export const cardsReducer = (
@@ -111,7 +111,7 @@ export const updateCarGradedAC = (card: UpdateGradeResponseTypeUpdatedGrade) =>
 export const getCardDataTC =
   (_id: string, allPageCount?: number): AppThunk =>
   (dispatch, getState) => {
-    const { pageCount, page, sortCards, minGrade, maxGrade, cardQuestion } = getState().card;
+    const { pageCount, page, sortCards, minGrade, maxGrade, question } = getState().card;
     const pageCountAll = allPageCount || pageCount;
 
     const DEFAULT_PAGE_COUNT = 5;
@@ -123,7 +123,7 @@ export const getCardDataTC =
       pageCount: pageCountAll,
       min: minGrade,
       max: maxGrade,
-      cardQuestion,
+      question,
     };
 
     dispatch(setAppStatusAC('loading'));
@@ -149,10 +149,20 @@ export const getCardDataTC =
   };
 
 export const addCardTC =
-  (_id: string): AppThunk =>
+  (
+    _id: string,
+    question?: string,
+    answer?: string,
+    answerImg?: string,
+    questionImg?: string,
+  ): AppThunk =>
   dispatch => {
     const card: ParamsCardsType = {
       cardsPack_id: _id,
+      answer,
+      question,
+      answerImg,
+      questionImg,
     };
 
     dispatch(setAppStatusAC('loading'));
@@ -161,6 +171,7 @@ export const addCardTC =
       .addCard(card)
 
       .then(res => {
+        // console.log(res);
         dispatch(addCardsAC(res.data.newCard));
         dispatch(getCardDataTC(_id));
         dispatch(setAppStatusAC('succeeded'));
