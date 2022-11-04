@@ -1,5 +1,5 @@
 import { packsAPI } from '../../../api/packsAPI';
-import { PacksType, PackDataResponseType, ParamsPacksType } from '../../../api/types/apiType';
+import { PackDataResponseType, PacksType, ParamsPacksType } from '../../../api/types/apiType';
 import { errorUtils } from '../../../common/utils/errorUtils';
 import { setAppStatusAC } from '../../../store/app-reducer';
 import { AppThunk } from '../../../store/store';
