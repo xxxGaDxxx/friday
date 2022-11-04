@@ -45,7 +45,7 @@ export const cardsReducer = (
     case 'CARDS/ADD-CARDS':
       return {
         ...state,
-        cards: [action.payload.newCard, ...state.cards],
+        cards: [{ ...action.payload.newCard }, ...state.cards],
       };
     case 'CARDS/SET-CARDS-PACK-ID':
       return {
@@ -127,7 +127,7 @@ export const getCardDataTC =
       pageCount: pageCountAll,
       min: minGrade,
       max: maxGrade,
-      cardQuestion: question,
+      question,
     };
 
     dispatch(setAppStatusAC('loading'));
@@ -163,8 +163,8 @@ export const addCardTC =
   dispatch => {
     const card: ParamsCardsType = {
       cardsPack_id: _id,
-      cardAnswer: answer,
-      cardQuestion: question,
+      answer,
+      question,
       answerImg,
       questionImg,
     };
