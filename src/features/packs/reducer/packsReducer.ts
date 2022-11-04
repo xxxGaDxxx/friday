@@ -5,7 +5,11 @@ import { setAppStatusAC } from '../../../store/app-reducer';
 import { AppThunk } from '../../../store/store';
 import { setCardsPackNameAC } from '../../cards/reducer/cardsReducer';
 
-import { InitialStatePacks, PacksReducerActionsType } from './packTableReducerType';
+import {
+  InitialStatePacks,
+  PacksReducerActionsType,
+  QueryParamsType,
+} from './packTableReducerType';
 
 export const DEFAULT_MAX_COUNT = 110;
 
@@ -22,6 +26,7 @@ export const initialStatePacks = {
   sortPacks: '',
   user_id: '',
   minMaxCount: [0, DEFAULT_MAX_COUNT],
+  queryParams: {} as QueryParamsType,
 };
 
 export const packsReducer = (
@@ -50,6 +55,11 @@ export const packsReducer = (
         ...state,
         pageCount: action.payload.count,
       };
+    case 'PACK/SET-QUERY-PARAMS':
+      return {
+        ...state,
+        queryParams: { ...state.queryParams, ...action.payload },
+      };
     default:
       return state;
   }
@@ -76,6 +86,9 @@ export const setMinMaxCountAC = (minMaxCount: number[]) =>
 
 export const setPackSortAC = (sortPacks: string) =>
   ({ type: 'PACK/SET-PACK-SORT', payload: { sortPacks } } as const);
+
+export const setQueryParamsAC = (queryParams: QueryParamsType) =>
+  ({ type: 'PACK/SET-QUERY-PARAMS', payload: queryParams } as const);
 
 export const setCancelFilterAC = (data: {
   packName: string;

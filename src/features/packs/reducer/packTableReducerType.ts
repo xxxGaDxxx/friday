@@ -8,6 +8,7 @@ import {
   setPackNameAC,
   setPackSortAC,
   setPacksPerPageAC,
+  setQueryParamsAC,
   setSelectedPageAC,
   setUserIdAC,
 } from './packsReducer';
@@ -24,6 +25,7 @@ export type SetPackSortACType = ReturnType<typeof setPackSortAC>;
 export type SetUserIdACType = ReturnType<typeof setUserIdAC>;
 export type SetMinMaxCountACType = ReturnType<typeof setMinMaxCountAC>;
 export type SetCancelFilterACType = ReturnType<typeof setCancelFilterAC>;
+export type SetQueryParamsACType = ReturnType<typeof setQueryParamsAC>;
 // card reducer AC
 export type SetCardsPackNameACType = ReturnType<typeof setCardsPackNameAC>;
 
@@ -36,4 +38,10 @@ export type PacksReducerActionsType =
   | SetUserIdACType
   | SetMinMaxCountACType
   | SetCancelFilterACType
-  | SetCardsPackNameACType;
+  | SetCardsPackNameACType
+  | SetQueryParamsACType;
+
+export type QueryParamsType = {
+  page?: string;
+  pageCount?: string;
+};
