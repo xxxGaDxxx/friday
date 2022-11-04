@@ -15,6 +15,7 @@ type PaginationPageType = {
   selectPage: (page: number) => void;
   changeCountItemsPerPage: (itemsPerPage: number) => void;
   totalItems: number;
+  page?: number;
 };
 
 export const PaginationPage = memo(
@@ -23,6 +24,7 @@ export const PaginationPage = memo(
     selectPage,
     changeCountItemsPerPage,
     totalItems,
+    page,
   }: PaginationPageType): ReturnComponentType => {
     const pageCount = Math.ceil(totalItems / itemsPerPage);
 
@@ -36,7 +38,13 @@ export const PaginationPage = memo(
     return (
       <div className={s.container}>
         <Stack spacing={2}>
-          <Pagination count={pageCount} shape="rounded" color="primary" onChange={choosePage} />
+          <Pagination
+            page={page}
+            count={pageCount}
+            shape="rounded"
+            color="primary"
+            onChange={choosePage}
+          />
         </Stack>
         <span>Show</span>
         <Select

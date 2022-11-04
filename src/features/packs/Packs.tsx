@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
 
+import { useSearchParams } from 'react-router-dom';
+
 import { PaginationPage } from '../../common/components/pagination/PaginationPage';
 import { useAppDispatch } from '../../common/hooks/useAppDispatch';
 import { useAppSelector } from '../../common/hooks/useAppSelector';
@@ -12,6 +14,7 @@ import {
   addPackTC,
   packDataTC,
   setPacksPerPageAC,
+  setQueryParamsAC,
   setSelectedPageAC,
 } from './reducer/packsReducer';
 import s from './style/Packs.module.scss';
@@ -24,15 +27,26 @@ export const Packs = (): ReturnComponentType => {
   const userId = useAppSelector(state => state.pack.user_id);
   const minMaxCount = useAppSelector(state => state.pack.minMaxCount);
   const cardPacksTotalCount = useAppSelector(state => state.pack.cardPacksTotalCount);
+  const queryParams = useAppSelector(state => state.pack.queryParams);
 
   const dispatch = useAppDispatch();
 
+  const [searchParams, setSearchParams] = useSearchParams();
+
   const changePacksPerPage = (count: number): void => {
-    dispatch(setPacksPerPageAC(count));
+    searchParams.set('pageCount', count.toString());
+
+    setSearchParams(searchParams);
+
+    dispatch(setQueryParamsAC({ pageCount: count.toString() }));
   };
 
   const setSelectedPage = (page: number): void => {
-    dispatch(setSelectedPageAC(page));
+    searchParams.set('page', page.toString());
+
+    setSearchParams(searchParams);
+
+    dispatch(setQueryParamsAC({ page: page.toString() }));
   };
 
   const addPack = (titlePack: string, privatePack: boolean): void => {
@@ -40,8 +54,20 @@ export const Packs = (): ReturnComponentType => {
   };
 
   useEffect(() => {
+    const page = searchParams.get('page');
+    const pageCount = searchParams.get('pageCount');
+
+    if (page) {
+      dispatch(setQueryParamsAC({ ...searchParams, page }));
+      dispatch(setSelectedPageAC(Number(page)));
+    }
+    if (pageCount) {
+      dispatch(setQueryParamsAC({ ...searchParams, pageCount }));
+      dispatch(setPacksPerPageAC(Number(pageCount)));
+    }
+
     dispatch(packDataTC());
-  }, [dispatch, pageCount, page, sortPacks, userId, minMaxCount, packName]);
+  }, [dispatch, sortPacks, userId, minMaxCount, packName, searchParams]);
 
   return (
     <div className={s.container}>
@@ -57,6 +83,7 @@ export const Packs = (): ReturnComponentType => {
 
       <div className={s.pagination}>
         <PaginationPage
+          page={queryParams.page ? Number(queryParams.page) : page}
           totalItems={cardPacksTotalCount}
           itemsPerPage={pageCount}
           selectPage={setSelectedPage}

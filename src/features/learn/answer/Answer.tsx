@@ -60,7 +60,7 @@ export const Answer = ({ nextQuestionClick }: AnswerType): ReturnComponentType =
         <FormHelperText>{helperText}</FormHelperText>
         <Button
           sx={{ mt: 1, mr: 1 }}
-          type="submit"
+          type="button"
           disabled={error}
           variant="contained"
           color="primary"
