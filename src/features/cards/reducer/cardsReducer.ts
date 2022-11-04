@@ -56,6 +56,7 @@ export const cardsReducer = (
     case 'CARDS/SET-QUESTION-SEARCH':
     case 'CARDS/SET-SELECTED-PAGE':
     case 'CARDS/SET-CARDS-PACK-NAME':
+    case 'CARDS/CARDS-TOTAL-COUNT':
       return {
         ...state,
         ...action.payload,
@@ -106,6 +107,9 @@ export const setSelectedCardsPageAC = (page: number) =>
 
 export const updateCarGradedAC = (card: UpdateGradeResponseTypeUpdatedGrade) =>
   ({ type: 'CARDS/UPDATE-CARD-GRADE', payload: { card } } as const);
+
+export const setCardsTotalCountAC = (cardsTotalCount: number) =>
+  ({ type: 'CARDS/CARDS-TOTAL-COUNT', payload: { cardsTotalCount } } as const);
 
 // thunk
 export const getCardDataTC =

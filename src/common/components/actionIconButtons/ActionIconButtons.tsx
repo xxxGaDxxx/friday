@@ -37,6 +37,7 @@ export const ActionIconButtons = memo(
 
     const navigateToLearnPage = (): void => {
       dispatch(getCardDataTC(packId, cardsCount));
+
       if (status === 'succeeded') {
         navigate(PATH.LEARN);
       }

@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { memo, useCallback } from 'react';
 
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -11,11 +11,11 @@ import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
 import { useAppSelector } from '../../../common/hooks/useAppSelector';
 import { ReturnComponentType } from '../../../common/types';
 import { formatDate } from '../../../common/utils/formatDate';
-import { setCardsPackIdAC } from '../../cards/reducer/cardsReducer';
+import { setCardsPackIdAC, setCardsTotalCountAC } from '../../cards/reducer/cardsReducer';
 import { setSearchAC } from '../reducer/packsReducer';
 import s from '../style/Packs.module.scss';
 
-export const PacksTableBody = (): ReturnComponentType => {
+export const PacksTableBody = memo((): ReturnComponentType => {
   const dispatch = useAppDispatch();
 
   const navigate = useNavigate();
@@ -25,10 +25,12 @@ export const PacksTableBody = (): ReturnComponentType => {
 
   const isMyPack = useCallback((id: string): boolean => userId === id, [userId]);
 
-  const goToCardsList = (_id: string): void => {
-    navigate(PATH.CARDS);
+  const goToCardsList = (_id: string, cardsCount: number): void => {
     dispatch(setSearchAC(''));
     dispatch(setCardsPackIdAC(_id));
+    dispatch(setCardsTotalCountAC(cardsCount));
+
+    navigate(PATH.CARDS);
   };
 
   return (
@@ -38,7 +40,7 @@ export const PacksTableBody = (): ReturnComponentType => {
           <TableRow key={pack._id}>
             <TableCell
               className={s.firstColumn}
-              onClick={() => goToCardsList(pack._id)}
+              onClick={() => goToCardsList(pack._id, pack.cardsCount)}
               component="th"
               scope="row"
             >
@@ -65,4 +67,4 @@ export const PacksTableBody = (): ReturnComponentType => {
       )}
     </TableBody>
   );
-};
+});
