@@ -48,6 +48,7 @@ export const CardsActionIconButtons = memo(
           deleteCard={deleteCard}
           cardId={card._id}
           cardPackId={card.cardsPack_id}
+          question={card.question}
           clickHere={<img src={deleteIcon} alt="deleteIcon" />}
         />
       </div>
