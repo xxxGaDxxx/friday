@@ -40,7 +40,7 @@ export const cardsReducer = (
     case 'CARDS/SET-CARDS-DATA':
       return {
         ...state,
-        ...action.payload.date,
+        ...action.payload.data,
       };
     case 'CARDS/ADD-CARDS':
       return {
@@ -81,8 +81,8 @@ export const cardsReducer = (
 };
 
 // action
-export const setCardsDataAC = (date: CardsResponseType) =>
-  ({ type: 'CARDS/SET-CARDS-DATA', payload: { date } } as const);
+export const setCardsDataAC = (data: CardsResponseType) =>
+  ({ type: 'CARDS/SET-CARDS-DATA', payload: { data } } as const);
 
 export const addCardsAC = (newCard: CardsType) =>
   ({ type: 'CARDS/ADD-CARDS', payload: { newCard } } as const);
@@ -127,7 +127,7 @@ export const getCardDataTC =
       pageCount: pageCountAll,
       min: minGrade,
       max: maxGrade,
-      question,
+      cardQuestion: question,
     };
 
     dispatch(setAppStatusAC('loading'));
@@ -163,8 +163,8 @@ export const addCardTC =
   dispatch => {
     const card: ParamsCardsType = {
       cardsPack_id: _id,
-      answer,
-      question,
+      cardAnswer: answer,
+      cardQuestion: question,
       answerImg,
       questionImg,
     };

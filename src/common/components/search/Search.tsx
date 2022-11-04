@@ -19,7 +19,6 @@ type SearchPropsType = {
 const timeWait = 700;
 
 export const Search = memo(({ action, search }: SearchPropsType): ReturnComponentType => {
-  // );
   const [searchValue, setSearchValue] = useState<string>(search);
   const dispatch = useAppDispatch();
 

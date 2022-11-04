@@ -192,8 +192,8 @@ export type CardsType = {
 };
 
 export type ParamsCardsType = {
-  answer?: string;
-  question?: string;
+  cardAnswer?: string;
+  cardQuestion?: string;
   answerImg?: string;
   questionImg?: string;
   cardsPack_id: string;
