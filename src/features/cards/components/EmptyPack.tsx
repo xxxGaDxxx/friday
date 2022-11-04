@@ -30,15 +30,6 @@ export const EmptyPack = memo(
             <>
               <p>This pack is empty. Click add new card to fill this pack</p>
               <AddCardModal cardPackId={cardPackId} clickHere="Add new card" />
-              {/* <Button */}
-              {/*  className={s.addCardButton} */}
-              {/*  type="button" */}
-              {/*  variant="contained" */}
-              {/*  color="primary" */}
-              {/*  onClick={addNewCard} */}
-              {/* > */}
-              {/*  Add new card */}
-              {/* </Button> */}
             </>
           ) : (
             <p>This pack is empty.</p>
