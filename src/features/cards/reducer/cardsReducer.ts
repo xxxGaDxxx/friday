@@ -3,7 +3,7 @@ import {
   CardsResponseType,
   CardsType,
   ParamsCardsType,
-  UpdateGradeResponseTypeUpdatedGrade,
+  UpdatedGradeType,
 } from '../../../api/types/apiType';
 import { errorUtils } from '../../../common/utils/errorUtils';
 import { setAppStatusAC } from '../../../store/app-reducer';
@@ -105,7 +105,7 @@ export const setCardsPerPageAC = (count: number) =>
 export const setSelectedCardsPageAC = (page: number) =>
   ({ type: 'CARDS/SET-SELECTED-PAGE', payload: { page } } as const);
 
-export const updateCarGradedAC = (card: UpdateGradeResponseTypeUpdatedGrade) =>
+export const updateCardGradeAC = (card: UpdatedGradeType) =>
   ({ type: 'CARDS/UPDATE-CARD-GRADE', payload: { card } } as const);
 
 export const setCardsTotalCountAC = (cardsTotalCount: number) =>
