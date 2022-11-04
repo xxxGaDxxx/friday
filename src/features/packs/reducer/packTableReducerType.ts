@@ -26,6 +26,8 @@ export type SetPackSortACType = ReturnType<typeof setPackSortAC>;
 export type SetUserIdACType = ReturnType<typeof setUserIdAC>;
 export type SetMinMaxCountACType = ReturnType<typeof setMinMaxCountAC>;
 export type SetCancelFilterACType = ReturnType<typeof setCancelFilterAC>;
+export type SetQueryParamsACType = ReturnType<typeof setQueryParamsAC>;
+export type SetSearchACType = ReturnType<typeof setSearchAC>;
 // card reducer AC
 export type SetCardsPackNameACType = ReturnType<typeof setCardsPackNameAC>;
 
@@ -39,8 +41,7 @@ export type PacksReducerActionsType =
   | SetMinMaxCountACType
   | SetCancelFilterACType
   | SetCardsPackNameACType
-  | SetSearchAC
-  | SetCardsPackNameACType
+  | SetSearchACType
   | SetQueryParamsACType;
 
 export type QueryParamsType = {
