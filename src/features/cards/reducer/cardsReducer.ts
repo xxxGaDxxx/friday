@@ -155,8 +155,10 @@ export const getCardDataTC =
 export const addCardTC =
   (
     _id: string,
-    cardQuestion?: string,
+    question?: string,
     answer?: string,
+    cardQuestion?: string,
+    cardAnswer?: string,
     answerImg?: string,
     questionImg?: string,
   ): AppThunk =>
@@ -164,7 +166,7 @@ export const addCardTC =
     const card: ParamsCardsType = {
       cardsPack_id: _id,
       answer,
-      cardQuestion,
+      question,
       answerImg,
       questionImg,
     };
