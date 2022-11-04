@@ -44,7 +44,7 @@ export const Cards = (): ReturnComponentType => {
 
   useEffect(() => {
     dispatch(getCardDataTC(cardPackId));
-  }, [dispatch, cardPackId, sortCards, question, page, pageCount]);
+  }, [dispatch, cardPackId, sortCards, question, page, pageCount, cardsTotalCount]);
 
   if (!cardsTotalCount && !question) {
     return <EmptyPack isMyPack={isMyPack} packName={packName} cardPackId={cardPackId} />;
