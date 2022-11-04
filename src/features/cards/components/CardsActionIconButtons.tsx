@@ -32,7 +32,7 @@ export const CardsActionIconButtons = memo(
       answerImg?: string,
       questionImg?: string,
     ): void => {
-      dispatch(updateCardTC(cardId, cardPackId, question, answer, answerImg, questionImg));
+      dispatch(updateCardTC(cardId, cardPackId, answer, question, answerImg, questionImg));
     };
 
     return (

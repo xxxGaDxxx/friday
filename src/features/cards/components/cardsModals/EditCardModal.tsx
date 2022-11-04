@@ -45,16 +45,16 @@ export const EditCardModal = ({
   };
 
   const handleClose = (): void => {
-    setNewQuestion('');
-    setNewAnswer('');
+    // setNewQuestion('');
+    // setNewAnswer('');
     setSelectValue('Text');
   };
 
   const saveChanges = (): void => {
     editCard(card._id, card.cardsPack_id, answer, question);
     handleClose();
-    setNewQuestion('');
-    setNewAnswer('');
+    // setNewQuestion('');
+    // setNewAnswer('');
     setSelectValue('Text');
   };
 
@@ -65,7 +65,7 @@ export const EditCardModal = ({
       clickHere={clickHere}
       onAcceptActionClick={saveChanges}
       titleButtonAccept="Save"
-      title="Add new card"
+      title="Edit card"
       handleClose={handleClose}
     >
       <FormControl style={{ width: '100%', marginTop: '21px' }}>
