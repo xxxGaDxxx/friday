@@ -194,6 +194,8 @@ export type CardsType = {
 export type ParamsCardsType = {
   answer?: string;
   question?: string;
+  cardAnswer?: string;
+  cardQuestion?: string;
   answerImg?: string;
   questionImg?: string;
   cardsPack_id: string;
@@ -252,11 +254,11 @@ export type PutCardResponseTypeUpdatedCard = {
 
 // learn
 export type UpdateGradeResponseType = {
-  updatedGrade: UpdateGradeResponseTypeUpdatedGrade;
+  updatedGrade: UpdatedGradeType;
   token: string;
   tokenDeathTime: number;
 };
-export type UpdateGradeResponseTypeUpdatedGrade = {
+export type UpdatedGradeType = {
   _id: string;
   cardsPack_id: string;
   card_id: string;

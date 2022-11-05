@@ -46,13 +46,13 @@ export const Cards = (): ReturnComponentType => {
     dispatch(getCardDataTC(cardPackId));
   }, [dispatch, cardPackId, sortCards, question, page, pageCount]);
 
-  if (!cardsTotalCount) {
+  if (!cardsTotalCount && !question) {
     return <EmptyPack isMyPack={isMyPack} packName={packName} cardPackId={cardPackId} />;
   }
 
   return (
     <main className={s.main}>
-      <BackTo path={PATH.PACKS} nameOfPath="Packs List" />
+      <BackTo path={PATH.PACKS} nameOfPath="Packs List" callingPoint="Card" />
       <PackNameAndButton
         isMyPack={isMyPack}
         packName={packName}

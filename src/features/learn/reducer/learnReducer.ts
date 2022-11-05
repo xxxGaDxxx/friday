@@ -3,7 +3,7 @@ import { CardsType } from '../../../api/types/apiType';
 import { errorUtils } from '../../../common/utils/errorUtils';
 import { setAppStatusAC } from '../../../store/app-reducer';
 import { AppThunk } from '../../../store/store';
-import { updateCarGradedAC } from '../../cards/reducer/cardsReducer';
+import { updateCardGradeAC } from '../../cards/reducer/cardsReducer';
 import { getCard } from '../getCard';
 
 import { InitialStateCardLearn, StateCardLearnReducerActionsType } from './cardLearnReducerType';
@@ -55,7 +55,7 @@ export const updateGradeTC =
       .updateGrade(data)
 
       .then(res => {
-        dispatch(updateCarGradedAC(res.data.updatedGrade));
+        dispatch(updateCardGradeAC(res.data.updatedGrade));
 
         dispatch(setCardLearnAC(getCard(cards)));
 

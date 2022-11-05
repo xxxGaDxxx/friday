@@ -3,7 +3,7 @@ import {
   CardsResponseType,
   CardsType,
   ParamsCardsType,
-  UpdateGradeResponseTypeUpdatedGrade,
+  UpdatedGradeType,
 } from '../../../api/types/apiType';
 import { errorUtils } from '../../../common/utils/errorUtils';
 import { setAppStatusAC } from '../../../store/app-reducer';
@@ -45,7 +45,7 @@ export const cardsReducer = (
     case 'CARDS/ADD-CARDS':
       return {
         ...state,
-        cards: [{ ...action.payload.newCard }, ...state.cards],
+        cards: [action.payload.newCard, ...state.cards],
       };
     case 'CARDS/SET-CARDS-PACK-ID':
       return {
@@ -105,7 +105,7 @@ export const setCardsPerPageAC = (count: number) =>
 export const setSelectedCardsPageAC = (page: number) =>
   ({ type: 'CARDS/SET-SELECTED-PAGE', payload: { page } } as const);
 
-export const updateCarGradedAC = (card: UpdateGradeResponseTypeUpdatedGrade) =>
+export const updateCardGradeAC = (card: UpdatedGradeType) =>
   ({ type: 'CARDS/UPDATE-CARD-GRADE', payload: { card } } as const);
 
 export const setCardsTotalCountAC = (cardsTotalCount: number) =>
@@ -123,11 +123,11 @@ export const getCardDataTC =
     const params: ParamsCardsType = {
       cardsPack_id: _id,
       sortCards,
+      cardQuestion: question,
       page,
       pageCount: pageCountAll,
       min: minGrade,
       max: maxGrade,
-      question,
     };
 
     dispatch(setAppStatusAC('loading'));
@@ -157,6 +157,8 @@ export const addCardTC =
     _id: string,
     question?: string,
     answer?: string,
+    cardQuestion?: string,
+    cardAnswer?: string,
     answerImg?: string,
     questionImg?: string,
   ): AppThunk =>
