@@ -38,35 +38,29 @@ export const setUserDataAC = (userData: UserResponseType) =>
 
 // thunk
 export const updateUserNameTC =
-  (data: UserUpdateParamsType): AppThunk =>
-  dispatch => {
-    dispatch(setAppStatusAC('loading'));
+  (params: UserUpdateParamsType): AppThunk =>
+  async dispatch => {
+    try {
+      dispatch(setAppStatusAC('loading'));
 
-    userAPI
-      .updateUser(data)
+      const { data } = await userAPI.updateUser(params);
 
-      .then(res => {
-        dispatch(setUserDataAC(res.data.updatedUser));
-        dispatch(setAppStatusAC('succeeded'));
-      })
-
-      .catch(err => {
-        errorUtils(err, dispatch);
-      });
+      dispatch(setUserDataAC(data.updatedUser));
+      dispatch(setAppStatusAC('succeeded'));
+    } catch (err) {
+      errorUtils(err as AxiosError, dispatch);
+    }
   };
 
-export const logOutTC = (): AppThunk => dispatch => {
-  dispatch(setAppStatusAC('loading'));
+export const logOutTC = (): AppThunk => async dispatch => {
+  try {
+    dispatch(setAppStatusAC('loading'));
 
-  authAPI
-    .logout()
+    await authAPI.logout();
 
-    .then(() => {
-      dispatch(setIsLoggedInAC(false));
-      dispatch(setAppStatusAC('succeeded'));
-    })
-
-    .catch((err: Error | AxiosError<{ error: string }, any>) => {
-      errorUtils(err, dispatch);
-    });
+    dispatch(setIsLoggedInAC(false));
+    dispatch(setAppStatusAC('succeeded'));
+  } catch (err) {
+    errorUtils(err as AxiosError, dispatch);
+  }
 };
