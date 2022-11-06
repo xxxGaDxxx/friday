@@ -4,7 +4,6 @@ import { errorUtils } from '../../../common/utils/errorUtils';
 import { setAppStatusAC } from '../../../store/app-reducer';
 import { AppThunk } from '../../../store/store';
 import { updateCardGradeAC } from '../../cards/reducer/cardsReducer';
-import { getCard } from '../getCard';
 
 import { InitialStateCardLearn, StateCardLearnReducerActionsType } from './cardLearnReducerType';
 
@@ -28,6 +27,8 @@ export const cardLearnReducer = (
         ...state,
         showAnswer: action.payload.isShow,
       };
+    case 'LEARN/CLEAR-LEARN':
+      return initialStateCardLearn;
     default:
       return state;
   }
@@ -36,15 +37,15 @@ export const cardLearnReducer = (
 export const setCardLearnAC = (card: CardsType) =>
   ({ type: 'LEARN/SET-CARD-LEARN', payload: { card } } as const);
 
-export const isShowAnswerAc = (isShow: boolean) =>
+export const isShowAnswerAC = (isShow: boolean) =>
   ({ type: 'LEARN/IS-SHOW-ANSWER', payload: { isShow } } as const);
+
+export const clearLearnStateAC = () => ({ type: 'LEARN/CLEAR-LEARN' } as const);
 
 export const updateGradeTC =
   (grade: number, card_id: string): AppThunk =>
-  (dispatch, getState) => {
+  dispatch => {
     dispatch(setAppStatusAC('loading'));
-
-    const { cards } = getState().card;
 
     const data: UpdateGradeType = {
       grade,
@@ -57,7 +58,7 @@ export const updateGradeTC =
       .then(res => {
         dispatch(updateCardGradeAC(res.data.updatedGrade));
 
-        dispatch(setCardLearnAC(getCard(cards)));
+        dispatch(isShowAnswerAC(false));
 
         dispatch(setAppStatusAC('succeeded'));
       })

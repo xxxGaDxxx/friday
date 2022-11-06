@@ -11,7 +11,6 @@ import { EditPackModal } from '../../../features/packs/components/modalPack/Edit
 import { updatePackTC } from '../../../features/packs/reducer/packsReducer';
 import { PATH } from '../../enum/pathEnum';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
-import { useAppSelector } from '../../hooks/useAppSelector';
 import { ReturnComponentType } from '../../types';
 
 import s from './styles/ActionsSvg.module.scss';
@@ -25,8 +24,6 @@ type ActionsSvgType = {
 
 export const ActionIconButtons = memo(
   ({ isMyPack, packId, cardsCount, namePack }: ActionsSvgType): ReturnComponentType => {
-    const status = useAppSelector(state => state.app.status);
-
     const navigate = useNavigate();
 
     const dispatch = useAppDispatch();
@@ -37,10 +34,7 @@ export const ActionIconButtons = memo(
 
     const navigateToLearnPage = (): void => {
       dispatch(getCardDataTC(packId, cardsCount));
-
-      if (status === 'succeeded') {
-        navigate(PATH.LEARN);
-      }
+      navigate(PATH.LEARN);
     };
 
     const areCardsAvailable = cardsCount === 0;

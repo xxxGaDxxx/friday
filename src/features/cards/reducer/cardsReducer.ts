@@ -6,9 +6,9 @@ import {
   UpdatedGradeType,
 } from '../../../api/types/apiType';
 import { errorUtils } from '../../../common/utils/errorUtils';
+import { randomCard } from '../../../common/utils/randomCard';
 import { setAppStatusAC } from '../../../store/app-reducer';
 import { AppThunk } from '../../../store/store';
-import { getCard } from '../../learn/getCard';
 import { setCardLearnAC } from '../../learn/reducer/learnReducer';
 
 import { InitialStateCards, StateCardsReducerActionsType } from './cardsReducerType';
@@ -140,9 +140,9 @@ export const getCardDataTC =
 
         if (allPageCount) {
           dispatch(setCardsPerPageAC(DEFAULT_PAGE_COUNT));
-        }
 
-        dispatch(setCardLearnAC(getCard(res.data.cards)));
+          dispatch(setCardLearnAC(randomCard(res.data.cards)));
+        }
 
         dispatch(setAppStatusAC('succeeded'));
       })

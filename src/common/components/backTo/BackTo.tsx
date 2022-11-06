@@ -15,6 +15,7 @@ type BackToPropsType = {
   callingPoint?: string;
   path: string;
   nameOfPath: string;
+  callback?: () => void;
 };
 
 export const BackTo = ({
@@ -22,6 +23,7 @@ export const BackTo = ({
   nameOfPath,
   className,
   callingPoint,
+  callback,
 }: BackToPropsType): ReturnComponentType => {
   const dispatch = useAppDispatch();
 
@@ -32,6 +34,7 @@ export const BackTo = ({
     if (callingPoint) {
       dispatch(setQuestionSearchAC(''));
     }
+    if (callback) callback();
   };
 
   return (

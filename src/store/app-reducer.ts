@@ -56,6 +56,7 @@ export const setIsInitializedAC = (value: boolean) =>
 // thunk
 export const initializeAppTC = (): AppThunk => dispatch => {
   dispatch(setAppStatusAC('loading'));
+
   dispatch(setAppErrorAC(null));
 
   authAPI
@@ -63,7 +64,9 @@ export const initializeAppTC = (): AppThunk => dispatch => {
 
     .then(res => {
       dispatch(setIsLoggedInAC(true));
+
       dispatch(setUserDataAC(res.data));
+
       dispatch(setAppStatusAC('succeeded'));
     })
 

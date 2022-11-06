@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import Button from '@mui/material/Button';
 
@@ -7,30 +7,44 @@ import { PATH } from '../../common/enum/pathEnum';
 import { useAppDispatch } from '../../common/hooks/useAppDispatch';
 import { useAppSelector } from '../../common/hooks/useAppSelector';
 import { ReturnComponentType } from '../../common/types';
+import { randomCard } from '../../common/utils/randomCard';
 
 import { Answer } from './answer/Answer';
-import { isShowAnswerAc, updateGradeTC } from './reducer/learnReducer';
+import {
+  clearLearnStateAC,
+  isShowAnswerAC,
+  setCardLearnAC,
+  updateGradeTC,
+} from './reducer/learnReducer';
 import s from './style/Learn.module.scss';
 
 export const Learn = (): ReturnComponentType => {
+  const cards = useAppSelector(state => state.card.cards);
   const packName = useAppSelector(state => state.card.packName);
   const card = useAppSelector(state => state.learn.card);
   const showAnswer = useAppSelector(state => state.learn.showAnswer);
 
   const dispatch = useAppDispatch();
 
+  const clearState = (): void => {
+    dispatch(clearLearnStateAC());
+  };
+
   const nextQuestionClick = (answer: string): void => {
     dispatch(updateGradeTC(Number(answer), card._id));
-    dispatch(isShowAnswerAc(false));
   };
 
   const onShowAnswerClick = (): void => {
-    dispatch(isShowAnswerAc(true));
+    dispatch(isShowAnswerAC(true));
   };
+
+  useEffect(() => {
+    if (!showAnswer) dispatch(setCardLearnAC(randomCard(cards)));
+  }, [showAnswer]);
 
   return (
     <main className={s.main}>
-      <BackTo path={PATH.PACKS} nameOfPath="Packs List" />
+      <BackTo path={PATH.PACKS} nameOfPath="Packs List" callback={clearState} />
       <h2 className={s.titleCard}>{packName}</h2>
       <div className={s.container}>
         <p>
@@ -39,9 +53,9 @@ export const Learn = (): ReturnComponentType => {
         </p>
         <p>Количество попыток ответов на вопрос: {card.shots}</p>
 
-        {showAnswer && <Answer nextQuestionClick={nextQuestionClick} />}
-
-        {!showAnswer && (
+        {showAnswer ? (
+          <Answer nextQuestionClick={nextQuestionClick} />
+        ) : (
           <Button
             type="button"
             variant="contained"
