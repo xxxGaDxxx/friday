@@ -17,12 +17,12 @@ export const PacksTableHeader = (): ReturnComponentType => {
   return (
     <TableHead>
       <TableRow sx={{ background: '#EFEFEF' }}>
-        <TableCell onClick={() => sortRows('name', dispatch, sortPacks)}>
+        <TableCell onClick={() => sortRows('name', dispatch, sortPacks)} sx={{ cursor: 'pointer' }}>
           Name
           {sortPacks === '0name' || sortPacks === '1name' ? <SortDirection sort={sortPacks} /> : ''}
         </TableCell>
 
-        <TableCell onClick={() => sortRows('card', dispatch, sortPacks)}>
+        <TableCell onClick={() => sortRows('card', dispatch, sortPacks)} sx={{ cursor: 'pointer' }}>
           Cards
           {sortPacks === '0cardsCount' || sortPacks === '1cardsCount' ? (
             <SortDirection sort={sortPacks} />
@@ -31,7 +31,10 @@ export const PacksTableHeader = (): ReturnComponentType => {
           )}
         </TableCell>
 
-        <TableCell onClick={() => sortRows('updated', dispatch, sortPacks)}>
+        <TableCell
+          onClick={() => sortRows('updated', dispatch, sortPacks)}
+          sx={{ cursor: 'pointer' }}
+        >
           Last Updated
           {sortPacks === '0updated' || sortPacks === '1updated' ? (
             <SortDirection sort={sortPacks} />
@@ -40,7 +43,10 @@ export const PacksTableHeader = (): ReturnComponentType => {
           )}
         </TableCell>
 
-        <TableCell onClick={() => sortRows('user_name', dispatch, sortPacks)}>
+        <TableCell
+          onClick={() => sortRows('user_name', dispatch, sortPacks)}
+          sx={{ cursor: 'pointer' }}
+        >
           Created by
           {sortPacks === '0user_name' || sortPacks === '1user_name' ? (
             <SortDirection sort={sortPacks} />

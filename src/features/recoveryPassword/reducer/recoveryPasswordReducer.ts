@@ -1,3 +1,5 @@
+import { AxiosError } from 'axios';
+
 import { restorePasswordAPI } from '../../../api/restorePasswordAPI';
 import { RestoreForgottenPasswordParamsType, SetNewPasswordType } from '../../../api/types/apiType';
 import { errorUtils } from '../../../common/utils/errorUtils';
@@ -43,40 +45,34 @@ export const setInfoAC = (info: string) =>
 
 // thunk
 export const recoveryPasswordTC =
-  (data: RestoreForgottenPasswordParamsType): AppThunk =>
-  dispatch => {
-    dispatch(setAppStatusAC('loading'));
+  (params: RestoreForgottenPasswordParamsType): AppThunk =>
+  async dispatch => {
+    try {
+      dispatch(setAppStatusAC('loading'));
 
-    restorePasswordAPI
-      .restoreForgottenPassword(data)
+      const { data } = await restorePasswordAPI.restoreForgottenPassword(params);
 
-      .then(res => {
-        dispatch(setEmailAC(data.email));
-        dispatch(setIsSuccessAC(res.data.success));
-        dispatch(setAppStatusAC('succeeded'));
-      })
-
-      .catch(err => {
-        errorUtils(err, dispatch);
-      });
+      dispatch(setEmailAC(params.email));
+      dispatch(setIsSuccessAC(data.success));
+      dispatch(setAppStatusAC('succeeded'));
+    } catch (err) {
+      errorUtils(err as AxiosError, dispatch);
+    }
   };
 
 export const newPasswordTC =
-  (data: SetNewPasswordType): AppThunk =>
-  dispatch => {
-    dispatch(setAppStatusAC('loading'));
+  (params: SetNewPasswordType): AppThunk =>
+  async dispatch => {
+    try {
+      dispatch(setAppStatusAC('loading'));
 
-    restorePasswordAPI
-      .setNewPassword(data)
+      const { data } = await restorePasswordAPI.setNewPassword(params);
 
-      .then(res => {
-        const info = res.data.info ? res.data.info : '';
+      const info = data.info ? data.info : '';
 
-        dispatch(setInfoAC(info));
-        dispatch(setAppStatusAC('succeeded'));
-      })
-
-      .catch(err => {
-        errorUtils(err, dispatch);
-      });
+      dispatch(setInfoAC(info));
+      dispatch(setAppStatusAC('succeeded'));
+    } catch (err) {
+      errorUtils(err as AxiosError, dispatch);
+    }
   };

@@ -1,3 +1,5 @@
+import { AxiosError } from 'axios';
+
 import { authAPI } from '../../../api/authAPI';
 import { errorUtils } from '../../../common/utils/errorUtils';
 import { setAppStatusAC } from '../../../store/app-reducer';
@@ -29,20 +31,17 @@ export const setIsLoggedInAC = (value: boolean) =>
 
 // thunk
 export const loginTC =
-  (data: LoginParamsType): AppThunk =>
-  dispatch => {
-    dispatch(setAppStatusAC('loading'));
+  (params: LoginParamsType): AppThunk =>
+  async dispatch => {
+    try {
+      dispatch(setAppStatusAC('loading'));
 
-    authAPI
-      .login(data)
+      const { data } = await authAPI.login(params);
 
-      .then(res => {
-        dispatch(setIsLoggedInAC(true));
-        dispatch(setUserDataAC(res.data));
-        dispatch(setAppStatusAC('succeeded'));
-      })
-
-      .catch(err => {
-        errorUtils(err, dispatch);
-      });
+      dispatch(setIsLoggedInAC(true));
+      dispatch(setUserDataAC(data));
+      dispatch(setAppStatusAC('succeeded'));
+    } catch (err) {
+      errorUtils(err as AxiosError, dispatch);
+    }
   };

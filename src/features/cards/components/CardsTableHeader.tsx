@@ -22,7 +22,10 @@ export const CardsTableHeader = ({ isMyPack }: CardsTableHeaderType): ReturnComp
   return (
     <TableHead>
       <TableRow sx={{ background: '#EFEFEF' }}>
-        <TableCell onClick={() => sortRows('question', dispatch, sortCards)}>
+        <TableCell
+          onClick={() => sortRows('question', dispatch, sortCards)}
+          sx={{ cursor: 'pointer' }}
+        >
           Question
           {sortCards === '0question' || sortCards === '1question' ? (
             <SortDirection sort={sortCards} />
@@ -31,7 +34,10 @@ export const CardsTableHeader = ({ isMyPack }: CardsTableHeaderType): ReturnComp
           )}
         </TableCell>
 
-        <TableCell onClick={() => sortRows('answer', dispatch, sortCards)}>
+        <TableCell
+          onClick={() => sortRows('answer', dispatch, sortCards)}
+          sx={{ cursor: 'pointer' }}
+        >
           Answer
           {sortCards === '0answer' || sortCards === '1answer' ? (
             <SortDirection sort={sortCards} />
@@ -40,7 +46,10 @@ export const CardsTableHeader = ({ isMyPack }: CardsTableHeaderType): ReturnComp
           )}
         </TableCell>
 
-        <TableCell onClick={() => sortRows('updatedCard', dispatch, sortCards)}>
+        <TableCell
+          onClick={() => sortRows('updatedCard', dispatch, sortCards)}
+          sx={{ cursor: 'pointer' }}
+        >
           Last Updated
           {sortCards === '0updated' || sortCards === '1updated' ? (
             <SortDirection sort={sortCards} />

@@ -10,7 +10,6 @@ export const styleBox = {
 };
 
 export const styleButtonActivateModal = {
-  cursor: 'grab',
   fontWeight: '500',
   fontSize: '16px',
   borderRadius: '20px',
