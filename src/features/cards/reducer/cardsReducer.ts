@@ -1,15 +1,10 @@
+import { AxiosError } from 'axios';
+
 import { cardsAPI } from '../../../api/cardsAPI';
-import {
-  CardsResponseType,
-  CardsType,
-  ParamsCardsType,
-  UpdatedGradeType,
-} from '../../../api/types/apiType';
+import { CardsResponseType, CardsType, ParamsCardsType } from '../../../api/types/apiType';
 import { errorUtils } from '../../../common/utils/errorUtils';
-import { randomCard } from '../../../common/utils/randomCard';
 import { setAppStatusAC } from '../../../store/app-reducer';
 import { AppThunk } from '../../../store/store';
-import { setCardLearnAC } from '../../learn/reducer/learnReducer';
 
 import { InitialStateCards, StateCardsReducerActionsType } from './cardsReducerType';
 
@@ -66,15 +61,6 @@ export const cardsReducer = (
         ...state,
         pageCount: action.payload.count,
       };
-    case 'CARDS/UPDATE-CARD-GRADE':
-      return {
-        ...state,
-        cards: state.cards.map(card =>
-          card._id === action.payload.card.card_id
-            ? { ...card, shots: action.payload.card.shots, grade: action.payload.card.grade }
-            : card,
-        ),
-      };
     default:
       return state;
   }
@@ -105,51 +91,35 @@ export const setCardsPerPageAC = (count: number) =>
 export const setSelectedCardsPageAC = (page: number) =>
   ({ type: 'CARDS/SET-SELECTED-PAGE', payload: { page } } as const);
 
-export const updateCardGradeAC = (card: UpdatedGradeType) =>
-  ({ type: 'CARDS/UPDATE-CARD-GRADE', payload: { card } } as const);
-
 export const setCardsTotalCountAC = (cardsTotalCount: number) =>
   ({ type: 'CARDS/CARDS-TOTAL-COUNT', payload: { cardsTotalCount } } as const);
 
 // thunk
 export const getCardDataTC =
-  (_id: string, allPageCount?: number): AppThunk =>
-  (dispatch, getState) => {
+  (_id: string): AppThunk =>
+  async (dispatch, getState) => {
     const { pageCount, page, sortCards, minGrade, maxGrade, question } = getState().card;
-    const pageCountAll = allPageCount || pageCount;
-
-    const DEFAULT_PAGE_COUNT = 5;
 
     const params: ParamsCardsType = {
       cardsPack_id: _id,
       sortCards,
       cardQuestion: question,
       page,
-      pageCount: pageCountAll,
+      pageCount,
       min: minGrade,
       max: maxGrade,
     };
 
-    dispatch(setAppStatusAC('loading'));
+    try {
+      dispatch(setAppStatusAC('loading'));
 
-    cardsAPI
-      .getCards(params)
+      const { data } = await cardsAPI.getCards(params);
 
-      .then(res => {
-        dispatch(setCardsDataAC(res.data));
-
-        if (allPageCount) {
-          dispatch(setCardsPerPageAC(DEFAULT_PAGE_COUNT));
-
-          dispatch(setCardLearnAC(randomCard(res.data.cards)));
-        }
-
-        dispatch(setAppStatusAC('succeeded'));
-      })
-
-      .catch(err => {
-        errorUtils(err, dispatch);
-      });
+      dispatch(setCardsDataAC(data));
+      dispatch(setAppStatusAC('succeeded'));
+    } catch (err) {
+      errorUtils(err as AxiosError, dispatch);
+    }
   };
 
 export const addCardTC =
@@ -162,7 +132,7 @@ export const addCardTC =
     answerImg?: string,
     questionImg?: string,
   ): AppThunk =>
-  dispatch => {
+  async dispatch => {
     const card: ParamsCardsType = {
       cardsPack_id: _id,
       answer,
@@ -171,38 +141,31 @@ export const addCardTC =
       questionImg,
     };
 
-    dispatch(setAppStatusAC('loading'));
+    try {
+      dispatch(setAppStatusAC('loading'));
 
-    cardsAPI
-      .addCard(card)
+      const { data } = await cardsAPI.addCard(card);
 
-      .then(res => {
-        dispatch(addCardsAC(res.data.newCard));
-        dispatch(getCardDataTC(_id));
-        dispatch(setAppStatusAC('succeeded'));
-      })
-
-      .catch(err => {
-        errorUtils(err, dispatch);
-      });
+      dispatch(addCardsAC(data.newCard));
+      dispatch(getCardDataTC(_id));
+      dispatch(setAppStatusAC('succeeded'));
+    } catch (err) {
+      errorUtils(err as AxiosError, dispatch);
+    }
   };
 
 export const deleteCardTC =
   (cardId: string, cardPackId: string): AppThunk =>
-  dispatch => {
-    dispatch(setAppStatusAC('loading'));
+  async dispatch => {
+    try {
+      dispatch(setAppStatusAC('loading'));
 
-    cardsAPI
-      .deleteCard(cardId)
-
-      .then(() => {
-        dispatch(getCardDataTC(cardPackId));
-        dispatch(setAppStatusAC('succeeded'));
-      })
-
-      .catch(err => {
-        errorUtils(err, dispatch);
-      });
+      await cardsAPI.deleteCard(cardId);
+      dispatch(getCardDataTC(cardPackId));
+      dispatch(setAppStatusAC('succeeded'));
+    } catch (err) {
+      errorUtils(err as AxiosError, dispatch);
+    }
   };
 
 export const updateCardTC =
@@ -214,7 +177,7 @@ export const updateCardTC =
     answerImg?: string,
     questionImg?: string,
   ): AppThunk =>
-  dispatch => {
+  async dispatch => {
     const card = {
       _id: cardId,
       answer,
@@ -223,17 +186,14 @@ export const updateCardTC =
       questionImg,
     };
 
-    dispatch(setAppStatusAC('loading'));
+    try {
+      dispatch(setAppStatusAC('loading'));
 
-    cardsAPI
-      .updateCard(card)
+      await cardsAPI.updateCard(card);
 
-      .then(() => {
-        dispatch(getCardDataTC(cardPackId));
-        dispatch(setAppStatusAC('succeeded'));
-      })
-
-      .catch(err => {
-        errorUtils(err, dispatch);
-      });
+      dispatch(getCardDataTC(cardPackId));
+      dispatch(setAppStatusAC('succeeded'));
+    } catch (err) {
+      errorUtils(err as AxiosError, dispatch);
+    }
   };

@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import deleteIcon from '../../../assets/svg/Delete.svg';
 import editIcon from '../../../assets/svg/Edit.svg';
 import learnIcon from '../../../assets/svg/teacher.svg';
-import { getCardDataTC } from '../../../features/cards/reducer/cardsReducer';
+import { getCardsLearnDataTC } from '../../../features/learn/reducer/learnReducer';
 import { DeletePackModal } from '../../../features/packs/components/modalPack/DeletePackModal';
 import { EditPackModal } from '../../../features/packs/components/modalPack/EditPackModal';
 import { updatePackTC } from '../../../features/packs/reducer/packsReducer';
@@ -33,7 +33,7 @@ export const ActionIconButtons = memo(
     };
 
     const navigateToLearnPage = (): void => {
-      dispatch(getCardDataTC(packId, cardsCount));
+      dispatch(getCardsLearnDataTC(packId, cardsCount));
       navigate(PATH.LEARN);
     };
 

@@ -19,7 +19,7 @@ import {
 import s from './style/Learn.module.scss';
 
 export const Learn = (): ReturnComponentType => {
-  const cards = useAppSelector(state => state.card.cards);
+  const cards = useAppSelector(state => state.learn.cards);
   const packName = useAppSelector(state => state.card.packName);
   const card = useAppSelector(state => state.learn.card);
   const showAnswer = useAppSelector(state => state.learn.showAnswer);

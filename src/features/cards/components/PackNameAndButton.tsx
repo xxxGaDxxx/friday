@@ -9,9 +9,8 @@ import { useNavigate } from 'react-router-dom';
 import popUpActions from '../../../assets/svg/myPackPopupActions.svg';
 import { PATH } from '../../../common/enum/pathEnum';
 import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
-import { useAppSelector } from '../../../common/hooks/useAppSelector';
 import { ReturnComponentType } from '../../../common/types';
-import { getCardDataTC } from '../reducer/cardsReducer';
+import { getCardsLearnDataTC } from '../../learn/reducer/learnReducer';
 import s from '../styles/Cards.module.scss';
 
 import { AddCardModal } from './cardsModals/AddCardModal';
@@ -30,8 +29,6 @@ export const PackNameAndButton = ({
   cardPackId,
   cardsTotalCount,
 }: PackNameAndButtonProps): ReturnComponentType => {
-  const status = useAppSelector(state => state.app.status);
-
   const dispatch = useAppDispatch();
 
   const navigate = useNavigate();
@@ -43,10 +40,9 @@ export const PackNameAndButton = ({
   };
 
   const navigateToLearnPage = (): void => {
-    dispatch(getCardDataTC(cardPackId, cardsTotalCount));
-    if (status === 'succeeded') {
-      navigate(PATH.LEARN);
-    }
+    dispatch(getCardsLearnDataTC(cardPackId, cardsTotalCount));
+
+    navigate(PATH.LEARN);
   };
 
   return (

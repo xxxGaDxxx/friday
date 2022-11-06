@@ -9,7 +9,6 @@ import {
   setCardsTotalCountAC,
   setQuestionSearchAC,
   setSelectedCardsPageAC,
-  updateCardGradeAC,
 } from './cardsReducer';
 
 // initialState type
@@ -24,7 +23,6 @@ export type SetQuestionSearchACType = ReturnType<typeof setQuestionSearchAC>;
 export type SetCardsPerPageACType = ReturnType<typeof setCardsPerPageAC>;
 export type SetSelectedCardsPageACType = ReturnType<typeof setSelectedCardsPageAC>;
 export type SetCardsPackNameACType = ReturnType<typeof setCardsPackNameAC>;
-export type UpdateCarGradedACType = ReturnType<typeof updateCardGradeAC>;
 export type SetCardsTotalCountACType = ReturnType<typeof setCardsTotalCountAC>;
 
 export type StateCardsReducerActionsType =
@@ -36,5 +34,4 @@ export type StateCardsReducerActionsType =
   | SetCardsPerPageACType
   | SetSelectedCardsPageACType
   | SetCardsPackNameACType
-  | UpdateCarGradedACType
   | SetCardsTotalCountACType;
