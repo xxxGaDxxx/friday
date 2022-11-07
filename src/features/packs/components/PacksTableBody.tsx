@@ -12,7 +12,11 @@ import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
 import { useAppSelector } from '../../../common/hooks/useAppSelector';
 import { ReturnComponentType } from '../../../common/types';
 import { formatDate } from '../../../common/utils/formatDate';
-import { setCardsPackIdAC, setCardsTotalCountAC } from '../../cards/reducer/cardsReducer';
+import {
+  setCardsPackIdAC,
+  setCardsTotalCountAC,
+  setDeckCoverPackAC,
+} from '../../cards/reducer/cardsReducer';
 import { setSearchAC } from '../reducer/packsReducer';
 import s from '../style/Packs.module.scss';
 
@@ -26,10 +30,11 @@ export const PacksTableBody = memo((): ReturnComponentType => {
 
   const isMyPack = useCallback((id: string): boolean => userId === id, [userId]);
 
-  const goToCardsList = (_id: string, cardsCount: number): void => {
+  const goToCardsList = (_id: string, cardsCount: number, deckCover: string): void => {
     dispatch(setSearchAC(''));
     dispatch(setCardsPackIdAC(_id));
     dispatch(setCardsTotalCountAC(cardsCount));
+    dispatch(setDeckCoverPackAC(deckCover));
 
     navigate(PATH.CARDS);
   };
@@ -41,7 +46,7 @@ export const PacksTableBody = memo((): ReturnComponentType => {
           <TableRow key={pack._id}>
             <TableCell
               className={s.firstColumn}
-              onClick={() => goToCardsList(pack._id, pack.cardsCount)}
+              onClick={() => goToCardsList(pack._id, pack.cardsCount, pack.deckCover)}
               component="th"
               scope="row"
             >

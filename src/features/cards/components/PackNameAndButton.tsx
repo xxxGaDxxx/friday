@@ -6,9 +6,11 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import { useNavigate } from 'react-router-dom';
 
+import defaultCover from '../../../assets/img/noCover.jpg';
 import popUpActions from '../../../assets/svg/myPackPopupActions.svg';
 import { PATH } from '../../../common/enum/pathEnum';
 import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
+import { useAppSelector } from '../../../common/hooks/useAppSelector';
 import { ReturnComponentType } from '../../../common/types';
 import { getCardsLearnDataTC } from '../../learn/reducer/learnReducer';
 import s from '../styles/Cards.module.scss';
@@ -29,6 +31,8 @@ export const PackNameAndButton = ({
   cardPackId,
   cardsTotalCount,
 }: PackNameAndButtonProps): ReturnComponentType => {
+  const deckCovePack = useAppSelector(state => state.card.deckCovePack);
+
   const dispatch = useAppDispatch();
 
   const navigate = useNavigate();
@@ -49,6 +53,11 @@ export const PackNameAndButton = ({
     <section className={s.section}>
       <Box className={s.box}>
         <Typography component="h1">{packName}</Typography>
+        <img
+          style={{ width: '300px', height: '150px' }}
+          src={deckCovePack || defaultCover}
+          alt="Cover"
+        />
         {isMyPack && (
           <IconButton onClick={showMenu}>
             <img src={popUpActions} alt="popup actions" />

@@ -29,11 +29,9 @@ export const ActionIconButtons = memo(
 
     const dispatch = useAppDispatch();
 
-    const updatePack = (name: string, privatePack: boolean): void => {
-      dispatch(updatePackTC(packId, name, privatePack, 'pack'));
+    const updatePack = (name: string, privatePack: boolean, coverPack: string): void => {
+      dispatch(updatePackTC(packId, name, privatePack, 'pack', coverPack));
     };
-
-    console.log('activ deckCover', deckCover);
 
     const navigateToLearnPage = (): void => {
       dispatch(getCardsLearnDataTC(packId, cardsCount));
@@ -59,6 +57,7 @@ export const ActionIconButtons = memo(
           <EditPackModal
             currentPackTitle={namePack}
             updatePack={updatePack}
+            deckCover={deckCover}
             stylesOfIcon={{
               minHeight: 0,
               minWidth: 0,

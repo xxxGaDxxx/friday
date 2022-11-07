@@ -159,12 +159,19 @@ export const deletePackTC =
   };
 
 export const updatePackTC =
-  (packId: string, name: string, privatePack: boolean, callPoint: string): AppThunk =>
+  (
+    packId: string,
+    name: string,
+    privatePack: boolean,
+    callPoint: string,
+    deckCover: string,
+  ): AppThunk =>
   dispatch => {
     const packNew = {
       _id: packId,
       name,
       private: privatePack,
+      deckCover,
     };
 
     dispatch(setAppStatusAC('loading'));

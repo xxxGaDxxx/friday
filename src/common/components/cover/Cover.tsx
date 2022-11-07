@@ -4,21 +4,22 @@ import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import { IconButton } from '@mui/material';
 
 import defaultCover from '../../../assets/img/noCover.jpg';
-import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
-import { ReturnComponentType } from '../../../common/types';
 import { setAppErrorAC } from '../../../store/app-reducer';
+import { useAppDispatch } from '../../hooks/useAppDispatch';
+import { ReturnComponentType } from '../../types';
 
 type CoverType = {
   setCoverPack: (cover: string) => void;
+  deckCover?: string;
 };
 
-export const Cover = ({ setCoverPack }: CoverType): ReturnComponentType => {
+export const Cover = ({ setCoverPack, deckCover }: CoverType): ReturnComponentType => {
   const dispatch = useAppDispatch();
 
-  const [cover, setCover] = useState(defaultCover);
+  const [cover, setCover] = useState(deckCover || defaultCover);
   const [isAvaBroken, setIsAvaBroken] = useState(false);
 
-  const SIZE_FILE = 1000000;
+  const SIZE_FILE = 4000000;
 
   const uploadHandler = (e: ChangeEvent<HTMLInputElement>): void => {
     if (e.target.files && e.target.files.length) {

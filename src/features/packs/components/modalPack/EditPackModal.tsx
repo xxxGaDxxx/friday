@@ -4,16 +4,18 @@ import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import TextField from '@mui/material/TextField';
 
+import { Cover } from '../../../../common/components/cover/Cover';
 import { UniversalModalWindow } from '../../../../common/components/universalModalWindow/UniversalModalWindow';
 import { ReturnComponentType } from '../../../../common/types';
 
 import s from './style/AddPackModal.module.scss';
 
 export type EditPackModalProps = {
-  updatePack: (titlePack: string, privatePack: boolean) => void;
+  updatePack: (titlePack: string, privatePack: boolean, coverPack: string) => void;
   clickHere: ReactNode;
   stylesOfIcon: object;
   currentPackTitle: string;
+  deckCover: string;
 };
 
 export const EditPackModal = ({
@@ -21,9 +23,11 @@ export const EditPackModal = ({
   clickHere,
   stylesOfIcon,
   currentPackTitle,
+  deckCover,
 }: EditPackModalProps): ReturnComponentType => {
   const [packTitle, setPackTitle] = useState(currentPackTitle);
   const [isPrivatePack, setIsPrivatePack] = useState(false);
+  const [coverPack, setCoverPack] = useState('');
 
   const setPrivacy = (): void => {
     setIsPrivatePack(!isPrivatePack);
@@ -35,7 +39,7 @@ export const EditPackModal = ({
   };
 
   const onSaveClick = (): void => {
-    updatePack(packTitle, isPrivatePack);
+    updatePack(packTitle, isPrivatePack, coverPack);
     handleClose();
     // setPackTitle('');
     setIsPrivatePack(false);
@@ -55,6 +59,7 @@ export const EditPackModal = ({
       title="Edit pack"
       handleClose={handleClose}
     >
+      <Cover setCoverPack={setCoverPack} deckCover={deckCover} />
       <TextField
         type="text"
         variant="standard"

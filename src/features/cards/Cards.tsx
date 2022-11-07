@@ -29,6 +29,7 @@ export const Cards = (): ReturnComponentType => {
   const page = useAppSelector(state => state.card.page);
   const pageCount = useAppSelector(state => state.card.pageCount);
   const cardsTotalCount = useAppSelector(state => state.card.cardsTotalCount);
+  // const deckCovePack = useAppSelector(state => state.card.deckCovePack);
 
   const dispatch = useAppDispatch();
 

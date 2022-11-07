@@ -4,9 +4,9 @@ import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import TextField from '@mui/material/TextField';
 
+import { Cover } from '../../../../common/components/cover/Cover';
 import { UniversalModalWindow } from '../../../../common/components/universalModalWindow/UniversalModalWindow';
 import { ReturnComponentType } from '../../../../common/types';
-import { Cover } from '../../cover/Cover';
 
 import s from './style/AddPackModal.module.scss';
 
@@ -21,7 +21,7 @@ export const AddPackModal = ({
 }: AddPackModalProps): ReturnComponentType => {
   const [titlePack, setTitlePack] = useState('');
   const [privatePack, setPrivatePack] = useState(false);
-  const [cover, setCoverPack] = useState('');
+  const [coverPack, setCoverPack] = useState('');
 
   const onPrivatePackClick = (): void => {
     setPrivatePack(!privatePack);
@@ -33,7 +33,7 @@ export const AddPackModal = ({
   };
 
   const onSaveClick = (): void => {
-    onAddPackClick(titlePack, privatePack, cover);
+    onAddPackClick(titlePack, privatePack, coverPack);
     handleClose();
     setTitlePack('');
     setPrivatePack(false);

@@ -7,6 +7,7 @@ import {
   setCardsPackNameAC,
   setCardsPerPageAC,
   setCardsTotalCountAC,
+  setDeckCoverPackAC,
   setQuestionSearchAC,
   setSelectedCardsPageAC,
 } from './cardsReducer';
@@ -24,6 +25,7 @@ export type SetCardsPerPageACType = ReturnType<typeof setCardsPerPageAC>;
 export type SetSelectedCardsPageACType = ReturnType<typeof setSelectedCardsPageAC>;
 export type SetCardsPackNameACType = ReturnType<typeof setCardsPackNameAC>;
 export type SetCardsTotalCountACType = ReturnType<typeof setCardsTotalCountAC>;
+export type SetDeckCoverPackACType = ReturnType<typeof setDeckCoverPackAC>;
 
 export type StateCardsReducerActionsType =
   | SetCardsDataACType
@@ -34,4 +36,5 @@ export type StateCardsReducerActionsType =
   | SetCardsPerPageACType
   | SetSelectedCardsPageACType
   | SetCardsPackNameACType
-  | SetCardsTotalCountACType;
+  | SetCardsTotalCountACType
+  | SetDeckCoverPackACType;

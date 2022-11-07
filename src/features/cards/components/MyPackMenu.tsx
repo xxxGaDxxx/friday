@@ -16,6 +16,7 @@ import { ReturnComponentType } from '../../../common/types';
 import { DeletePackModal } from '../../packs/components/modalPack/DeletePackModal';
 import { EditPackModal } from '../../packs/components/modalPack/EditPackModal';
 import { updatePackTC } from '../../packs/reducer/packsReducer';
+import { setDeckCoverPackAC } from '../reducer/cardsReducer';
 
 type MyPackMenuProps = {
   hideMenu: () => void;
@@ -28,11 +29,13 @@ export const MyPackMenu = ({
 }: MyPackMenuProps): ReturnComponentType => {
   const packId = useAppSelector(state => state.card.cardsPackId);
   const namePack = useAppSelector(state => state.card.packName);
+  const deckCovePack = useAppSelector(state => state.card.deckCovePack);
 
   const dispatch = useAppDispatch();
 
-  const onEditClick = (name: string, privatePack: boolean): void => {
-    dispatch(updatePackTC(packId, name, privatePack, 'card'));
+  const onEditClick = (name: string, privatePack: boolean, coverPack: string): void => {
+    dispatch(updatePackTC(packId, name, privatePack, 'card', coverPack));
+    dispatch(setDeckCoverPackAC(coverPack));
     hideMenu();
   };
 
@@ -44,6 +47,7 @@ export const MyPackMenu = ({
             <EditPackModal
               currentPackTitle={namePack}
               updatePack={onEditClick}
+              deckCover={deckCovePack}
               stylesOfIcon={{
                 minHeight: 0,
                 width: '105px',

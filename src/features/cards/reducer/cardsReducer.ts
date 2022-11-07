@@ -25,6 +25,7 @@ export const initialStateCards = {
   cardsPackId: '',
   sortCards: '',
   question: '',
+  deckCovePack: '',
 };
 
 export const cardsReducer = (
@@ -61,6 +62,11 @@ export const cardsReducer = (
         ...state,
         pageCount: action.payload.count,
       };
+    case 'CARDS/DECK-COVER-PACK':
+      return {
+        ...state,
+        deckCovePack: action.payload.deckCoverPack,
+      };
     default:
       return state;
   }
@@ -94,6 +100,8 @@ export const setSelectedCardsPageAC = (page: number) =>
 export const setCardsTotalCountAC = (cardsTotalCount: number) =>
   ({ type: 'CARDS/CARDS-TOTAL-COUNT', payload: { cardsTotalCount } } as const);
 
+export const setDeckCoverPackAC = (deckCoverPack: string) =>
+  ({ type: 'CARDS/DECK-COVER-PACK', payload: { deckCoverPack } } as const);
 // thunk
 export const getCardDataTC =
   (_id: string): AppThunk =>
