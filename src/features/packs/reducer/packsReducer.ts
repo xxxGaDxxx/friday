@@ -1,3 +1,5 @@
+import { AxiosError } from 'axios';
+
 import { packsAPI } from '../../../api/packsAPI';
 import { PackDataResponseType, PacksType, ParamsPacksType } from '../../../api/types/apiType';
 import { errorUtils } from '../../../common/utils/errorUtils';
@@ -109,7 +111,7 @@ export const setCancelFilterAC = (data: {
   } as const);
 
 // thunk
-export const packDataTC = (): AppThunk => (dispatch, getState) => {
+export const packDataTC = (): AppThunk => async (dispatch, getState) => {
   const { pageCount, page, minMaxCount, packName, sortPacks, user_id } = getState().pack;
 
   const params: ParamsPacksType = {
@@ -122,40 +124,34 @@ export const packDataTC = (): AppThunk => (dispatch, getState) => {
     user_id,
   };
 
-  dispatch(setAppStatusAC('loading'));
+  try {
+    dispatch(setAppStatusAC('loading'));
 
-  packsAPI
-    .getPacks(params)
+    const { data } = await packsAPI.getPacks(params);
 
-    .then(res => {
-      dispatch(setPackDataAC(res.data));
-      dispatch(setAppStatusAC('succeeded'));
-    })
-
-    .catch(err => {
-      errorUtils(err, dispatch);
-    });
+    dispatch(setPackDataAC(data));
+    dispatch(setAppStatusAC('succeeded'));
+  } catch (err) {
+    errorUtils(err as AxiosError, dispatch);
+  }
 };
 
 export const deletePackTC =
   (packId: string, callPoint: string): AppThunk =>
-  dispatch => {
-    dispatch(setAppStatusAC('loading'));
+  async dispatch => {
+    try {
+      dispatch(setAppStatusAC('loading'));
 
-    packsAPI
-      .deletePack(packId)
+      await packsAPI.deletePack(packId);
 
-      .then(() => {
-        if (callPoint === 'pack') {
-          dispatch(packDataTC());
-        }
+      if (callPoint === 'pack') {
+        dispatch(packDataTC());
+      }
 
-        dispatch(setAppStatusAC('succeeded'));
-      })
-
-      .catch(err => {
-        errorUtils(err, dispatch);
-      });
+      dispatch(setAppStatusAC('succeeded'));
+    } catch (err) {
+      errorUtils(err as AxiosError, dispatch);
+    }
   };
 
 export const updatePackTC =
@@ -166,7 +162,7 @@ export const updatePackTC =
     callPoint: string,
     deckCover: string,
   ): AppThunk =>
-  dispatch => {
+  async dispatch => {
     const packNew = {
       _id: packId,
       name,
@@ -174,46 +170,40 @@ export const updatePackTC =
       deckCover,
     };
 
-    dispatch(setAppStatusAC('loading'));
+    try {
+      dispatch(setAppStatusAC('loading'));
 
-    packsAPI
-      .updatePack(packNew)
+      await packsAPI.updatePack(packNew);
 
-      .then(() => {
-        dispatch(setCardsPackNameAC(name));
+      dispatch(setCardsPackNameAC(name));
 
-        if (callPoint === 'pack') {
-          dispatch(packDataTC());
-        }
+      if (callPoint === 'pack') {
+        dispatch(packDataTC());
+      }
 
-        dispatch(setAppStatusAC('succeeded'));
-      })
-
-      .catch(err => {
-        errorUtils(err, dispatch);
-      });
+      dispatch(setAppStatusAC('succeeded'));
+    } catch (err) {
+      errorUtils(err as AxiosError, dispatch);
+    }
   };
 
 export const addPackTC =
   (titlePack: string, privatePack: boolean, cover: string): AppThunk =>
-  dispatch => {
-    dispatch(setAppStatusAC('loading'));
-
+  async dispatch => {
     const packNew = {
       name: titlePack,
       deckCover: cover,
       private: privatePack,
     };
 
-    packsAPI
-      .addPack(packNew)
+    try {
+      dispatch(setAppStatusAC('loading'));
 
-      .then(() => {
-        dispatch(packDataTC());
-        dispatch(setAppStatusAC('succeeded'));
-      })
+      await packsAPI.addPack(packNew);
 
-      .catch(err => {
-        errorUtils(err, dispatch);
-      });
+      dispatch(packDataTC());
+      dispatch(setAppStatusAC('succeeded'));
+    } catch (err) {
+      errorUtils(err as AxiosError, dispatch);
+    }
   };
