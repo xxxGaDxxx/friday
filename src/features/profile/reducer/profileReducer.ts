@@ -6,7 +6,6 @@ import { errorUtils } from '../../../common/utils/errorUtils';
 import { setAppStatusAC } from '../../../store/app-reducer';
 import { AppThunk } from '../../../store/store';
 import { setIsLoggedInAC } from '../../login/reducer/loginReducer';
-import { UserUpdateParamsType } from '../../login/types/LoginType';
 
 import { InitialStateType, ProfileReducerActionsType } from './profileReducerType';
 
@@ -27,6 +26,12 @@ export const profileReducer = (
         ...state,
         ...action.payload.userDate,
       };
+    case 'PROFILE/SET-AVATAR':
+    case 'PROFILE/SET-USER-NAME':
+      return {
+        ...state,
+        ...action.payload,
+      };
     default:
       return state;
   }
@@ -36,21 +41,27 @@ export const profileReducer = (
 export const setUserDataAC = (userData: UserResponseType) =>
   ({ type: 'PROFILE/SET-USER-DATA', payload: { userDate: userData } } as const);
 
+export const setAvatarAC = (avatar: string) =>
+  ({ type: 'PROFILE/SET-AVATAR', payload: { avatar } } as const);
+
+export const setUserNameAC = (name: string) =>
+  ({ type: 'PROFILE/SET-USER-NAME', payload: { name } } as const);
+
 // thunk
-export const updateUserNameTC =
-  (params: UserUpdateParamsType): AppThunk =>
-  async dispatch => {
-    try {
-      dispatch(setAppStatusAC('loading'));
+export const updateUserNameTC = (): AppThunk => async (dispatch, getState) => {
+  try {
+    const { name, avatar } = getState().profile;
 
-      const { data } = await userAPI.updateUser(params);
+    dispatch(setAppStatusAC('loading'));
 
-      dispatch(setUserDataAC(data.updatedUser));
-      dispatch(setAppStatusAC('succeeded'));
-    } catch (err) {
-      errorUtils(err as AxiosError, dispatch);
-    }
-  };
+    const { data } = await userAPI.updateUser({ name, avatar });
+
+    dispatch(setUserDataAC(data.updatedUser));
+    dispatch(setAppStatusAC('succeeded'));
+  } catch (err) {
+    errorUtils(err as AxiosError, dispatch);
+  }
+};
 
 export const logOutTC = (): AppThunk => async dispatch => {
   try {
