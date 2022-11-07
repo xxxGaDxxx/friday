@@ -66,7 +66,7 @@ export const Cover = ({ setCoverPack, deckCover }: CoverType): ReturnComponentTy
         <input type="file" onChange={uploadHandler} style={{ display: 'none' }} accept="image/*" />
         <IconButton component="span" sx={{ borderRadius: '20px' }}>
           <AddToPhotosIcon />
-          Download cover
+          Add cover
         </IconButton>
       </label>
     </div>
