@@ -1,0 +1,73 @@
+import React, { ChangeEvent, useState } from 'react';
+
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import { IconButton } from '@mui/material';
+
+import defaultCover from '../../../assets/img/noCover.jpg';
+import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
+import { ReturnComponentType } from '../../../common/types';
+import { setAppErrorAC } from '../../../store/app-reducer';
+
+type CoverType = {
+  setCoverPack: (cover: string) => void;
+};
+
+export const Cover = ({ setCoverPack }: CoverType): ReturnComponentType => {
+  const dispatch = useAppDispatch();
+
+  const [cover, setCover] = useState(defaultCover);
+  const [isAvaBroken, setIsAvaBroken] = useState(false);
+
+  const SIZE_FILE = 1000000;
+
+  const uploadHandler = (e: ChangeEvent<HTMLInputElement>): void => {
+    if (e.target.files && e.target.files.length) {
+      const file = e.target.files[0];
+
+      if (file.size < SIZE_FILE) {
+        convertFileToBase64(file, (file64: string) => {
+          setCover(file64);
+          setCoverPack(file64);
+        });
+      } else {
+        dispatch(setAppErrorAC('Файл слишком большого размера'));
+      }
+    }
+  };
+
+  const convertFileToBase64 = (file: File, callBack: (value: string) => void): void => {
+    const reader = new FileReader();
+
+    reader.onloadend = () => {
+      const file64 = reader.result as string;
+
+      callBack(file64);
+    };
+    reader.readAsDataURL(file);
+  };
+
+  const errorHandler = (): void => {
+    setIsAvaBroken(true);
+    dispatch(setAppErrorAC('Кривая картинка'));
+  };
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      <img
+        src={isAvaBroken ? defaultCover : cover}
+        style={{ width: '200px', height: '100px', margin: '15px 0' }}
+        onError={errorHandler}
+        alt="ava"
+      />
+
+      {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+      <label>
+        <input type="file" onChange={uploadHandler} style={{ display: 'none' }} accept="image/*" />
+        <IconButton component="span" sx={{ borderRadius: '20px' }}>
+          <CloudUploadIcon />
+          Download cover
+        </IconButton>
+      </label>
+    </div>
+  );
+};

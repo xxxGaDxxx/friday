@@ -188,13 +188,13 @@ export const updatePackTC =
   };
 
 export const addPackTC =
-  (titlePack: string, privatePack: boolean): AppThunk =>
+  (titlePack: string, privatePack: boolean, cover: string): AppThunk =>
   dispatch => {
     dispatch(setAppStatusAC('loading'));
 
     const packNew = {
       name: titlePack,
-      deckCover: '',
+      deckCover: cover,
       private: privatePack,
     };
 

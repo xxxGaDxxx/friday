@@ -6,11 +6,12 @@ import TextField from '@mui/material/TextField';
 
 import { UniversalModalWindow } from '../../../../common/components/universalModalWindow/UniversalModalWindow';
 import { ReturnComponentType } from '../../../../common/types';
+import { Cover } from '../../cover/Cover';
 
 import s from './style/AddPackModal.module.scss';
 
 export type AddPackModalProps = {
-  onAddPackClick: (titlePack: string, privatePack: boolean) => void;
+  onAddPackClick: (titlePack: string, privatePack: boolean, cover: string) => void;
   clickHere: ReactNode;
 };
 
@@ -20,6 +21,7 @@ export const AddPackModal = ({
 }: AddPackModalProps): ReturnComponentType => {
   const [titlePack, setTitlePack] = useState('');
   const [privatePack, setPrivatePack] = useState(false);
+  const [cover, setCoverPack] = useState('');
 
   const onPrivatePackClick = (): void => {
     setPrivatePack(!privatePack);
@@ -31,7 +33,7 @@ export const AddPackModal = ({
   };
 
   const onSaveClick = (): void => {
-    onAddPackClick(titlePack, privatePack);
+    onAddPackClick(titlePack, privatePack, cover);
     handleClose();
     setTitlePack('');
     setPrivatePack(false);
@@ -51,6 +53,7 @@ export const AddPackModal = ({
       title="Add new pack"
       handleClose={handleClose}
     >
+      <Cover setCoverPack={setCoverPack} />
       <TextField
         type="text"
         variant="standard"

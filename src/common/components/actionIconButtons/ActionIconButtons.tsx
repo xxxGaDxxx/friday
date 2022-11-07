@@ -20,10 +20,11 @@ type ActionsSvgType = {
   packId: string;
   cardsCount: number;
   namePack: string;
+  deckCover: string;
 };
 
 export const ActionIconButtons = memo(
-  ({ isMyPack, packId, cardsCount, namePack }: ActionsSvgType): ReturnComponentType => {
+  ({ isMyPack, packId, cardsCount, namePack, deckCover }: ActionsSvgType): ReturnComponentType => {
     const navigate = useNavigate();
 
     const dispatch = useAppDispatch();
@@ -31,6 +32,8 @@ export const ActionIconButtons = memo(
     const updatePack = (name: string, privatePack: boolean): void => {
       dispatch(updatePackTC(packId, name, privatePack, 'pack'));
     };
+
+    console.log('activ deckCover', deckCover);
 
     const navigateToLearnPage = (): void => {
       dispatch(getCardsLearnDataTC(packId, cardsCount));

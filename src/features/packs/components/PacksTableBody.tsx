@@ -5,6 +5,7 @@ import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
 import { useNavigate } from 'react-router-dom';
 
+import defaultCover from '../../../assets/img/noCover.jpg';
 import { ActionIconButtons } from '../../../common/components/actionIconButtons/ActionIconButtons';
 import { PATH } from '../../../common/enum/pathEnum';
 import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
@@ -44,6 +45,11 @@ export const PacksTableBody = memo((): ReturnComponentType => {
               component="th"
               scope="row"
             >
+              <img
+                style={{ width: '100px', height: '50px' }}
+                src={pack.deckCover || defaultCover}
+                alt="Cover"
+              />
               <span>{pack.name}</span>
             </TableCell>
             <TableCell>{pack.cardsCount}</TableCell>
@@ -56,6 +62,7 @@ export const PacksTableBody = memo((): ReturnComponentType => {
                 packId={pack._id}
                 cardsCount={pack.cardsCount}
                 namePack={pack.name}
+                deckCover={pack.deckCover}
               />
             </TableCell>
           </TableRow>

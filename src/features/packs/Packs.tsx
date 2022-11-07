@@ -49,8 +49,8 @@ export const Packs = (): ReturnComponentType => {
     dispatch(setQueryParamsAC({ page: page.toString() }));
   };
 
-  const addPack = (titlePack: string, privatePack: boolean): void => {
-    dispatch(addPackTC(titlePack, privatePack));
+  const addPack = (titlePack: string, privatePack: boolean, cover: string): void => {
+    dispatch(addPackTC(titlePack, privatePack, cover));
   };
 
   useEffect(() => {

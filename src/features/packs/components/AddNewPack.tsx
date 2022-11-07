@@ -7,7 +7,7 @@ import { ReturnComponentType } from '../../../common/types';
 import { AddPackModal } from './modalPack/AddPackModal';
 
 type AddNewPackType = {
-  onAddPackClick: (titlePack: string, privatePack: boolean) => void;
+  onAddPackClick: (titlePack: string, privatePack: boolean, cover: string) => void;
 };
 
 export const AddNewPack = memo(({ onAddPackClick }: AddNewPackType): ReturnComponentType => {
