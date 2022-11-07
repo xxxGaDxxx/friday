@@ -1,5 +1,3 @@
-import { AxiosResponse } from 'axios';
-
 import { instance } from './config';
 import {
   AddCardResponseType,
@@ -12,13 +10,13 @@ import {
 
 export const cardsAPI = {
   getCards(params?: ParamsCardsType) {
-    return instance.get<ParamsCardsType, AxiosResponse<CardsResponseType>>('/cards/card', {
+    return instance.get<CardsResponseType>('/cards/card', {
       params,
     });
   },
 
   addCard(card: ParamsCardsType) {
-    return instance.post<ParamsCardsType, AxiosResponse<AddCardResponseType>>('/cards/card', {
+    return instance.post<AddCardResponseType>('/cards/card', {
       card,
     });
   },
@@ -28,6 +26,6 @@ export const cardsAPI = {
   },
 
   updateCard(card: UpdateCardType) {
-    return instance.put<UpdateCardType, PutCardResponseType>('/cards/card', { card });
+    return instance.put<PutCardResponseType>('/cards/card', { card });
   },
 };

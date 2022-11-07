@@ -1,5 +1,3 @@
-import { AxiosResponse } from 'axios';
-
 import { instance } from './config';
 import {
   RestoreForgottenPasswordParamsType,
@@ -10,16 +8,10 @@ import {
 
 export const restorePasswordAPI = {
   restoreForgottenPassword(params: RestoreForgottenPasswordParamsType) {
-    return instance.post<
-      RestoreForgottenPasswordParamsType,
-      AxiosResponse<RestoreForgottenPasswordResponseType>
-    >('auth/forgot', params);
+    return instance.post<RestoreForgottenPasswordResponseType>('auth/forgot', params);
   },
 
   setNewPassword(params: SetNewPasswordType) {
-    return instance.post<SetNewPasswordType, AxiosResponse<SetNewPasswordResponseType>>(
-      'auth/set-new-password',
-      params,
-    );
+    return instance.post<SetNewPasswordResponseType>('auth/set-new-password', params);
   },
 };

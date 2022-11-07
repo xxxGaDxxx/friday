@@ -1,7 +1,7 @@
 import { instance } from './config';
 import {
   AddPackResponseType,
-  CardsPackType,
+  ParamsCardsPackType,
   DeletePackResponseType,
   PackDataResponseType,
   ParamsPacksType,
@@ -24,7 +24,7 @@ export const packsAPI = {
     return instance.put<PutPackResponseType>('/cards/pack', { cardsPack });
   },
 
-  addPack(cardsPack: CardsPackType) {
+  addPack(cardsPack: ParamsCardsPackType) {
     return instance.post<AddPackResponseType>('/cards/pack', { cardsPack });
   },
 };

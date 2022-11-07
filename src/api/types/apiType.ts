@@ -111,19 +111,19 @@ export type UpdatePackType = {
   name: string;
 };
 
-export type CardsPackType = {
+export type ParamsCardsPackType = {
   name: string;
   deckCover: string;
   private: boolean;
 };
 
 export type AddPackResponseType = {
-  newCardsPack: AddPackResponseTypeNewCardsPack;
+  newCardsPack: CardsPackType;
   token: string;
   tokenDeathTime: number;
 };
 
-export type AddPackResponseTypeNewCardsPack = {
+export type CardsPackType = {
   _id: string;
   user_id: string;
   user_name: string;
@@ -143,13 +143,13 @@ export type AddPackResponseTypeNewCardsPack = {
 };
 
 export type PutPackResponseType = {
-  updatedCardsPack: AddPackResponseTypeNewCardsPack;
+  updatedCardsPack: CardsPackType;
   token: string;
   tokenDeathTime: number;
 };
 
 export type DeletePackResponseType = {
-  deletedCardsPack: AddPackResponseTypeNewCardsPack;
+  deletedCardsPack: CardsPackType;
   token: string;
   tokenDeathTime: number;
 };
@@ -226,12 +226,12 @@ export type DeleteCardResponseType = {
 };
 
 export type PutCardResponseType = {
-  updatedCard: PutCardResponseTypeUpdatedCard;
+  updatedCard: UpdatedCardType;
   token: string;
   tokenDeathTime: number;
 };
 
-export type PutCardResponseTypeUpdatedCard = {
+export type UpdatedCardType = {
   _id: string;
   cardsPack_id: string;
   user_id: string;
