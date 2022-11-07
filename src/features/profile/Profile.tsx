@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import Button from '@mui/material/Button';
 
@@ -10,8 +10,8 @@ import { useAppSelector } from '../../common/hooks/useAppSelector';
 import styles from '../../common/scss/commonStyles.module.scss';
 import { ReturnComponentType } from '../../common/types';
 
-import { Avatar } from './components/Avatar';
-import { logOutTC, setUserNameAC, updateUserNameTC } from './reducer/profileReducer';
+import { UserAvatar } from './components/UserAvatar';
+import { logOutTC, updateUserTC } from './reducer/profileReducer';
 import s from './styles/Profile.module.scss';
 
 export const Profile = (): ReturnComponentType => {
@@ -22,16 +22,12 @@ export const Profile = (): ReturnComponentType => {
   const dispatch = useAppDispatch();
 
   const onNameChange = (name: string): void => {
-    dispatch(setUserNameAC(name));
+    dispatch(updateUserTC(name, avatar));
   };
 
   const onLogOutClick = (): void => {
     dispatch(logOutTC());
   };
-
-  useEffect(() => {
-    dispatch(updateUserNameTC());
-  }, [dispatch, userName, avatar]);
 
   return (
     <main style={{ padding: '0 17%', background: '#F9F9FA', height: '91vh' }}>
@@ -40,7 +36,7 @@ export const Profile = (): ReturnComponentType => {
       <div className={styles.container}>
         <h2 className={s.header}>Personal Information</h2>
 
-        <Avatar srcAvatarImage={avatar} />
+        <UserAvatar />
 
         <div className={s.editableName}>
           <EditableSpan onChange={onNameChange} value={userName} />

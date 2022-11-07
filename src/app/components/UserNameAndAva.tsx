@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 
 import Avatar from '@mui/material/Avatar';
 
-import avatar from '../../assets/img/defultAvatar.png';
 import { useAppSelector } from '../../common/hooks/useAppSelector';
 import { ReturnComponentType } from '../../common/types';
 
@@ -11,6 +10,7 @@ import { UserMenu } from './UserMenu';
 
 export const UserNameAndAva = (): ReturnComponentType => {
   const name = useAppSelector(state => state.profile.name);
+  const avatar = useAppSelector(state => state.profile.avatar);
 
   const [isShowedMenu, setIsShowedMenu] = useState(false);
 
@@ -22,7 +22,7 @@ export const UserNameAndAva = (): ReturnComponentType => {
     <div className={s.container}>
       <div className={s.containerProfile}>
         <span>{name}</span>
-        <Avatar src={avatar} alt="avatar" onClick={showMenu} />
+        <Avatar src={avatar} onClick={showMenu} />
       </div>
       <div className={s.menu} style={{ zIndex: '10' }}>
         {isShowedMenu && <UserMenu hideMenu={showMenu} />}

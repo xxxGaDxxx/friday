@@ -48,20 +48,22 @@ export const setUserNameAC = (name: string) =>
   ({ type: 'PROFILE/SET-USER-NAME', payload: { name } } as const);
 
 // thunk
-export const updateUserNameTC = (): AppThunk => async (dispatch, getState) => {
-  try {
-    const { name, avatar } = getState().profile;
+export const updateUserTC =
+  (name: string, avatar: string): AppThunk =>
+  async dispatch => {
+    const params = { name, avatar };
 
-    dispatch(setAppStatusAC('loading'));
+    try {
+      dispatch(setAppStatusAC('loading'));
 
-    const { data } = await userAPI.updateUser({ name, avatar });
+      const { data } = await userAPI.updateUser(params);
 
-    dispatch(setUserDataAC(data.updatedUser));
-    dispatch(setAppStatusAC('succeeded'));
-  } catch (err) {
-    errorUtils(err as AxiosError, dispatch);
-  }
-};
+      dispatch(setUserDataAC(data.updatedUser));
+      dispatch(setAppStatusAC('succeeded'));
+    } catch (err) {
+      errorUtils(err as AxiosError, dispatch);
+    }
+  };
 
 export const logOutTC = (): AppThunk => async dispatch => {
   try {
