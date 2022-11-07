@@ -1,6 +1,6 @@
 import React, { ChangeEvent, useState } from 'react';
 
-import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import AddToPhotosIcon from '@mui/icons-material/AddToPhotos';
 import { IconButton } from '@mui/material';
 
 import defaultCover from '../../../assets/img/noCover.jpg';
@@ -65,7 +65,7 @@ export const Cover = ({ setCoverPack, deckCover }: CoverType): ReturnComponentTy
       <label>
         <input type="file" onChange={uploadHandler} style={{ display: 'none' }} accept="image/*" />
         <IconButton component="span" sx={{ borderRadius: '20px' }}>
-          <CloudUploadIcon />
+          <AddToPhotosIcon />
           Download cover
         </IconButton>
       </label>
