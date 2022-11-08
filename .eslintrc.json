@@ -55,6 +55,12 @@
         ]
       }
     ],
+    "jsx-a11y/label-has-associated-control": [
+      2,
+      {
+        "assert": "either"
+      }
+    ],
     "no-underscore-dangle": ["off", { "allow": [] }],
     "camelcase": "off",
     "import/extensions": "off",

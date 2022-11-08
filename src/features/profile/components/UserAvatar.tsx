@@ -2,8 +2,9 @@ import React, { ChangeEvent } from 'react';
 
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 import { IconButton } from '@mui/material';
-import Avatar from '@mui/material/Avatar';
 
+import defaultAvatar from '../../../assets/img/defaultAvatar.png';
+import { Image } from '../../../common/components/cover/Image';
 import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
 import { useAppSelector } from '../../../common/hooks/useAppSelector';
 import { ReturnComponentType } from '../../../common/types';
@@ -11,7 +12,9 @@ import { convertFileToBase64 } from '../../../common/utils/convertFileToBase64';
 import { setAppErrorAC } from '../../../store/app-reducer';
 import { updateUserTC } from '../reducer/profileReducer';
 
-const MAX_FILE_SIZE = 5000000;
+import s from './styles/UserAvatar.module.scss';
+
+const MAX_FILE_SIZE = 4000000;
 
 export const UserAvatar = (): ReturnComponentType => {
   const dispatch = useAppDispatch();
@@ -28,23 +31,15 @@ export const UserAvatar = (): ReturnComponentType => {
           dispatch(updateUserTC(name, file64));
         });
       } else {
-        dispatch(setAppErrorAC('Файл слишком большого размера'));
+        dispatch(setAppErrorAC('The file is too large'));
       }
     }
   };
 
-  const errorHandler = (): void => {
-    dispatch(setAppErrorAC('Кривая картинка'));
-  };
-
   return (
     <>
-      <Avatar
-        src={avatar}
-        onError={errorHandler}
-        style={{ width: '250px', height: '250px', borderRadius: '50%', objectFit: 'cover' }}
-      />
-      {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+      <Image deckCover={avatar} isErrorMessageShow styles={s.avatar} defaultImage={defaultAvatar} />
+
       <label>
         <input type="file" accept="image/*" onChange={uploadHandler} style={{ display: 'none' }} />
         <IconButton component="span">

@@ -7,66 +7,45 @@ import defaultCover from '../../../assets/img/noCover.jpg';
 import { setAppErrorAC } from '../../../store/app-reducer';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { ReturnComponentType } from '../../types';
+import { convertFileToBase64 } from '../../utils/convertFileToBase64';
+
+import { Image } from './Image';
+import s from './styles/Cover.module.scss';
 
 type CoverType = {
   setCoverPack: (cover: string) => void;
   deckCover?: string;
 };
 
+const MAX_FILE_SIZE = 4000000;
+
 export const Cover = ({ setCoverPack, deckCover }: CoverType): ReturnComponentType => {
   const dispatch = useAppDispatch();
 
   const [cover, setCover] = useState(deckCover || defaultCover);
-  const [isAvaBroken, setIsAvaBroken] = useState(false);
-
-  const SIZE_FILE = 4000000;
 
   const uploadHandler = (e: ChangeEvent<HTMLInputElement>): void => {
     if (e.target.files && e.target.files.length) {
       const file = e.target.files[0];
 
-      if (file.size < SIZE_FILE) {
+      if (file.size < MAX_FILE_SIZE) {
         convertFileToBase64(file, (file64: string) => {
           setCover(file64);
-          // setCover('111');
-          // setCoverPack('file64');
           setCoverPack(file64);
-          setIsAvaBroken(false);
         });
       } else {
-        dispatch(setAppErrorAC('Файл слишком большого размера'));
+        dispatch(setAppErrorAC('The file is too large'));
       }
     }
   };
 
-  const convertFileToBase64 = (file: File, callBack: (value: string) => void): void => {
-    const reader = new FileReader();
-
-    reader.onloadend = () => {
-      const file64 = reader.result as string;
-
-      callBack(file64);
-    };
-    reader.readAsDataURL(file);
-  };
-
-  const errorHandler = (): void => {
-    setIsAvaBroken(true);
-    dispatch(setAppErrorAC('Кривая картинка'));
-  };
-
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-      <img
-        src={isAvaBroken ? defaultCover : cover}
-        style={{ width: '200px', height: '100px', margin: '15px 0' }}
-        onError={errorHandler}
-        alt="ava"
-      />
+      <Image deckCover={cover} isErrorMessageShow styles={s.cover} defaultImage={defaultCover} />
 
-      {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
       <label>
         <input type="file" onChange={uploadHandler} style={{ display: 'none' }} accept="image/*" />
+
         <IconButton component="span" sx={{ borderRadius: '20px' }}>
           <AddToPhotosIcon />
           Add cover

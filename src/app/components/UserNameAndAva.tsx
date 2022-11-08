@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
-import Avatar from '@mui/material/Avatar';
-
+import defaultAvatar from '../../assets/img/defaultAvatar.png';
+import { Image } from '../../common/components/cover/Image';
 import { useAppSelector } from '../../common/hooks/useAppSelector';
 import { ReturnComponentType } from '../../common/types';
 
@@ -22,7 +22,14 @@ export const UserNameAndAva = (): ReturnComponentType => {
     <div className={s.container}>
       <div className={s.containerProfile}>
         <span>{name}</span>
-        <Avatar src={avatar} onClick={showMenu} />
+        <div onClick={showMenu} aria-hidden="true">
+          <Image
+            deckCover={avatar}
+            isErrorMessageShow={false}
+            styles={s.containerProfile}
+            defaultImage={defaultAvatar}
+          />
+        </div>
       </div>
       <div className={s.menu} style={{ zIndex: '10' }}>
         {isShowedMenu && <UserMenu hideMenu={showMenu} />}

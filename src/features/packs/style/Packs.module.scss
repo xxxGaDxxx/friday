@@ -43,6 +43,11 @@
         }
       }
     }
+    .imageCover {
+      width: 100px;
+      height: 50px;
+      object-fit: cover
+    }
   }
 
   .pagination {
