@@ -28,7 +28,10 @@ export const Cover = ({ setCoverPack, deckCover }: CoverType): ReturnComponentTy
       if (file.size < SIZE_FILE) {
         convertFileToBase64(file, (file64: string) => {
           setCover(file64);
+          // setCover('111');
+          // setCoverPack('file64');
           setCoverPack(file64);
+          setIsAvaBroken(false);
         });
       } else {
         dispatch(setAppErrorAC('Файл слишком большого размера'));

@@ -17,6 +17,8 @@ export const PacksTableHeader = (): ReturnComponentType => {
   return (
     <TableHead>
       <TableRow sx={{ background: '#EFEFEF' }}>
+        <TableCell>Cover</TableCell>
+
         <TableCell onClick={() => sortRows('name', dispatch, sortPacks)} sx={{ cursor: 'pointer' }}>
           Name
           {sortPacks === '0name' || sortPacks === '1name' ? <SortDirection sort={sortPacks} /> : ''}

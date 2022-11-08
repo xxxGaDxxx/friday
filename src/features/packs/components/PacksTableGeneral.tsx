@@ -11,7 +11,7 @@ import { PacksTableHeader } from './PacksTableHeader';
 
 export const PacksTableGeneral = (): ReturnComponentType => {
   return (
-    <TableContainer sx={{ maxWidth: '1010px' }} component={Paper}>
+    <TableContainer component={Paper}>
       <Table aria-label="caption table">
         <PacksTableHeader />
 

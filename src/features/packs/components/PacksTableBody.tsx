@@ -44,17 +44,17 @@ export const PacksTableBody = memo((): ReturnComponentType => {
       {packs.length ? (
         packs.map(pack => (
           <TableRow key={pack._id}>
-            <TableCell
-              className={s.firstColumn}
-              onClick={() => goToCardsList(pack._id, pack.cardsCount, pack.deckCover)}
-              component="th"
-              scope="row"
-            >
+            <TableCell component="th" scope="row">
               <img
                 style={{ width: '100px', height: '50px' }}
                 src={pack.deckCover || defaultCover}
                 alt="Cover"
               />
+            </TableCell>
+            <TableCell
+              className={s.firstColumn}
+              onClick={() => goToCardsList(pack._id, pack.cardsCount, pack.deckCover)}
+            >
               <span>{pack.name}</span>
             </TableCell>
             <TableCell>{pack.cardsCount}</TableCell>
