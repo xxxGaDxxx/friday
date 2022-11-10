@@ -17,7 +17,7 @@ export const CardsTableGeneral = (): ReturnComponentType => {
   const isMyPack = userId === packUserId;
 
   return (
-    <TableContainer sx={{ maxWidth: '1010px' }} component={Paper}>
+    <TableContainer component={Paper}>
       <Table stickyHeader aria-label="caption table">
         <CardsTableHeader isMyPack={isMyPack} />
 
