@@ -27,14 +27,20 @@
 
       h1 {
         max-width: 200px;
-        word-break: break-all;
+        word-break: break-word;
         font-weight: 600;
         font-size: 22px;
         margin-right: 9px;
       }
 
-      button {
+      .popUp {
+        border: none;
+        background: none;
         padding: 0;
+
+        img:hover {
+          cursor: pointer;
+        }
       }
     }
 
@@ -53,9 +59,15 @@
     }
   }
 
+  .cover {
+    max-width: 200px;
+    height: 150px;
+    margin-top: 13px;
+  }
+
   .table {
     margin-top: 27px;
-    word-break: break-all;
+    word-break: break-word;
   }
 
   .pagination {
