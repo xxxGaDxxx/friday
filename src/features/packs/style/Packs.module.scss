@@ -26,10 +26,14 @@
     .firstColumn {
       max-width: 100px;
 
-      span {
+      .nameColumn {
 
         cursor: pointer;
         position: relative;
+
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
 
         &:hover {
           &::before {
@@ -43,11 +47,13 @@
         }
       }
     }
+
     .imageCover {
       width: 100px;
       height: 50px;
       object-fit: cover
     }
+
   }
 
   .pagination {

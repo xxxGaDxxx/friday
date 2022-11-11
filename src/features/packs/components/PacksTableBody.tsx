@@ -57,7 +57,7 @@ export const PacksTableBody = memo((): ReturnComponentType => {
               className={s.firstColumn}
               onClick={() => goToCardsList(pack._id, pack.cardsCount, pack.deckCover)}
             >
-              <span>{pack.name}</span>
+              <div className={s.nameColumn}>{pack.name}</div>
             </TableCell>
             <TableCell>{pack.cardsCount}</TableCell>
             <TableCell>{formatDate(pack.created)}</TableCell>

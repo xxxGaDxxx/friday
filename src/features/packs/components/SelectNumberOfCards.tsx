@@ -6,6 +6,7 @@ import Typography from '@mui/material/Typography';
 
 import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
 import { useAppSelector } from '../../../common/hooks/useAppSelector';
+import { useDebounce } from '../../../common/hooks/useDebounce';
 import { ReturnComponentType } from '../../../common/types';
 import { setMinMaxCountAC } from '../reducer/packsReducer';
 
@@ -19,16 +20,20 @@ export const SelectNumberOfCards = memo((): ReturnComponentType => {
 
   const [selectedCount, setSelectedCount] = useState<number[]>(minMaxCount);
 
+  const timeWait = 700;
+
+  const debounceSelectedCount = useDebounce<number[]>(selectedCount, timeWait);
+
   const handleChange = (
     event: Event | SyntheticEvent<Element, Event>,
     newValue: number | number[],
   ): void => {
-    dispatch(setMinMaxCountAC(newValue as number[]));
+    setSelectedCount(newValue as number[]);
   };
 
   useEffect(() => {
-    setSelectedCount(minMaxCount);
-  }, [minMaxCount, dispatch]);
+    dispatch(setMinMaxCountAC(debounceSelectedCount));
+  }, [debounceSelectedCount, dispatch]);
 
   return (
     <div className={s.search}>
@@ -36,12 +41,12 @@ export const SelectNumberOfCards = memo((): ReturnComponentType => {
       <div className={s.container}>
         <div className={s.count}>{selectedCount[0]}</div>
 
-        <Box sx={{ width: 150 }}>
+        <Box sx={{ width: 150, padding: '15px' }}>
           <Slider
             getAriaLabel={() => 'Cards count range'}
             max={maxCardsCount}
             value={selectedCount}
-            onChangeCommitted={handleChange}
+            onChange={handleChange}
             valueLabelDisplay="auto"
             disableSwap
           />
