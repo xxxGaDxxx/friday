@@ -12,6 +12,8 @@ import { useAppDispatch } from '../../../../common/hooks/useAppDispatch';
 import { ReturnComponentType } from '../../../../common/types';
 import { addCardTC } from '../../reducer/cardsReducer';
 
+import { VariantPicture } from './VariantPicture';
+
 export type AddCardModalProps = {
   cardPackId: string;
   clickHere: ReactNode;
@@ -77,19 +79,23 @@ export const AddCardModal = ({ cardPackId, clickHere }: AddCardModalProps): Retu
           defaultValue="Text"
         >
           <MenuItem value="Text">Text</MenuItem>
-          <MenuItem value="Image">Image</MenuItem>
+          <MenuItem value="Picture">Picture</MenuItem>
         </Select>
       </FormControl>
 
-      <TextField
-        type="text"
-        variant="standard"
-        label="Question"
-        margin="normal"
-        style={{ width: '100%' }}
-        value={question}
-        onChange={changeQuestionValue}
-      />
+      {selectValue === 'Picture' ? (
+        <VariantPicture questionExists={!!question} />
+      ) : (
+        <TextField
+          type="text"
+          variant="standard"
+          label="Question"
+          margin="normal"
+          style={{ width: '100%' }}
+          value={question}
+          onChange={changeQuestionValue}
+        />
+      )}
       <TextField
         type="text"
         variant="standard"

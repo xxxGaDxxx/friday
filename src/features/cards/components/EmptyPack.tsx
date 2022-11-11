@@ -28,11 +28,6 @@ export const EmptyPack = memo(
         <section className={s.section}>
           <Box className={s.box}>
             <Typography component="h1">{packName}</Typography>
-            <img
-              style={{ width: '300px', height: '150px' }}
-              src={deckCovePack || defaultCover}
-              alt="Cover"
-            />
           </Box>
 
           {isMyPack ? (
@@ -44,6 +39,7 @@ export const EmptyPack = memo(
             <p>This pack is empty.</p>
           )}
         </section>
+        <img className={s.cover} src={deckCovePack || defaultCover} alt="Cover" />
       </main>
     );
   },

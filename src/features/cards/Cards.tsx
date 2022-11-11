@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 
+import defaultCover from '../../assets/img/noCover.jpg';
 import { BackTo } from '../../common/components/backTo/BackTo';
 import { PaginationPage } from '../../common/components/pagination/PaginationPage';
 import { Search } from '../../common/components/search/Search';
@@ -29,7 +30,7 @@ export const Cards = (): ReturnComponentType => {
   const page = useAppSelector(state => state.card.page);
   const pageCount = useAppSelector(state => state.card.pageCount);
   const cardsTotalCount = useAppSelector(state => state.card.cardsTotalCount);
-  // const deckCovePack = useAppSelector(state => state.card.deckCovePack);
+  const deckCovePack = useAppSelector(state => state.card.deckCovePack);
 
   const dispatch = useAppDispatch();
 
@@ -60,6 +61,8 @@ export const Cards = (): ReturnComponentType => {
         cardPackId={cardPackId}
         cardsTotalCount={cardsTotalCount}
       />
+
+      <img className={s.cover} src={deckCovePack || defaultCover} alt="Cover" />
 
       <Search action={setQuestionSearchAC} search={question} />
 

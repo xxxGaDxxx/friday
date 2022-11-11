@@ -4,7 +4,7 @@
   max-width: 100vw;
   height: 100vh;
   margin: 0 auto;
-  padding: 0 17%;
+  padding: 0 11%;
   box-sizing: border-box;
   background-color: $bg;
 
@@ -17,7 +17,7 @@
     padding-top: 40px;
   }
 
-  section {
+  .section {
     display: flex;
     justify-content: space-between;
     margin-top: 27px;
@@ -27,14 +27,20 @@
 
       h1 {
         max-width: 200px;
-        word-break: break-all;
+        word-break: break-word;
         font-weight: 600;
         font-size: 22px;
         margin-right: 9px;
       }
 
-      button {
+      .popUp {
+        border: none;
+        background: none;
         padding: 0;
+
+        img:hover {
+          cursor: pointer;
+        }
       }
     }
 
@@ -53,8 +59,15 @@
     }
   }
 
+  .cover {
+    max-width: 200px;
+    height: 150px;
+    margin-top: 13px;
+  }
+
   .table {
-    word-break: break-all;
+    margin-top: 27px;
+    word-break: break-word;
   }
 
   .pagination {
