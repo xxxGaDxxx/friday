@@ -3,7 +3,7 @@
 .container {
   max-width: 100vw;
   margin: 0 auto;
-  padding: 0 11%;
+  padding: 0 17%;
   box-sizing: border-box;
   background-color: $bg;
 
@@ -26,17 +26,30 @@
     .firstColumn {
       max-width: 100px;
 
-      span {
+      .nameColumn {
+
         cursor: pointer;
+        position: relative;
+
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
 
         &:hover {
-          text-decoration: underline 2px solid #1976d2;
+          &::before {
+            position: absolute;
+            content: '';
+            background: #1976d2;
+            border: 2px solid #1976d2;
+            top: 19px;
+            width: 100%;
+          }
         }
       }
     }
 
     .imageCover {
-      max-width: 100px;
+      width: 100px;
       height: 50px;
       object-fit: cover
     }
