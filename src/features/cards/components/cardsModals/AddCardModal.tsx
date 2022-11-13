@@ -1,4 +1,4 @@
-import React, { ChangeEvent, ReactNode, useState } from 'react';
+import React, { ChangeEvent, useState } from 'react';
 
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
@@ -14,56 +14,61 @@ import { addCardTC } from '../../reducer/cardsReducer';
 
 import { VariantPicture } from './VariantPicture';
 
-export type AddCardModalProps = {
+export type AddCardModalType = {
   cardPackId: string;
-  clickHere: ReactNode;
 };
 
-export const AddCardModal = ({ cardPackId, clickHere }: AddCardModalProps): ReturnComponentType => {
+export const AddCardModal = ({ cardPackId }: AddCardModalType): ReturnComponentType => {
   const dispatch = useAppDispatch();
   const [question, setNewQuestion] = useState('');
   const [answer, setNewAnswer] = useState('');
+  const [questionImg, setNewQuestionImg] = useState('');
   const [selectValue, setSelectValue] = useState('Text');
 
   const addNewCard = (
     cardPackId: string,
     answer?: string,
     question?: string,
-    answerImg?: string,
     questionImg?: string,
+    answerImg?: string,
   ): void => {
-    dispatch(addCardTC(cardPackId, question, answer, answerImg, questionImg));
+    dispatch(addCardTC(cardPackId, question, answer, questionImg, answerImg));
   };
 
   const changeQuestionValue = (event: ChangeEvent<HTMLInputElement>): void => {
+    if (selectValue === 'Text') {
+      setNewQuestionImg('');
+    }
     setNewQuestion(event.currentTarget.value);
   };
+
   const changeAnswerValue = (event: ChangeEvent<HTMLInputElement>): void => {
     setNewAnswer(event.currentTarget.value);
   };
   const changeSelectValue = (event: SelectChangeEvent): void => {
+    if (event.target.value === 'Picture') {
+      setNewQuestion('');
+    }
     setSelectValue(event.target.value);
   };
 
   const handleClose = (): void => {
     setNewQuestion('');
     setNewAnswer('');
+    setNewQuestionImg('');
     setSelectValue('Text');
   };
 
   const saveChanges = (): void => {
-    addNewCard(cardPackId, answer, question);
+    addNewCard(cardPackId, answer, question, questionImg);
     handleClose();
-    setNewQuestion('');
-    setNewAnswer('');
-    setSelectValue('Text');
   };
 
   return (
     <UniversalModalWindow
       styleButtonActivateModal={styleButtonActivateModal}
       variantOfButtonToCallModal="contained"
-      clickHere={clickHere}
+      clickHere="Add new card"
       onAcceptActionClick={saveChanges}
       titleButtonAccept="Save"
       title="Add new card"
@@ -76,7 +81,6 @@ export const AddCardModal = ({ cardPackId, clickHere }: AddCardModalProps): Retu
           label="Choose a question format"
           onChange={changeSelectValue}
           size="medium"
-          defaultValue="Text"
         >
           <MenuItem value="Text">Text</MenuItem>
           <MenuItem value="Picture">Picture</MenuItem>
@@ -84,7 +88,11 @@ export const AddCardModal = ({ cardPackId, clickHere }: AddCardModalProps): Retu
       </FormControl>
 
       {selectValue === 'Picture' ? (
-        <VariantPicture questionExists={!!question} />
+        <VariantPicture
+          setPictureQuestion={setNewQuestionImg}
+          pictureQuestion={questionImg}
+          isErrorMessageShow
+        />
       ) : (
         <TextField
           type="text"

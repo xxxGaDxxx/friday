@@ -24,7 +24,7 @@ export const UserNameAndAva = (): ReturnComponentType => {
         <span>{name}</span>
         <div onClick={showMenu} aria-hidden="true">
           <Image
-            deckCover={avatar}
+            packCover={avatar}
             isErrorMessageShow={false}
             styles={s.containerProfile}
             defaultImage={defaultAvatar}

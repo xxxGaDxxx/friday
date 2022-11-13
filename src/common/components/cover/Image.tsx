@@ -5,21 +5,21 @@ import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { ReturnComponentType } from '../../types';
 
 type PropsType = {
-  deckCover: string;
+  packCover: string;
   isErrorMessageShow: boolean;
   styles: string;
   defaultImage: string;
 };
 
 export const Image = ({
-  deckCover,
+  packCover,
   isErrorMessageShow,
   styles,
   defaultImage,
 }: PropsType): ReturnComponentType => {
   const dispatch = useAppDispatch();
 
-  const coverImage = deckCover || defaultImage;
+  const coverImage = packCover || defaultImage;
 
   const [isAvaBroken, setIsAvaBroken] = useState(false);
 
@@ -32,7 +32,7 @@ export const Image = ({
     if (isAvaBroken) {
       setIsAvaBroken(false);
     }
-  }, [deckCover]);
+  }, [packCover]);
 
   return (
     <img

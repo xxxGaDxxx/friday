@@ -38,7 +38,7 @@ export const UserAvatar = (): ReturnComponentType => {
 
   return (
     <>
-      <Image deckCover={avatar} isErrorMessageShow styles={s.avatar} defaultImage={defaultAvatar} />
+      <Image packCover={avatar} isErrorMessageShow styles={s.avatar} defaultImage={defaultAvatar} />
 
       <label>
         <input type="file" accept="image/*" onChange={uploadHandler} style={{ display: 'none' }} />

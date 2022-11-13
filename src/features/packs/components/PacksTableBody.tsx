@@ -16,7 +16,7 @@ import { formatDate } from '../../../common/utils/formatDate';
 import {
   setCardsPackIdAC,
   setCardsTotalCountAC,
-  setDeckCoverPackAC,
+  setPackCoverAC,
 } from '../../cards/reducer/cardsReducer';
 import { setSearchAC } from '../reducer/packsReducer';
 import s from '../style/Packs.module.scss';
@@ -35,7 +35,7 @@ export const PacksTableBody = memo((): ReturnComponentType => {
     dispatch(setSearchAC(''));
     dispatch(setCardsPackIdAC(_id));
     dispatch(setCardsTotalCountAC(cardsCount));
-    dispatch(setDeckCoverPackAC(deckCover));
+    dispatch(setPackCoverAC(deckCover));
 
     navigate(PATH.CARDS);
   };
@@ -47,7 +47,7 @@ export const PacksTableBody = memo((): ReturnComponentType => {
           <TableRow key={pack._id}>
             <TableCell component="th" scope="row">
               <Image
-                deckCover={pack.deckCover}
+                packCover={pack.deckCover}
                 isErrorMessageShow={false}
                 styles={s.imageCover}
                 defaultImage={defaultCover}

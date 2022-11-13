@@ -30,7 +30,7 @@ export const Cards = (): ReturnComponentType => {
   const page = useAppSelector(state => state.card.page);
   const pageCount = useAppSelector(state => state.card.pageCount);
   const cardsTotalCount = useAppSelector(state => state.card.cardsTotalCount);
-  const deckCovePack = useAppSelector(state => state.card.deckCovePack);
+  const packCover = useAppSelector(state => state.card.packDeckCover);
 
   const dispatch = useAppDispatch();
 
@@ -62,7 +62,7 @@ export const Cards = (): ReturnComponentType => {
         cardsTotalCount={cardsTotalCount}
       />
 
-      <img className={s.cover} src={deckCovePack || defaultCover} alt="Cover" />
+      <img className={s.cover} src={packCover || defaultCover} alt="Cover" />
 
       <Search action={setQuestionSearchAC} search={question} />
 

@@ -20,7 +20,7 @@ type EmptyPackType = {
 
 export const EmptyPack = memo(
   ({ isMyPack, packName, cardPackId }: EmptyPackType): ReturnComponentType => {
-    const deckCovePack = useAppSelector(state => state.card.deckCovePack);
+    const deckCovePack = useAppSelector(state => state.card.packDeckCover);
 
     return (
       <main className={s.main}>
@@ -33,7 +33,7 @@ export const EmptyPack = memo(
           {isMyPack ? (
             <>
               <p>This pack is empty. Click add new card to fill this pack</p>
-              <AddCardModal cardPackId={cardPackId} clickHere="Add new card" />
+              <AddCardModal cardPackId={cardPackId} />
             </>
           ) : (
             <p>This pack is empty.</p>

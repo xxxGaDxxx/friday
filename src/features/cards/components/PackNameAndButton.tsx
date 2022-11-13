@@ -15,11 +15,12 @@ import s from '../styles/Cards.module.scss';
 import { AddCardModal } from './cardsModals/AddCardModal';
 import { MyPackMenu } from './MyPackMenu';
 
-type PackNameAndButtonProps = {
+type PackNameAndButtonType = {
   isMyPack: boolean;
   packName: string;
   cardPackId: string;
   cardsTotalCount: number;
+  // questionFormat: string;
 };
 
 export const PackNameAndButton = ({
@@ -27,7 +28,8 @@ export const PackNameAndButton = ({
   packName,
   cardPackId,
   cardsTotalCount,
-}: PackNameAndButtonProps): ReturnComponentType => {
+}: // questionFormat,
+PackNameAndButtonType): ReturnComponentType => {
   const dispatch = useAppDispatch();
 
   const navigate = useNavigate();
@@ -63,7 +65,7 @@ export const PackNameAndButton = ({
       </Box>
 
       {isMyPack ? (
-        <AddCardModal cardPackId={cardPackId} clickHere="Add new card" />
+        <AddCardModal cardPackId={cardPackId} />
       ) : (
         <Button
           className={s.addCardButton}

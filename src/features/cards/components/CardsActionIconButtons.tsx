@@ -23,14 +23,15 @@ export const CardsActionIconButtons = memo(
     const deleteCard = (cardId: string, cardPackId: string): void => {
       dispatch(deleteCardTC(cardId, cardPackId));
     };
+    const definedQuestionFormat = card.question !== 'no question' ? 'Text' : 'Picture';
 
     const editCard = (
       cardId: string,
       cardPackId: string,
       answer?: string,
       question?: string,
-      answerImg?: string,
       questionImg?: string,
+      answerImg?: string,
     ): void => {
       dispatch(updateCardTC(cardId, cardPackId, answer, question, answerImg, questionImg));
     };
@@ -38,6 +39,7 @@ export const CardsActionIconButtons = memo(
     return (
       <div className={s.container}>
         <EditCardModal
+          definedQuestionFormat={definedQuestionFormat}
           styleIcons={styleIcons}
           card={card}
           editCard={editCard}
@@ -48,7 +50,6 @@ export const CardsActionIconButtons = memo(
           deleteCard={deleteCard}
           cardId={card._id}
           cardPackId={card.cardsPack_id}
-          question={card.question}
           clickHere={<img src={deleteIcon} alt="deleteIcon" />}
         />
       </div>

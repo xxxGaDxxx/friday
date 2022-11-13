@@ -7,10 +7,13 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 import TextField from '@mui/material/TextField';
 
 import { CardsType } from '../../../../api/types/apiType';
+import defaultPicture from '../../../../assets/img/noCover.jpg';
 import { UniversalModalWindow } from '../../../../common/components/universalModalWindow/UniversalModalWindow';
 import { ReturnComponentType } from '../../../../common/types';
 
-export type EditCardModalProps = {
+import { VariantPicture } from './VariantPicture';
+
+export type EditCardModalType = {
   card: CardsType;
   editCard: (
     cardId: string,
@@ -22,6 +25,7 @@ export type EditCardModalProps = {
   ) => void;
   clickHere: ReactNode;
   styleIcons: Object;
+  definedQuestionFormat: string;
 };
 
 export const EditCardModal = ({
@@ -29,10 +33,12 @@ export const EditCardModal = ({
   editCard,
   clickHere,
   styleIcons,
-}: EditCardModalProps): ReturnComponentType => {
+  definedQuestionFormat,
+}: EditCardModalType): ReturnComponentType => {
   const [question, setNewQuestion] = useState(card.question);
   const [answer, setNewAnswer] = useState(card.answer);
-  const [selectValue, setSelectValue] = useState('Text');
+  const [questionImg, setNewQuestionImg] = useState(card.questionImg || defaultPicture);
+  const [selectValue, setSelectValue] = useState(definedQuestionFormat);
 
   const changeQuestionValue = (event: ChangeEvent<HTMLInputElement>): void => {
     setNewQuestion(event.currentTarget.value);
@@ -44,18 +50,8 @@ export const EditCardModal = ({
     setSelectValue(event.target.value);
   };
 
-  const handleClose = (): void => {
-    // setNewQuestion('');
-    // setNewAnswer('');
-    setSelectValue('Text');
-  };
-
   const saveChanges = (): void => {
-    editCard(card._id, card.cardsPack_id, answer, question);
-    handleClose();
-    // setNewQuestion('');
-    // setNewAnswer('');
-    setSelectValue('Text');
+    editCard(card._id, card.cardsPack_id, answer, question, questionImg);
   };
 
   return (
@@ -66,7 +62,6 @@ export const EditCardModal = ({
       onAcceptActionClick={saveChanges}
       titleButtonAccept="Save"
       title="Edit card"
-      handleClose={handleClose}
     >
       <FormControl style={{ width: '100%', marginTop: '21px' }}>
         <InputLabel>Choose a question format</InputLabel>
@@ -75,22 +70,29 @@ export const EditCardModal = ({
           label="Choose a question format"
           onChange={changeSelectValue}
           size="medium"
-          defaultValue="Text"
         >
           <MenuItem value="Text">Text</MenuItem>
-          <MenuItem value="Image">Image</MenuItem>
+          <MenuItem value="Picture">Picture</MenuItem>
         </Select>
       </FormControl>
 
-      <TextField
-        type="text"
-        variant="standard"
-        label="Question"
-        margin="normal"
-        style={{ width: '100%' }}
-        value={question}
-        onChange={changeQuestionValue}
-      />
+      {selectValue === 'Picture' ? (
+        <VariantPicture
+          setPictureQuestion={setNewQuestionImg}
+          pictureQuestion={questionImg}
+          isErrorMessageShow
+        />
+      ) : (
+        <TextField
+          type="text"
+          variant="standard"
+          label="Question"
+          margin="normal"
+          style={{ width: '100%' }}
+          value={question}
+          onChange={changeQuestionValue}
+        />
+      )}
       <TextField
         type="text"
         variant="standard"

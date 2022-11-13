@@ -25,7 +25,7 @@ export const initialStateCards = {
   cardsPackId: '',
   sortCards: '',
   question: '',
-  deckCovePack: '',
+  packDeckCover: '',
 };
 
 export const cardsReducer = (
@@ -62,10 +62,15 @@ export const cardsReducer = (
         ...state,
         pageCount: action.payload.count,
       };
-    case 'CARDS/DECK-COVER-PACK':
+    case 'CARDS/SET-PACK-COVER':
       return {
         ...state,
-        deckCovePack: action.payload.deckCoverPack,
+        packDeckCover: action.payload.packDeckCover,
+      };
+    case 'CLEAR-STATE-CARDS-DATA':
+      return {
+        ...state,
+        cards: [],
       };
     default:
       return state;
@@ -73,6 +78,7 @@ export const cardsReducer = (
 };
 
 // action
+export const clearStateData = () => ({ type: 'CLEAR-STATE-CARDS-DATA' } as const);
 export const setCardsDataAC = (data: CardsResponseType) =>
   ({ type: 'CARDS/SET-CARDS-DATA', payload: { data } } as const);
 
@@ -100,8 +106,9 @@ export const setSelectedCardsPageAC = (page: number) =>
 export const setCardsTotalCountAC = (cardsTotalCount: number) =>
   ({ type: 'CARDS/CARDS-TOTAL-COUNT', payload: { cardsTotalCount } } as const);
 
-export const setDeckCoverPackAC = (deckCoverPack: string) =>
-  ({ type: 'CARDS/DECK-COVER-PACK', payload: { deckCoverPack } } as const);
+export const setPackCoverAC = (packDeckCover: string) =>
+  ({ type: 'CARDS/SET-PACK-COVER', payload: { packDeckCover } } as const);
+
 // thunk
 export const getCardDataTC =
   (_id: string): AppThunk =>
@@ -135,10 +142,8 @@ export const addCardTC =
     _id: string,
     question?: string,
     answer?: string,
-    cardQuestion?: string,
-    cardAnswer?: string,
-    answerImg?: string,
     questionImg?: string,
+    answerImg?: string,
   ): AppThunk =>
   async dispatch => {
     const card: ParamsCardsType = {
@@ -151,6 +156,7 @@ export const addCardTC =
 
     try {
       dispatch(setAppStatusAC('loading'));
+      dispatch(clearStateData());
 
       const { data } = await cardsAPI.addCard(card);
 

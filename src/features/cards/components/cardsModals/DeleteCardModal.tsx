@@ -9,7 +9,6 @@ export type DeleteCardModalProps = {
   cardPackId: string;
   clickHere: ReactNode;
   styleIcons: Object;
-  question?: string;
 };
 
 export const DeleteCardModal = ({
@@ -18,7 +17,6 @@ export const DeleteCardModal = ({
   cardId,
   clickHere,
   styleIcons,
-  question,
 }: DeleteCardModalProps): ReturnComponentType => {
   const confirmDeleteCard = (): void => {
     deleteCard(cardId, cardPackId);
@@ -35,8 +33,7 @@ export const DeleteCardModal = ({
       colorAcceptButton="error"
     >
       <p>
-        Do you really want to remove
-        <strong> {question}</strong>
+        <strong>Do you really want to remove this card?</strong>
         <br />
         <br />
         All existed properties will be deleted!

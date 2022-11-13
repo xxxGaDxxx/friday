@@ -41,7 +41,7 @@ export const Cover = ({ setCoverPack, deckCover }: CoverType): ReturnComponentTy
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-      <Image deckCover={cover} isErrorMessageShow styles={s.cover} defaultImage={defaultCover} />
+      <Image packCover={cover} isErrorMessageShow styles={s.cover} defaultImage={defaultCover} />
 
       <label>
         <input type="file" onChange={uploadHandler} style={{ display: 'none' }} accept="image/*" />
