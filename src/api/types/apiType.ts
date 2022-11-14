@@ -217,6 +217,8 @@ export type UpdateCardType = {
   _id: string;
   question?: string;
   answer?: string;
+  questionImg?: string;
+  answerImg?: string;
 };
 
 export type DeleteCardResponseType = {

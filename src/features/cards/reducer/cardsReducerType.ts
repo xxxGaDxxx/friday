@@ -1,5 +1,5 @@
 import {
-  addCardsAC,
+  // addCardsAC,
   clearStateData,
   initialStateCards,
   setCardsDataAC,
@@ -19,7 +19,7 @@ export type InitialStateCards = typeof initialStateCards;
 
 // action
 export type SetCardsDataACType = ReturnType<typeof setCardsDataAC>;
-export type AddCardsACType = ReturnType<typeof addCardsAC>;
+// export type AddCardsACType = ReturnType<typeof addCardsAC>;
 export type SetCardsPackIdACType = ReturnType<typeof setCardsPackIdAC>;
 export type SetCardSortACType = ReturnType<typeof setCardSortAC>;
 export type SetQuestionSearchACType = ReturnType<typeof setQuestionSearchAC>;
@@ -32,7 +32,6 @@ export type clearStateDataType = ReturnType<typeof clearStateData>;
 
 export type StateCardsReducerActionsType =
   | SetCardsDataACType
-  | AddCardsACType
   | SetCardsPackIdACType
   | SetCardSortACType
   | SetQuestionSearchACType

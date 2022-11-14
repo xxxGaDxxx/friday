@@ -38,11 +38,11 @@ export const cardsReducer = (
         ...state,
         ...action.payload.data,
       };
-    case 'CARDS/ADD-CARDS':
-      return {
-        ...state,
-        cards: [action.payload.newCard, ...state.cards],
-      };
+    // case 'CARDS/ADD-CARDS':
+    //   return {
+    //     ...state,
+    //     cards: [action.payload.newCard, ...state.cards],
+    //   };
     case 'CARDS/SET-CARDS-PACK-ID':
       return {
         ...state,
@@ -157,10 +157,10 @@ export const addCardTC =
     try {
       dispatch(setAppStatusAC('loading'));
       dispatch(clearStateData());
+      // const { data } =
+      await cardsAPI.addCard(card);
 
-      const { data } = await cardsAPI.addCard(card);
-
-      dispatch(addCardsAC(data.newCard));
+      // dispatch(addCardsAC(data.newCard));
       dispatch(getCardDataTC(_id));
       dispatch(setAppStatusAC('succeeded'));
     } catch (err) {

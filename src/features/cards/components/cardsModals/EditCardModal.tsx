@@ -20,8 +20,8 @@ export type EditCardModalType = {
     cardPackId: string,
     answer?: string,
     question?: string,
-    answerImg?: string,
     questionImg?: string,
+    answerImg?: string,
   ) => void;
   clickHere: ReactNode;
   styleIcons: Object;
@@ -41,12 +41,18 @@ export const EditCardModal = ({
   const [selectValue, setSelectValue] = useState(definedQuestionFormat);
 
   const changeQuestionValue = (event: ChangeEvent<HTMLInputElement>): void => {
+    if (selectValue === 'Text') {
+      setNewQuestionImg('');
+    }
     setNewQuestion(event.currentTarget.value);
   };
   const changeAnswerValue = (event: ChangeEvent<HTMLInputElement>): void => {
     setNewAnswer(event.currentTarget.value);
   };
   const changeSelectValue = (event: SelectChangeEvent): void => {
+    if (event.target.value === 'Picture') {
+      setNewQuestion('');
+    }
     setSelectValue(event.target.value);
   };
 
