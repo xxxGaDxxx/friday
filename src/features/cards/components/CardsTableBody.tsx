@@ -5,7 +5,6 @@ import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
 
-import defaultPicture from '../../../assets/img/noCover.jpg';
 import { useAppSelector } from '../../../common/hooks/useAppSelector';
 import { ReturnComponentType } from '../../../common/types';
 import { formatDate } from '../../../common/utils/formatDate';
@@ -24,14 +23,13 @@ export const CardsTableBody = memo(({ isMyPack }: CardsTableBodyProps): ReturnCo
     <TableBody>
       {cards.length ? (
         cards.map(card => {
-          const chooseTextOrPictureQuestion =
-            card.question !== 'no question' ? (
-              <span>{card.question}</span>
-            ) : (
-              <div className={s.picture}>
-                <img src={card.questionImg || defaultPicture} alt="questionPicture" />
-              </div>
-            );
+          const chooseTextOrPictureQuestion = card.questionImg ? (
+            <div className={s.picture}>
+              <img src={card.questionImg} alt="questionPicture" />
+            </div>
+          ) : (
+            <span>{card.question}</span>
+          );
 
           return (
             <TableRow key={card._id}>

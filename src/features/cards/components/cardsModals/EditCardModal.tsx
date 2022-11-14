@@ -37,27 +37,38 @@ export const EditCardModal = ({
 }: EditCardModalType): ReturnComponentType => {
   const [question, setNewQuestion] = useState(card.question);
   const [answer, setNewAnswer] = useState(card.answer);
-  const [questionImg, setNewQuestionImg] = useState(card.questionImg || defaultPicture);
+  const [questionImg, setNewQuestionImg] = useState(card.questionImg);
   const [selectValue, setSelectValue] = useState(definedQuestionFormat);
 
+  console.log({ question, answer, questionImg, selectValue });
   const changeQuestionValue = (event: ChangeEvent<HTMLInputElement>): void => {
     if (selectValue === 'Text') {
       setNewQuestionImg('');
     }
+    console.log({ selectValue });
     setNewQuestion(event.currentTarget.value);
   };
+
   const changeAnswerValue = (event: ChangeEvent<HTMLInputElement>): void => {
     setNewAnswer(event.currentTarget.value);
   };
+
   const changeSelectValue = (event: SelectChangeEvent): void => {
     if (event.target.value === 'Picture') {
       setNewQuestion('');
+    } else {
+      setNewQuestionImg('');
     }
+    console.log(event.target.value);
     setSelectValue(event.target.value);
   };
 
   const saveChanges = (): void => {
-    editCard(card._id, card.cardsPack_id, answer, question, questionImg);
+    console.log({ question, answer, questionImg, selectValue });
+    const questionImgToRequest: string =
+      selectValue === 'Picture' ? questionImg || defaultPicture : '';
+
+    editCard(card._id, card.cardsPack_id, answer, question, questionImgToRequest);
   };
 
   return (

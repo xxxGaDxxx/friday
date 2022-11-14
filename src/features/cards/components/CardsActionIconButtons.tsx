@@ -23,7 +23,7 @@ export const CardsActionIconButtons = memo(
     const deleteCard = (cardId: string, cardPackId: string): void => {
       dispatch(deleteCardTC(cardId, cardPackId));
     };
-    const definedQuestionFormat = card.question !== 'no question' ? 'Text' : 'Picture';
+    const definedQuestionFormat = card.questionImg ? 'Picture' : 'Text';
 
     const editCard = (
       cardId: string,

@@ -11,7 +11,6 @@ import { setAppErrorAC } from '../../../../store/app-reducer';
 import s from './style/VariantPicture.module.scss';
 
 type VariantPictureType = {
-  // questionExists: boolean;
   setPictureQuestion: (newPicture: string) => void;
   pictureQuestion?: string;
   isErrorMessageShow: boolean;
