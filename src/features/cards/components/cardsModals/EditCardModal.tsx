@@ -25,7 +25,7 @@ export type EditCardModalType = {
   ) => void;
   clickHere: ReactNode;
   styleIcons: Object;
-  definedQuestionFormat: string;
+  isImage: boolean;
 };
 
 export const EditCardModal = ({
@@ -33,19 +33,20 @@ export const EditCardModal = ({
   editCard,
   clickHere,
   styleIcons,
-  definedQuestionFormat,
+  isImage,
 }: EditCardModalType): ReturnComponentType => {
+  const definedImage = isImage ? card.questionImg : '';
+  const definedQuestionFormat = isImage ? 'Picture' : 'Text';
+
   const [question, setNewQuestion] = useState(card.question);
   const [answer, setNewAnswer] = useState(card.answer);
-  const [questionImg, setNewQuestionImg] = useState(card.questionImg);
+  const [questionImg, setNewQuestionImg] = useState(definedImage);
   const [selectValue, setSelectValue] = useState(definedQuestionFormat);
 
-  console.log({ question, answer, questionImg, selectValue });
   const changeQuestionValue = (event: ChangeEvent<HTMLInputElement>): void => {
     if (selectValue === 'Text') {
       setNewQuestionImg('');
     }
-    console.log({ selectValue });
     setNewQuestion(event.currentTarget.value);
   };
 
@@ -59,14 +60,12 @@ export const EditCardModal = ({
     } else {
       setNewQuestionImg('');
     }
-    console.log(event.target.value);
     setSelectValue(event.target.value);
   };
 
   const saveChanges = (): void => {
-    console.log({ question, answer, questionImg, selectValue });
     const questionImgToRequest: string =
-      selectValue === 'Picture' ? questionImg || defaultPicture : '';
+      selectValue === 'Picture' ? questionImg || defaultPicture : 'no image';
 
     editCard(card._id, card.cardsPack_id, answer, question, questionImgToRequest);
   };

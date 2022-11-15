@@ -14,16 +14,16 @@ import { styleIcons } from './cardsModals/style/styleCardsActionIconButtons';
 
 type CardsActionIconButtonsType = {
   card: CardsType;
+  isImage: boolean;
 };
 
 export const CardsActionIconButtons = memo(
-  ({ card }: CardsActionIconButtonsType): ReturnComponentType => {
+  ({ card, isImage }: CardsActionIconButtonsType): ReturnComponentType => {
     const dispatch = useAppDispatch();
 
     const deleteCard = (cardId: string, cardPackId: string): void => {
       dispatch(deleteCardTC(cardId, cardPackId));
     };
-    const definedQuestionFormat = card.questionImg ? 'Picture' : 'Text';
 
     const editCard = (
       cardId: string,
@@ -39,7 +39,7 @@ export const CardsActionIconButtons = memo(
     return (
       <div className={s.container}>
         <EditCardModal
-          definedQuestionFormat={definedQuestionFormat}
+          isImage={isImage}
           styleIcons={styleIcons}
           card={card}
           editCard={editCard}

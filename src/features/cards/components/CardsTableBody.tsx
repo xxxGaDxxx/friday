@@ -23,7 +23,8 @@ export const CardsTableBody = memo(({ isMyPack }: CardsTableBodyProps): ReturnCo
     <TableBody>
       {cards.length ? (
         cards.map(card => {
-          const chooseTextOrPictureQuestion = card.questionImg ? (
+          const isImage = !!card.questionImg && card.questionImg !== 'no image';
+          const chooseTextOrPictureQuestion = isImage ? (
             <div className={s.picture}>
               <img src={card.questionImg} alt="questionPicture" />
             </div>
@@ -52,7 +53,7 @@ export const CardsTableBody = memo(({ isMyPack }: CardsTableBodyProps): ReturnCo
 
               {isMyPack && (
                 <TableCell>
-                  <CardsActionIconButtons key={card._id} card={card} />
+                  <CardsActionIconButtons key={card._id} card={card} isImage={isImage} />
                 </TableCell>
               )}
             </TableRow>
