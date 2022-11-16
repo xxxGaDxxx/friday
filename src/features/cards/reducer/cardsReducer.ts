@@ -179,8 +179,8 @@ export const updateCardTC =
     cardPackId: string,
     answer?: string,
     question?: string,
-    answerImg?: string,
     questionImg?: string,
+    answerImg?: string,
   ): AppThunk =>
   async dispatch => {
     const card = {

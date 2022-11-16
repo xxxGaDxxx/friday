@@ -5,12 +5,13 @@ import Typography from '@mui/material/Typography';
 
 import defaultCover from '../../../assets/img/noCover.jpg';
 import { BackTo } from '../../../common/components/backTo/BackTo';
+import { styleButtonActivateModal } from '../../../common/components/universalModalWindow/style/styleMUIComponents';
 import { PATH } from '../../../common/enum/pathEnum';
 import { useAppSelector } from '../../../common/hooks/useAppSelector';
 import { ReturnComponentType } from '../../../common/types';
 import s from '../styles/Cards.module.scss';
 
-import { AddCardModal } from './cardsModals/AddCardModal';
+import { CardModal } from './cardsModals/CardModal';
 
 type EmptyPackType = {
   isMyPack: boolean;
@@ -33,7 +34,17 @@ export const EmptyPack = memo(
           {isMyPack ? (
             <>
               <p>This pack is empty. Click add new card to fill this pack</p>
-              <AddCardModal cardPackId={cardPackId} />
+              <CardModal
+                variantOfButtonToCallModal="contained"
+                cardPackId={cardPackId}
+                clickHere="Add new card"
+                styleIcons={styleButtonActivateModal}
+                definedQuestion=""
+                definedImage=""
+                definedQuestionFormat="Text"
+                defaultAnswer=""
+                title="Add card"
+              />
             </>
           ) : (
             <p>This pack is empty.</p>

@@ -6,43 +6,43 @@ import MenuItem from '@mui/material/MenuItem';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import TextField from '@mui/material/TextField';
 
-import { CardsType } from '../../../../api/types/apiType';
 import defaultPicture from '../../../../assets/img/noCover.jpg';
 import { UniversalModalWindow } from '../../../../common/components/universalModalWindow/UniversalModalWindow';
+import { useAppDispatch } from '../../../../common/hooks/useAppDispatch';
 import { ReturnComponentType } from '../../../../common/types';
+import { addCardTC, updateCardTC } from '../../reducer/cardsReducer';
 
 import { VariantPicture } from './VariantPicture';
 
-export type EditCardModalType = {
-  card: CardsType;
-  editCard: (
-    cardId: string,
-    cardPackId: string,
-    answer?: string,
-    question?: string,
-    questionImg?: string,
-    answerImg?: string,
-  ) => void;
+export type CardModalType = {
   clickHere: ReactNode;
   styleIcons: Object;
-  doesThePictureExists: boolean;
-  doesTheQuestionExists: boolean;
+  definedQuestion: string | undefined;
+  definedImage: string | undefined;
+  definedQuestionFormat: string;
+  defaultAnswer: string | undefined;
+  cardPackId: string;
+  cardId?: string;
+  variantOfButtonToCallModal: 'text' | 'outlined' | 'contained';
+  title: string;
 };
 
-export const EditCardModal = ({
-  card,
-  editCard,
+export const CardModal = ({
   clickHere,
   styleIcons,
-  doesThePictureExists,
-  doesTheQuestionExists,
-}: EditCardModalType): ReturnComponentType => {
-  const definedImage = doesThePictureExists ? card.questionImg : '';
-  const definedQuestion = doesTheQuestionExists ? card.question : 'no question';
-  const definedQuestionFormat = doesThePictureExists ? 'Picture' : 'Text';
+  definedQuestion,
+  definedImage,
+  definedQuestionFormat,
+  defaultAnswer,
+  cardPackId,
+  cardId,
+  variantOfButtonToCallModal,
+  title,
+}: CardModalType): ReturnComponentType => {
+  const dispatch = useAppDispatch();
 
   const [question, setNewQuestion] = useState(definedQuestion);
-  const [answer, setNewAnswer] = useState(card.answer);
+  const [answer, setNewAnswer] = useState(defaultAnswer);
   const [questionImg, setNewQuestionImg] = useState(definedImage);
   const [selectValue, setSelectValue] = useState<string>(definedQuestionFormat);
 
@@ -66,23 +66,37 @@ export const EditCardModal = ({
     setSelectValue(event.target.value);
   };
 
+  const handleClose = (): void => {
+    setNewQuestion(definedQuestion);
+    setNewAnswer(defaultAnswer);
+    setNewQuestionImg(definedImage);
+    setSelectValue(definedQuestionFormat);
+  };
+
   const saveChanges = (): void => {
     const questionImgToRequest: string =
       selectValue === 'Picture' ? questionImg || defaultPicture : 'no image';
     const questionToRequest: string =
       selectValue === 'Text' ? question || 'no question' : 'no question';
 
-    editCard(card._id, card.cardsPack_id, answer, questionToRequest, questionImgToRequest);
+    if (cardId) {
+      dispatch(updateCardTC(cardId, cardPackId, answer, question, questionImgToRequest));
+    } else {
+      dispatch(addCardTC(cardPackId, questionToRequest, answer, questionImgToRequest));
+    }
+
+    handleClose();
   };
 
   return (
     <UniversalModalWindow
       styleButtonActivateModal={styleIcons}
-      variantOfButtonToCallModal="text"
+      variantOfButtonToCallModal={variantOfButtonToCallModal}
       clickHere={clickHere}
       onAcceptActionClick={saveChanges}
       titleButtonAccept="Save"
-      title="Edit card"
+      title={title}
+      handleClose={handleClose}
     >
       <FormControl style={{ width: '100%', marginTop: '21px' }}>
         <InputLabel>Choose a question format</InputLabel>

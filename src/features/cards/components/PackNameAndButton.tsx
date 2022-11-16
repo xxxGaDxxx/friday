@@ -6,13 +6,14 @@ import Typography from '@mui/material/Typography';
 import { useNavigate } from 'react-router-dom';
 
 import popUpActions from '../../../assets/svg/myPackPopupActions.svg';
+import { styleButtonActivateModal } from '../../../common/components/universalModalWindow/style/styleMUIComponents';
 import { PATH } from '../../../common/enum/pathEnum';
 import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
 import { ReturnComponentType } from '../../../common/types';
 import { getCardsLearnDataTC } from '../../learn/reducer/learnReducer';
 import s from '../styles/Cards.module.scss';
 
-import { AddCardModal } from './cardsModals/AddCardModal';
+import { CardModal } from './cardsModals/CardModal';
 import { MyPackMenu } from './MyPackMenu';
 
 type PackNameAndButtonType = {
@@ -65,7 +66,17 @@ PackNameAndButtonType): ReturnComponentType => {
       </Box>
 
       {isMyPack ? (
-        <AddCardModal cardPackId={cardPackId} />
+        <CardModal
+          variantOfButtonToCallModal="contained"
+          cardPackId={cardPackId}
+          clickHere="Add new card"
+          styleIcons={styleButtonActivateModal}
+          definedQuestion=""
+          definedImage=""
+          definedQuestionFormat="Text"
+          defaultAnswer=""
+          title="Add card"
+        />
       ) : (
         <Button
           className={s.addCardButton}

@@ -6,10 +6,10 @@ import editIcon from '../../../assets/svg/Edit.svg';
 import s from '../../../common/components/actionIconButtons/styles/ActionsSvg.module.scss';
 import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
 import { ReturnComponentType } from '../../../common/types';
-import { deleteCardTC, updateCardTC } from '../reducer/cardsReducer';
+import { deleteCardTC } from '../reducer/cardsReducer';
 
+import { CardModal } from './cardsModals/CardModal';
 import { DeleteCardModal } from './cardsModals/DeleteCardModal';
-import { EditCardModal } from './cardsModals/EditCardModal';
 import { styleIcons } from './cardsModals/style/styleCardsActionIconButtons';
 
 type CardsActionIconButtonsType = {
@@ -26,30 +26,27 @@ export const CardsActionIconButtons = memo(
   }: CardsActionIconButtonsType): ReturnComponentType => {
     const dispatch = useAppDispatch();
 
+    const definedImage = doesThePictureExists ? card.questionImg : '';
+    const definedQuestion = doesTheQuestionExists ? card.question : 'no question';
+    const definedQuestionFormat = doesThePictureExists ? 'Picture' : 'Text';
+
     const deleteCard = (cardId: string, cardPackId: string): void => {
       dispatch(deleteCardTC(cardId, cardPackId));
     };
 
-    const editCard = (
-      cardId: string,
-      cardPackId: string,
-      answer?: string,
-      question?: string,
-      questionImg?: string,
-      answerImg?: string,
-    ): void => {
-      dispatch(updateCardTC(cardId, cardPackId, answer, question, answerImg, questionImg));
-    };
-
     return (
       <div className={s.container}>
-        <EditCardModal
-          doesThePictureExists={doesThePictureExists}
-          doesTheQuestionExists={doesTheQuestionExists}
-          styleIcons={styleIcons}
-          card={card}
-          editCard={editCard}
+        <CardModal
+          variantOfButtonToCallModal="text"
+          cardPackId={card.cardsPack_id}
           clickHere={<img src={editIcon} alt="editIcon" />}
+          styleIcons={styleIcons}
+          definedQuestion={definedQuestion}
+          definedQuestionFormat={definedQuestionFormat}
+          definedImage={definedImage}
+          defaultAnswer={card.answer}
+          cardId={card._id}
+          title="Edit card"
         />
         <DeleteCardModal
           styleIcons={styleIcons}
