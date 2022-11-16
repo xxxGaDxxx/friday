@@ -25,7 +25,8 @@ export type EditCardModalType = {
   ) => void;
   clickHere: ReactNode;
   styleIcons: Object;
-  isImage: boolean;
+  doesThePictureExists: boolean;
+  doesTheQuestionExists: boolean;
 };
 
 export const EditCardModal = ({
@@ -33,15 +34,17 @@ export const EditCardModal = ({
   editCard,
   clickHere,
   styleIcons,
-  isImage,
+  doesThePictureExists,
+  doesTheQuestionExists,
 }: EditCardModalType): ReturnComponentType => {
-  const definedImage = isImage ? card.questionImg : '';
-  const definedQuestionFormat = isImage ? 'Picture' : 'Text';
+  const definedImage = doesThePictureExists ? card.questionImg : '';
+  const definedQuestion = doesTheQuestionExists ? card.question : 'no question';
+  const definedQuestionFormat = doesThePictureExists ? 'Picture' : 'Text';
 
-  const [question, setNewQuestion] = useState(card.question);
+  const [question, setNewQuestion] = useState(definedQuestion);
   const [answer, setNewAnswer] = useState(card.answer);
   const [questionImg, setNewQuestionImg] = useState(definedImage);
-  const [selectValue, setSelectValue] = useState(definedQuestionFormat);
+  const [selectValue, setSelectValue] = useState<string>(definedQuestionFormat);
 
   const changeQuestionValue = (event: ChangeEvent<HTMLInputElement>): void => {
     if (selectValue === 'Text') {
@@ -66,8 +69,10 @@ export const EditCardModal = ({
   const saveChanges = (): void => {
     const questionImgToRequest: string =
       selectValue === 'Picture' ? questionImg || defaultPicture : 'no image';
+    const questionToRequest: string =
+      selectValue === 'Text' ? question || 'no question' : 'no question';
 
-    editCard(card._id, card.cardsPack_id, answer, question, questionImgToRequest);
+    editCard(card._id, card.cardsPack_id, answer, questionToRequest, questionImgToRequest);
   };
 
   return (

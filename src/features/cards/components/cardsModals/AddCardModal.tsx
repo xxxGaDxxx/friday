@@ -35,12 +35,11 @@ export const AddCardModal = ({ cardPackId }: AddCardModalType): ReturnComponentT
     dispatch(addCardTC(cardPackId, question, answer, questionImg, answerImg));
   };
 
-  console.log({ question, answer, questionImg });
   const changeQuestionValue = (event: ChangeEvent<HTMLInputElement>): void => {
     if (selectValue === 'Text') {
       setNewQuestionImg('');
     }
-    console.log({ selectValue });
+
     setNewQuestion(event.currentTarget.value);
   };
 
@@ -53,7 +52,7 @@ export const AddCardModal = ({ cardPackId }: AddCardModalType): ReturnComponentT
     } else {
       setNewQuestionImg('');
     }
-    console.log(event.target.value);
+
     setSelectValue(event.target.value);
   };
 

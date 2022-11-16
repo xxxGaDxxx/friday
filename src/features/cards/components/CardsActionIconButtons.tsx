@@ -14,11 +14,16 @@ import { styleIcons } from './cardsModals/style/styleCardsActionIconButtons';
 
 type CardsActionIconButtonsType = {
   card: CardsType;
-  isImage: boolean;
+  doesThePictureExists: boolean;
+  doesTheQuestionExists: boolean;
 };
 
 export const CardsActionIconButtons = memo(
-  ({ card, isImage }: CardsActionIconButtonsType): ReturnComponentType => {
+  ({
+    card,
+    doesThePictureExists,
+    doesTheQuestionExists,
+  }: CardsActionIconButtonsType): ReturnComponentType => {
     const dispatch = useAppDispatch();
 
     const deleteCard = (cardId: string, cardPackId: string): void => {
@@ -39,7 +44,8 @@ export const CardsActionIconButtons = memo(
     return (
       <div className={s.container}>
         <EditCardModal
-          isImage={isImage}
+          doesThePictureExists={doesThePictureExists}
+          doesTheQuestionExists={doesTheQuestionExists}
           styleIcons={styleIcons}
           card={card}
           editCard={editCard}
