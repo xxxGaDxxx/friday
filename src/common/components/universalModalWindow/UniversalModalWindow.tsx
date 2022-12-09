@@ -48,7 +48,9 @@ export const UniversalModalWindow = ({
 
   const closeModalWindow = (): void => {
     setOpen(false);
-    handleClose?.();
+    if (handleClose) {
+      handleClose();
+    }
   };
 
   const onAcceptActionClickHandle = (): void => {
